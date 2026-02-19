@@ -72,44 +72,56 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <nav className="sidebar-nav">
-          <Link to="/" className={`nav-item ${location.pathname === '/' ? 'active' : ''}`}>
-            <span className="nav-icon">🏠</span>
-            <span className="nav-text">{getT('main')}</span>
-          </Link>
+        <nav className="sidebar-menu">
+  <ul>
+    {/* ГЛАВНАЯ */}
+    <li className="menu-item active">
+      <div className="menu-link">
+        <div className="link-content">
+          <Icon name="main" /> <span>{getT('main')}</span>
+        </div>
+      </div>
+    </li>
 
-          {menuItems.map((item) => (
-            <div key={item.id} className={`nav-group ${activeSubmenu === item.id ? 'expanded' : ''}`}>
-              <button className="nav-item trigger" onClick={(e) => toggleSubmenu(e, item.id)}>
-                <span className="nav-icon">
-                   {item.icon === 'about' && '🏢'}
-                   {item.icon === 'activity' && '🛠️'}
-                   {item.icon === 'docs' && '📑'}
-                </span>
-                <span className="nav-text">{item.title}</span>
-                <span className="nav-arrow">{activeSubmenu === item.id ? '−' : '+'}</span>
-              </button>
-              <div className="submenu">
-                {item.links.map((link, idx) => (
-                  <Link key={idx} to={link.path} className="submenu-link" onClick={() => setIsOpen(false)}>
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
+    {/* О ПРЕДПРИЯТИИ */}
+    <li className={`menu-item ${activeSubmenu === 'about' ? 'submenu-open' : ''}`}>
+      <div className="menu-link" onClick={() => toggleSubmenu('about')}>
+        <div className="link-content">
+          <Icon name="about" /> <span>{getT('aboutCompany')}</span>
+        </div>
+        <span className="arrow">▼</span>
+      </div>
+      <div className="submenu-wrapper">
+        <ul className="submenu">
+          <li>Общая информация</li>
+          <li>Руководство</li>
+          <li>Устав</li>
+          <li>Структура</li>
+          <li>Отчёты</li>
+          <li>Карты</li>
+        </ul>
+      </div>
+    </li>
 
-          <Link to="/news" className="nav-item">
-            <span className="nav-icon">📢</span>
-            <span className="nav-text">{getT('news')}</span>
-          </Link>
-
-          <Link to="/contacts" className="nav-item">
-            <span className="nav-icon">📞</span>
-            <span className="nav-text">{getT('contacts')}</span>
-          </Link>
-        </nav>
-
+    {/* ДЕЯТЕЛЬНОСТЬ (аналогично) */}
+    <li className={`menu-item ${activeSubmenu === 'work' ? 'submenu-open' : ''}`}>
+      <div className="menu-link" onClick={() => toggleSubmenu('work')}>
+        <div className="link-content">
+          <Icon name="activity" /> <span>{getT('services')}</span>
+        </div>
+        <span className="arrow">▼</span>
+      </div>
+      <div className="submenu-wrapper">
+        <ul className="submenu">
+          <li>Услуги</li>
+          <li>Проекты</li>
+          <li>Месторождения</li>
+          <li>Антикоррупционные меры</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</nav>
         <div className="sidebar-bottom">
           <div className="lang-switcher">
             {['RU', 'KG', 'EN'].map(lang => (

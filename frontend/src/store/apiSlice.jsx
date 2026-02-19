@@ -1,9 +1,11 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-const apiUrl = process.env.REACT_APP_API_URL;
+// В apiSlice.js
+const apiUrl = process.env.REACT_APP_API_URL || "https://kyrgyzgeology.kg/api";
+
 export const instance = axios.create({
-    baseURL: apiUrl,
-})
+    baseURL: apiUrl.endsWith('/') ? apiUrl.slice(0, -1) : apiUrl, 
+});
 
 export const getHome = createAsyncThunk(
     "api/getHome",

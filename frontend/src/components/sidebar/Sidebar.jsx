@@ -15,43 +15,9 @@ const Sidebar = () => {
     return translate[key] ? translate[key][lang] : key;
   };
 
-  const toggleSubmenu = (e, menuKey) => {
-    e.preventDefault();
+  const toggleSubmenu = (menuKey) => {
     setActiveSubmenu(activeSubmenu === menuKey ? null : menuKey);
   };
-
-  const menuItems = [
-    { 
-      id: 'about', 
-      title: getT('aboutCompany'), 
-      icon: 'about', 
-      links: [
-        { name: 'Общая информация', path: '/about/info' },
-        { name: 'Руководство', path: '/about/management' },
-        { name: 'Устав', path: '/about/charter' },
-        { name: 'Структура', path: '/about/structure' }
-      ] 
-    },
-    { 
-      id: 'activity', 
-      title: getT('services'), 
-      icon: 'activity', 
-      links: [
-        { name: 'Услуги', path: '/services' },
-        { name: 'Проекты', path: '/projects' },
-        { name: 'Месторождения', path: '/deposits' }
-      ] 
-    },
-    { 
-      id: 'base', 
-      title: 'Нормативная база', 
-      icon: 'docs', 
-      links: [
-        { name: 'Законодательство', path: '/legal' },
-        { name: 'Формы и бланки', path: '/forms' }
-      ] 
-    }
-  ];
 
   return (
     <>
@@ -62,79 +28,78 @@ const Sidebar = () => {
       {isOpen && <div className="sidebar-overlay" onClick={() => setIsOpen(false)}></div>}
 
       <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
-        <div className="sidebar-header">
-          <div className="logo-container">
-            <img src="/logo.png" alt="Logo" className="sidebar-logo-img" />
-            <div className="logo-text">
-              <span className="brand-name">Кыргызгеология</span>
-              <span className="brand-sub">Государственное предприятие</span>
-            </div>
+        <div className="sidebar-logo">
+          <img src="/logo.png" alt="Logo" className="logo-img" />
+          <div className="logo-text">
+            <h2>Кыргызгеология</h2>
+            <p>Государственное предприятие</p>
           </div>
         </div>
 
         <nav className="sidebar-menu">
-  <ul>
-    {/* ГЛАВНАЯ */}
-    <li className="menu-item active">
-      <div className="menu-link">
-        <div className="link-content">
-          <Icon name="main" /> <span>{getT('main')}</span>
-        </div>
-      </div>
-    </li>
+          <ul>
+            <li className={`menu-item ${location.pathname === '/' ? 'active' : ''}`}>
+              <Link to="/" className="menu-link">
+                <div className="link-content">
+                  <span>🏠</span> <span>{getT('main')}</span>
+                </div>
+              </Link>
+            </li>
 
-    {/* О ПРЕДПРИЯТИИ */}
-    <li className={`menu-item ${activeSubmenu === 'about' ? 'submenu-open' : ''}`}>
-      <div className="menu-link" onClick={() => toggleSubmenu('about')}>
-        <div className="link-content">
-          <Icon name="about" /> <span>{getT('aboutCompany')}</span>
-        </div>
-        <span className="arrow">▼</span>
-      </div>
-      <div className="submenu-wrapper">
-        <ul className="submenu">
-          <li>Общая информация</li>
-          <li>Руководство</li>
-          <li>Устав</li>
-          <li>Структура</li>
-          <li>Отчёты</li>
-          <li>Карты</li>
-        </ul>
-      </div>
-    </li>
+            {/* О ПРЕДПРИЯТИИ */}
+            <li className={`menu-item ${activeSubmenu === 'about' ? 'submenu-open' : ''}`}>
+              <div className="menu-link" onClick={() => toggleSubmenu('about')}>
+                <div className="link-content">
+                  <span>🏢</span> <span>{getT('aboutCompany')}</span>
+                </div>
+                <span className="arrow">▼</span>
+              </div>
+              <ul className="submenu">
+                <li><Link to="/about/info">Общая информация</Link></li>
+                <li><Link to="/about/management">Руководство</Link></li>
+                <li><Link to="/about/charter">Устав</Link></li>
+                <li><Link to="/about/structure">Структура</Link></li>
+              </ul>
+            </li>
 
-    {/* ДЕЯТЕЛЬНОСТЬ (аналогично) */}
-    <li className={`menu-item ${activeSubmenu === 'work' ? 'submenu-open' : ''}`}>
-      <div className="menu-link" onClick={() => toggleSubmenu('work')}>
-        <div className="link-content">
-          <Icon name="activity" /> <span>{getT('services')}</span>
-        </div>
-        <span className="arrow">▼</span>
-      </div>
-      <div className="submenu-wrapper">
-        <ul className="submenu">
-          <li>Услуги</li>
-          <li>Проекты</li>
-          <li>Месторождения</li>
-          <li>Антикоррупционные меры</li>
-        </ul>
-      </div>
-    </li>
-  </ul>
-</nav>
-        <div className="sidebar-bottom">
+            {/* ДЕЯТЕЛЬНОСТЬ */}
+            <li className={`menu-item ${activeSubmenu === 'activity' ? 'submenu-open' : ''}`}>
+              <div className="menu-link" onClick={() => toggleSubmenu('activity')}>
+                <div className="link-content">
+                  <span>🛠️</span> <span>{getT('services')}</span>
+                </div>
+                <span className="arrow">▼</span>
+              </div>
+              <ul className="submenu">
+                <li><Link to="/services">Услуги</Link></li>
+                <li><Link to="/projects">Проекты</Link></li>
+                <li><Link to="/deposits">Месторождения</Link></li>
+              </ul>
+            </li>
+
+            <li className="menu-item">
+              <Link to="/news" className="menu-link">
+                <div className="link-content">
+                  <span>📢</span> <span>{getT('news')}</span>
+                </div>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <div className="sidebar-footer">
           <div className="lang-switcher">
             {['RU', 'KG', 'EN'].map(lang => (
               <span 
                 key={lang} 
-                className={language === lang ? 'active' : ''} 
+                className={language === lang ? 'active-lang' : ''} 
                 onClick={() => changeLanguage(lang)}
               >
                 {lang}
               </span>
             ))}
           </div>
-          <button className="vision-btn">👁 Версия для слабовидящих</button>
+          <button className="accessibility-btn">👁 Версия для слабовидящих</button>
         </div>
       </aside>
     </>

@@ -33,7 +33,7 @@ const CustomSelect = ({ options, defaultTitle, onSelect }) => {
                 </div>
                 {isActive && (
                     <div className="__select__content">
-                        {options.map((option) => (
+                        {options?.map((option) => (
                             <div
                                 key={option.id}
                                 className="__select__label"

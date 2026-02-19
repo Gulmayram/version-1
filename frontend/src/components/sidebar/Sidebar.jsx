@@ -4,7 +4,6 @@ import './Sidebar.css';
 import { LanguageContext } from '../../LanguageContext';
 import { translate } from "../../assets/translate";
 
-// Иконки
 const Icons = {
   main: (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,7 +92,6 @@ const Sidebar = () => {
               </Link>
             </li>
 
-            {/* О ПРЕДПРИЯТИИ */}
             <li className={`menu-item ${activeSubmenu === 'about' ? 'submenu-open' : ''}`}>
               <div className="menu-link" onClick={() => toggleSubmenu('about')}>
                 <div className="link-content">{Icons.about} <span>{getT('aboutCompany')}</span></div>
@@ -109,7 +107,6 @@ const Sidebar = () => {
               </ul>
             </li>
 
-            {/* ДЕЯТЕЛЬНОСТЬ */}
             <li className={`menu-item ${activeSubmenu === 'activity' ? 'submenu-open' : ''}`}>
               <div className="menu-link" onClick={() => toggleSubmenu('activity')}>
                 <div className="link-content">{Icons.activity} <span>{getT('services')}</span></div>
@@ -125,7 +122,6 @@ const Sidebar = () => {
               </ul>
             </li>
 
-            {/* НОРМАТИВНАЯ БАЗА */}
             <li className={`menu-item ${activeSubmenu === 'base' ? 'submenu-open' : ''}`}>
               <div className="menu-link" onClick={() => toggleSubmenu('base')}>
                 <div className="link-content">{Icons.base} <span>Нормативная база</span></div>
@@ -138,7 +134,6 @@ const Sidebar = () => {
               </ul>
             </li>
 
-            {/* ОБЪЯВЛЕНИЯ И НОВОСТИ */}
             <li className={`menu-item ${activeSubmenu === 'news' ? 'submenu-open' : ''}`}>
               <div className="menu-link" onClick={() => toggleSubmenu('news')}>
                 <div className="link-content">{Icons.news} <span>Объявления и новости</span></div>
@@ -153,7 +148,6 @@ const Sidebar = () => {
               </ul>
             </li>
 
-            {/* КОНТАКТЫ */}
             <li className={`menu-item ${activeSubmenu === 'contacts' ? 'submenu-open' : ''}`}>
               <div className="menu-link" onClick={() => toggleSubmenu('contacts')}>
                 <div className="link-content">{Icons.contacts} <span>Контакты</span></div>

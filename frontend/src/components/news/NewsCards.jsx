@@ -125,7 +125,7 @@ const NewsCards = () => {
               />
             </div>
             <div className="news-cards-container">
-              {filteredNews.slice(0, visibleNews).map((news, index) => (
+              {filteredNews.slice(0, visibleNews)?.map((news, index) => (
                   <div
                       onClick={() => handleNavigate(`/newsitem/${news.id}`)}
                       key={index}
@@ -156,3 +156,4 @@ const NewsCards = () => {
 };
 
 export default NewsCards;
+

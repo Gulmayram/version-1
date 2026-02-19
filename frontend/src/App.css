@@ -8,31 +8,30 @@
 html, body {
   height: 100%;
   font-family: Arial, sans-serif;
-  overflow-x: hidden; /* Чтобы не было горизонтальной прокрутки */
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
 }
 
-/* Основной контейнер, который мы создали в App.js */
 .App {
-  display: flex; /* Сайдбар и main-layout теперь стоят в ряд */
+  display: flex; 
   min-height: 100vh;
 }
 
-/* Правая часть сайта (все кроме сайдбара) */
+/* Правая часть сайта */
 .main-layout {
   display: flex;
   flex-direction: column;
   flex: 1;
-  /* Отступ равен ширине сайдбара (280px), чтобы контент не заезжал под него */
+  /* Стандартный отступ для десктопа */
   margin-left: 280px; 
   min-height: 100vh;
   transition: margin-left 0.3s ease;
+  width: 100%;
 }
 
-/* Область, где рендерятся ваши страницы через Myroutes */
 .content-area {
   flex: 1;
   width: 100%;
@@ -51,13 +50,52 @@ html, body {
   padding: 20px;
 }
 
-/* Адаптивность для мобильных устройств */
-@media (max-width: 1024px) {
-  .main-layout {
-    margin-left: 0; /* Убираем отступ, если на маленьких экранах сайдбар скрывается */
-  }
-  
+/* --- АДАПТИВНОСТЬ ПОД ВАШ ЗАПРОС (800px) --- */
+
+@media (max-width: 800px) {
   .App {
-    flex-direction: column; /* На мобилках все снова в колонку */
+    flex-direction: column; 
+  }
+
+  .main-layout {
+    margin-left: 0; /* Убираем отступ, так как сайдбар теперь перекрывает контент */
+  }
+
+  /* Стили для кнопки-бургера в Sidebar.jsx */
+  .burger-menu {
+    display: block; 
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1100;
+    background: #1a5a96;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  /* Затемнение фона при открытом меню */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+  }
+}
+
+/* На десктопе прячем кнопку бургер */
+@media (min-width: 801px) {
+  .burger-menu {
+    display: none;
+  }
+  .sidebar-overlay {
+    display: none;
   }
 }

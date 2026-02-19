@@ -44,31 +44,93 @@
 }
 
 /* Меню навигации */
+.sidebar-menu {
+  flex-grow: 1;
+  overflow-y: auto; /* Чтобы меню прокручивалось, если пунктов много */
+}
+
 .sidebar-menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex-grow: 1;
 }
 
-.sidebar-menu li {
+/* Стили для элементов меню и ссылок */
+.menu-item {
+  margin-bottom: 5px;
+}
+
+.menu-link {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
+  width: 100%;
   cursor: pointer;
   border-radius: 5px;
-  margin-bottom: 5px;
-  transition: background-color 0.3s ease;
-  font-size: 0.95em;
+  transition: background 0.2s;
+  color: white;
+  text-decoration: none;
 }
 
-.sidebar-menu li.active {
+.menu-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item.active > .menu-link {
   background-color: rgba(255, 255, 255, 0.15);
+  border-left: 4px solid #fff;
   font-weight: bold;
 }
 
-.sidebar-menu li:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+.link-content {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Отступ между SVG и текстом */
+}
+
+.link-content svg {
+  flex-shrink: 0;
+}
+
+.arrow {
+  font-size: 0.8em;
+  opacity: 0.6;
+  transition: transform 0.3s ease;
+}
+
+/* Выпадающее подменю (Аккордеон) */
+.submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  border-radius: 0 0 5px 5px;
+}
+
+.submenu-open .submenu {
+  max-height: 500px; /* Достаточное значение для раскрытия */
+  padding: 5px 0;
+}
+
+.submenu-open .arrow {
+  transform: rotate(180deg); /* Поворот стрелочки при открытии */
+}
+
+.submenu li {
+  padding: 10px 15px 10px 47px; /* Отступ, чтобы текст был под текстом родителя */
+  font-size: 0.85em;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submenu li:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Футер и переключатель языков */
@@ -81,24 +143,30 @@
 
 .lang-switcher {
   margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .lang-switcher span {
   cursor: pointer;
-  margin: 0 5px;
-  opacity: 0.7;
+  opacity: 0.6;
   transition: opacity 0.3s ease;
 }
 
+.lang-switcher span:hover, 
 .lang-switcher .active-lang {
-  font-weight: bold;
   opacity: 1;
+  font-weight: bold;
+}
+
+.lang-switcher .active-lang {
   text-decoration: underline;
 }
 
 /* Кнопка доступности */
 .accessibility-btn {
-  background: none;
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
   padding: 10px;
@@ -109,13 +177,13 @@
   justify-content: center;
   width: 100%;
   border-radius: 5px;
+  gap: 8px;
 }
 
 /* --- МОБИЛЬНЫЕ СТИЛИ (Экраны меньше 800px) --- */
 
-/* Кнопка-бургер */
 .burger-menu {
-  display: none; /* Скрыта по умолчанию (на десктопе) */
+  display: none;
   position: fixed;
   top: 15px;
   left: 15px;
@@ -130,7 +198,6 @@
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
-/* Слой затемнения при открытом меню */
 .sidebar-overlay {
   display: none;
   position: fixed;
@@ -141,46 +208,23 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 998;
 }
-.menu-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 15px;
-  width: 100%;
-  cursor: pointer;
-  transition: background 0.2s;
-}
 
-.link-content {
-  display: flex;
-  align-items: center;
-  gap: 12px; /* Отступ между иконкой и текстом */
-}
-
-.link-content svg {
-  flex-shrink: 0;
-}
-
-.menu-item.active .menu-link {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-left: 4px solid #fff; /* Тонкая полоска для активного пункта */
-}
 @media (max-width: 800px) {
   .burger-menu {
-    display: block; /* Показываем только на мобилках */
+    display: block;
   }
 
   .sidebar {
-    transform: translateX(-100%); /* Прячем за экран */
+    transform: translateX(-100%);
     width: 260px;
   }
 
   .sidebar.open {
-    transform: translateX(0); /* Выезжает при наличии класса .open */
+    transform: translateX(0);
   }
 
-  /* Если overlay есть в DOM, показываем его (управляется через JS) */
-  .sidebar-overlay {
+  /* Показываем overlay только на мобилке, если меню открыто */
+  .sidebar.open + .sidebar-overlay {
     display: block;
   }
 }

@@ -21,10 +21,10 @@ const Projects = () => {
         <h2 className="section-title">{translate.projects[language]}</h2>
         <div className='mapProjectsContainer'>
             <div className="mapContent">
-                <Map maps={maps} loading={loading} type={0}/>
+                <Map maps={{maps || []} loading={loading} type={0}/>
                 <h2 className="section-title"
                     style={{marginTop: "40px"}}>{translate.geologicalExploration[language]}</h2>
-                <Map maps={newMaps} loading={loading} type={1}/>
+                <Map maps={newMaps || []} loading={loading} type={1}/>
                 <a href='http://open.geology.kg/minresources/f1_ru.aspx' target="_blank"  className='linkToMaps'>
                     <button className='mapRedirect'>
                         <p>Карта всех месторождений</p>
@@ -39,3 +39,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

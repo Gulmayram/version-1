@@ -1,3 +1,4 @@
+console.log("Текущие данные homes:", homes);
 import React, {useState, useEffect, useContext, useRef} from 'react';
 import './Main.css';
 import mainPhoto from "../../assets/mainPhoto.jpg"
@@ -27,12 +28,11 @@ const Main = () => {
     };
 
 useEffect(() => {
-    // Добавляем проверку Array.isArray
     if (Array.isArray(homes) && homes.length > 0) {
         clearAndSetInterval();
     }
     return () => clearInterval(intervalRef.current);
-}, [homes?.length, timeOut]); // Используем опциональную цепочку ?.
+}, [homes?.length, timeOut]); // Используем ?. для безопасного доступа
 
    const goToSlide = (index) => {
      setCurrentSlide(index);
@@ -68,7 +68,7 @@ useEffect(() => {
       className={`dot ${index === currentSlide ? 'active' : ''}`}
       onClick={() => goToSlide(index)}
     >
-        <img style={{borderRadius:"5px"}} src={home?.icon}/>
+        <img style={{borderRadius:"5px"}} src={home?.icon} alt="icon" />
         <h4>{home?.mini_title}</h4>
     </div>
   ))}
@@ -85,6 +85,7 @@ useEffect(() => {
 };
 
 export default Main;
+
 
 
 

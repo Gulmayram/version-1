@@ -141,7 +141,30 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 998;
 }
+.menu-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
 
+.link-content {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Отступ между иконкой и текстом */
+}
+
+.link-content svg {
+  flex-shrink: 0;
+}
+
+.menu-item.active .menu-link {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-left: 4px solid #fff; /* Тонкая полоска для активного пункта */
+}
 @media (max-width: 800px) {
   .burger-menu {
     display: block; /* Показываем только на мобилках */

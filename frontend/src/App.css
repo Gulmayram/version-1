@@ -1,44 +1,63 @@
 /* App.css */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  .app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  .content {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  main {
-    flex: 1;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Чтобы не было горизонтальной прокрутки */
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Основной контейнер, который мы создали в App.js */
+.App {
+  display: flex; /* Сайдбар и main-layout теперь стоят в ряд */
+  min-height: 100vh;
+}
+
+/* Правая часть сайта (все кроме сайдбара) */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /* Отступ равен ширине сайдбара (280px), чтобы контент не заезжал под него */
+  margin-left: 280px; 
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+/* Область, где рендерятся ваши страницы через Myroutes */
+.content-area {
+  flex: 1;
+  width: 100%;
+}
+
 .section-title {
   text-align: center;
   font-size: 36px;
   color: #0D3E61;
   margin-bottom: 40px;
 }
-.noData{
+
+.noData {
   color: #79797a;
+  text-align: center;
+  padding: 20px;
 }
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 1024px) {
+  .main-layout {
+    margin-left: 0; /* Убираем отступ, если на маленьких экранах сайдбар скрывается */
+  }
   
+  .App {
+    flex-direction: column; /* На мобилках все снова в колонку */
+  }
+}

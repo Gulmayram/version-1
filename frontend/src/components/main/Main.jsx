@@ -27,11 +27,12 @@ const Main = () => {
     };
 
 useEffect(() => {
+    // Добавляем проверку Array.isArray
     if (Array.isArray(homes) && homes.length > 0) {
         clearAndSetInterval();
     }
     return () => clearInterval(intervalRef.current);
-}, [homes?.length, timeOut]); // используйте опциональную цепочку ?.
+}, [homes?.length, timeOut]); // Используем опциональную цепочку ?.
 
    const goToSlide = (index) => {
      setCurrentSlide(index);
@@ -61,7 +62,6 @@ useEffect(() => {
               <img src={mainPhoto} alt="main" style={{ width: '100%', height: '100vmin' }}/>
           )}
 <div className="dots">
-  {/* Добавляем Array.isArray для надежности */}
   {Array.isArray(homes) && homes.map((home, index) => (
     <div
       key={index}
@@ -85,5 +85,6 @@ useEffect(() => {
 };
 
 export default Main;
+
 
 

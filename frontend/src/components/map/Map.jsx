@@ -11,7 +11,7 @@ import {translate} from "../../assets/translate";
 import {LanguageContext} from "../../LanguageContext";
 import {useNavigate} from "react-router-dom";
 
-const MapExample = ({maps=[],loading,type}) => {
+const MapExample = ({maps=[], loading, type}) => {
     const initialPosition = [41.20438, 74.7661];
     const initialZoom = 7;
     const [geoJsonData, setGeoJsonData] = useState(null);
@@ -109,8 +109,8 @@ const MapExample = ({maps=[],loading,type}) => {
         }
         const labelsD = Object.keys(typeCounts);
         const data = Object.values(typeCounts);
-        const labels = labelsD.map((d) => ddd[d])
-        const backgroundColor = labelsD.map(label => label); // Assuming the label is a valid color string
+        const labels = labelsD?.map((d) => ddd[d])
+        const backgroundColor = labelsD?.map(label => label); // Assuming the label is a valid color string
 
         return {
             labels,
@@ -203,7 +203,7 @@ const MapExample = ({maps=[],loading,type}) => {
                 labels: {
                     generateLabels: (chart) => {
                         const data = chart.data;
-                        return data.labels.map((label, i) => {
+                        return data.labels?.map((label, i) => {
                             const meta = chart.getDatasetMeta(0);
                             const hidden = meta.data[i].hidden;
 
@@ -272,8 +272,8 @@ const MapExample = ({maps=[],loading,type}) => {
         return (
             <>
                 {geoJsonData && <GeoJSON data={geoJsonData} style={style} />}
-                {filteredMaps.map((map, index) => {
-                    const polygon =  map.geom.coordinates[0].map(([lng, lat]) => [lat, lng]);
+                {filteredMaps?.map((map, index) => {
+                    const polygon =  map.geom.coordinates[0]?.map(([lng, lat]) => [lat, lng]);
             
 
                     return (
@@ -360,7 +360,7 @@ const MapExample = ({maps=[],loading,type}) => {
                             <div></div>
                         )}
                         <div className="filteredList">
-                            {filteredMaps.map((mapObject,index) => (
+                            {filteredMaps?.map((mapObject,index) => (
                                 <div key={index} className="filteredList_Object" onClick={() => handleNavigate(mapObject)}>
                                     <h2>{mapObject[translate.translatedApi.title[language]]}</h2>
                                 </div>
@@ -382,3 +382,4 @@ const MapExample = ({maps=[],loading,type}) => {
 };
 
 export default MapExample;
+

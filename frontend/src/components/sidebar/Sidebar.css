@@ -1,39 +1,38 @@
-/* Базовые стили */
 .sidebar {
   width: 280px;
   height: 100vh;
   background-color: #1a5a96;
   color: white;
   position: fixed;
-  left: 0;
-  top: 0;
+  left: 0; top: 0;
   display: flex;
   flex-direction: column;
   padding: 20px;
   transition: transform 0.3s ease;
   z-index: 1000;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
 }
 
 .sidebar-logo {
   display: flex;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.logo-img { width: 45px; height: 45px; margin-right: 12px; }
-.logo-text h2 { margin: 0; font-size: 1rem; }
-.logo-text p { margin: 0; font-size: 0.7rem; opacity: 0.7; }
+.logo-img { width: 50px; height: 50px; margin-right: 15px; }
+.logo-text h2 { margin: 0; font-size: 1.1em; font-weight: bold; }
+.logo-text p { margin: 0; font-size: 0.75em; opacity: 0.8; }
 
-/* Навигация */
 .sidebar-menu { flex-grow: 1; overflow-y: auto; }
 .sidebar-menu ul { list-style: none; padding: 0; margin: 0; }
 
+/* Важно: menu-item - это колонка, чтобы submenu шло ниже */
 .menu-item {
   display: flex;
-  flex-direction: column; /* Важно: чтобы подменю шло под заголовком */
-  margin-bottom: 4px;
+  flex-direction: column;
+  margin-bottom: 5px;
 }
 
 .menu-link {
@@ -41,70 +40,78 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
-  color: white;
-  text-decoration: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background 0.2s;
+  color: white;
+  text-decoration: none;
 }
 
-.menu-link:hover { background: rgba(255, 255, 255, 0.1); }
+.menu-link:hover { background: rgba(255,255,255,0.1); }
 
-/* Индикатор активного пункта */
+/* Индикатор активного пункта как на макете */
 .menu-item.active > .menu-link {
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: inset 4px 0 0 white; /* Белая полоска слева */
+  background: rgba(255,255,255,0.15);
+  box-shadow: inset 4px 0 0 white;
 }
 
 .link-content { display: flex; align-items: center; gap: 12px; }
 .arrow { font-size: 0.7em; transition: 0.3s; opacity: 0.5; }
 
-/* Подменю (Аккордеон) */
+/* Стили подменю - АККОРДЕОН */
 .submenu {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  transition: max-height 0.4s ease-in-out;
+  background: rgba(0,0,0,0.1);
+  border-radius: 0 0 6px 6px;
 }
 
 .submenu-open .submenu {
-  max-height: 400px; /* Раздвигает меню */
-  margin-top: 2px;
-  padding: 5px 0;
+  max-height: 500px; /* Раздвигает меню вниз */
+  padding: 5px 0 10px 0;
 }
 
 .submenu-open .arrow { transform: rotate(180deg); }
 
 .submenu li a {
   display: block;
-  padding: 10px 15px 10px 45px; /* Текст под текстом родителя */
-  color: rgba(255, 255, 255, 0.7);
+  padding: 8px 15px 8px 47px; /* 47px = 20px иконка + 12px gap + 15px padding */
+  color: rgba(255,255,255,0.7);
   text-decoration: none;
   font-size: 0.9em;
+  transition: 0.2s;
 }
 
-.submenu li a:hover { color: white; background: rgba(255, 255, 255, 0.05); }
+.submenu li a:hover { color: white; background: rgba(255,255,255,0.05); }
 
 /* Футер */
-.sidebar-footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 15px; }
-.lang-switcher { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; }
-.lang-switcher span { cursor: pointer; opacity: 0.5; font-size: 0.9em; }
+.sidebar-footer { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+.lang-switcher { display: flex; justify-content: center; gap: 12px; margin-bottom: 15px; }
+.lang-switcher span { cursor: pointer; opacity: 0.6; font-size: 0.9em; }
 .lang-switcher .active-lang { opacity: 1; font-weight: bold; text-decoration: underline; }
 
 .accessibility-btn {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
   color: white;
   padding: 10px;
   border-radius: 6px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.85em;
 }
 
-/* Мобилка */
+/* Мобильная версия */
+.burger-menu { display: none; position: fixed; top: 15px; left: 15px; z-index: 1100; background: #1a5a96; color: white; border: none; padding: 10px; border-radius: 4px; }
+
 @media (max-width: 800px) {
-  .sidebar { transform: translateX(-100%); }
-  .sidebar.open { transform: translateX(0); }
   .burger-menu { display: block; }
+  .sidebar { transform: translateX(-100%); width: 260px; }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-overlay { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
 }

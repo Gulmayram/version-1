@@ -46,7 +46,7 @@
 /* Меню навигации */
 .sidebar-menu {
   flex-grow: 1;
-  overflow-y: auto; /* Чтобы меню прокручивалось, если пунктов много */
+  overflow-y: auto;
 }
 
 .sidebar-menu ul {
@@ -55,8 +55,10 @@
   margin: 0;
 }
 
-/* Стили для элементов меню и ссылок */
+/* Элемент меню (теперь колонка, чтобы подменю было СНИЗУ) */
 .menu-item {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 5px;
 }
 
@@ -78,15 +80,25 @@
 }
 
 .menu-item.active > .menu-link {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-left: 4px solid #fff;
+  background-color: rgba(255, 255, 255, 0.2);
   font-weight: bold;
+}
+
+/* Линия-индикатор для активного пункта (как на скриншоте) */
+.menu-item.active > .menu-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 4px;
+    height: 24px;
+    background: white;
+    border-radius: 0 2px 2px 0;
 }
 
 .link-content {
   display: flex;
   align-items: center;
-  gap: 12px; /* Отступ между SVG и текстом */
+  gap: 12px;
 }
 
 .link-content svg {
@@ -94,7 +106,7 @@
 }
 
 .arrow {
-  font-size: 0.8em;
+  font-size: 0.7em;
   opacity: 0.6;
   transition: transform 0.3s ease;
 }
@@ -104,28 +116,33 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.1);
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.05); /* Легкое выделение фона */
   border-radius: 0 0 5px 5px;
 }
 
-.submenu-open .submenu {
-  max-height: 500px; /* Достаточное значение для раскрытия */
-  padding: 5px 0;
+/* Когда родительский пункт открыт */
+.menu-item.submenu-open .submenu {
+  max-height: 500px; /* Даем запас высоты */
+  opacity: 1;
+  margin-top: -2px;
+  padding-bottom: 8px;
 }
 
-.submenu-open .arrow {
-  transform: rotate(180deg); /* Поворот стрелочки при открытии */
+.menu-item.submenu-open .arrow {
+  transform: rotate(180deg);
 }
 
 .submenu li {
-  padding: 10px 15px 10px 47px; /* Отступ, чтобы текст был под текстом родителя */
-  font-size: 0.85em;
-  opacity: 0.8;
+  padding: 10px 15px 10px 47px; /* Сдвигаем вправо, чтобы было под текстом */
+  font-size: 0.9em;
+  opacity: 0.7;
   cursor: pointer;
   transition: 0.2s;
+  color: white;
 }
 
 .submenu li:hover {
@@ -138,36 +155,31 @@
   margin-top: auto;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  text-align: center;
 }
 
 .lang-switcher {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   display: flex;
   justify-content: center;
   gap: 10px;
+  font-size: 0.9em;
 }
 
 .lang-switcher span {
   cursor: pointer;
   opacity: 0.6;
-  transition: opacity 0.3s ease;
 }
 
-.lang-switcher span:hover, 
 .lang-switcher .active-lang {
   opacity: 1;
   font-weight: bold;
-}
-
-.lang-switcher .active-lang {
   text-decoration: underline;
 }
 
 /* Кнопка доступности */
 .accessibility-btn {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   padding: 10px;
   cursor: pointer;
@@ -180,51 +192,19 @@
   gap: 8px;
 }
 
-/* --- МОБИЛЬНЫЕ СТИЛИ (Экраны меньше 800px) --- */
-
-.burger-menu {
-  display: none;
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  z-index: 1100;
-  background: #1a5a96;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 998;
-}
-
+/* МОБИЛКА */
 @media (max-width: 800px) {
   .burger-menu {
     display: block;
   }
-
   .sidebar {
     transform: translateX(-100%);
-    width: 260px;
+    width: 280px;
   }
-
   .sidebar.open {
     transform: translateX(0);
   }
-
-  /* Показываем overlay только на мобилке, если меню открыто */
-  .sidebar.open + .sidebar-overlay {
+  .sidebar-overlay {
     display: block;
   }
 }

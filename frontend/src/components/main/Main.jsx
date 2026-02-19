@@ -26,12 +26,12 @@ const Main = () => {
         }, timeOut);
     };
 
-    useEffect(() => {
-        if (homes?.length > 0) {
-            clearAndSetInterval();
-        }
-        return () => clearInterval(intervalRef.current);
-    }, [homes.length, timeOut]);
+useEffect(() => {
+    if (Array.isArray(homes) && homes.length > 0) {
+        clearAndSetInterval();
+    }
+    return () => clearInterval(intervalRef.current);
+}, [homes?.length, timeOut]); // используйте опциональную цепочку ?.
 
    const goToSlide = (index) => {
      setCurrentSlide(index);
@@ -60,18 +60,19 @@ const Main = () => {
           ):(
               <img src={mainPhoto} alt="main" style={{ width: '100%', height: '100vmin' }}/>
           )}
-        <div className="dots">
-          {homes?.map((home, index) => (
-            <div
-              key={index}
-              className={`dot ${index === currentSlide ? 'active' : ''}`}
-              onClick={() => goToSlide(index)}
-            >
-                <img style={{borderRadius:"5px"}} src={home?.icon}/>
-                <h4>{home?.mini_title}</h4>
-            </div>
-          ))}
-        </div>
+<div className="dots">
+  {/* Добавляем Array.isArray для надежности */}
+  {Array.isArray(homes) && homes.map((home, index) => (
+    <div
+      key={index}
+      className={`dot ${index === currentSlide ? 'active' : ''}`}
+      onClick={() => goToSlide(index)}
+    >
+        <img style={{borderRadius:"5px"}} src={home?.icon}/>
+        <h4>{home?.mini_title}</h4>
+    </div>
+  ))}
+</div>
       </div>
 
 
@@ -84,4 +85,5 @@ const Main = () => {
 };
 
 export default Main;
+
 

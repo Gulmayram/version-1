@@ -56,9 +56,16 @@ const Sidebar = () => {
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const location = useLocation();
 
+  // Хелпер для получения перевода
   const getT = (key) => {
     const lang = language ? language.toUpperCase() : "RU";
     return translate[key] ? translate[key][lang] : key;
+  };
+
+  // Хелпер для массивов подменю
+  const getSubT = (key) => {
+    const lang = language ? language.toUpperCase() : "RU";
+    return translate[key] && translate[key][lang] ? translate[key][lang] : [];
   };
 
   const toggleSubmenu = (menuKey) => {
@@ -66,6 +73,15 @@ const Sidebar = () => {
   };
 
   const closeMobile = () => setIsOpen(false);
+
+  // Данные для автоматической отрисовки подменю
+  const subMenus = {
+    about: { icon: Icons.about, title: 'aboutCompany', subKey: 'aboutSub', links: ["/about/info", "/about/management", "/about/charter", "/about/structure", "/about/reports", "/about/maps"] },
+    activity: { icon: Icons.activity, title: 'services', subKey: 'servicesSub', links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption"] },
+    base: { icon: Icons.base, title: 'normativeBase', subKey: 'baseSub', links: ["/legal", "/forms", "/instructions"] },
+    news: { icon: Icons.news, title: 'announcements', subKey: 'newsSub', links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] },
+    contacts: { icon: Icons.contacts, title: 'contacts', subKey: 'contactsSub', links: ["/phonebook", "/reception", "/bank-details"] }
+  };
 
   return (
     <>
@@ -79,8 +95,8 @@ const Sidebar = () => {
         <div className="sidebar-logo">
           <img src="/logo.png" alt="Logo" className="logo-img" />
           <div className="logo-text">
-            <h2>Кыргызгеология</h2>
-            <p>Государственное предприятие</p>
+            <h2>{getT('kyrgyzgeology')}</h2>
+            <p>{getT('enterprise')}</p>
           </div>
         </div>
 
@@ -92,73 +108,21 @@ const Sidebar = () => {
               </Link>
             </li>
 
-            <li className={`menu-item ${activeSubmenu === 'about' ? 'submenu-open' : ''}`}>
-              <div className="menu-link" onClick={() => toggleSubmenu('about')}>
-                <div className="link-content">{Icons.about} <span>{getT('aboutCompany')}</span></div>
-                <span className="arrow">▼</span>
-              </div>
-              <ul className="submenu">
-                <li><Link to="/about/info" onClick={closeMobile}>Общая информация</Link></li>
-                <li><Link to="/about/management" onClick={closeMobile}>Руководство</Link></li>
-                <li><Link to="/about/charter" onClick={closeMobile}>Устав</Link></li>
-                <li><Link to="/about/structure" onClick={closeMobile}>Структура</Link></li>
-                <li><Link to="/about/reports" onClick={closeMobile}>Отчёты</Link></li>
-                <li><Link to="/about/maps" onClick={closeMobile}>Карты</Link></li>
-              </ul>
-            </li>
-
-            <li className={`menu-item ${activeSubmenu === 'activity' ? 'submenu-open' : ''}`}>
-              <div className="menu-link" onClick={() => toggleSubmenu('activity')}>
-                <div className="link-content">{Icons.activity} <span>{getT('services')}</span></div>
-                <span className="arrow">▼</span>
-              </div>
-              <ul className="submenu">
-                <li><Link to="/services" onClick={closeMobile}>Услуги</Link></li>
-                <li><Link to="/projects" onClick={closeMobile}>Проекты</Link></li>
-                <li><Link to="/production" onClick={closeMobile}>Продукция</Link></li>
-                <li><Link to="/partners" onClick={closeMobile}>Для партнёров</Link></li>
-                <li><Link to="/deposits" onClick={closeMobile}>Месторождения</Link></li>
-                <li><Link to="/anticorruption" onClick={closeMobile}>Антикоррупционные меры</Link></li>
-              </ul>
-            </li>
-
-            <li className={`menu-item ${activeSubmenu === 'base' ? 'submenu-open' : ''}`}>
-              <div className="menu-link" onClick={() => toggleSubmenu('base')}>
-                <div className="link-content">{Icons.base} <span>Нормативная база</span></div>
-                <span className="arrow">▼</span>
-              </div>
-              <ul className="submenu">
-                <li><Link to="/legal" onClick={closeMobile}>Законодательство и НПА</Link></li>
-                <li><Link to="/forms" onClick={closeMobile}>Формы и бланки</Link></li>
-                <li><Link to="/instructions" onClick={closeMobile}>Приложения и инструкции</Link></li>
-              </ul>
-            </li>
-
-            <li className={`menu-item ${activeSubmenu === 'news' ? 'submenu-open' : ''}`}>
-              <div className="menu-link" onClick={() => toggleSubmenu('news')}>
-                <div className="link-content">{Icons.news} <span>Объявления и новости</span></div>
-                <span className="arrow">▼</span>
-              </div>
-              <ul className="submenu">
-                <li><Link to="/contests" onClick={closeMobile}>Конкурсы</Link></li>
-                <li><Link to="/procurement" onClick={closeMobile}>Закупки</Link></li>
-                <li><Link to="/realization" onClick={closeMobile}>Реализация</Link></li>
-                <li><Link to="/vacancies" onClick={closeMobile}>Вакансия</Link></li>
-                <li><Link to="/press-center" onClick={closeMobile}>Пресс-центр</Link></li>
-              </ul>
-            </li>
-
-            <li className={`menu-item ${activeSubmenu === 'contacts' ? 'submenu-open' : ''}`}>
-              <div className="menu-link" onClick={() => toggleSubmenu('contacts')}>
-                <div className="link-content">{Icons.contacts} <span>Контакты</span></div>
-                <span className="arrow">▼</span>
-              </div>
-              <ul className="submenu">
-                <li><Link to="/phonebook" onClick={closeMobile}>Телефонный справочник</Link></li>
-                <li><Link to="/reception" onClick={closeMobile}>Электронная приёмная</Link></li>
-                <li><Link to="/bank-details" onClick={closeMobile}>Банковские реквизиты</Link></li>
-              </ul>
-            </li>
+            {Object.entries(subMenus).map(([key, config]) => (
+              <li key={key} className={`menu-item ${activeSubmenu === key ? 'submenu-open' : ''}`}>
+                <div className="menu-link" onClick={() => toggleSubmenu(key)}>
+                  <div className="link-content">{config.icon} <span>{getT(config.title)}</span></div>
+                  <span className="arrow">▼</span>
+                </div>
+                <ul className="submenu">
+                  {getSubT(config.subKey).map((text, index) => (
+                    <li key={index}>
+                      <Link to={config.links[index]} onClick={closeMobile}>{text}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
           </ul>
         </nav>
 
@@ -174,7 +138,7 @@ const Sidebar = () => {
               </span>
             ))}
           </div>
-          <button className="accessibility-btn">👁 Версия для слабовидящих</button>
+          <button className="accessibility-btn">👁 {getT('accessibility')}</button>
         </div>
       </aside>
     </>

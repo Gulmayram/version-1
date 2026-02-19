@@ -22,12 +22,12 @@ const Main = () => {
             clearInterval(intervalRef.current);
         }
         intervalRef.current = setInterval(() => {
-            setCurrentSlide((prevSlide) => (prevSlide + 1) % homes.length);
+            setCurrentSlide((prevSlide) => (prevSlide + 1) % (homes?.length || 1));
         }, timeOut);
     };
 
     useEffect(() => {
-        if (homes.length > 0) {
+        if (homes?.length > 0) {
             clearAndSetInterval();
         }
         return () => clearInterval(intervalRef.current);
@@ -49,7 +49,7 @@ const Main = () => {
           {homes?.length > 0 ? (
               <div className="slide">
                   <div className="titleSlide">
-                      <h2>{homes[currentSlide][translate.translatedApi.title[language]]}</h2>
+                      <h2>{homes?.[currentSlide]?.[translate.translatedApi.title[language]]}</h2>
                   </div>
                   <img
                       src={homes[currentSlide]?.image}
@@ -84,3 +84,4 @@ const Main = () => {
 };
 
 export default Main;
+

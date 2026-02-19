@@ -107,7 +107,7 @@ const NewsItem = () => {
             <div className="comments">
                 <h2 style={{marginBottom: "20px"}}>{translate.comments[language]}:</h2>
                 {comments.length >= 1 ? (
-                    comments.map((comment, index) => (
+                    comments?.map((comment, index) => (
                         <div className="comment" key={index}>
                             <div className='userLetterIcon' style={{ backgroundColor: getRandomColor() }}><h1>{comment.username[0].toUpperCase()}</h1></div>
                             <div>
@@ -128,3 +128,4 @@ const NewsItem = () => {
 };
 
 export default NewsItem;
+

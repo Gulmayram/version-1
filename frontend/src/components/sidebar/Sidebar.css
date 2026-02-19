@@ -1,3 +1,4 @@
+/* Базовые стили */
 .sidebar {
   width: 280px;
   height: 100vh;
@@ -21,20 +22,22 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.logo-img { width: 50px; height: 50px; margin-right: 15px; }
-.logo-text h2 { margin: 0; font-size: 1.1em; font-weight: bold; }
-.logo-text p { margin: 0; font-size: 0.75em; opacity: 0.8; }
+.logo-img { width: 45px; height: 45px; margin-right: 15px; }
+.logo-text h2 { margin: 0; font-size: 1em; font-weight: bold; }
+.logo-text p { margin: 0; font-size: 0.7em; opacity: 0.8; }
 
 .sidebar-menu { flex-grow: 1; overflow-y: auto; }
 .sidebar-menu ul { list-style: none; padding: 0; margin: 0; }
 
-/* Важно: menu-item - это колонка, чтобы submenu шло ниже */
+/* Элемент меню */
 .menu-item {
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
+  position: relative;
 }
 
+/* Ссылка (прозрачная по умолчанию) */
 .menu-link {
   display: flex;
   justify-content: space-between;
@@ -42,33 +45,48 @@
   padding: 12px 15px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
   color: white;
   text-decoration: none;
+  background: transparent;
+  position: relative;
 }
 
-.menu-link:hover { background: rgba(255,255,255,0.1); }
+/* Hover и Active состояние (Прямоугольник) */
+.menu-link:hover, 
+.menu-item.active > .menu-link,
+.menu-item.submenu-open > .menu-link {
+  background: rgba(255, 255, 255, 0.15);
+}
 
-/* Индикатор активного пункта как на макете */
-.menu-item.active > .menu-link {
-  background: rgba(255,255,255,0.15);
-  box-shadow: inset 4px 0 0 white;
+/* Белая полоска слева */
+.menu-link:hover::before,
+.menu-item.active > .menu-link::before,
+.menu-item.submenu-open > .menu-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 4px;
+  background: white;
+  border-radius: 0 4px 4px 0;
 }
 
 .link-content { display: flex; align-items: center; gap: 12px; }
 .arrow { font-size: 0.7em; transition: 0.3s; opacity: 0.5; }
 
-/* Стили подменю - АККОРДЕОН */
+/* Аккордеон (Подменю) */
 .submenu {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease-in-out;
-  background: rgba(0,0,0,0.1);
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 0 0 6px 6px;
 }
 
 .submenu-open .submenu {
-  max-height: 500px; /* Раздвигает меню вниз */
+  max-height: 600px;
   padding: 5px 0 10px 0;
 }
 
@@ -76,37 +94,37 @@
 
 .submenu li a {
   display: block;
-  padding: 8px 15px 8px 47px; /* 47px = 20px иконка + 12px gap + 15px padding */
-  color: rgba(255,255,255,0.7);
+  padding: 10px 15px 10px 47px; /* Выравнивание под текстом заголовка */
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 0.9em;
   transition: 0.2s;
 }
 
-.submenu li a:hover { color: white; background: rgba(255,255,255,0.05); }
+.submenu li a:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
 
 /* Футер */
-.sidebar-footer { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+.sidebar-footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; }
 .lang-switcher { display: flex; justify-content: center; gap: 12px; margin-bottom: 15px; }
-.lang-switcher span { cursor: pointer; opacity: 0.6; font-size: 0.9em; }
+.lang-switcher span { cursor: pointer; opacity: 0.5; font-size: 0.9em; }
 .lang-switcher .active-lang { opacity: 1; font-weight: bold; text-decoration: underline; }
 
 .accessibility-btn {
   width: 100%;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   padding: 10px;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 0.85em;
+  align-items: center; justify-content: center; gap: 8px; font-size: 0.85em;
 }
 
-/* Мобильная версия */
+/* Мобильные стили */
 .burger-menu { display: none; position: fixed; top: 15px; left: 15px; z-index: 1100; background: #1a5a96; color: white; border: none; padding: 10px; border-radius: 4px; }
 
 @media (max-width: 800px) {

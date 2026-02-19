@@ -1,4 +1,3 @@
-console.log("Текущие данные homes:", homes);
 import React, {useState, useEffect, useContext, useRef} from 'react';
 import './Main.css';
 import mainPhoto from "../../assets/mainPhoto.jpg"
@@ -15,6 +14,7 @@ const Main = () => {
     const dispatch = useDispatch()
     const {homes} = useSelector((state)=> state.api)
     const intervalRef = useRef(null);
+    console.log("Текущие данные homes:", homes);
     useEffect(()=>{
         dispatch(getHome())
     },[])
@@ -85,6 +85,7 @@ useEffect(() => {
 };
 
 export default Main;
+
 
 
 

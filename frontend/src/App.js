@@ -9,12 +9,15 @@ import './App.css';
 const App = () => {
   return (
     <div className="App">
+      {/* Виден только на десктопе (через CSS) */}
       <Sidebar />
       
       <div className="main-layout">
-        {/* Сначала идет Header, под ним Navbar */}
-        {/* <Navbar /> */}
+        {/* Header всегда сверху */}
         <Header /> 
+        
+        {/* Navbar виден только на мобилках (через CSS) */}
+        <Navbar />
         
         <main className="content-area">
           <Myroutes />

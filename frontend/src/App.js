@@ -13,7 +13,7 @@ const App = () => {
       
       <div className="main-layout">
         {/* Сначала идет Header, под ним Navbar */}
-        <Navbar />
+        {/* <Navbar /> */}
         <Header /> 
         
         <main className="content-area">

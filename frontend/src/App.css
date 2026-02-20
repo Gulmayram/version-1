@@ -45,70 +45,61 @@ html, body {
   width: 100%;
   padding-top: 70px; /* Отступ, чтобы контент не залезал под фиксированный хедер */
 }
-
 /* --- ЛОГИКА ОТОБРАЖЕНИЯ (DESKTOP > 1024px) --- */
 @media (min-width: 1025px) {
-  /* Показываем Sidebar */
   .sidebar-container {
-    width: 280px;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
     display: block;
+    width: 280px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 5000;
   }
 
   .main-layout {
-    margin-left: 280px; /* Сдвигаем контент вправо */
+    margin-left: 280px; /* Сдвиг под Sidebar */
+    width: calc(100% - 280px);
   }
 
-  /* Прячем мобильно-планшетный Navbar на десктопе */
-  .adaptive-navbar { 
-    display: none !important; 
-  }
+  .adaptive-navbar { display: none !important; }
 }
 
 /* --- ЛОГИКА ОТОБРАЖЕНИЯ (MOBILE / TABLET <= 1024px) --- */
 @media (max-width: 1024px) {
-  /* Прячем Sidebar */
-  .sidebar-container { 
-    display: none !important; 
-  }
+  .sidebar-container { display: none !important; }
 
   .main-layout {
     margin-left: 0;
     width: 100%;
   }
 
-  /* Показываем Navbar */
+  /* Показываем Navbar под хедером */
   .adaptive-navbar {
-    display: block; 
+    display: block;
     width: 100%;
-    z-index: 999;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
   }
 }
 
-/* --- СПЕЦИФИКА ДЛЯ ТЕЛЕФОНОВ (< 768px) --- */
+/* Фикс для телефонов (как на фото 2 и 3) */
 @media (max-width: 768px) {
   .adaptive-navbar {
-    /* Navbar превращается в фиксированный оверлей при открытии */
     position: fixed;
     top: 70px;
     left: 0;
+    height: 0; /* Скрыто по умолчанию */
+    overflow: hidden;
+    transition: all 0.3s ease;
   }
-}
 
-/* --- ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ --- */
-.section-title {
-  text-align: center;
-  font-size: 28px;
-  color: #0D3E61;
-  margin: 30px 0;
-  font-weight: 700;
-}
-
-.content-area {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  /* Когда isOpen = true, Navbar перекрывает экран */
+  .adaptive-navbar.mobile-active {
+    height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0D3E61; /* Синий фон с фото 2 */
+  }
 }

@@ -1,32 +1,31 @@
-import React from 'react';
-import Navbar from './components/navbar/Navbar'; // Твое меню
-import Header from './components/header/Header'; // Верхняя полоса (поиск, соцсети)
-import Myroutes from './routes/Myroutes';
-import Footer from './components/footer/Footer';
-import Sidebar from './components/sidebar/Sidebar';
-import './App.css';
+import React, { useState } from 'react';
+import Header from './components/Header/Header';
+import Sidebar from './components/Sidebar/Sidebar';
+import Navbar from './components/Navbar/Navbar';
 
-const App = () => {
+function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="App">
-      {/* Виден только на десктопе (через CSS) */}
-      <Sidebar />
-      
-      <div className="main-layout">
-        {/* Header всегда сверху */}
-        <Header /> 
-        
-        {/* Navbar виден только на мобилках (через CSS) */}
-        <Navbar />
-        
-        <main className="content-area">
-          <Myroutes />
+    <div className="app-container">
+      {/* 1. Header — есть всегда */}
+      <Header 
+        toggleMenu={() => setIsMenuOpen(!isMenuOpen)} 
+        isMenuOpen={isMenuOpen} 
+      />
+
+      <div className="main-content-wrapper">
+        {/* 2. Sidebar — только > 1024px (логика в CSS) */}
+        <Sidebar />
+
+        <main className="page-data">
+          {/* 3. Navbar — только <= 1024px */}
+          <Navbar isOpen={isMenuOpen} />
+          
+          {/* Твои роуты и контент */}
+          <MyRoutes />
         </main>
-        
-        <Footer />
       </div>
     </div>
   );
-};
-
-export default App;
+}

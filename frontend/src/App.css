@@ -1,40 +1,87 @@
-/* Основной контейнер всего приложения */
+/* Базовые сбросы */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: #f9fafb;
+}
+
 .App {
   display: flex;
   min-height: 100vh;
   width: 100%;
 }
 
-/* Правая часть (Layout), где лежат Header, Navbar и контент */
+/* --- ПРАВАЯ ЧАСТЬ (LAYOUT) --- */
 .main-layout {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  /* margin-left должен быть равен ширине твоего сайдбара */
-  margin-left: 280px; 
   min-height: 100vh;
-  width: calc(100% - 280px); /* Вычитаем ширину сайдбара из общей ширины */
-  transition: margin-left 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-/* Стили для Header, чтобы он стоял в самом верху правой части */
+/* Стили для Header (Всегда сверху) */
 .main-header {
   width: 100%;
-  position: sticky; /* Липнет к верху при прокрутке */
+  position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 /* Контентная область */
 .content-area {
   padding: 20px;
   flex-grow: 1;
+  width: 100%;
 }
 
-/* Адаптив: когда экран меньше 1024px, сайдбар обычно скрывается/становится мобильным */
+/* --- ЛОГИКА ОТОБРАЖЕНИЯ (DESKTOP) --- */
+@media (min-width: 1025px) {
+  .main-layout {
+    margin-left: 280px; /* Место для Sidebar */
+    width: calc(100% - 280px);
+  }
+
+  /* Прячем мобильный Navbar на десктопе */
+  .navbar-container { 
+    display: none !important; 
+  }
+}
+
+/* --- ЛОГИКА ОТОБРАЖЕНИЯ (MOBILE / TABLET) --- */
 @media (max-width: 1024px) {
+  /* Прячем Sidebar на мобилках */
+  .sidebar-container { 
+    display: none !important; 
+  }
+
   .main-layout {
     margin-left: 0;
     width: 100%;
   }
+
+  /* Показываем мобильный Navbar */
+  .navbar-container {
+    display: block;
+    position: sticky;
+    top: 70px; /* Сразу под Header */
+    z-index: 999;
+    background: #fff;
+  }
+}
+
+/* Заголовки и общие классы */
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  color: #0D3E61;
+  margin-bottom: 30px;
 }

@@ -18,13 +18,14 @@ html, body {
 .App {
   display: flex; 
   min-height: 100vh;
+  background-color: #f9fafb; /* Светлый фон для всего сайта */
 }
 
 /* Правая часть сайта */
 .main-layout {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex-grow: 1; /* Занимает всё оставшееся пространство справа */
   /* Стандартный отступ для десктопа */
   margin-left: 280px; 
   min-height: 100vh;
@@ -33,10 +34,16 @@ html, body {
 }
 
 .content-area {
-  flex: 1;
-  width: 100%;
+  flex-grow: 1;
+  padding: 20px;
 }
 
+/* Если сайдбар на мобилках закрывается, убираем отступ */
+@media (max-width: 768px) {
+  .main-layout {
+    margin-left: 0;
+  }
+}
 .section-title {
   text-align: center;
   font-size: 36px;
@@ -99,3 +106,4 @@ html, body {
     display: none;
   }
 }
+

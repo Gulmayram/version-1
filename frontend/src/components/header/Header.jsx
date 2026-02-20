@@ -8,34 +8,36 @@ const Header = ({ toggleMenu, isMenuOpen }) => {
     <header className="main-header">
       <div className="header-inner">
         
+        {/* ЛЕВАЯ ЧАСТЬ */}
         <div className="header-left">
-          {/* Логотип виден только на мобилках < 768px */}
-          <img src={logo} alt="Logo" className="mobile-logo-img" />
+          {/* Логотип только для мобилок < 768px, на десктопе он в сайдбаре */}
+          <img src={logo} alt="Logo" className="header-mobile-logo" />
           
-          <div className="search-wrapper">
+          <div className="header-search">
             <FaSearch className="search-icon" />
-            <input type="text" placeholder="Поиск по сайту..." className="search-input" />
+            <input type="text" placeholder="Поиск по сайту..." />
           </div>
         </div>
 
+        {/* ПРАВАЯ ЧАСТЬ */}
         <div className="header-right">
-          <div className="social-block">
+          <div className="header-socials">
             <a href="#"><FaFacebookF /></a>
             <a href="#"><FaInstagram /></a>
             <a href="#"><FaTwitter /></a>
           </div>
 
-          <div className="auth-block">
-            <button className="auth-btn">
+          <div className="header-auth">
+            <button className="auth-login">
               <FaSignInAlt /> <span>Вход</span>
             </button>
-            <button className="reg-btn">
+            <button className="auth-reg">
               <FaUserPlus /> <span>Регистрация</span>
             </button>
           </div>
 
-          {/* Бургер строго < 768px */}
-          <div className="menu-burger" onClick={toggleMenu}>
+          {/* Бургер строго для мобильных < 768px */}
+          <div className="header-burger" onClick={toggleMenu}>
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </div>
         </div>

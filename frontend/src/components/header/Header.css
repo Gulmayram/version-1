@@ -1,75 +1,106 @@
-.header-main {
-  width: 100%;
+.main-header {
   height: 70px;
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #eef0f2;
   position: fixed;
   top: 0;
   right: 0;
   z-index: 1000;
   display: flex;
   align-items: center;
-  transition: padding 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* Десктопная логика: Хедер не перекрывает сайдбар */
+@media (min-width: 1025px) {
+  .main-header {
+    width: calc(100% - 280px); /* 280px - ширина твоего сайдбара */
+    left: 280px;
+  }
+  .mobile-logo-img { display: none; }
+}
+
+/* Планшет и Мобилка */
+@media (max-width: 1024px) {
+  .main-header {
+    width: 100%;
+    left: 0;
+  }
 }
 
 .header-inner {
+  width: 100%;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 0 25px;
 }
 
-/* Элементы управления отображением */
-.mobile-only-logo, .burger-menu {
-  display: none; /* Скрыты на десктопе и планшете */
+.header-left { display: flex; align-items: center; gap: 20px; }
+
+/* ФИКС ЛОГОТИПА: чтобы не был на весь экран */
+.mobile-logo-img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
 }
 
-/* --- ДЕСКТОП (от 1025px) --- */
-@media (min-width: 1025px) {
-  .header-main {
-    width: calc(100% - 280px);
-    left: 280px;
-  }
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-/* --- ПЛАНШЕТ (768px - 1024px) --- */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .header-main {
-    width: 100%;
-    left: 0;
-  }
-  /* На планшете логотипа в хедере еще нет (он в Navbar), бургера тоже нет */
+.search-icon {
+  position: absolute;
+  left: 12px;
+  color: #adb5bd;
 }
 
-/* --- СМАРТФОН (до 767px) --- */
-@media (max-width: 767px) {
-  .header-main {
-    width: 100%;
-    left: 0;
-  }
+.search-input {
+  background: #f8f9fa;
+  border: 1px solid #f1f3f5;
+  padding: 8px 15px 8px 35px;
+  border-radius: 6px;
+  width: 250px;
+  outline: none;
+}
 
-  .mobile-only-logo {
-    display: block;
-  }
+.header-right { display: flex; align-items: center; gap: 25px; }
 
-  .mobile-only-logo img {
-    height: 40px;
-  }
+.social-block { display: flex; gap: 15px; color: #6c757d; font-size: 16px; }
 
-  .burger-menu {
-    display: block; /* Бургер появляется только здесь */
-    font-size: 24px;
-    color: #0D3E61;
-    margin-left: 15px;
-  }
+.auth-block {
+  display: flex;
+  gap: 15px;
+  border-left: 1px solid #dee2e6;
+  padding-left: 20px;
+}
 
-  .search-box, .social-links, .auth-group span {
-    display: none; /* Прячем лишнее, чтобы влез логотип и бургер */
-  }
+.auth-btn, .reg-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #495057;
+  cursor: pointer;
+}
 
-  .auth-group {
-    border-left: none;
-    padding-left: 0;
-  }
+.reg-btn {
+  color: #0D3E61;
+  border: 1px solid #0D3E61;
+  padding: 6px 15px;
+  border-radius: 6px;
+}
+
+.menu-burger { display: none; font-size: 24px; color: #0D3E61; cursor: pointer; }
+
+/* Адаптив для бургер-меню 768px */
+@media (max-width: 768px) {
+  .menu-burger { display: block; }
+  .mobile-logo-img { display: block; }
+  .search-wrapper, .social-block, .auth-block span { display: none; }
+  .auth-block { border: none; padding: 0; }
 }

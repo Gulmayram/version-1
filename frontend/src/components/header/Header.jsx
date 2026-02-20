@@ -1,58 +1,47 @@
-import React, { useState, useContext } from 'react';
-import { FaBars, FaTimes, FaSearch, FaFacebookF, FaInstagram, FaTwitter, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaSearch, FaFacebookF, FaInstagram, FaTwitter, FaSignInAlt, FaUserPlus, FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../../assets/main_large1.png';
-import { LanguageContext } from "../../LanguageContext";
 import './Header.css';
 
-const Header = ({ isMenuOpen, toggleMenu }) => {
-  const [search, setSearch] = useState('');
-  const { language, changeLanguage } = useContext(LanguageContext);
-
+const Header = ({ toggleMenu, isMenuOpen }) => {
   return (
-    <header className="main-header">
-      <div className="header-container">
+    <header className="header-main">
+      <div className="header-inner">
         
-        {/* Поиск: виден везде, кроме телефонов */}
-        <div className="search-bar">
-          <FaSearch className="search-icon" />
-          <input 
-            type="text" 
-            placeholder="Поиск..." 
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-
-        {/* Логотип: появляется только когда исчезает Sidebar (< 1025px) */}
-        <div className="mobile-logo-zone">
-          <img src={logo} alt="Logo" onClick={() => window.location.href = '/'} />
+        <div className="header-left">
+          {/* Логотип появляется только на смартфонах (< 768px) */}
+          <div className="mobile-only-logo">
+            <img src={logo} alt="Кыргызгеология" />
+          </div>
+          
+          <div className="search-box">
+            <FaSearch className="search-icon" />
+            <input type="text" placeholder="Поиск по сайту..." />
+          </div>
         </div>
 
         <div className="header-right">
-          <div className="header-socials">
+          <div className="social-links">
             <a href="#"><FaFacebookF /></a>
             <a href="#"><FaInstagram /></a>
             <a href="#"><FaTwitter /></a>
           </div>
 
-          <div className="lang-switcher-header">
-            <span onClick={() => changeLanguage('RU')} className={language === 'RU' ? 'active' : ''}>RU</span>
-            <span className="sep">|</span>
-            <span onClick={() => changeLanguage('KG')} className={language === 'KG' ? 'active' : ''}>KG</span>
-            <span className="sep">|</span>
-            <span onClick={() => changeLanguage('EN')} className={language === 'EN' ? 'active' : ''}>EN</span>
+          <div className="auth-group">
+            <button className="btn-auth">
+              <FaSignInAlt /> <span>Вход</span>
+            </button>
+            <button className="btn-register">
+              <FaUserPlus /> <span>Регистрация</span>
+            </button>
           </div>
 
-          <div className="auth-buttons">
-            <button className="login-btn"><FaSignInAlt /> <span>Вход</span></button>
-            <button className="register-btn"><FaUserPlus /> <span>Регистрация</span></button>
-          </div>
-
-          {/* БУРГЕР: Появится только на экранах < 768px через CSS */}
-          <div className="menu-toggle" onClick={toggleMenu}>
+          {/* Бургер появляется только на смартфонах (< 768px) */}
+          <div className="burger-menu" onClick={toggleMenu}>
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </div>
         </div>
+
       </div>
     </header>
   );

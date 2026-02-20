@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Header from './components/header/Header'; // Проверь этот путь!
-import Sidebar from './components/sidebar/Sidebar';
-import Navbar from './components/navbar/Navbar';
+import Header from './components/Header/Header';
+import Sidebar from './components/Sidebar/Sidebar';
+import Navbar from './components/Navbar/Navbar';
 import './App.css';
 
 function App() {
@@ -9,31 +9,29 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Header всегда прибит к верху (z-index: 10000) */}
+      {/* 1. Хедер — он всегда фиксирован сверху */}
       <Header 
         toggleMenu={() => setIsMenuOpen(!isMenuOpen)} 
         isMenuOpen={isMenuOpen} 
       />
 
-      <div className="main-content-wrapper">
-        {/* Sidebar: виден только > 1024px */}
-        <div className="sidebar-container">
-          <Sidebar />
-        </div>
+      <div className="main-wrapper">
+        {/* 2. Сайдбар — на десктопе он забирает свои 280px */}
+        <Sidebar />
 
+        {/* 3. Основная рабочая область (Layout) */}
         <main className="main-layout">
-          {/* Navbar: 
-              769px-1024px — горизонтальная полоса под хедером
-              < 768px — полноэкранное меню по центру (isOpen) 
-          */}
-          <Navbar isOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
           
-          <div className="page-data">
-            <div className="content-area">
-              {/* <MyRoutes /> */}
-              <h1 className="section-title">Контент страницы</h1>
-            </div>
-          </div>
+          {/* Navbar появляется только на планшетах/телефонах под хедером */}
+          <Navbar isOpen={isMenuOpen} />
+          
+          {/* 4. СЮДА ВЕРНЕТСЯ ТВОЙ КОНТЕНТ */}
+          <section className="page-content">
+             {/* <MyRoutes /> твой роутинг или просто текст */}
+             <h1 className="section-title">Контент страницы</h1>
+             <p>Теперь он не должен пропадать.</p>
+          </section>
+          
         </main>
       </div>
     </div>

@@ -1,26 +1,27 @@
 .main-header {
   height: 70px;
   background: #ffffff;
-  border-bottom: 1px solid #eef0f2;
+  border-bottom: 1px solid #e5e7eb;
   position: fixed;
   top: 0;
   right: 0;
   z-index: 1000;
   display: flex;
   align-items: center;
+  /* Плавность для адаптации под сайдбар */
   transition: all 0.3s ease;
 }
 
-/* Десктопная логика: Хедер не перекрывает сайдбар */
+/* ДЕСКТОП: Хедер отступает от сайдбара */
 @media (min-width: 1025px) {
   .main-header {
-    width: calc(100% - 280px); /* 280px - ширина твоего сайдбара */
+    width: calc(100% - 280px); /* 280px - ширина твоего синего сайдбара */
     left: 280px;
   }
-  .mobile-logo-img { display: none; }
+  .header-mobile-logo { display: none; }
 }
 
-/* Планшет и Мобилка */
+/* МОБИЛКИ И ПЛАНШЕТЫ: Хедер на всю ширину */
 @media (max-width: 1024px) {
   .main-header {
     width: 100%;
@@ -30,7 +31,7 @@
 
 .header-inner {
   width: 100%;
-  padding: 0 30px;
+  padding: 0 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,14 +39,14 @@
 
 .header-left { display: flex; align-items: center; gap: 20px; }
 
-/* ФИКС ЛОГОТИПА: чтобы не был на весь экран */
-.mobile-logo-img {
+/* ФИКС ГИГАНТСКОГО ЛОГОТИПА */
+.header-mobile-logo {
   height: 45px;
   width: auto;
   object-fit: contain;
 }
 
-.search-wrapper {
+.header-search {
   position: relative;
   display: flex;
   align-items: center;
@@ -54,53 +55,57 @@
 .search-icon {
   position: absolute;
   left: 12px;
-  color: #adb5bd;
+  color: #9ca3af;
 }
 
-.search-input {
-  background: #f8f9fa;
-  border: 1px solid #f1f3f5;
-  padding: 8px 15px 8px 35px;
+.header-search input {
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+  padding: 8px 15px 8px 38px;
   border-radius: 6px;
   width: 250px;
   outline: none;
+  font-size: 14px;
 }
 
 .header-right { display: flex; align-items: center; gap: 25px; }
 
-.social-block { display: flex; gap: 15px; color: #6c757d; font-size: 16px; }
+.header-socials { display: flex; gap: 15px; color: #6b7280; font-size: 16px; }
 
-.auth-block {
+.header-auth {
   display: flex;
   gap: 15px;
-  border-left: 1px solid #dee2e6;
+  border-left: 1px solid #e5e7eb;
   padding-left: 20px;
 }
 
-.auth-btn, .reg-btn {
+.auth-login, .auth-reg {
   background: none;
   border: none;
   display: flex;
   align-items: center;
   gap: 8px;
   font-weight: 600;
-  color: #495057;
+  color: #374151;
   cursor: pointer;
 }
 
-.reg-btn {
+.auth-reg {
   color: #0D3E61;
   border: 1px solid #0D3E61;
   padding: 6px 15px;
   border-radius: 6px;
+  transition: 0.2s;
 }
 
-.menu-burger { display: none; font-size: 24px; color: #0D3E61; cursor: pointer; }
+.auth-reg:hover { background: #0D3E61; color: #fff; }
 
-/* Адаптив для бургер-меню 768px */
+.header-burger { display: none; font-size: 24px; color: #0D3E61; cursor: pointer; }
+
+/* АДАПТИВ ПОД БУРГЕР (768px и ниже) */
 @media (max-width: 768px) {
-  .menu-burger { display: block; }
-  .mobile-logo-img { display: block; }
-  .search-wrapper, .social-block, .auth-block span { display: none; }
-  .auth-block { border: none; padding: 0; }
+  .header-burger { display: block; }
+  .header-mobile-logo { display: block; }
+  .header-search, .header-socials, .header-auth span { display: none; }
+  .header-auth { border: none; padding: 0; }
 }

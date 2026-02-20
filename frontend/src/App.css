@@ -21,11 +21,17 @@ html, body {
 
 /* --- ОСНОВНОЙ КОНТЕНТ (LAYOUT) --- */
 .main-layout {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
   min-height: 100vh;
-  position: relative;
+  /* Важно: контент должен начинаться ниже хедера */
+  padding-top: 70px; 
+}
+
+.page-data {
+  padding: 40px;
+  width: 100%;
 }
 
 /* --- СТИЛИ ДЛЯ HEADER (Всегда сверху) --- */
@@ -103,3 +109,4 @@ html, body {
     background: #0D3E61; /* Синий фон с фото 2 */
   }
 }
+

@@ -1,4 +1,4 @@
-/* Базовые сбросы */
+/* --- БАЗОВЫЕ СБРОСЫ --- */
 * {
   margin: 0;
   padding: 0;
@@ -9,56 +9,68 @@ html, body {
   height: 100%;
   font-family: 'Inter', Arial, sans-serif;
   background-color: #f9fafb;
+  overflow-x: hidden; /* Чтобы не было горизонтальной прокрутки при анимациях */
 }
 
-.App {
+/* Главный контейнер всего приложения */
+.app-container {
   display: flex;
   min-height: 100vh;
   width: 100%;
 }
 
-/* --- ПРАВАЯ ЧАСТЬ (LAYOUT) --- */
+/* --- ОСНОВНОЙ КОНТЕНТ (LAYOUT) --- */
 .main-layout {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex: 1;
   min-height: 100vh;
-  transition: all 0.3s ease;
+  position: relative;
 }
 
-/* Стили для Header (Всегда сверху) */
+/* --- СТИЛИ ДЛЯ HEADER (Всегда сверху) --- */
 .main-header {
   width: 100%;
-  position: sticky;
+  height: 70px; /* Фиксируем высоту для расчетов */
+  position: fixed;
   top: 0;
-  z-index: 1000;
-  background: #fff;
-  border-bottom: 1px solid #e5e7eb;
+  z-index: 10000; /* Самый высокий приоритет */
+  background: #0D3E61; /* Синий фон, как мы договорились */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Контентная область */
-.content-area {
-  padding: 20px;
-  flex-grow: 1;
+/* Область контента под хедером */
+.page-data {
+  flex: 1;
   width: 100%;
+  padding-top: 70px; /* Отступ, чтобы контент не залезал под фиксированный хедер */
 }
 
-/* --- ЛОГИКА ОТОБРАЖЕНИЯ (DESKTOP) --- */
+/* --- ЛОГИКА ОТОБРАЖЕНИЯ (DESKTOP > 1024px) --- */
 @media (min-width: 1025px) {
-  .main-layout {
-    margin-left: 280px; /* Место для Sidebar */
-    width: calc(100% - 280px);
+  /* Показываем Sidebar */
+  .sidebar-container {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: block;
   }
 
-  /* Прячем мобильный Navbar на десктопе */
-  .navbar-container { 
+  .main-layout {
+    margin-left: 280px; /* Сдвигаем контент вправо */
+  }
+
+  /* Прячем мобильно-планшетный Navbar на десктопе */
+  .adaptive-navbar { 
     display: none !important; 
   }
 }
 
-/* --- ЛОГИКА ОТОБРАЖЕНИЯ (MOBILE / TABLET) --- */
+/* --- ЛОГИКА ОТОБРАЖЕНИЯ (MOBILE / TABLET <= 1024px) --- */
 @media (max-width: 1024px) {
-  /* Прячем Sidebar на мобилках */
+  /* Прячем Sidebar */
   .sidebar-container { 
     display: none !important; 
   }
@@ -68,20 +80,35 @@ html, body {
     width: 100%;
   }
 
-  /* Показываем мобильный Navbar */
-  .navbar-container {
-    display: block;
-    position: sticky;
-    top: 70px; /* Сразу под Header */
+  /* Показываем Navbar */
+  .adaptive-navbar {
+    display: block; 
+    width: 100%;
     z-index: 999;
-    background: #fff;
   }
 }
 
-/* Заголовки и общие классы */
+/* --- СПЕЦИФИКА ДЛЯ ТЕЛЕФОНОВ (< 768px) --- */
+@media (max-width: 768px) {
+  .adaptive-navbar {
+    /* Navbar превращается в фиксированный оверлей при открытии */
+    position: fixed;
+    top: 70px;
+    left: 0;
+  }
+}
+
+/* --- ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ --- */
 .section-title {
   text-align: center;
-  font-size: 32px;
+  font-size: 28px;
   color: #0D3E61;
-  margin-bottom: 30px;
+  margin: 30px 0;
+  font-weight: 700;
+}
+
+.content-area {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }

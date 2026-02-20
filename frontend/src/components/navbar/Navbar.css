@@ -1,318 +1,137 @@
-/* Общие стили */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* 1. БАЗОВЫЙ HEADER (Для всех устройств) */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #0D3E61; /* Темно-синий, как в макете */
+  display: flex;
+  align-items: center;
+  z-index: 10000;
+  padding: 0 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* Стили для хедера */
-.header {
+.header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background: rgba(13, 62, 97, 0);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* 2. SIDEBAR (Скрываем, если экран меньше 1025px) */
+@media (max-width: 1024px) {
+  /* Логика для скрытия сайдбара прописывается в его файле или App.css */
+}
+
+/* 3. NAVBAR ДЛЯ ПЛАНШЕТОВ (769px - 1024px) */
+.adaptive-navbar {
   position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 10000;
-  transition: top 0.3s ease;
-}
-
-.header.hidden {
-  top: -70px; /* скрыть хедер за пределами экрана */
-}
-
-/* Стили для логотипа */
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  height: 60px;
-  border-radius: 50%;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.logo span {
-  font-size: 26px;
-  font-weight: bold;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-/* Стили для навбара */
-.navbar {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-}
-
-.navbar a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 16px;
-  position: relative;
-  transition: color 0.3s ease, background-color 0.3s ease;
-  padding: 10px 15px;
-  border-radius: 8px;
-  background: rgba(95, 138, 196, 0.54); /* Прозрачный серый фон */
-}
-#aboutacc{
-  margin: 0 10px;
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 16px;
-  position: relative;
-  transition: color 0.3s ease, background-color 0.3s ease;
-  padding: 10px 15px;
-  border-radius: 8px;
-  background: rgba(95, 138, 196, 0.54); /* Прозрачный серый фон */
-}
-.navbar a.dark-bg {
-  color: #ffffff;
-}
-
-.navbar a.light-bg {
-  color: #000000;
-}
-
-.navbar a:hover {
-  background: rgba(29, 50, 73, 0.75);
-  color: white;
-}
-#aboutacc:hover{
-  background: rgba(29, 50, 73, 0.75);
-  color: white;
-}
-#aboutacc.light-bg{
-  color: #000000;
-}
-#aboutacc.dark-bg{
-  color: #ffffff;
-}
-
-
-.icons {
-  display: flex;
-  align-items: center;
-}
-
-/* Стили для иконок меню */
-.menu-icon {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: #ffffff;
-}
-
-/* Стили для переключателя языка */
-.language-switcher {
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  margin-right: 15px;
-}
-
-.language-switcher span {
-  cursor: pointer;
-  padding: 0 5px;
-  transition: color 0.3s ease;
-}
-
-.language-switcher span.active {
-  color: #FFD700;
-}
-
-.language-switcher span:hover {
-  color: #FFD700;
-}
-.menu-icon.black {
-  color: #333; /* черный цвет */
-}
-
-/* Стили для мобильных устройств */
-@media (max-width: 1000px) {
-  .navbar {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: #0D3E61;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    border-top: 1px solid #122C5B;
-    border-radius: 0 0 20px 20px;
-    animation: slideDown 0.5s ease-out forwards;
-    max-height: 90vmax;
-    overflow-y: auto;
-  }
-  .header{
-    background-color: #0D3E61;
-  }
-  .navbar.active {
-    display: flex;
-  }
-
-  .navbar a {
-    margin: 10px 0;
-    padding: 15px 0;
-    text-align: center;
-    width: 100%;
-    background-color: #0D3E61;
-    color: #ffffff !important;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-#aboutacc{
-  margin: 10px 0;
-  padding: 15px 0;
-  text-align: center;
-  width: 100%;
-  background-color: #0D3E61;
-  color: #ffffff !important;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-  .navbar a:hover {
-    background-color: #1C5D99; /* Светло-синий при наведении */
-  }
-
-  .icons {
-    display: flex;
-    align-items: center;
-  }
-
-  .menu-icon {
-    display: block;
-    color: #333;
-  }
-}
-
-.about-container {
-  position: relative;
-  padding: 0;
-  width: 100%;
-  text-align: center;
-}
-.accordion {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 100%;
+  top: 70px; /* Сразу под хедером */
   left: 0;
-  width: 250px;
-  background-color: #0D3E61;
-  border: 1px solid none;
-  border-radius: 8px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1001;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.5s ease, opacity 0.5s ease;
-  opacity: 0;
-  padding: 10px 0;
+  width: 100%;
+  background: #ffffff; /* Белая полоса для планшета */
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 999;
+  padding: 12px 0;
 }
 
-.accordion a {
-  padding: 10px 20px;
-  color: #ffffff;
-  white-space: pre-wrap;
-  text-align: left;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 8px;
-  margin: 5px 10px;
-}
-
-.accordion a:hover {
-  background-color: #0b314d84;
-  color: #c8c8c8;
-}
-
-.accordion.active {
-  max-height: 320px; /* Настройте в зависимости от содержимого */
-  opacity: 1;
-}
-
-.about-container:hover .accordion {
+.nav-container-centered {
   display: flex;
+  justify-content: center;
+  gap: 25px;
 }
 
-/* Стили для аккордеона на мобильных устройствах */
-@media (max-width: 1000px) {
-  .accordion {
-    position: relative;
-    top: 0;
+.nav-item {
+  text-decoration: none;
+  color: #0D3E61;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-item:hover {
+  color: #1a73e8;
+}
+
+/* Прячем этот Navbar на десктопе (>1024px) */
+@media (min-width: 1025px) {
+  .adaptive-navbar, .main-header .menu-toggle {
+    display: none !important;
+  }
+}
+
+/* 4. NAVBAR ДЛЯ ТЕЛЕФОНОВ (< 768px) */
+@media (max-width: 768px) {
+  /* Планшетная полоса исчезает */
+  .adaptive-navbar {
+    display: none; 
+    position: fixed;
+    top: 70px;
     left: 0;
     width: 100%;
-    border-radius: 0;
-    box-shadow: none;
-    max-height: none;
-    animation: ani 1.5s forwards;
-  }
-  .about-container a{
-    width: 100%;
-    display: block;
+    height: calc(100vh - 70px);
+    background-color: #0D3E61; /* Темный фон на весь экран */
+    z-index: 9999;
   }
 
-  .about-container:hover .accordion {
-    max-height: none;
-  }
-}
-@media (max-width: 1000px) {
-  .header.hidden {
-    top: 0; /* Для мобильных устройств: хедер не скрывается */
-  }
-}
-
-
-/* Стили для иконок меню и переключателя языка на мобильных устройствах */
-@media (max-width:1000px) {
-  .icons {
+  /* Состояние при нажатом бургере */
+  .adaptive-navbar.mobile-open {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Сдвинуть вправо */
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
   }
 
-  .menu-icon {
-    display: block;
-    font-size: 28px;
-    cursor: pointer;
-    color: #000000;
-    background: #f0f0f079; /* Серый фон с небольшой прозрачностью */
-    border-radius: 8px; /* Закругленные углы */
-    padding: 5px 5px 0 5px; /* Отступы внутри квадратика (сверху и снизу 10px, по бокам 5px) */
-  }
-
-  .language-switcher {
-    display: flex;
+  .nav-container-centered {
+    flex-direction: column; /* Список в столбик */
     align-items: center;
-    font-size: 16px;
-    margin-right: 15px;
-    cursor: pointer;
-    padding: 5px 10px;
-    background: #f0f0f0a8; /* Серый фон */
-    border-radius: 8px; /* Закругленные углы */
-    margin: 0 5px; /* Отступ между языками */
-    transition: background-color 0.3s ease;
+    gap: 35px;
   }
 
-  .language-switcher span.active {
-    color: #FFD700; /* Темный цвет текста для активного языка */
+  .nav-item {
+    color: #ffffff;
+    font-size: 24px; /* Крупно для пальца */
+    letter-spacing: 1px;
+  }
+
+  /* Кнопка бургера в хедере */
+  .menu-toggle {
+    display: block !important;
+    font-size: 26px;
+    color: #ffffff;
+    cursor: pointer;
   }
 }
-@keyframes ani {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+
+/* 5. ИНСТРУМЕНТЫ В ХЕДЕРЕ */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
-@keyframes slideDown {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
+
+.lang-switcher-header {
+  display: flex;
+  background: rgba(255,255,255,0.1);
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.lang-switcher-header span.active {
+  color: #FFD700;
+  font-weight: bold;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -1,58 +1,68 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../../assets/main_large1.png';
 import './Navbar.css';
 import { translate } from "../../assets/translate";
 import { LanguageContext } from "../../LanguageContext";
+import { FaBars, FaTimes, FaRegEye, FaInstagram, FaFacebookF } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAboutHovered, setIsAboutHovered] = useState(false);
-  const { language } = useContext(LanguageContext);
+  const { language, changeLanguage } = useContext(LanguageContext);
   const navigate = useNavigate();
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  
   const handleNavigate = (path) => {
     setIsOpen(false);
     navigate(path);
   };
 
   return (
-    /* Обертка для управления видимостью из App.css */
     <div className="navbar-container">
-      <header className="mobile-navbar">
-        <div className="logo">
-          <img onClick={() => handleNavigate('/')} src={logo} alt="Logo" />
+      <nav className="navbar-content">
+        {/* Левая часть: Логотип */}
+        <div className="navbar-logo" onClick={() => handleNavigate('/')}>
+          <img src={logo} alt="Кыргызгеология" />
         </div>
 
-        {/* Бургер-меню для мобилки */}
-        <div className="menu-icon" onClick={toggleMenu}>
-          {isOpen ? <FaTimes /> : <FaBars />}
+        {/* Центральная часть: Меню (скрывается в бургер на мобилках) */}
+        <div className={`navbar-links ${isOpen ? 'active' : ''}`}>
+          <div className="nav-item">
+            <span>{translate.aboutCompany[language]} ▾</span>
+          </div>
+          <div className="nav-item">
+            <span>{translate.services[language]} ▾</span>
+          </div>
+          <div className="nav-item">
+            <span>{translate.normativeBase[language]} ▾</span>
+          </div>
+          <div className="nav-item">
+            <span>{translate.announcements[language]} ▾</span>
+          </div>
+          <div className="nav-item">
+            <span onClick={() => handleNavigate('/contacts')}>{translate.contacts[language]} ▾</span>
+          </div>
         </div>
 
-        <nav className={`navbar-links ${isOpen ? 'active' : ''}`}>
-          <a onClick={() => handleNavigate('/news')}>{translate.news[language]}</a>
-          <a onClick={() => handleNavigate('/services')}>{translate.services[language]}</a>
-          <a onClick={() => handleNavigate('/investorpage')}>{translate.investors[language]}</a>
+        {/* Правая часть: Языки и Соцсети */}
+        <div className="navbar-actions">
+          <div className="lang-switcher-nav">
+            <span onClick={() => changeLanguage('RU')} className={language === 'RU' ? 'active' : ''}>RU</span>
+            <span onClick={() => changeLanguage('KG')} className={language === 'KG' ? 'active' : ''}>KG</span>
+            <span onClick={() => changeLanguage('EN')} className={language === 'EN' ? 'active' : ''}>EN</span>
+          </div>
           
-          <div className="mobile-dropdown">
-            <div className="dropdown-title" onClick={() => setIsAboutHovered(!isAboutHovered)}>
-              {translate.aboutCompany[language]} {isAboutHovered ? '▲' : '▼'}
-            </div>
-            {isAboutHovered && (
-              <div className="dropdown-content">
-                <a onClick={() => handleNavigate('/historyandmission')}>{translate.history[language]}</a>
-                <a onClick={() => handleNavigate('/organization')}>Руководство</a>
-                <a onClick={() => handleNavigate('/achievementsProjects')}>{translate.achievements[language]}</a>
-              </div>
-            )}
+          <div className="nav-icons">
+            <FaRegEye className="nav-icon-item" />
+            <FaInstagram className="nav-icon-item instagram" />
+            <FaFacebookF className="nav-icon-item facebook" />
           </div>
 
-          <a onClick={() => handleNavigate('/contacts')}>{translate.contacts[language]}</a>
-        </nav>
-      </header>
+          {/* Кнопка бургера только для мобилок */}
+          <div className="mobile-burger" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <FaTimes /> : <FaBars />}
+          </div>
+        </div>
+      </nav>
     </div>
   );
 };

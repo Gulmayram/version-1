@@ -4,7 +4,7 @@
   top: 70px;
   left: 0;
   right: 0;
-  height: 60px; /* Немного увеличили высоту для логотипа */
+  height: 60px;
   background-color: #1a5a96;
   z-index: 1050;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -20,19 +20,17 @@
 .navbar-container {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Логотип влево, меню вправо */
   width: 100%;
-  max-width: 1440px;
+  max-width: 100%; /* Занимаем всю ширину на планшете */
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 20px; /* Отступы от краев экрана */
 }
-
-/* ... предыдущие стили .tablet-navbar и .navbar-container ... */
 
 .navbar-logo {
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding: 0 5px;
   transition: opacity 0.2s ease;
 }
 
@@ -41,7 +39,7 @@
 }
 
 .navbar-logo-img {
-  height: 40px; /* Размер логотипа под высоту навбара 60px */
+  height: 45px;
   width: auto;
   display: block;
 }
@@ -49,14 +47,7 @@
 .navbar-inner {
   display: flex;
   height: 100%;
-  margin-left: 5px; /* Небольшой отступ от логотипа до первого пункта */
-}
-
-/* ... остальные стили .nav-item-btn и .nav-dropdown ... */
-/* Стили меню */
-.navbar-inner {
-  display: flex;
-  height: 100%;
+  gap: 5px; /* Небольшой зазор между пунктами */
 }
 
 .nav-group {
@@ -69,14 +60,14 @@
   background: transparent;
   border: none;
   color: white;
-  padding: 0 10px;
+  padding: 0 12px;
   height: 60px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 6px;
   white-space: nowrap;
 }
 
@@ -89,12 +80,13 @@
   opacity: 0.7;
 }
 
+/* Выпадающее меню */
 .nav-dropdown {
   position: absolute;
   top: 60px;
-  left: 0;
+  right: 0; /* Чтобы меню не вылезало за правый край экрана */
   background-color: #ffffff;
-  min-width: 220px;
+  min-width: 240px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   list-style: none;
   padding: 8px 0;
@@ -103,14 +95,13 @@
 
 .nav-dropdown li a {
   display: block;
-  padding: 10px 20px;
+  padding: 12px 20px;
   color: #1a5a96;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.2;
 }
 
 .nav-dropdown li a:hover {
   background-color: #f1f5f9;
 }
-
-

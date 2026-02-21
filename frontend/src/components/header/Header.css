@@ -1,6 +1,6 @@
 .main-header {
   height: 70px;
-  background: #ffffff;
+  background-color: #ffffff;
   border-bottom: 1px solid #e5e7eb;
   position: fixed;
   top: 0;
@@ -8,20 +8,18 @@
   z-index: 1000;
   display: flex;
   align-items: center;
-  /* Плавность для адаптации под сайдбар */
   transition: all 0.3s ease;
 }
 
-/* ДЕСКТОП: Хедер отступает от сайдбара */
+/* На десктопе хедер занимает всю ширину за вычетом сайдбара */
 @media (min-width: 1025px) {
   .main-header {
-    width: calc(100% - 280px); /* 280px - ширина твоего синего сайдбара */
+    width: calc(100% - 280px);
     left: 280px;
   }
-  .header-mobile-logo { display: none; }
 }
 
-/* МОБИЛКИ И ПЛАНШЕТЫ: Хедер на всю ширину */
+/* На планшетах и мобилках хедер на всю ширину */
 @media (max-width: 1024px) {
   .main-header {
     width: 100%;
@@ -31,81 +29,126 @@
 
 .header-inner {
   width: 100%;
-  padding: 0 25px;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.header-left { display: flex; align-items: center; gap: 20px; }
-
-/* ФИКС ГИГАНТСКОГО ЛОГОТИПА */
-.header-mobile-logo {
-  height: 45px;
-  width: auto;
-  object-fit: contain;
+/* --- ПОИСК --- */
+.header-left {
+  flex: 1;
 }
 
-.header-search {
+.search-container {
   position: relative;
-  display: flex;
-  align-items: center;
+  max-width: 350px;
 }
 
 .search-icon {
   position: absolute;
   left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #9ca3af;
-}
-
-.header-search input {
-  background: #f9fafb;
-  border: 1px solid #f3f4f6;
-  padding: 8px 15px 8px 38px;
-  border-radius: 6px;
-  width: 250px;
-  outline: none;
   font-size: 14px;
 }
 
-.header-right { display: flex; align-items: center; gap: 25px; }
-
-.header-socials { display: flex; gap: 15px; color: #6b7280; font-size: 16px; }
-
-.header-auth {
-  display: flex;
-  gap: 15px;
-  border-left: 1px solid #e5e7eb;
-  padding-left: 20px;
+.search-input {
+  width: 100%;
+  padding: 10px 15px 10px 40px;
+  background-color: #f9fafb;
+  border: 1px solid #f3f4f6;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
-.auth-login, .auth-reg {
-  background: none;
-  border: none;
+.search-input:focus {
+  border-color: #0D3E61;
+}
+
+/* --- СОЦСЕТИ И КНОПКИ --- */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: #6b7280;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.social-icons a:hover {
+  color: #0D3E61;
+}
+
+.auth-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-left: 20px;
+  border-left: 1px solid #e5e7eb;
+}
+
+.btn-login, .btn-register {
   display: flex;
   align-items: center;
   gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
   font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  padding: 8px 12px;
+  transition: all 0.2s;
+}
+
+.btn-register {
+  color: #0D3E61;
+  border: 1px solid #0D3E61;
+  border-radius: 6px;
+}
+
+.btn-register:hover {
+  background-color: #0D3E61;
+  color: #ffffff;
+}
+
+.btn-login:hover {
+  color: #0D3E61;
+}
+
+.auth-icon {
+  font-size: 16px;
+}
+
+/* --- МОБИЛЬНЫЙ БУРГЕР --- */
+.mobile-burger {
+  display: none;
+  font-size: 24px;
   color: #374151;
   cursor: pointer;
 }
 
-.auth-reg {
-  color: #0D3E61;
-  border: 1px solid #0D3E61;
-  padding: 6px 15px;
-  border-radius: 6px;
-  transition: 0.2s;
-}
-
-.auth-reg:hover { background: #0D3E61; color: #fff; }
-
-.header-burger { display: none; font-size: 24px; color: #0D3E61; cursor: pointer; }
-
-/* АДАПТИВ ПОД БУРГЕР (768px и ниже) */
 @media (max-width: 768px) {
-  .header-burger { display: block; }
-  .header-mobile-logo { display: block; }
-  .header-search, .header-socials, .header-auth span { display: none; }
-  .header-auth { border: none; padding: 0; }
+  .mobile-burger {
+    display: block;
+  }
+  .search-container, .social-icons, .auth-group span {
+    display: none; /* Скрываем текст и поиск на узких экранах */
+  }
+  .auth-group {
+    border-left: none;
+    padding-left: 0;
+  }
 }

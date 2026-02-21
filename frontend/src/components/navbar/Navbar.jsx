@@ -1,36 +1,39 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 
-const Navbar = ({ subMenus }) => {
+const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
 
-  const handleMouseEnter = (menu) => setActiveMenu(menu);
-  const handleMouseLeave = () => setActiveMenu(null);
+  const menuItems = [
+    { id: 'about', title: 'О предприятии', sub: ['История', 'Руководство', 'Структура'] },
+    { id: 'activity', title: 'Деятельность', sub: ['Добыча', 'Разведка', 'Экология'] },
+    { id: 'docs', title: 'Документы и отчеты', sub: ['Финансовые', 'Социальные', 'Технические'] },
+    { id: 'base', title: 'Нормативная база', sub: ['Законы', 'Постановления'] },
+    { id: 'news', title: 'Объявления', sub: ['Тендеры', 'Вакансии'] },
+    { id: 'contacts', title: 'Контакты', sub: ['Адрес', 'Обратная связь'] },
+  ];
 
   return (
     <nav className="top-navbar">
       <div className="navbar-container">
-        {Object.entries(subMenus).map(([key, menu]) => (
+        {menuItems.map((item) => (
           <div 
-            key={key} 
+            key={item.id} 
             className="nav-item"
-            onMouseEnter={() => handleMouseEnter(key)}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={() => setActiveMenu(item.id)}
+            onMouseLeave={() => setActiveMenu(null)}
           >
-            <div className="nav-link">
-              <span>{menu.title}</span>
-              <i className={`fas fa-chevron-down arrow ${activeMenu === key ? 'open' : ''}`}></i>
-            </div>
-
-            {activeMenu === key && (
-              <div className="dropdown-menu">
-                {menu.links.map((link, index) => (
-                  <a key={index} href={link} className="dropdown-item">
-                    {/* Здесь логика перевода, например menu.subKey[index] */}
-                    {menu.subKey ? `Пункт ${index + 1}` : link} 
-                  </a>
+            <button className="nav-link">
+              {item.title}
+              <i className={`fas fa-chevron-down arrow ${activeMenu === item.id ? 'open' : ''}`}></i>
+            </button>
+            
+            {activeMenu === item.id && (
+              <ul className="nav-dropdown">
+                {item.sub.map((subItem, index) => (
+                  <li key={index}><a href="#">{subItem}</a></li>
                 ))}
-              </div>
+              </ul>
             )}
           </div>
         ))}

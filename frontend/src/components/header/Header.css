@@ -3,111 +3,124 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1100;
-  padding: 15px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #edf2f7;
+  padding: 12px 0;
+  z-index: 1000;
   transition: all 0.3s ease;
-  /* Начальный фон — легкий и прозрачный */
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(0px);
 }
 
-/* Эффект при скролле — фон становится насыщенным */
 .main-header.scrolled {
-  background: rgba(26, 90, 150, 0.95); /* Цвет вашего бренда */
-  backdrop-filter: blur(10px);
-  padding: 10px 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 8px 0;
 }
 
 .header-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-  gap: 20px;
 }
 
 /* Поиск */
 .search-wrapper {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 6px 12px;
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  padding: 8px 15px;
-  min-width: 300px;
-  transition: 0.3s;
+  width: 320px;
 }
 
-.search-wrapper:focus-within {
-  background: white;
-}
+.search-icon { color: #94a3b8; font-size: 14px; }
 
 .search-wrapper input {
   border: none;
   background: transparent;
-  color: white;
-  margin-left: 10px;
+  padding-left: 10px;
   outline: none;
   width: 100%;
+  color: #334155;
 }
 
-.scrolled .search-wrapper input::placeholder { color: rgba(255,255,255,0.7); }
-
-/* Управление */
-.header-controls {
+/* Правая часть */
+.header-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 
-.social-icons { display: flex; gap: 15px; color: white; }
-.social-icons a { color: white; font-size: 1.1rem; }
-
-.auth-group {
+.social-links {
   display: flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 5px 15px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  gap: 18px;
+  color: #64748b;
+  border-right: 1px solid #e2e8f0;
+  padding-right: 20px;
 }
 
-.login-btn, .reg-btn {
+.social-links a { color: inherit; transition: 0.2s; }
+.social-links a:hover { color: #1a5a96; }
+
+.auth-block {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-login {
   background: none;
   border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 0.9rem;
+  color: #1e293b;
   font-weight: 500;
-}
-
-.divider { color: rgba(255,255,255,0.3); margin: 0 10px; }
-
-.mobile-menu-btn {
-  display: none; /* Скрыта на ПК */
-  background: #1a5a96;
-  border: none;
-  border-radius: 6px;
-  padding: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* АДАПТИВ 768px */
+.btn-reg {
+  border: 2px solid #1a5a96;
+  background: none;
+  color: #1a5a96;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+
+.btn-reg:hover {
+  background: #1a5a96;
+  color: white;
+}
+
+.mobile-nav-toggle {
+  display: none;
+  background: #f1f5f9;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* АДАПТИВ ПОД ТВОЙ ЗАПРОС */
 @media (max-width: 768px) {
-  .main-header {
-    background: #1a5a96; /* На мобилках всегда плотный фон для читаемости */
-  }
-
   .header-container {
-    flex-direction: column-reverse; /* Поиск летит вниз */
-    gap: 12px;
+    flex-direction: column-reverse; /* Поиск вниз */
+    gap: 15px;
   }
 
-  .header-controls {
+  .header-actions {
     width: 100%;
-    justify-content: space-between; /* Распределяем: иконки | вход | бургер */
+    justify-content: space-between; /* иконки | вход/рег | бургер */
+    gap: 10px;
   }
 
   .header-search {
@@ -115,14 +128,25 @@
   }
 
   .search-wrapper {
-    min-width: 100%;
-    max-width: 100%;
+    width: 100%; /* Поисковик на всю ширину */
   }
 
-  .mobile-menu-btn {
+  .social-links {
+    border-right: none;
+    padding-right: 0;
+    gap: 12px;
+  }
+
+  .auth-block {
+    gap: 8px;
+  }
+
+  .btn-login span, .btn-reg span { display: none; } /* Можно скрыть текст если тесно */
+  
+  .btn-reg { padding: 6px 10px; font-size: 13px; }
+  .btn-login { font-size: 13px; }
+
+  .mobile-nav-toggle {
     display: block; /* Показываем кнопку навбара */
   }
-
-  .social-icons { gap: 10px; }
-  .auth-group { padding: 5px 10px; font-size: 0.8rem; }
 }

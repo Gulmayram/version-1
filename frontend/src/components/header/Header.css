@@ -1,3 +1,4 @@
+/* Базовые стили хедера */
 .header {
   position: fixed;
   top: 0;
@@ -6,10 +7,10 @@
   height: 70px; /* Жестко фиксированная высота */
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
-  z-index: 1100; /* Выше чем у сайдбара */
+  z-index: 1100; /* Выше чем у сайдбара и навбара */
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Легкая постоянная тень */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .header-container {
@@ -22,13 +23,17 @@
   align-items: center;
 }
 
-/* Убираем любые изменения при скролле */
+/* Отключаем динамику скролла для стабильности верстки */
 .header.scrolled {
   height: 70px;
   padding: 0;
 }
 
-/* Поиск */
+/* Блок поиска (виден на десктопе и планшете) */
+.search-box {
+  display: block;
+}
+
 .search-inner {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -37,31 +42,94 @@
   display: flex;
   align-items: center;
   width: 300px;
+  transition: border-color 0.2s;
 }
-.search-inner i { color: #94a3b8; margin-right: 10px; }
-.search-inner input { border: none; background: transparent; outline: none; width: 100%; }
 
-/* Соцсети */
-.header-right { display: flex; align-items: center; gap: 15px; }
-.social-links { display: flex; gap: 20px; }
-.soc-link { color: #64748b !important; font-size: 18px; }
-.soc-link:hover { color: #1a5a96 !important; }
+.search-inner:focus-within {
+  border-color: #1a5a96;
+}
 
+.search-inner i { 
+  color: #94a3b8; 
+  margin-right: 10px; 
+}
+
+.search-inner input { 
+  border: none; 
+  background: transparent; 
+  outline: none; 
+  width: 100%; 
+  font-size: 14px;
+}
+
+/* Правая часть: Соцсети и Бургер */
+.header-right { 
+  display: flex; 
+  align-items: center; 
+  gap: 20px; 
+}
+
+.social-links { 
+  display: flex; 
+  gap: 20px; 
+}
+
+.soc-link { 
+  color: #64748b !important; 
+  font-size: 18px; 
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.soc-link:hover { 
+  color: #1a5a96 !important; 
+}
+
+/* Кнопка открытия мобильного меню */
 .menu-toggle {
-  display: none;
-  background: none; border: none; cursor: pointer;
+  display: none; /* Скрыта на десктопе */
+  background: none; 
+  border: none; 
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* --- АДАПТИВНОСТЬ --- */
+
+/* Планшеты: показываем бургер, если нужно параллельное управление */
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Мобильные телефоны */
 @media (max-width: 768px) {
   .header {
-    height: auto; /* На мобилках разрешаем расширяться под 2 ряда */
-    min-height: 70px;
-    padding: 10px 0;
+    height: 70px; /* Возвращаем фиксированную высоту для стыковки */
+    padding: 0;
   }
+
   .header-container {
-    flex-direction: column-reverse;
-    gap: 10px;
+    flex-direction: row; /* Оставляем в одну линию */
+    justify-content: space-between;
+    gap: 0;
   }
-  .header-right { width: 100%; justify-content: space-between; }
-  .menu-toggle { display: block; }
+
+  /* Скрываем поиск из хедера, так как он теперь в MobileBar */
+  .search-box {
+    display: none;
+  }
+
+  .header-right { 
+    width: 100%; 
+    justify-content: space-between; /* Соцсети слева, бургер справа */
+  }
+
+  .social-links {
+    gap: 15px;
+  }
 }

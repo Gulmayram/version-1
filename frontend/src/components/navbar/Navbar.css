@@ -24,7 +24,7 @@
   width: 100%;
   max-width: 100%; /* Занимаем всю ширину на планшете */
   margin: 0 auto;
-  padding: 0 20px; /* Отступы от краев экрана */
+  padding: 0 10px; /* Отступы от краев экрана */
 }
 
 .navbar-logo {
@@ -47,7 +47,7 @@
 .navbar-inner {
   display: flex;
   height: 100%;
-  gap: 5px; /* Небольшой зазор между пунктами */
+  gap: 2px; /* Небольшой зазор между пунктами */
 }
 
 .nav-group {
@@ -67,7 +67,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 3px;
   white-space: nowrap;
 }
 
@@ -105,3 +105,4 @@
 .nav-dropdown li a:hover {
   background-color: #f1f5f9;
 }
+

@@ -1,26 +1,31 @@
 .header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px; /* Жестко фиксированная высота */
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
-  z-index: 1000;
-  padding: 15px 0;
-  transition: all 0.3s ease;
-}
-
-/* Эффект при скролле */
-.header.scrolled {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 10px 0;
+  z-index: 1100; /* Выше чем у сайдбара */
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Легкая постоянная тень */
 }
 
 .header-container {
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Убираем любые изменения при скролле */
+.header.scrolled {
+  height: 70px;
+  padding: 0;
 }
 
 /* Поиск */
@@ -33,56 +38,30 @@
   align-items: center;
   width: 300px;
 }
-.search-inner i { color: #94a3b8; margin-right: 10px; font-size: 14px; }
-.search-inner input { border: none; background: transparent; outline: none; width: 100%; font-size: 14px; color: #334155; }
+.search-inner i { color: #94a3b8; margin-right: 10px; }
+.search-inner input { border: none; background: transparent; outline: none; width: 100%; }
 
 /* Соцсети */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.social-links {
-  display: flex;
-  gap: 20px;
-}
-
-/* Стилизация иконок, чтобы они не были прозрачными */
-.soc-link {
-  color: #64748b !important; /* Серый цвет как на скрине */
-  font-size: 18px;
-  text-decoration: none;
-  display: inline-block;
-  transition: 0.2s ease;
-}
-
-.soc-link:hover {
-  color: #1a5a96 !important;
-  transform: translateY(-2px);
-}
+.header-right { display: flex; align-items: center; gap: 15px; }
+.social-links { display: flex; gap: 20px; }
+.soc-link { color: #64748b !important; font-size: 18px; }
+.soc-link:hover { color: #1a5a96 !important; }
 
 .menu-toggle {
   display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
+  background: none; border: none; cursor: pointer;
 }
 
-/* Мобильная адаптация под 768px */
 @media (max-width: 768px) {
+  .header {
+    height: auto; /* На мобилках разрешаем расширяться под 2 ряда */
+    min-height: 70px;
+    padding: 10px 0;
+  }
   .header-container {
-    flex-direction: column-reverse; /* Поиск падает вниз */
-    gap: 15px;
+    flex-direction: column-reverse;
+    gap: 10px;
   }
-
-  .header-right {
-    width: 100%;
-    justify-content: space-between; /* Соцсети слева, бургер справа */
-  }
-
-  .search-box { width: 100%; }
-  .search-inner { width: 100%; }
+  .header-right { width: 100%; justify-content: space-between; }
   .menu-toggle { display: block; }
 }

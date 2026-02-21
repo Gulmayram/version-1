@@ -1,24 +1,20 @@
-/* --- 1. БАЗОВЫЕ СТИЛИ (Твой цвет и тени) --- */
 .sidebar {
   width: 280px;
-  /* Высота минус хедер */
-  height: calc(100vh - 70px); 
-  background-color: #1a5a96; /* Твой исходный синий */
+  height: calc(100vh - 70px);
+  background-color: #1a5a96;
   color: white;
   position: fixed;
   left: 0; 
-  top: 70px; /* Теперь строго под хедером */
+  top: 70px; /* Всегда под хедером */
   display: flex;
   flex-direction: column;
   padding: 20px;
-  transition: transform 0.3s ease;
   z-index: 1000;
   box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-  /* Шрифт Roboto */
   font-family: 'Roboto', sans-serif;
 }
 
-/* --- 2. ЛОГОТИП --- */
+/* Логотип */
 .sidebar-logo {
   display: flex;
   align-items: center;
@@ -27,33 +23,12 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.logo-img { 
-  width: 45px; 
-  height: 45px; 
-  margin-right: 15px; 
-  object-fit: contain;
-}
+.logo-img { width: 45px; height: 45px; margin-right: 15px; }
+.logo-text h2 { margin: 0; font-size: 1em; font-weight: bold; }
+.logo-text p { margin: 0; font-size: 0.7em; opacity: 0.8; }
 
-.logo-text h2 { 
-  margin: 0; 
-  font-size: 1em; 
-  font-weight: bold; 
-  font-family: 'Roboto', sans-serif;
-}
-
-.logo-text p { 
-  margin: 0; 
-  font-size: 0.7em; 
-  opacity: 0.8; 
-  font-family: 'Roboto', sans-serif;
-}
-
-/* --- 3. МЕНЮ (Твоя логика ссылок) --- */
-.sidebar-menu { 
-  flex-grow: 1; 
-  overflow-y: auto; 
-}
-
+/* Меню */
+.sidebar-menu { flex-grow: 1; overflow-y: auto; }
 .sidebar-menu ul { list-style: none; padding: 0; margin: 0; }
 
 .menu-item {
@@ -74,18 +49,16 @@
   color: white;
   text-decoration: none;
   background: transparent;
-  position: relative;
   font-family: 'Roboto', sans-serif;
 }
 
-/* Твои Hover и Active состояния */
 .menu-link:hover, 
 .menu-item.active > .menu-link,
 .menu-item.submenu-open > .menu-link {
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Твоя белая полоска слева */
+/* Белая полоска */
 .menu-link:hover::before,
 .menu-item.active > .menu-link::before,
 .menu-item.submenu-open > .menu-link::before {
@@ -102,7 +75,7 @@
 .link-content { display: flex; align-items: center; gap: 12px; }
 .arrow { font-size: 0.7em; transition: 0.3s; opacity: 0.5; }
 
-/* --- 4. АККОРДЕОН (Твоя анимация) --- */
+/* Подменю */
 .submenu {
   max-height: 0;
   overflow: hidden;
@@ -133,19 +106,10 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* --- 5. ФУТЕР (Твой стиль) --- */
-.sidebar-footer { 
-  border-top: 1px solid rgba(255, 255, 255, 0.1); 
-  padding-top: 20px; 
-}
-
+/* Футер */
+.sidebar-footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; }
 .lang-switcher { display: flex; justify-content: center; gap: 12px; margin-bottom: 15px; }
-.lang-switcher span { 
-  cursor: pointer; 
-  opacity: 0.5; 
-  font-size: 0.9em; 
-  font-family: 'Roboto', sans-serif;
-}
+.lang-switcher span { cursor: pointer; opacity: 0.5; font-size: 0.9em; }
 .lang-switcher .active-lang { opacity: 1; font-weight: bold; text-decoration: underline; }
 
 .accessibility-btn {
@@ -164,9 +128,9 @@
   font-family: 'Roboto', sans-serif;
 }
 
-/* --- 6. ЛОГИКА ИСЧЕЗНОВЕНИЯ (< 1025px) --- */
+/* --- ГЛАВНАЯ ЛОГИКА ОТОБРАЖЕНИЯ --- */
 @media (max-width: 1024px) {
   .sidebar { 
-    display: none !important; 
+    display: none !important; /* Полностью убираем сайдбар */
   }
 }

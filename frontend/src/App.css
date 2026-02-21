@@ -1,47 +1,44 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f9fafb;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9fafb;
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-wrapper {
-  display: flex;
-  /* Стандартный отступ под хедер */
-  margin-top: 70px; 
-  transition: margin-top 0.3s ease;
-}
-
-/* ПЛАНШЕТНЫЙ РЕЖИМ (768-1024) */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .main-wrapper {
-    /* Хедер (70px) + Навбар (50px) = 120px. Зазора больше не будет */
-    margin-top: 120px; 
-  }
+  display: flex;
+  margin-top: 70px; /* Чтобы контент не залез под хедер */
 }
 
 .main-layout {
-  flex: 1;
-  background-color: #ffffff;
-  min-height: calc(100vh - 70px);
+  flex: 1;
+  background-color: #ffffff;
 }
 
 @media (min-width: 1025px) {
-  .main-layout {
-    margin-left: 280px; /* Место под сайдбар на десктопе */
-  }
+  .main-layout {
+    margin-left: 280px; /* Место под сайдбар */
+  }
 }
 
 .main-content {
-  /* Убираем лишний margin-left, если он уже есть в .main-layout */
-  padding: 20px;
+  margin-left: 280px; /* Ширина сайдбара */
+  padding: 20px;
+  transition: margin 0.3s ease;
+}
+
+/* Когда сайдбар исчезает на мобилках, убираем отступ */
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 0;
+  }
 }

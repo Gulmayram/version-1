@@ -7,39 +7,39 @@ const Header = ({ toggleMenu, isMenuOpen }) => {
     <header className="main-header">
       <div className="header-inner">
         
-        {/* Левая часть: Поиск */}
+        {/* Поиск слева */}
         <div className="header-left">
-          <div className="search-container">
-            <FaSearch className="search-icon" />
+          <div className="search-wrap">
+            <FaSearch className="search-icon-svg" />
             <input 
               type="text" 
               placeholder="Поиск по сайту..." 
-              className="search-input"
+              className="search-field"
             />
           </div>
         </div>
 
-        {/* Правая часть: Соцсети и Авторизация */}
+        {/* Инструменты справа */}
         <div className="header-right">
-          <div className="social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer"><FaFacebookF /></a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer"><FaInstagram /></a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer"><FaTwitter /></a>
+          <div className="social-group">
+            <a href="#"><FaFacebookF /></a>
+            <a href="#"><FaInstagram /></a>
+            <a href="#"><FaTwitter /></a>
           </div>
 
-          <div className="auth-group">
-            <button className="btn-login">
-              <FaSignInAlt className="auth-icon" />
-              <span>Вход</span>
+          <div className="v-divider"></div>
+
+          <div className="auth-actions">
+            <button className="auth-link login">
+              <FaSignInAlt /> <span>Вход</span>
             </button>
-            <button className="btn-register">
-              <FaUserPlus className="auth-icon" />
-              <span>Регистрация</span>
+            <button className="auth-link register">
+              <FaUserPlus /> <span>Регистрация</span>
             </button>
           </div>
 
-          {/* Бургер для мобильных устройств (появляется при < 768px) */}
-          <div className="mobile-burger" onClick={toggleMenu}>
+          {/* Бургер для мобилок */}
+          <div className="header-burger" onClick={toggleMenu}>
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </div>
         </div>

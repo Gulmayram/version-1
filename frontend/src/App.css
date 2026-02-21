@@ -1,132 +1,31 @@
-/* --- 1. БАЗОВЫЕ СБРОСЫ И ШРИФТЫ --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  /* Приоритет Roboto как на макете */
-  font-family: 'Roboto', 'Inter', -apple-system, sans-serif;
-  background-color: #f8fafc;
-  color: #1e293b;
-  -webkit-font-smoothing: antialiased;
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9fafb;
 }
 
-/* Основной контейнер */
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
 }
 
-/* --- 2. СТРУКТУРНАЯ ОБЕРТКА (LAYOUT) --- */
 .main-wrapper {
   display: flex;
-  flex: 1;
-  /* Отступ ровно под высоту Хедера (70px) */
-  margin-top: 70px; 
-  width: 100%;
-  position: relative;
+  margin-top: 70px; /* Чтобы контент не залез под хедер */
 }
 
-/* Правая часть: Навбар + Контент + Футер */
 .main-layout {
-  display: flex;
-  flex-direction: column;
   flex: 1;
-  min-width: 0; 
-  background: #ffffff;
-  position: relative;
-  z-index: 1;
-}
-
-/* Область контента (Myroutes) */
-.content-area {
-  flex: 1;
-  padding: 40px;
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
   background-color: #ffffff;
 }
 
-/* --- 3. АДАПТИВНАЯ ЛОГИКА --- */
-
-/* ДЕСКТОП (от 1025px) */
 @media (min-width: 1025px) {
   .main-layout {
-    /* Сдвигаем всё вправо, чтобы не перекрывать Sidebar */
-    margin-left: 280px; 
+    margin-left: 280px; /* Место под сайдбар */
   }
-
-  /* Прячем мобильный Navbar, так как есть Sidebar */
-  .navbar-container {
-    display: none !important;
-  }
-}
-
-/* МОБИЛКИ И ПЛАНШЕТЫ (до 1024px) */
-@media (max-width: 1024px) {
-  .main-layout {
-    margin-left: 0;
-  }
-
-  /* Скрываем десктопный Сайдбар */
-  .sidebar-container {
-    display: none !important;
-  }
-
-  /* Navbar выпадает под хедером на мобилках */
-  .navbar-container {
-    display: block;
-    width: 100%;
-    position: fixed;
-    top: 70px;
-    left: 0;
-    z-index: 998; /* Чуть ниже основного Хедера */
-    background: #ffffff;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Добавляем отступ для контента, если Navbar открыт (опционально) */
-  .content-area {
-    padding: 20px;
-  }
-}
-
-/* --- 4. ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ --- */
-.section-title {
-  font-family: 'Roboto', sans-serif;
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: #0D3E61;
-  margin-bottom: 24px;
-  border-bottom: 3px solid #0D3E61;
-  display: inline-block;
-  padding-bottom: 8px;
-}
-
-.container-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 400px;
-}
-
-/* Футер всегда внизу */
-footer {
-  margin-top: auto;
-  width: 100%;
-  background: #f1f5f9;
-  border-top: 1px solid #e2e8f0;
-}
-
-/* Убираем синее выделение при нажатии на мобилках */
-button, a {
-  -webkit-tap-highlight-color: transparent;
 }

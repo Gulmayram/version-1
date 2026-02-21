@@ -1,41 +1,40 @@
 import React, { useState } from 'react';
-import Header from './components/Header/Header';
-import Sidebar from './components/Sidebar/Sidebar';
-import Navbar from './components/Navbar/Navbar';
+import Header from './components/Header/Header'; // Верхняя белая панель
+import Sidebar from './components/Sidebar/Sidebar'; // Синий боковой блок
+import Navbar from './components/navbar/Navbar'; // Твоя навигация
+import Myroutes from './routes/Myroutes';
+import Footer from './components/footer/Footer';
 import './App.css';
 
-function App() {
+const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="app-container">
-      {/* 1. Хедер — он всегда фиксирован сверху */}
+    <div className="App">
+      {/* 1. Header всегда сверху */}
       <Header 
         toggleMenu={() => setIsMenuOpen(!isMenuOpen)} 
         isMenuOpen={isMenuOpen} 
       />
 
       <div className="main-wrapper">
-        {/* 2. Сайдбар — на десктопе он забирает свои 280px */}
+        {/* 2. Sidebar слева (виден > 1024px) */}
         <Sidebar />
 
-        {/* 3. Основная рабочая область (Layout) */}
-        <main className="main-layout">
-          
-          {/* Navbar появляется только на планшетах/телефонах под хедером */}
+        {/* 3. Основной контент */}
+        <div className="main-layout">
+          {/* Navbar (адаптивный под мобилки и планшеты) */}
           <Navbar isOpen={isMenuOpen} />
           
-          {/* 4. СЮДА ВЕРНЕТСЯ ТВОЙ КОНТЕНТ */}
-          <section className="page-content">
-             {/* <MyRoutes /> твой роутинг или просто текст */}
-             <h1 className="section-title">Контент страницы</h1>
-             <p>Теперь он не должен пропадать.</p>
-          </section>
+          <main className="content-area">
+            <Myroutes />
+          </main>
           
-        </main>
+          <Footer />
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default App;

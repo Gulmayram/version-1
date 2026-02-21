@@ -7,39 +7,41 @@ const Header = ({ toggleMenu, isMenuOpen }) => {
     <header className="main-header">
       <div className="header-inner">
         
-        {/* Поиск слева */}
+        {/* Лево: Поиск */}
         <div className="header-left">
-          <div className="search-wrap">
-            <FaSearch className="search-icon-svg" />
+          <div className="search-box">
+            <FaSearch className="search-icon" />
             <input 
               type="text" 
               placeholder="Поиск по сайту..." 
-              className="search-field"
+              className="search-input"
             />
           </div>
         </div>
 
-        {/* Инструменты справа */}
+        {/* Право: Соцсети + Разделитель + Кнопки */}
         <div className="header-right">
-          <div className="social-group">
+          <div className="social-links">
             <a href="#"><FaFacebookF /></a>
             <a href="#"><FaInstagram /></a>
             <a href="#"><FaTwitter /></a>
           </div>
 
-          <div className="v-divider"></div>
+          <div className="vertical-line"></div>
 
-          <div className="auth-actions">
-            <button className="auth-link login">
-              <FaSignInAlt /> <span>Вход</span>
+          <div className="auth-buttons">
+            <button className="auth-btn login">
+              <FaSignInAlt className="icon" />
+              <span>Вход</span>
             </button>
-            <button className="auth-link register">
-              <FaUserPlus /> <span>Регистрация</span>
+            <button className="auth-btn register">
+              <FaUserPlus className="icon" />
+              <span>Регистрация</span>
             </button>
           </div>
 
           {/* Бургер для мобилок */}
-          <div className="header-burger" onClick={toggleMenu}>
+          <div className="burger-menu" onClick={toggleMenu}>
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </div>
         </div>

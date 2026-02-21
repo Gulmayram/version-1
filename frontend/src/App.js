@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Header from './components/header/Header'; // Верхняя белая панель
-import Sidebar from './components/sidebar/Sidebar'; // Синий боковой блок
-import Navbar from './components/navbar/Navbar'; // Твоя навигация
+import Header from './components/header/Header'; 
+import Sidebar from './components/sidebar/Sidebar'; 
+import Navbar from './components/navbar/Navbar'; 
+import MobileBar from './components/mobilebar/MobileBar'; // Новый компонент
 import Myroutes from './routes/Myroutes';
 import Footer from './components/footer/Footer';
 import './App.css';
@@ -9,22 +10,29 @@ import './App.css';
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <div className="App">
-      {/* 1. Header всегда сверху */}
+      {/* Передаем функцию открытия в Header (там будет кнопка-бургер) */}
       <Header 
-        toggleMenu={() => setIsMenuOpen(!isMenuOpen)} 
+        toggleMenu={toggleMenu} 
         isMenuOpen={isMenuOpen} 
       />
 
+      {/* Мобильное меню (выезжающее) */}
+      <MobileBar 
+        isOpen={isMenuOpen} 
+        onClose={closeMenu} 
+      />
+
       <div className="main-wrapper">
-        {/* 2. Sidebar слева (виден > 1024px) */}
         <Sidebar />
 
-        {/* 3. Основной контент */}
         <div className="main-layout">
-          {/* Navbar (адаптивный под мобилки и планшеты) */}
-          <Navbar isOpen={isMenuOpen} />
+          {/* Navbar теперь отвечает только за планшетную версию */}
+          <Navbar />
           
           <main className="content-area">
             <Myroutes />

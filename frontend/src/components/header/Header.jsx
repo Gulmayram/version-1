@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Header.css';
 
 const Header = ({ toggleSidebar }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+    <header className="header">
       <div className="header-container">
-        
-        {/* Поиск слева на десктопе */}
         <div className="search-box">
           <div className="search-inner">
             <i className="fas fa-search"></i>
@@ -22,18 +12,12 @@ const Header = ({ toggleSidebar }) => {
           </div>
         </div>
 
-        {/* Соцсети и бургер справа */}
         <div className="header-right">
           <div className="social-links">
-            <a href="#" className="soc-link" aria-label="Facebook">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" className="soc-link" aria-label="Instagram">
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a href="#" className="soc-link" aria-label="Twitter">
-              <i className="fab fa-twitter"></i>
-            </a>
+            <a href="#" className="soc-link"><i className="fab fa-facebook-f"></i></a>
+            <a href="#" className="soc-link"><i className="fab fa-instagram"></i></a>
+            <a href="#" className="soc-link"><i className="fab fa-twitter"></i></a>
+            <a href="#" className="soc-link"><i className="fab fa-youtube"></i></a>
           </div>
 
           <button className="menu-toggle" onClick={toggleSidebar}>
@@ -44,7 +28,6 @@ const Header = ({ toggleSidebar }) => {
             </svg>
           </button>
         </div>
-
       </div>
     </header>
   );

@@ -14,7 +14,7 @@ const Header = ({ toggleSidebar }) => {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
         
-        {/* Поисковик */}
+        {/* Поиск */}
         <div className="search-box">
           <div className="search-inner">
             <i className="fas fa-search"></i>
@@ -22,28 +22,17 @@ const Header = ({ toggleSidebar }) => {
           </div>
         </div>
 
-        {/* Правая часть: Соцсети + Вход/Рег + Бургер */}
+        {/* Правая часть: Соцсети + Бургер */}
         <div className="header-right">
-          
           <div className="social-links">
             <a href="#" className="soc-link"><i className="fab fa-facebook-f"></i></a>
             <a href="#" className="soc-link"><i className="fab fa-instagram"></i></a>
             <a href="#" className="soc-link"><i className="fab fa-twitter"></i></a>
-          </div>
-
-          <div className="auth-section">
-            <button className="login-button">
-              <i className="fas fa-sign-in-alt"></i>
-              <span>Вход</span>
-            </button>
-            <button className="register-button">
-              <i className="fas fa-user-plus"></i>
-              <span>Регистрация</span>
-            </button>
+            <a href="#" className="soc-link"><i className="fab fa-youtube"></i></a>
           </div>
 
           <button className="menu-toggle" onClick={toggleSidebar}>
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="#1a5a96" strokeWidth="2" fill="none">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="#1a5a96" strokeWidth="2" fill="none">
               <line x1="3" y1="6" x2="21" y2="6"></line>
               <line x1="3" y1="12" x2="21" y2="12"></line>
               <line x1="3" y1="18" x2="21" y2="18"></line>

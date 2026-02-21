@@ -1,40 +1,64 @@
-const Navbar = ({ subMenus }) => {
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
+import { LanguageContext } from '../../LanguageContext';
+import { translate } from "../../assets/translate";
+
+const Navbar = () => {
+  const { language } = useContext(LanguageContext);
   const [activeMenu, setActiveMenu] = useState(null);
 
-  // Если subMenus не пришел, возвращаем пустую полоску, чтобы сайт не падал
-  if (!subMenus) return <nav className="tablet-navbar"></nav>;
+  const getT = (key) => {
+    const lang = language ? language.toUpperCase() : "RU";
+    return translate[key] ? translate[key][lang] : key;
+  };
 
-  const menuKeys = ['about', 'activity', 'docs', 'base', 'news', 'contacts'];
+  const getSubT = (key) => {
+    const lang = language ? language.toUpperCase() : "RU";
+    return translate[key] && translate[key][lang] ? translate[key][lang] : [];
+  };
+
+  // Используем ту же структуру данных, что и в сайдбаре
+  const subMenus = {
+    about: { title: 'aboutCompany', subKey: 'aboutSub', links: ["/about/info", "/about/management", "/about/charter", "/about/structure", "/about/reports", "/about/maps"] },
+    activity: { title: 'services', subKey: 'servicesSub', links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption"] },
+    docs: { title: 'docsAndReports', subKey: 'docsSub', links: ["/docs/financial", "/docs/social", "/docs/technical"] },
+    base: { title: 'normativeBase', subKey: 'baseSub', links: ["/legal", "/forms", "/instructions"] },
+    news: { title: 'announcements', subKey: 'newsSub', links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] },
+    contacts: { title: 'contacts', subKey: 'contactsSub', links: ["/phonebook", "/reception", "/bank-details"] }
+  };
 
   return (
     <nav className="tablet-navbar">
       <div className="navbar-inner">
-        {menuKeys.map((key) => {
-          const item = subMenus[key];
-          if (!item) return null; // Пропускаем, если ключа нет
+        {Object.entries(subMenus).map(([key, config]) => (
+          <div 
+            key={key} 
+            className="nav-group"
+            onMouseEnter={() => setActiveMenu(key)}
+            onMouseLeave={() => setActiveMenu(null)}
+          >
+            <button className="nav-item-btn">
+              <span>{getT(config.title)}</span>
+              <span className="nav-arrow">▼</span>
+            </button>
 
-          return (
-            <div 
-              key={key} 
-              className="nav-group"
-              onMouseEnter={() => setActiveMenu(key)}
-              onMouseLeave={() => setActiveMenu(null)}
-            >
-              <button className="nav-item-btn">
-                {item.title}
-                <i className="fas fa-chevron-down nav-arrow"></i>
-              </button>
-              {activeMenu === key && (
-                <ul className="nav-dropdown">
-                  {item.links.map((link, idx) => (
-                    <li key={idx}><a href={link}>Подпункт {idx + 1}</a></li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          );
-        })}
+            {activeMenu === key && (
+              <ul className="nav-dropdown">
+                {getSubT(config.subKey).map((text, index) => (
+                  <li key={index}>
+                    <Link to={config.links[index]} onClick={() => setActiveMenu(null)}>
+                      {text}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
       </div>
     </nav>
   );
 };
+
+export default Navbar;

@@ -1,3 +1,4 @@
+/* Базовые сбросы */
 * {
   margin: 0;
   padding: 0;
@@ -14,30 +15,82 @@ body {
   flex-direction: column;
 }
 
-.main-wrapper {
-  display: flex;
-  margin-top: 70px;
-  transition: margin-top 0.3s ease;
+/* Контейнер хедера (белая панель) */
+/* Убедись, что в Header.jsx есть кнопка с классом burger-btn */
+.burger-btn {
+  display: none; /* По умолчанию скрыта */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 3100;
 }
 
-/* Стык в стык на планшетах: 70px хедер + 50px навбар */
-@media (min-width: 768px) and (max-width: 1024px) {
+.burger-icon span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #1a5a96;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+/* Анимация бургера в крестик (если нужно) */
+.burger-icon.open span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+.burger-icon.open span:nth-child(2) { opacity: 0; }
+.burger-icon.open span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
+/* --- РАСПРЕДЕЛЕНИЕ ВИДИМОСТИ --- */
+
+/* 1. ДЕСТОП (> 1024px) */
+@media (min-width: 1025px) {
   .main-wrapper {
-    margin-top: 120px;
+    margin-top: 70px;
+  }
+  .main-layout {
+    margin-left: 280px; /* Место под Sidebar */
+  }
+  .tablet-navbar, .mobile-bar-container {
+    display: none !important;
   }
 }
 
+/* 2. ПЛАНШЕТ (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main-wrapper {
+    margin-top: 130px; /* 70px Header + 60px Navbar */
+  }
+  .sidebar, .mobile-bar-container {
+    display: none !important;
+  }
+  .tablet-navbar {
+    display: flex !important;
+  }
+}
+
+/* 3. МОБИЛЬНЫЕ (< 768px) */
+@media (max-width: 767px) {
+  .main-wrapper {
+    margin-top: 70px;
+  }
+  .sidebar, .tablet-navbar {
+    display: none !important;
+  }
+  .burger-btn {
+    display: block; /* Показываем кнопку в Header */
+  }
+  .main-layout {
+    margin-left: 0;
+  }
+}
+
+/* Вспомогательные классы для контента */
 .main-layout {
   flex: 1;
   background-color: #ffffff;
+  min-height: 100vh;
 }
 
-@media (min-width: 1025px) {
-  .main-layout {
-    margin-left: 280px;
-  }
-}
-
-.main-content {
+.content-area {
   padding: 20px;
 }

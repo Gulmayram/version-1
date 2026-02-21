@@ -1,124 +1,130 @@
 .main-header {
-  height: 70px;
-  width: 100%;
-  background-color: #ffffff !important; /* Гарантируем белый цвет */
-  border-bottom: 1px solid #eef0f2;
-  position: fixed;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 20px;
+  position: sticky;
   top: 0;
-  left: 0;
-  z-index: 9999;
+  z-index: 1100;
+  min-height: 70px;
   display: flex;
   align-items: center;
-  font-family: 'Roboto', sans-serif;
 }
 
-.header-inner {
-  width: 100%;
-  padding: 0 40px;
+.header-container {
   display: flex;
+  flex-wrap: wrap; /* Позволяет элементам переходить на новую строку */
   justify-content: space-between;
   align-items: center;
-}
-
-/* ПОИСК */
-.search-box {
-  position: relative;
-  width: 320px;
-}
-
-.search-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #94a3b8;
-  font-size: 14px;
-}
-
-.search-input {
   width: 100%;
-  padding: 10px 15px 10px 45px;
-  background-color: #f8fafc;
-  border: 1px solid #f1f5f9;
-  border-radius: 6px;
-  font-size: 14px;
-  font-family: 'Roboto', sans-serif;
-  outline: none;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 15px;
 }
 
-/* СОЦСЕТИ И КНОПКИ */
-.header-right {
+/* Поиск */
+.header-search {
+  flex: 1;
+  min-width: 250px;
+  order: 1; /* По умолчанию первый */
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f5f7f9;
+  border-radius: 8px;
+  padding: 8px 15px;
+  max-width: 400px;
+}
+
+.search-wrapper input {
+  border: none;
+  background: transparent;
+  margin-left: 10px;
+  outline: none;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+/* Действия (соцсети + кнопки) */
+.header-actions {
   display: flex;
   align-items: center;
   gap: 25px;
+  order: 2;
 }
 
-.social-links {
+.social-icons {
   display: flex;
-  gap: 18px;
-}
-
-.social-links a {
-  color: #64748b;
-  font-size: 18px;
-  transition: color 0.2s;
-}
-
-.social-links a:hover {
-  color: #0D3E61;
-}
-
-/* Та самая вертикальная линия из макета */
-.vertical-line {
-  width: 1px;
-  height: 30px;
-  background-color: #e2e8f0;
+  gap: 15px;
+  color: #555;
 }
 
 .auth-buttons {
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }
 
-.auth-btn {
+.login-btn, .reg-btn {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: none;
-  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  font-size: 14px;
-  color: #334155;
+  transition: 0.2s;
 }
 
-.register {
-  color: #0D3E61 !important;
-  border: 1.5px solid #0D3E61 !important;
-  padding: 8px 18px;
-  border-radius: 4px;
+.login-btn {
+  background: transparent;
+  border: none;
+  color: #333;
 }
 
-.register:hover {
-  background-color: #0D3E61;
-  color: #fff !important;
+.reg-btn {
+  background: white;
+  border: 2px solid #1a5a96;
+  color: #1a5a96;
 }
 
-.icon {
-  font-size: 18px;
+.reg-btn:hover {
+  background: #1a5a96;
+  color: white;
 }
 
-.burger-menu {
-  display: none;
-  font-size: 24px;
-  color: #0D3E61;
-  cursor: pointer;
+/* Адаптация: когда места мало */
+@media (max-width: 850px) {
+  .header-container {
+    justify-content: center; /* Центрируем всё */
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+    order: 1; /* Кнопки и соцсети уходят наверх */
+  }
+
+  .header-search {
+    width: 100%;
+    order: 2; /* Поиск уходит вниз */
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-wrapper {
+    max-width: 100%; /* Поиск растягивается во всю ширину на мобилке */
+    width: 100%;
+  }
 }
 
-@media (max-width: 768px) {
-  .burger-menu { display: block; }
-  .search-box, .social-links, .vertical-line, .auth-btn span {
-    display: none;
+@media (max-width: 480px) {
+  .auth-buttons {
+    flex-direction: column; /* Кнопки входа и регистрации друг под другом на совсем маленьких экранах */
+    width: 100%;
+  }
+  
+  .login-btn, .reg-btn {
+    justify-content: center;
   }
 }

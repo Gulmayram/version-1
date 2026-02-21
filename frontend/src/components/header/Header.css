@@ -4,13 +4,14 @@
   background: #fff;
   border-bottom: 1px solid #e2e8f0;
   z-index: 1000;
-  padding: 12px 0;
+  padding: 15px 0;
   transition: all 0.3s ease;
 }
 
+/* Увеличиваем фон/тень при скролле */
 .header.scrolled {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  padding: 8px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
 }
 
 .header-container {
@@ -26,86 +27,67 @@
 .search-inner {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
-  border-radius: 4px;
-  padding: 6px 12px;
+  border-radius: 6px;
+  padding: 8px 14px;
   display: flex;
   align-items: center;
-  width: 280px;
+  width: 300px;
 }
-.search-inner i { color: #94a3b8; font-size: 14px; margin-right: 10px; }
-.search-inner input { border: none; background: transparent; outline: none; font-size: 14px; width: 100%; }
+.search-inner i { color: #94a3b8; margin-right: 10px; }
+.search-inner input { border: none; background: transparent; outline: none; width: 100%; font-size: 14px; }
 
-/* Правый блок */
+/* Соцсети */
 .header-right {
   display: flex;
   align-items: center;
+  gap: 15px;
 }
 
 .social-links {
   display: flex;
-  gap: 15px;
-  margin-right: 20px;
-  padding-right: 20px;
-  border-right: 1px solid #e2e8f0; /* Линия-разделитель */
+  gap: 20px;
 }
 
-.soc-link { color: #64748b; font-size: 16px; transition: 0.2s; }
-.soc-link:hover { color: #1a5a96; }
-
-.auth-section {
-  display: flex;
-  gap: 12px;
+.soc-link {
+  color: #64748b;
+  font-size: 18px;
+  transition: 0.2s ease;
 }
 
-.login-button {
-  background: none; border: none;
-  color: #1e293b; font-weight: 500;
-  cursor: pointer; display: flex; align-items: center; gap: 8px;
+.soc-link:hover {
+  color: #1a5a96;
+  transform: translateY(-2px);
 }
-
-.register-button {
-  border: 1px solid #1a5a96;
-  background: #fff; color: #1a5a96;
-  padding: 6px 14px; border-radius: 4px;
-  font-weight: 600; cursor: pointer;
-  display: flex; align-items: center; gap: 8px;
-  transition: 0.2s;
-}
-
-.register-button:hover { background: #1a5a96; color: #fff; }
 
 .menu-toggle {
-  display: none;
-  background: none; border: none;
-  margin-left: 15px; cursor: pointer;
+  display: none; /* Скрыт на ПК */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
 }
 
-/* МОБИЛЬНАЯ ВЕРСИЯ (768px) */
+/* АДАПТИВ 768px */
 @media (max-width: 768px) {
   .header-container {
-    flex-direction: column-reverse; /* Поиск уходит вниз */
-    gap: 12px;
+    flex-direction: column-reverse; /* Поиск вниз */
+    gap: 15px;
   }
 
   .header-right {
     width: 100%;
-    justify-content: space-between; /* Соцсети слева | Вход/рег центр | Бургер справа */
+    justify-content: space-between; /* Соцсети слева, бургер справа */
   }
 
-  .social-links {
-    border-right: none;
-    margin-right: 0;
-    padding-right: 0;
-    gap: 10px;
+  .search-box {
+    width: 100%;
   }
 
-  .search-box { width: 100%; }
-  .search-inner { width: 100%; }
-  .menu-toggle { display: block; }
+  .search-inner {
+    width: 100%; /* Поиск на всю ширину */
+  }
 
-  /* Скрываем текст кнопок на мобилках, оставляем только иконки для экономии места */
-  @media (max-width: 480px) {
-    .login-button span, .register-button span { display: none; }
-    .register-button { padding: 8px; }
+  .menu-toggle {
+    display: block; /* Показываем бургер */
   }
 }

@@ -1,22 +1,21 @@
-.main-header {
+.header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: #ffffff;
-  border-bottom: 1px solid #edf2f7;
-  padding: 12px 0;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
   z-index: 1000;
-  transition: all 0.3s ease;
+  padding: 12px 0;
+  transition: box-shadow 0.3s ease;
 }
 
-.main-header.scrolled {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 8px 0;
+.header.scrolled {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .header-container {
-  max-width: 1440px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
@@ -24,52 +23,60 @@
   align-items: center;
 }
 
-/* Поиск */
-.search-wrapper {
+/* Стили поиска */
+.search-inner {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 6px 12px;
   display: flex;
   align-items: center;
-  width: 320px;
+  width: 280px;
 }
 
-.search-icon { color: #94a3b8; font-size: 14px; }
+.search-inner i {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-right: 10px;
+}
 
-.search-wrapper input {
+.search-inner input {
   border: none;
   background: transparent;
-  padding-left: 10px;
   outline: none;
+  font-size: 14px;
   width: 100%;
   color: #334155;
 }
 
-/* Правая часть */
-.header-actions {
+/* Правый блок */
+.header-right {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
-.social-links {
+.socials {
   display: flex;
-  gap: 18px;
-  color: #64748b;
-  border-right: 1px solid #e2e8f0;
+  gap: 15px;
   padding-right: 20px;
+  border-right: 1px solid #e2e8f0;
 }
 
-.social-links a { color: inherit; transition: 0.2s; }
-.social-links a:hover { color: #1a5a96; }
+.socials a {
+  color: #64748b;
+  font-size: 16px;
+  transition: color 0.2s;
+}
 
-.auth-block {
+.socials a:hover { color: #1a5a96; }
+
+.auth {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
-.btn-login {
+.login {
   background: none;
   border: none;
   color: #1e293b;
@@ -80,73 +87,67 @@
   gap: 8px;
 }
 
-.btn-reg {
-  border: 2px solid #1a5a96;
-  background: none;
+.register {
+  border: 1px solid #1a5a96;
+  background: #fff;
   color: #1a5a96;
-  padding: 6px 16px;
-  border-radius: 6px;
+  padding: 6px 14px;
+  border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: 0.2s;
+  transition: all 0.2s;
 }
 
-.btn-reg:hover {
+.register:hover {
   background: #1a5a96;
-  color: white;
+  color: #fff;
 }
 
-.mobile-nav-toggle {
+.burger {
   display: none;
-  background: #f1f5f9;
+  background: none;
   border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
   cursor: pointer;
-  padding: 8px;
 }
 
-/* АДАПТИВ ПОД ТВОЙ ЗАПРОС */
+/* Адаптив 768px */
 @media (max-width: 768px) {
   .header-container {
-    flex-direction: column-reverse; /* Поиск вниз */
-    gap: 15px;
-  }
-
-  .header-actions {
-    width: 100%;
-    justify-content: space-between; /* иконки | вход/рег | бургер */
+    flex-direction: column-reverse;
+    padding: 10px 15px;
     gap: 10px;
   }
 
-  .header-search {
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .socials {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .search-box {
     width: 100%;
   }
 
-  .search-wrapper {
-    width: 100%; /* Поисковик на всю ширину */
+  .search-inner {
+    width: 100%;
   }
 
-  .social-links {
-    border-right: none;
-    padding-right: 0;
-    gap: 12px;
+  .burger {
+    display: block;
   }
 
-  .auth-block {
-    gap: 8px;
-  }
-
-  .btn-login span, .btn-reg span { display: none; } /* Можно скрыть текст если тесно */
-  
-  .btn-reg { padding: 6px 10px; font-size: 13px; }
-  .btn-login { font-size: 13px; }
-
-  .mobile-nav-toggle {
-    display: block; /* Показываем кнопку навбара */
+  /* Скрываем текст кнопок на очень маленьких экранах, оставляя иконки */
+  @media (max-width: 480px) {
+    .login span, .register span {
+      display: none;
+    }
+    .register { padding: 8px; }
   }
 }

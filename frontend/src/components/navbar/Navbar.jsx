@@ -18,7 +18,6 @@ const Navbar = () => {
     return translate[key] && translate[key][lang] ? translate[key][lang] : [];
   };
 
-  // Используем ту же структуру данных, что и в сайдбаре
   const subMenus = {
     about: { title: 'aboutCompany', subKey: 'aboutSub', links: ["/about/info", "/about/management", "/about/charter", "/about/structure", "/about/reports", "/about/maps"] },
     activity: { title: 'services', subKey: 'servicesSub', links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption"] },
@@ -30,32 +29,43 @@ const Navbar = () => {
 
   return (
     <nav className="tablet-navbar">
-      <div className="navbar-inner">
-        {Object.entries(subMenus).map(([key, config]) => (
-          <div 
-            key={key} 
-            className="nav-group"
-            onMouseEnter={() => setActiveMenu(key)}
-            onMouseLeave={() => setActiveMenu(null)}
-          >
-            <button className="nav-item-btn">
-              <span>{getT(config.title)}</span>
-              <span className="nav-arrow">▼</span>
-            </button>
-
-            {activeMenu === key && (
-              <ul className="nav-dropdown">
-                {getSubT(config.subKey).map((text, index) => (
-                  <li key={index}>
-                    <Link to={config.links[index]} onClick={() => setActiveMenu(null)}>
-                      {text}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+      <div className="navbar-container">
+        {/* Логотип-ссылка слева */}
+        <Link to="/" className="navbar-logo">
+          <img src="/logo.png" alt="Logo" className="navbar-logo-img" />
+          <div className="navbar-logo-text">
+            <h3>{getT('kyrgyzgeology')}</h3>
           </div>
-        ))}
+        </Link>
+
+        {/* Меню справа от логотипа */}
+        <div className="navbar-inner">
+          {Object.entries(subMenus).map(([key, config]) => (
+            <div 
+              key={key} 
+              className="nav-group"
+              onMouseEnter={() => setActiveMenu(key)}
+              onMouseLeave={() => setActiveMenu(null)}
+            >
+              <button className="nav-item-btn">
+                <span>{getT(config.title)}</span>
+                <span className="nav-arrow">▼</span>
+              </button>
+
+              {activeMenu === key && (
+                <ul className="nav-dropdown">
+                  {getSubT(config.subKey).map((text, index) => (
+                    <li key={index}>
+                      <Link to={config.links[index]} onClick={() => setActiveMenu(null)}>
+                        {text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </nav>
   );

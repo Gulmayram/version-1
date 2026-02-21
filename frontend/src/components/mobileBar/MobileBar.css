@@ -1,0 +1,120 @@
+.mobile-bar-container {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.mobile-bar-container.active {
+  visibility: visible;
+  pointer-events: all;
+}
+
+.mobile-bar-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-bar-container.active .mobile-bar-overlay {
+  opacity: 1;
+}
+
+.mobile-bar-content {
+  position: absolute;
+  top: 0;
+  left: -100%; /* Выезжает слева */
+  width: 85%;
+  max-width: 320px;
+  height: 100%;
+  background: white;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+}
+
+.mobile-bar-container.active .mobile-bar-content {
+  left: 0;
+}
+
+.mobile-bar-header {
+  padding: 20px;
+  background-color: #1a5a96; /* Сохраняем фирменный синий */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-bar-logo {
+  height: 40px;
+  filter: brightness(0) invert(1); /* Делаем лого белым, если нужно */
+}
+
+.mobile-bar-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mobile-bar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.mobile-bar-link {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  text-decoration: none;
+  text-align: left;
+}
+
+.mobile-bar-link.open {
+  color: #1a5a96;
+  background: #f8fbff;
+}
+
+.mobile-bar-arrow {
+  font-size: 10px;
+  transition: transform 0.3s;
+}
+
+.mobile-bar-link.open .mobile-bar-arrow {
+  transform: rotate(180deg);
+}
+
+.mobile-bar-sublist {
+  max-height: 0;
+  overflow: hidden;
+  background: #f9f9f9;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.mobile-bar-sublist.expanded {
+  max-height: 600px; /* Достаточно для всех подпунктов */
+}
+
+.mobile-bar-sublink {
+  display: block;
+  padding: 12px 35px;
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+}

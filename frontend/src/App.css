@@ -1,4 +1,4 @@
-/* --- БАЗОВЫЕ СБРОСЫ --- */
+/* --- 1. БАЗОВЫЕ СБРОСЫ --- */
 * {
   margin: 0;
   padding: 0;
@@ -7,106 +7,103 @@
 
 html, body {
   height: 100%;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: #f9fafb;
-  overflow-x: hidden; /* Чтобы не было горизонтальной прокрутки при анимациях */
+  color: #1a1a1a;
 }
 
-/* Главный контейнер всего приложения */
-.app-container {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-}
-
-/* --- ОСНОВНОЙ КОНТЕНТ (LAYOUT) --- */
-.main-layout {
-  flex: 1;
+/* Основной контейнер из App.js */
+.App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* Важно: контент должен начинаться ниже хедера */
-  padding-top: 70px; 
-}
-
-.page-data {
-  padding: 40px;
   width: 100%;
 }
 
-/* --- СТИЛИ ДЛЯ HEADER (Всегда сверху) --- */
-.main-header {
-  width: 100%;
-  height: 70px; /* Фиксируем высоту для расчетов */
-  position: fixed;
-  top: 0;
-  z-index: 10000; /* Самый высокий приоритет */
-  background: #0D3E61; /* Синий фон, как мы договорились */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Область контента под хедером */
-.page-data {
+/* --- 2. СТРУКТУРНАЯ ОБЕРТКА (LAYOUT) --- */
+.main-wrapper {
+  display: flex;
   flex: 1;
+  /* Отступ сверху, равный высоте Хедера, чтобы контент не нырял под него */
+  padding-top: 70px; 
   width: 100%;
-  padding-top: 70px; /* Отступ, чтобы контент не залезал под фиксированный хедер */
 }
-/* --- ЛОГИКА ОТОБРАЖЕНИЯ (DESKTOP > 1024px) --- */
+
+/* Правая часть: Навбар + Контент + Футер */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0; /* Предотвращает раздувание flex-элемента */
+  background: #ffffff;
+  transition: margin-left 0.3s ease;
+}
+
+/* Область, где рендерятся твои роуты (Myroutes) */
+.content-area {
+  flex: 1;
+  padding: 30px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* --- 3. ЛОГИКА ОТОБРАЖЕНИЯ КОМПОНЕНТОВ --- */
+
+/* ДЕСКТОП (экран больше 1024px) */
 @media (min-width: 1025px) {
-  .sidebar-container {
-    display: block;
-    width: 280px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 5000;
-  }
-
   .main-layout {
-    margin-left: 280px; /* Сдвиг под Sidebar */
-    width: calc(100% - 280px);
+    /* Делаем отступ слева под ширину Сайдбара */
+    margin-left: 280px; 
   }
 
-  .adaptive-navbar { display: none !important; }
+  /* На десктопе скрываем мобильный Navbar, так как есть Sidebar */
+  .navbar-container {
+    display: none !important;
+  }
 }
 
-/* --- ЛОГИКА ОТОБРАЖЕНИЯ (MOBILE / TABLET <= 1024px) --- */
+/* ПЛАНШЕТ И МОБИЛКА (экран 1024px и меньше) */
 @media (max-width: 1024px) {
-  .sidebar-container { display: none !important; }
-
   .main-layout {
     margin-left: 0;
-    width: 100%;
+  }
+
+  /* Скрываем Сайдбар */
+  .sidebar-container {
+    display: none !important;
   }
 
   /* Показываем Navbar под хедером */
-  .adaptive-navbar {
+  .navbar-container {
     display: block;
     width: 100%;
-    background: #fff;
-    border-bottom: 1px solid #e5e7eb;
-  }
-}
-
-/* Фикс для телефонов (как на фото 2 и 3) */
-@media (max-width: 768px) {
-  .adaptive-navbar {
-    position: fixed;
+    position: sticky;
     top: 70px;
-    left: 0;
-    height: 0; /* Скрыто по умолчанию */
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  /* Когда isOpen = true, Navbar перекрывает экран */
-  .adaptive-navbar.mobile-active {
-    height: calc(100vh - 70px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #0D3E61; /* Синий фон с фото 2 */
+    z-index: 999;
   }
 }
 
+/* --- 4. ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ --- */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0D3E61;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Центрирование контента для страницы новостей и прочего */
+.container-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Стилизация футера, чтобы он всегда был внизу */
+footer {
+  margin-top: auto;
+  width: 100%;
+}

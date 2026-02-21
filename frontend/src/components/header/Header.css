@@ -1,130 +1,128 @@
 .main-header {
-  background: white;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 10px 20px;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1100;
-  min-height: 70px;
-  display: flex;
-  align-items: center;
+  padding: 15px 20px;
+  transition: all 0.3s ease;
+  /* Начальный фон — легкий и прозрачный */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(0px);
+}
+
+/* Эффект при скролле — фон становится насыщенным */
+.main-header.scrolled {
+  background: rgba(26, 90, 150, 0.95); /* Цвет вашего бренда */
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .header-container {
   display: flex;
-  flex-wrap: wrap; /* Позволяет элементам переходить на новую строку */
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  gap: 15px;
+  gap: 20px;
 }
 
 /* Поиск */
-.header-search {
-  flex: 1;
-  min-width: 250px;
-  order: 1; /* По умолчанию первый */
-}
-
 .search-wrapper {
   display: flex;
   align-items: center;
-  background: #f5f7f9;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   padding: 8px 15px;
-  max-width: 400px;
+  min-width: 300px;
+  transition: 0.3s;
+}
+
+.search-wrapper:focus-within {
+  background: white;
 }
 
 .search-wrapper input {
   border: none;
   background: transparent;
+  color: white;
   margin-left: 10px;
   outline: none;
   width: 100%;
-  font-size: 0.9rem;
 }
 
-/* Действия (соцсети + кнопки) */
-.header-actions {
+.scrolled .search-wrapper input::placeholder { color: rgba(255,255,255,0.7); }
+
+/* Управление */
+.header-controls {
   display: flex;
   align-items: center;
-  gap: 25px;
-  order: 2;
+  gap: 20px;
 }
 
-.social-icons {
-  display: flex;
-  gap: 15px;
-  color: #555;
-}
+.social-icons { display: flex; gap: 15px; color: white; }
+.social-icons a { color: white; font-size: 1.1rem; }
 
-.auth-buttons {
+.auth-group {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .login-btn, .reg-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.2s;
-}
-
-.login-btn {
-  background: transparent;
+  background: none;
   border: none;
-  color: #333;
-}
-
-.reg-btn {
-  background: white;
-  border: 2px solid #1a5a96;
-  color: #1a5a96;
-}
-
-.reg-btn:hover {
-  background: #1a5a96;
   color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
-/* Адаптация: когда места мало */
-@media (max-width: 850px) {
-  .header-container {
-    justify-content: center; /* Центрируем всё */
+.divider { color: rgba(255,255,255,0.3); margin: 0 10px; }
+
+.mobile-menu-btn {
+  display: none; /* Скрыта на ПК */
+  background: #1a5a96;
+  border: none;
+  border-radius: 6px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* АДАПТИВ 768px */
+@media (max-width: 768px) {
+  .main-header {
+    background: #1a5a96; /* На мобилках всегда плотный фон для читаемости */
   }
 
-  .header-actions {
+  .header-container {
+    flex-direction: column-reverse; /* Поиск летит вниз */
+    gap: 12px;
+  }
+
+  .header-controls {
     width: 100%;
-    justify-content: center;
-    order: 1; /* Кнопки и соцсети уходят наверх */
+    justify-content: space-between; /* Распределяем: иконки | вход | бургер */
   }
 
   .header-search {
     width: 100%;
-    order: 2; /* Поиск уходит вниз */
-    display: flex;
-    justify-content: center;
   }
 
   .search-wrapper {
-    max-width: 100%; /* Поиск растягивается во всю ширину на мобилке */
-    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
   }
-}
 
-@media (max-width: 480px) {
-  .auth-buttons {
-    flex-direction: column; /* Кнопки входа и регистрации друг под другом на совсем маленьких экранах */
-    width: 100%;
+  .mobile-menu-btn {
+    display: block; /* Показываем кнопку навбара */
   }
-  
-  .login-btn, .reg-btn {
-    justify-content: center;
-  }
+
+  .social-icons { gap: 10px; }
+  .auth-group { padding: 5px 10px; font-size: 0.8rem; }
 }

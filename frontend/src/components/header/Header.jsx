@@ -5,45 +5,47 @@ const Header = ({ toggleSidebar }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
         
-        {/* Поисковик (на мобилках упадет вниз) */}
-        <div className="header-search">
-          <div className="search-wrapper">
-            <i className="fas fa-search search-icon"></i>
+        {/* Поиск */}
+        <div className="search-box">
+          <div className="search-inner">
+            <i className="fas fa-search"></i>
             <input type="text" placeholder="Поиск по сайту..." />
           </div>
         </div>
 
-        {/* Элементы управления */}
-        <div className="header-actions">
-          <div className="social-links">
+        {/* Правая часть */}
+        <div className="header-right">
+          <div className="socials">
             <a href="#"><i className="fab fa-facebook-f"></i></a>
             <a href="#"><i className="fab fa-instagram"></i></a>
             <a href="#"><i className="fab fa-twitter"></i></a>
           </div>
 
-          <div className="auth-block">
-            <button className="btn-login">
-              <i className="fas fa-sign-in-alt"></i> Вход
+          <div className="auth">
+            <button className="login">
+              <i className="fas fa-sign-in-alt"></i>
+              <span>Вход</span>
             </button>
-            <button className="btn-reg">
-              <i className="fas fa-user-plus"></i> Регистрация
+            <button className="register">
+              <i className="fas fa-user-plus"></i>
+              <span>Регистрация</span>
             </button>
           </div>
 
-          {/* Кнопка вызова навбара (SVG) */}
-          <button className="mobile-nav-toggle" onClick={toggleSidebar}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1a5a96" strokeWidth="2">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
+          {/* Бургер для мобильных */}
+          <button className="burger" onClick={toggleSidebar}>
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="#1a5a96" strokeWidth="2" fill="none">
               <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
               <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
           </button>

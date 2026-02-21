@@ -1,137 +1,85 @@
-/* 1. БАЗОВЫЙ HEADER (Для всех устройств) */
-.main-header {
+.top-navbar {
+  display: none; /* Скрыт по умолчанию (на десктопе) */
+  background-color: #1a5a96; /* Синий как у сайдбара */
+  height: 50px;
   position: fixed;
-  top: 0;
+  top: 70px; /* Стыкуется под хедером (70px) */
   left: 0;
-  width: 100%;
-  height: 70px;
-  background-color: #0D3E61; /* Темно-синий, как в макете */
-  display: flex;
-  align-items: center;
-  z-index: 10000;
-  padding: 0 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-
-/* 2. SIDEBAR (Скрываем, если экран меньше 1025px) */
-@media (max-width: 1024px) {
-  /* Логика для скрытия сайдбара прописывается в его файле или App.css */
-}
-
-/* 3. NAVBAR ДЛЯ ПЛАНШЕТОВ (769px - 1024px) */
-.adaptive-navbar {
-  position: fixed;
-  top: 70px; /* Сразу под хедером */
-  left: 0;
-  width: 100%;
-  background: #ffffff; /* Белая полоса для планшета */
-  border-bottom: 1px solid #e5e7eb;
+  right: 0;
   z-index: 999;
-  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.nav-container-centered {
+/* Видимость только в диапазоне 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .top-navbar {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Добавляем отступ основному контенту, когда навбар виден */
+  /* Если у вас есть общий контейнер, добавьте ему margin-top: 120px (70хедер + 50навбар) */
+}
+
+.navbar-container {
   display: flex;
-  justify-content: center;
-  gap: 25px;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
 .nav-item {
-  text-decoration: none;
-  color: #0D3E61;
-  font-weight: 600;
-  font-size: 14px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.nav-item:hover {
-  color: #1a73e8;
-}
-
-/* Прячем этот Navbar на десктопе (>1024px) */
-@media (min-width: 1025px) {
-  .adaptive-navbar, .main-header .menu-toggle {
-    display: none !important;
-  }
-}
-
-/* 4. NAVBAR ДЛЯ ТЕЛЕФОНОВ (< 768px) */
-@media (max-width: 768px) {
-  /* Планшетная полоса исчезает */
-  .adaptive-navbar {
-    display: none; 
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 70px);
-    background-color: #0D3E61; /* Темный фон на весь экран */
-    z-index: 9999;
-  }
-
-  /* Состояние при нажатом бургере */
-  .adaptive-navbar.mobile-open {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease;
-  }
-
-  .nav-container-centered {
-    flex-direction: column; /* Список в столбик */
-    align-items: center;
-    gap: 35px;
-  }
-
-  .nav-item {
-    color: #ffffff;
-    font-size: 24px; /* Крупно для пальца */
-    letter-spacing: 1px;
-  }
-
-  /* Кнопка бургера в хедере */
-  .menu-toggle {
-    display: block !important;
-    font-size: 26px;
-    color: #ffffff;
-    cursor: pointer;
-  }
-}
-
-/* 5. ИНСТРУМЕНТЫ В ХЕДЕРЕ */
-.header-right {
+  position: relative;
+  height: 50px;
   display: flex;
   align-items: center;
-  gap: 15px;
 }
 
-.lang-switcher-header {
+.nav-link {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
   display: flex;
-  background: rgba(255,255,255,0.1);
-  padding: 5px 10px;
-  border-radius: 6px;
-  color: #fff;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.arrow {
+  font-size: 10px;
+  transition: transform 0.3s;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Выпадающий список */
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background-color: #1a5a96;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 0 0 4px 4px;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-item {
+  color: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  text-decoration: none;
   font-size: 13px;
+  transition: background 0.2s;
 }
 
-.lang-switcher-header span.active {
-  color: #FFD700;
-  font-weight: bold;
-}
-
-/* Анимации */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
 }

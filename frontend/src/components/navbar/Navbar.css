@@ -1,23 +1,55 @@
 .tablet-navbar {
   display: none;
   position: fixed;
-  top: 70px; /* Стык в стык к хедеру */
+  top: 70px;
   left: 0;
   right: 0;
-  height: 50px;
-  background-color: #1a5a96; /* Тот самый синий */
+  height: 60px; /* Немного увеличили высоту для логотипа */
+  background-color: #1a5a96;
   z-index: 1050;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Показываем только на планшетах */
 @media (min-width: 768px) and (max-width: 1024px) {
   .tablet-navbar {
     display: flex;
-    justify-content: center;
+    align-items: center;
   }
 }
 
+.navbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Стили логотипа в навбаре */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 20px;
+  gap: 10px;
+}
+
+.navbar-logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.navbar-logo-text h3 {
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.1;
+  max-width: 150px; /* Чтобы текст не растягивал меню */
+}
+
+/* Стили меню */
 .navbar-inner {
   display: flex;
   height: 100%;
@@ -33,14 +65,14 @@
   background: transparent;
   border: none;
   color: white;
-  padding: 0 12px;
-  height: 50px;
-  font-size: 13px;
+  padding: 0 10px;
+  height: 60px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   white-space: nowrap;
 }
 
@@ -53,13 +85,12 @@
   opacity: 0.7;
 }
 
-/* Выпадающее меню */
 .nav-dropdown {
   position: absolute;
-  top: 50px;
+  top: 60px;
   left: 0;
   background-color: #ffffff;
-  min-width: 240px;
+  min-width: 220px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   list-style: none;
   padding: 8px 0;
@@ -69,10 +100,9 @@
 .nav-dropdown li a {
   display: block;
   padding: 10px 20px;
-  color: #1a5a96; /* Синий текст на белом фоне */
+  color: #1a5a96;
   text-decoration: none;
-  font-size: 14px;
-  line-height: 1.2;
+  font-size: 13px;
 }
 
 .nav-dropdown li a:hover {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Header from './components/Header/Header'; // Верхняя белая панель
-import Sidebar from './components/Sidebar/Sidebar'; // Синий боковой блок
+import Header from './components/header/Header'; // Верхняя белая панель
+import Sidebar from './components/sidebar/Sidebar'; // Синий боковой блок
 import Navbar from './components/navbar/Navbar'; // Твоя навигация
 import Myroutes from './routes/Myroutes';
 import Footer from './components/footer/Footer';

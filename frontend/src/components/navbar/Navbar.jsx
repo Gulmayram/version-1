@@ -30,15 +30,12 @@ const Navbar = () => {
   return (
     <nav className="tablet-navbar">
       <div className="navbar-container">
-        {/* Логотип-ссылка слева */}
+        {/* Только логотип-ссылка */}
         <Link to="/" className="navbar-logo">
           <img src="/logo.png" alt="Logo" className="navbar-logo-img" />
-          <div className="navbar-logo-text">
-            <h3>{getT('kyrgyzgeology')}</h3>
-          </div>
         </Link>
 
-        {/* Меню справа от логотипа */}
+        {/* Меню справа */}
         <div className="navbar-inner">
           {Object.entries(subMenus).map(([key, config]) => (
             <div 

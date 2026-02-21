@@ -1,38 +1,41 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import './Navbar.css';
-import { translate } from "../../assets/translate";
-import { LanguageContext } from "../../LanguageContext";
 
-const Navbar = ({ isMenuOpen, toggleMenu }) => {
-  const { language } = useContext(LanguageContext);
-  const navigate = useNavigate();
+const Navbar = ({ subMenus }) => {
+  const [activeMenu, setActiveMenu] = useState(null);
 
-  const handleNavigate = (path) => {
-    if (toggleMenu) toggleMenu(); // Закрываем меню при переходе (для мобилок)
-    navigate(path);
-  };
+  const handleMouseEnter = (menu) => setActiveMenu(menu);
+  const handleMouseLeave = () => setActiveMenu(null);
 
   return (
-    <div className={`navbar-adaptive-container ${isMenuOpen ? 'mobile-open' : ''}`}>
-      <nav className="navbar-links-list">
-        <div className="nav-link-item" onClick={() => handleNavigate('/about')}>
-          {translate.aboutCompany[language]}
-        </div>
-        <div className="nav-link-item" onClick={() => handleNavigate('/services')}>
-          {translate.services[language]}
-        </div>
-        <div className="nav-link-item" onClick={() => handleNavigate('/normative')}>
-          {translate.normativeBase[language]}
-        </div>
-        <div className="nav-link-item" onClick={() => handleNavigate('/announcements')}>
-          {translate.announcements[language]}
-        </div>
-        <div className="nav-link-item" onClick={() => handleNavigate('/contacts')}>
-          {translate.contacts[language]}
-        </div>
-      </nav>
-    </div>
+    <nav className="top-navbar">
+      <div className="navbar-container">
+        {Object.entries(subMenus).map(([key, menu]) => (
+          <div 
+            key={key} 
+            className="nav-item"
+            onMouseEnter={() => handleMouseEnter(key)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="nav-link">
+              <span>{menu.title}</span>
+              <i className={`fas fa-chevron-down arrow ${activeMenu === key ? 'open' : ''}`}></i>
+            </div>
+
+            {activeMenu === key && (
+              <div className="dropdown-menu">
+                {menu.links.map((link, index) => (
+                  <a key={index} href={link} className="dropdown-item">
+                    {/* Здесь логика перевода, например menu.subKey[index] */}
+                    {menu.subKey ? `Пункт ${index + 1}` : link} 
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </nav>
   );
 };
 

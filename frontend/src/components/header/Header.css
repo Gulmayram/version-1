@@ -1,7 +1,7 @@
 .main-header {
   height: 70px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #ffffff !important; /* Гарантируем белый цвет */
   border-bottom: 1px solid #eef0f2;
   position: fixed;
   top: 0;
@@ -14,70 +14,73 @@
 
 .header-inner {
   width: 100%;
-  padding: 0 30px;
+  padding: 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* --- ПОИСК --- */
-.search-wrap {
+/* ПОИСК */
+.search-box {
   position: relative;
-  width: 300px;
+  width: 320px;
 }
 
-.search-icon-svg {
+.search-icon {
   position: absolute;
-  left: 12px;
+  left: 15px;
   top: 50%;
   transform: translateY(-50%);
   color: #94a3b8;
   font-size: 14px;
 }
 
-.search-field {
+.search-input {
   width: 100%;
-  padding: 10px 15px 10px 40px;
+  padding: 10px 15px 10px 45px;
   background-color: #f8fafc;
   border: 1px solid #f1f5f9;
   border-radius: 6px;
   font-size: 14px;
-  outline: none;
   font-family: 'Roboto', sans-serif;
+  outline: none;
 }
 
-/* --- ПРАВАЯ ПАНЕЛЬ --- */
+/* СОЦСЕТИ И КНОПКИ */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
 }
 
-.social-group {
+.social-links {
+  display: flex;
+  gap: 18px;
+}
+
+.social-links a {
+  color: #64748b;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+.social-links a:hover {
+  color: #0D3E61;
+}
+
+/* Та самая вертикальная линия из макета */
+.vertical-line {
+  width: 1px;
+  height: 30px;
+  background-color: #e2e8f0;
+}
+
+.auth-buttons {
   display: flex;
   gap: 15px;
 }
 
-.social-group a {
-  color: #64748b;
-  font-size: 16px;
-  transition: color 0.2s;
-}
-
-.social-group a:hover { color: #0D3E61; }
-
-.v-divider {
-  width: 1px;
-  height: 24px;
-  background-color: #e2e8f0;
-}
-
-.auth-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.auth-link {
+.auth-btn {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -91,20 +94,31 @@
 }
 
 .register {
-  color: #0D3E61;
-  border: 1px solid #0D3E61;
-  padding: 6px 15px;
+  color: #0D3E61 !important;
+  border: 1.5px solid #0D3E61 !important;
+  padding: 8px 18px;
   border-radius: 4px;
 }
 
-.header-burger {
+.register:hover {
+  background-color: #0D3E61;
+  color: #fff !important;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.burger-menu {
   display: none;
-  font-size: 22px;
+  font-size: 24px;
   color: #0D3E61;
   cursor: pointer;
 }
 
 @media (max-width: 768px) {
-  .header-burger { display: block; }
-  .search-wrap, .social-group, .v-divider, .auth-link span { display: none; }
+  .burger-menu { display: block; }
+  .search-box, .social-links, .vertical-line, .auth-btn span {
+    display: none;
+  }
 }

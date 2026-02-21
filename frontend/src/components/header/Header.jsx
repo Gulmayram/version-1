@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaSearch, FaFacebookF, FaInstagram, FaTwitter, FaSignInAlt, FaUserPlus, FaBars, FaTimes } from 'react-icons/fa';
-import logo from '../../assets/main_large1.png'; 
 import './Header.css';
 
 const Header = ({ toggleMenu, isMenuOpen }) => {
@@ -8,36 +7,39 @@ const Header = ({ toggleMenu, isMenuOpen }) => {
     <header className="main-header">
       <div className="header-inner">
         
-        {/* ЛЕВАЯ ЧАСТЬ */}
+        {/* Левая часть: Поиск */}
         <div className="header-left">
-          {/* Логотип только для мобилок < 768px, на десктопе он в сайдбаре */}
-          <img src={logo} alt="Logo" className="header-mobile-logo" />
-          
-          <div className="header-search">
+          <div className="search-container">
             <FaSearch className="search-icon" />
-            <input type="text" placeholder="Поиск по сайту..." />
+            <input 
+              type="text" 
+              placeholder="Поиск по сайту..." 
+              className="search-input"
+            />
           </div>
         </div>
 
-        {/* ПРАВАЯ ЧАСТЬ */}
+        {/* Правая часть: Соцсети и Авторизация */}
         <div className="header-right">
-          <div className="header-socials">
-            <a href="#"><FaFacebookF /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaTwitter /></a>
+          <div className="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer"><FaFacebookF /></a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer"><FaInstagram /></a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer"><FaTwitter /></a>
           </div>
 
-          <div className="header-auth">
-            <button className="auth-login">
-              <FaSignInAlt /> <span>Вход</span>
+          <div className="auth-group">
+            <button className="btn-login">
+              <FaSignInAlt className="auth-icon" />
+              <span>Вход</span>
             </button>
-            <button className="auth-reg">
-              <FaUserPlus /> <span>Регистрация</span>
+            <button className="btn-register">
+              <FaUserPlus className="auth-icon" />
+              <span>Регистрация</span>
             </button>
           </div>
 
-          {/* Бургер строго для мобильных < 768px */}
-          <div className="header-burger" onClick={toggleMenu}>
+          {/* Бургер для мобильных устройств (появляется при < 768px) */}
+          <div className="mobile-burger" onClick={toggleMenu}>
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </div>
         </div>

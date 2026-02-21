@@ -5,7 +5,7 @@ const Header = ({ toggleSidebar }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -14,7 +14,7 @@ const Header = ({ toggleSidebar }) => {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
         
-        {/* Поиск */}
+        {/* Поиск слева на десктопе */}
         <div className="search-box">
           <div className="search-inner">
             <i className="fas fa-search"></i>
@@ -22,13 +22,18 @@ const Header = ({ toggleSidebar }) => {
           </div>
         </div>
 
-        {/* Правая часть: Соцсети + Бургер */}
+        {/* Соцсети и бургер справа */}
         <div className="header-right">
           <div className="social-links">
-            <a href="#" className="soc-link"><i className="fab fa-facebook-f"></i></a>
-            <a href="#" className="soc-link"><i className="fab fa-instagram"></i></a>
-            <a href="#" className="soc-link"><i className="fab fa-twitter"></i></a>
-            <a href="#" className="soc-link"><i className="fab fa-youtube"></i></a>
+            <a href="#" className="soc-link" aria-label="Facebook">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" className="soc-link" aria-label="Instagram">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="#" className="soc-link" aria-label="Twitter">
+              <i className="fab fa-twitter"></i>
+            </a>
           </div>
 
           <button className="menu-toggle" onClick={toggleSidebar}>

@@ -29,3 +29,16 @@ body {
     margin-left: 280px; /* Место под сайдбар */
   }
 }
+
+.main-content {
+  margin-left: 280px; /* Ширина сайдбара */
+  padding: 20px;
+  transition: margin 0.3s ease;
+}
+
+/* Когда сайдбар исчезает на мобилках, убираем отступ */
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 0;
+  }
+}

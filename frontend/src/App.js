@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/header/Header'; 
 import Sidebar from './components/sidebar/Sidebar'; 
 import Navbar from './components/navbar/Navbar'; 
-import MobileBar from './components/mobilebar/MobileBar'; // Новый компонент
+import MobileBar from './components/mobileBar/MobileBar'; // Новый компонент
 import Myroutes from './routes/Myroutes';
 import Footer from './components/footer/Footer';
 import './App.css';

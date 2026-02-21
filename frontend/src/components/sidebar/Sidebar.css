@@ -1,26 +1,28 @@
-/* --- 1. БАЗОВЫЕ СТИЛИ SIDEBAR (ДЛЯ ДЕСКТОПА) --- */
+/* --- 1. БАЗОВЫЕ СТИЛИ (Твой цвет и тени) --- */
 .sidebar {
   width: 280px;
-  /* Высота во весь экран минус высота хедера */
+  /* Высота минус хедер */
   height: calc(100vh - 70px); 
-  background-color: #0D3E61; 
+  background-color: #1a5a96; /* Твой исходный синий */
   color: white;
   position: fixed;
   left: 0; 
-  top: 70px; /* Строго под хедером */
-  display: flex; /* По умолчанию виден как flex-контейнер */
+  top: 70px; /* Теперь строго под хедером */
+  display: flex;
   flex-direction: column;
   padding: 20px;
-  z-index: 1000; 
-  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  /* Шрифт Roboto */
   font-family: 'Roboto', sans-serif;
 }
 
-/* --- 2. ЛОГОТИП (ВЕРХНЯЯ ЧАСТЬ) --- */
+/* --- 2. ЛОГОТИП --- */
 .sidebar-logo {
   display: flex;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -28,25 +30,25 @@
 .logo-img { 
   width: 45px; 
   height: 45px; 
-  margin-right: 12px; 
+  margin-right: 15px; 
   object-fit: contain;
 }
 
 .logo-text h2 { 
   margin: 0; 
-  font-size: 0.95em; 
-  font-weight: 700; 
-  line-height: 1.2;
+  font-size: 1em; 
+  font-weight: bold; 
+  font-family: 'Roboto', sans-serif;
 }
 
 .logo-text p { 
   margin: 0; 
-  font-size: 0.65em; 
+  font-size: 0.7em; 
   opacity: 0.8; 
-  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* --- 3. МЕНЮ --- */
+/* --- 3. МЕНЮ (Твоя логика ссылок) --- */
 .sidebar-menu { 
   flex-grow: 1; 
   overflow-y: auto; 
@@ -57,7 +59,7 @@
 .menu-item {
   display: flex;
   flex-direction: column;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
   position: relative;
 }
 
@@ -68,71 +70,103 @@
   padding: 12px 15px;
   border-radius: 6px;
   cursor: pointer;
+  transition: all 0.2s ease;
   color: white;
   text-decoration: none;
+  background: transparent;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
 }
 
+/* Твои Hover и Active состояния */
 .menu-link:hover, 
-.menu-item.active > .menu-link {
-  background: rgba(255, 255, 255, 0.12);
+.menu-item.active > .menu-link,
+.menu-item.submenu-open > .menu-link {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Твоя белая полоска слева */
+.menu-link:hover::before,
+.menu-item.active > .menu-link::before,
+.menu-item.submenu-open > .menu-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 4px;
+  background: white;
+  border-radius: 0 4px 4px 0;
 }
 
 .link-content { display: flex; align-items: center; gap: 12px; }
-.arrow { font-size: 0.7em; opacity: 0.6; }
+.arrow { font-size: 0.7em; transition: 0.3s; opacity: 0.5; }
 
-/* --- 4. ПОДМЕНЮ --- */
+/* --- 4. АККОРДЕОН (Твоя анимация) --- */
 .submenu {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease;
-  background: rgba(0, 0, 0, 0.15);
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 6px 6px;
 }
 
 .submenu-open .submenu {
-  max-height: 800px;
-  padding: 5px 0;
+  max-height: 600px;
+  padding: 5px 0 10px 0;
 }
+
+.submenu-open .arrow { transform: rotate(180deg); }
 
 .submenu li a {
   display: block;
-  padding: 10px 15px 10px 42px;
-  color: rgba(255, 255, 255, 0.75);
+  padding: 10px 15px 10px 47px;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
-  font-size: 0.85em;
+  font-size: 0.9em;
+  transition: 0.2s;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* --- 5. ФУТЕР САЙДБАРА --- */
+.submenu li a:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* --- 5. ФУТЕР (Твой стиль) --- */
 .sidebar-footer { 
   border-top: 1px solid rgba(255, 255, 255, 0.1); 
-  padding-top: 20px;
+  padding-top: 20px; 
 }
 
-.lang-switcher { 
-  display: flex; 
-  justify-content: center; 
-  gap: 15px; 
-  margin-bottom: 15px; 
+.lang-switcher { display: flex; justify-content: center; gap: 12px; margin-bottom: 15px; }
+.lang-switcher span { 
+  cursor: pointer; 
+  opacity: 0.5; 
+  font-size: 0.9em; 
+  font-family: 'Roboto', sans-serif;
 }
-
-.active-lang { font-weight: 700; border-bottom: 1.5px solid white; }
+.lang-switcher .active-lang { opacity: 1; font-weight: bold; text-decoration: underline; }
 
 .accessibility-btn {
   width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
-  padding: 12px;
+  padding: 10px;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
   align-items: center; 
   justify-content: center; 
-  gap: 10px;
+  gap: 8px; 
+  font-size: 0.85em;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* --- 6. МОБИЛЬНЫЕ СТИЛИ (ПОЛНОЕ ИСЧЕЗНОВЕНИЕ) --- */
+/* --- 6. ЛОГИКА ИСЧЕЗНОВЕНИЯ (< 1025px) --- */
 @media (max-width: 1024px) {
   .sidebar { 
-    display: none !important; /* Сайдбар полностью удаляется из видимости */
+    display: none !important; 
   }
 }

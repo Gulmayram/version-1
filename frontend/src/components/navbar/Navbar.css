@@ -26,29 +26,33 @@
   padding: 0 15px;
 }
 
-/* Стили логотипа в навбаре */
+/* ... предыдущие стили .tablet-navbar и .navbar-container ... */
+
 .navbar-logo {
   display: flex;
   align-items: center;
   text-decoration: none;
-  margin-right: 20px;
-  gap: 10px;
+  padding: 0 10px;
+  transition: opacity 0.2s ease;
+}
+
+.navbar-logo:hover {
+  opacity: 0.8;
 }
 
 .navbar-logo-img {
-  height: 40px;
+  height: 45px; /* Размер логотипа под высоту навбара 60px */
   width: auto;
+  display: block;
 }
 
-.navbar-logo-text h3 {
-  color: white;
-  font-size: 14px;
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1.1;
-  max-width: 150px; /* Чтобы текст не растягивал меню */
+.navbar-inner {
+  display: flex;
+  height: 100%;
+  margin-left: 10px; /* Небольшой отступ от логотипа до первого пункта */
 }
 
+/* ... остальные стили .nav-item-btn и .nav-dropdown ... */
 /* Стили меню */
 .navbar-inner {
   display: flex;
@@ -108,3 +112,4 @@
 .nav-dropdown li a:hover {
   background-color: #f1f5f9;
 }
+

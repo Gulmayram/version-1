@@ -1,16 +1,16 @@
 .header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  background: #fff;
+  background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
   z-index: 1000;
   padding: 15px 0;
   transition: all 0.3s ease;
 }
 
-/* Увеличиваем фон/тень при скролле */
+/* Эффект при скролле */
 .header.scrolled {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   padding: 10px 0;
 }
 
@@ -33,14 +33,14 @@
   align-items: center;
   width: 300px;
 }
-.search-inner i { color: #94a3b8; margin-right: 10px; }
-.search-inner input { border: none; background: transparent; outline: none; width: 100%; font-size: 14px; }
+.search-inner i { color: #94a3b8; margin-right: 10px; font-size: 14px; }
+.search-inner input { border: none; background: transparent; outline: none; width: 100%; font-size: 14px; color: #334155; }
 
 /* Соцсети */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .social-links {
@@ -48,29 +48,32 @@
   gap: 20px;
 }
 
+/* Стилизация иконок, чтобы они не были прозрачными */
 .soc-link {
-  color: #64748b;
+  color: #64748b !important; /* Серый цвет как на скрине */
   font-size: 18px;
+  text-decoration: none;
+  display: inline-block;
   transition: 0.2s ease;
 }
 
 .soc-link:hover {
-  color: #1a5a96;
+  color: #1a5a96 !important;
   transform: translateY(-2px);
 }
 
 .menu-toggle {
-  display: none; /* Скрыт на ПК */
+  display: none;
   background: none;
   border: none;
   cursor: pointer;
   padding: 5px;
 }
 
-/* АДАПТИВ 768px */
+/* Мобильная адаптация под 768px */
 @media (max-width: 768px) {
   .header-container {
-    flex-direction: column-reverse; /* Поиск вниз */
+    flex-direction: column-reverse; /* Поиск падает вниз */
     gap: 15px;
   }
 
@@ -79,15 +82,7 @@
     justify-content: space-between; /* Соцсети слева, бургер справа */
   }
 
-  .search-box {
-    width: 100%;
-  }
-
-  .search-inner {
-    width: 100%; /* Поиск на всю ширину */
-  }
-
-  .menu-toggle {
-    display: block; /* Показываем бургер */
-  }
+  .search-box { width: 100%; }
+  .search-inner { width: 100%; }
+  .menu-toggle { display: block; }
 }

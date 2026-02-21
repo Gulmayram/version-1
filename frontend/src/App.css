@@ -1,44 +1,43 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f9fafb;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9fafb;
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-wrapper {
-  display: flex;
-  margin-top: 70px; /* Чтобы контент не залез под хедер */
+  display: flex;
+  margin-top: 70px;
+  transition: margin-top 0.3s ease;
+}
+
+/* Стык в стык на планшетах: 70px хедер + 50px навбар */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main-wrapper {
+    margin-top: 120px;
+  }
 }
 
 .main-layout {
-  flex: 1;
-  background-color: #ffffff;
+  flex: 1;
+  background-color: #ffffff;
 }
 
 @media (min-width: 1025px) {
-  .main-layout {
-    margin-left: 280px; /* Место под сайдбар */
-  }
+  .main-layout {
+    margin-left: 280px;
+  }
 }
 
 .main-content {
-  margin-left: 280px; /* Ширина сайдбара */
-  padding: 20px;
-  transition: margin 0.3s ease;
-}
-
-/* Когда сайдбар исчезает на мобилках, убираем отступ */
-@media (max-width: 1024px) {
-  .main-content {
-    margin-left: 0;
-  }
+  padding: 20px;
 }

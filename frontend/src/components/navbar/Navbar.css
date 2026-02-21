@@ -24,7 +24,7 @@
   width: 100%;
   max-width: 100%; /* Занимаем всю ширину на планшете */
   margin: 0 auto;
-  padding: 0 10px; /* Отступы от краев экрана */
+  padding: 0 5px; /* Отступы от краев экрана */
 }
 
 .navbar-logo {
@@ -39,7 +39,7 @@
 }
 
 .navbar-logo-img {
-  height: 45px;
+  height: 40px;
   width: auto;
   display: block;
 }
@@ -60,14 +60,14 @@
   background: transparent;
   border: none;
   color: white;
-  padding: 0 12px;
+  padding: 0 6px;
   height: 60px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   white-space: nowrap;
 }
 
@@ -105,4 +105,5 @@
 .nav-dropdown li a:hover {
   background-color: #f1f5f9;
 }
+
 

@@ -1,18 +1,15 @@
-/* Navbar.css */
-
 .tablet-navbar {
-  display: none; /* По умолчанию скрыт на ПК и мобильных */
+  display: none;
   position: fixed;
-  top: 70px; /* Высота вашего хедера */
+  top: 70px;
   left: 0;
   right: 0;
   height: 50px;
-  background-color: #1a5a96; /* Цвет как у вашего сайдбара */
-  z-index: 1050; /* Ниже хедера, но выше контента */
+  background-color: #1a5a96;
+  z-index: 1050;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Показываем навбар только для планшетов */
 @media (min-width: 768px) and (max-width: 1024px) {
   .tablet-navbar {
     display: flex;
@@ -24,9 +21,6 @@
 .navbar-inner {
   display: flex;
   height: 100%;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 .nav-group {
@@ -40,7 +34,7 @@
   border: none;
   color: #ffffff;
   padding: 0 15px;
-  height: 100%;
+  height: 50px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -58,18 +52,11 @@
 .nav-arrow {
   font-size: 10px;
   opacity: 0.8;
-  transition: transform 0.3s ease;
 }
 
-/* Поворот стрелочки при наведении (через JS или hover родителя) */
-.nav-group:hover .nav-arrow {
-  transform: rotate(180deg);
-}
-
-/* Выпадающий список (стиль из фото) */
 .nav-dropdown {
   position: absolute;
-  top: 50px; /* Стык в стык к навбару */
+  top: 50px;
   left: 0;
   background-color: #ffffff;
   min-width: 220px;
@@ -80,28 +67,14 @@
   z-index: 1100;
 }
 
-.nav-dropdown li {
-  width: 100%;
-}
-
 .nav-dropdown li a {
   display: block;
   padding: 10px 20px;
-  color: #1a5a96; /* Синий текст на белом фоне */
+  color: #1a5a96;
   text-decoration: none;
   font-size: 14px;
-  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .nav-dropdown li a:hover {
   background-color: #f1f5f9;
-  color: #1a5a96;
-}
-
-/* Убираем зазоры между пунктами на маленьких экранах планшетов */
-@media (max-width: 850px) {
-  .nav-item-btn {
-    padding: 0 8px;
-    font-size: 12px;
-  }
 }

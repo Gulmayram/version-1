@@ -70,7 +70,7 @@
 .menu-toggle { display: none; background: none; border: none; cursor: pointer; }
 
 /* АДАПТИВ ПОД ШТОРКУ (Смартфоны) */
-@media (max-width: 767px) {
+@media (max-width: 799px) {
   .header {
     height: 115px;
     align-items: flex-start;

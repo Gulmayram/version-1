@@ -13,11 +13,6 @@ const MobileBar = ({ isOpen, onClose }) => {
     return translate[key] ? translate[key][lang] : key;
   };
 
-  const getSubT = (key) => {
-    const lang = language ? language.toUpperCase() : "RU";
-    return translate[key] && translate[key][lang] ? translate[key][lang] : [];
-  };
-
   const subMenus = {
     about: { title: 'aboutCompany', subKey: 'aboutSub', links: ["/about/info", "/about/management", "/about/charter", "/about/structure", "/about/reports", "/about/maps"] },
     activity: { title: 'services', subKey: 'servicesSub', links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption"] },
@@ -28,52 +23,32 @@ const MobileBar = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className={`mobile-drawer ${isOpen ? 'is-open' : ''}`}>
-      {/* Затемняющий фон (Overlay) */}
-      <div className="mobile-drawer-overlay" onClick={onClose}></div>
-      
-      {/* Сама шторка */}
-      <div className="mobile-drawer-content">
-        <div className="mobile-drawer-header">
-          <div className="drawer-logo-area">
-             <img src="/logo.png" alt="Logo" className="drawer-logo" />
-          </div>
-          <button className="drawer-close-btn" onClick={onClose}>
-            &times;
-          </button>
-        </div>
+    <div className={`mobile-menu-overlay ${isOpen ? 'show' : ''}`} onClick={onClose}>
+      <nav className="mobile-menu-content" onClick={(e) => e.stopPropagation()}>
+        <Link to="/" className="mobile-menu-link main-link" onClick={onClose}>
+          {getT('main')}
+        </Link>
 
-        <nav className="drawer-nav-list">
-          <Link to="/" className="drawer-nav-link root-item" onClick={onClose}>
-            {getT('main')}
-          </Link>
-
-          {Object.entries(subMenus).map(([key, config]) => (
-            <div key={key} className="drawer-nav-group">
-              <button 
-                className={`drawer-nav-link ${activeSub === key ? 'active' : ''}`}
-                onClick={() => setActiveSub(activeSub === key ? null : key)}
-              >
-                {getT(config.title)}
-                <span className={`drawer-chevron ${activeSub === key ? 'rotate' : ''}`}>▼</span>
-              </button>
-              
-              <div className={`drawer-submenu ${activeSub === key ? 'expanded' : ''}`}>
-                {getSubT(config.subKey).map((text, index) => (
-                  <Link 
-                    key={index} 
-                    to={config.links[index]} 
-                    className="drawer-sublink"
-                    onClick={onClose}
-                  >
-                    {text}
-                  </Link>
-                ))}
-              </div>
+        {Object.entries(subMenus).map(([key, config]) => (
+          <div key={key} className="mobile-menu-item">
+            <button 
+              className={`mobile-menu-link ${activeSub === key ? 'active' : ''}`}
+              onClick={() => setActiveSub(activeSub === key ? null : key)}
+            >
+              {getT(config.title)}
+              <span className={`chevron ${activeSub === key ? 'rotate' : ''}`}>▼</span>
+            </button>
+            
+            <div className={`mobile-submenu ${activeSub === key ? 'open' : ''}`}>
+              {translate[config.subKey][language?.toUpperCase() || "RU"].map((text, index) => (
+                <Link key={index} to={config.links[index]} className="mobile-sublink" onClick={onClose}>
+                  {text}
+                </Link>
+              ))}
             </div>
-          ))}
-        </nav>
-      </div>
+          </div>
+        ))}
+      </nav>
     </div>
   );
 };

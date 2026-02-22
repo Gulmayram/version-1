@@ -3,36 +3,32 @@ import { LanguageContext } from '../../LanguageContext';
 import './Header.css';
 
 const Header = ({ toggleMenu, isMenuOpen }) => {
-  const { language, setLanguage } = useContext(LanguageContext);
-
-  const changeLanguage = (lang) => {
-    setLanguage(lang);
-  };
+  // Используем те же названия, что и в твоем Sidebar
+  const { language, changeLanguage } = useContext(LanguageContext);
 
   return (
     <header className="header">
       <div className="header-container">
         
-        {/* Левый блок: Соцсети + Языки */}
         <div className="header-left-group">
+          {/* Соцсети */}
           <div className="social-links">
             <a href="#" className="soc-link"><i className="fab fa-instagram"></i></a>
             <a href="#" className="soc-link"><i className="fab fa-youtube"></i></a>
           </div>
           
+          {/* Переключатель языков как в Сайдбаре */}
           <div className="language-switcher">
-            <button 
-              className={`lang-btn ${language === 'ru' ? 'active' : ''}`} 
-              onClick={() => changeLanguage('ru')}
-            >RU</button>
-            <button 
-              className={`lang-btn ${language === 'kg' ? 'active' : ''}`} 
-              onClick={() => changeLanguage('kg')}
-            >KG</button>
-            <button 
-              className={`lang-btn ${language === 'en' ? 'active' : ''}`} 
-              onClick={() => changeLanguage('en')}
-            >EN</button>
+            {['RU', 'KG', 'EN'].map(lang => (
+              <button 
+                key={lang}
+                type="button"
+                className={`lang-btn ${language === lang ? 'active' : ''}`} 
+                onClick={() => changeLanguage(lang)}
+              >
+                {lang}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -44,7 +40,7 @@ const Header = ({ toggleMenu, isMenuOpen }) => {
           </div>
         </div>
 
-        {/* Бургер (SVG) */}
+        {/* Кнопка управления шторкой (SVG) */}
         <button 
           className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} 
           onClick={toggleMenu}

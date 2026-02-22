@@ -1,15 +1,21 @@
 .mobile-menu-overlay {
   position: fixed;
-  top: 115px; /* Высота двухэтажного хедера на мобилках */
+  top: 70px; /* Для планшетов */
   left: 0;
   width: 100%;
-  height: calc(100vh - 115px);
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+  height: calc(100vh - 70px);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1500;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-in-out;
-  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .mobile-menu-overlay {
+    top: 110px; /* Для смартфонов под двухэтажный хедер */
+    height: calc(100vh - 110px);
+  }
 }
 
 .mobile-menu-overlay.show {
@@ -18,63 +24,40 @@
 }
 
 .mobile-menu-content {
-  background: #1a5a96; /* Цвет как у Сайдбара */
+  background: #1a5a96;
   width: 100%;
-  max-height: 80vh;
+  max-height: 85vh;
   overflow-y: auto;
-  transform: translateY(-100%); /* Изначально спрятана за хедером */
+  transform: translateY(-100%);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   padding-bottom: 20px;
 }
 
 .mobile-menu-overlay.show .mobile-menu-content {
-  transform: translateY(0); /* Выезжает вниз */
+  transform: translateY(0);
 }
 
 .mobile-menu-link {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 15px 20px;
+  padding: 16px 20px;
   color: white;
   text-decoration: none;
   background: none;
   border: none;
-  font-size: 16px;
+  width: 100%;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  text-align: left;
-}
-
-.mobile-menu-link.active {
-  background: rgba(255,255,255,0.1);
+  font-size: 16px;
 }
 
 .mobile-submenu {
   max-height: 0;
   overflow: hidden;
-  background: rgba(0,0,0,0.15);
+  background: rgba(0,0,0,0.1);
   transition: max-height 0.3s ease-out;
 }
 
-.mobile-submenu.open {
-  max-height: 500px;
-}
-
-.mobile-sublink {
-  display: block;
-  padding: 12px 40px;
-  color: rgba(255,255,255,0.8);
-  text-decoration: none;
-  font-size: 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.chevron {
-  font-size: 10px;
-  transition: transform 0.3s;
-}
-
-.chevron.rotate {
-  transform: rotate(180deg);
-}
+.mobile-submenu.open { max-height: 600px; }
+.mobile-sublink { display: block; padding: 12px 40px; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.chevron { font-size: 10px; transition: transform 0.3s; }
+.chevron.rotate { transform: rotate(180deg); }

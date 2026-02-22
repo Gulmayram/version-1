@@ -1,16 +1,13 @@
-/* Базовые стили хедера */
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 70px; /* Жестко фиксированная высота */
+  top: 0; left: 0; right: 0;
+  min-height: 70px;
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
-  z-index: 1100; /* Выше чем у сайдбара и навбара */
+  z-index: 1100;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  padding: 10px 0;
 }
 
 .header-container {
@@ -19,19 +16,24 @@
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap; /* Позволяет поиску падать на вторую строку */
   align-items: center;
+  justify-content: space-between;
 }
 
-/* Отключаем динамику скролла для стабильности верстки */
-.header.scrolled {
-  height: 70px;
-  padding: 0;
-}
-
-/* Блок поиска (виден на десктопе и планшете) */
+/* --- ДЕСКТОП И ПЛАНШЕТ --- */
 .search-box {
-  display: block;
+  order: 1; /* Поиск первый слева */
+  flex: 0 1 300px;
+}
+
+.header-socials {
+  order: 2; /* Соцсети вторые (справа) */
+  margin-left: auto;
+}
+
+.menu-toggle {
+  display: none; /* Скрыт на ПК и планшетах */
 }
 
 .search-inner {
@@ -41,95 +43,39 @@
   padding: 8px 14px;
   display: flex;
   align-items: center;
-  width: 300px;
-  transition: border-color 0.2s;
 }
 
-.search-inner:focus-within {
-  border-color: #1a5a96;
-}
+.search-inner input { border: none; background: transparent; outline: none; width: 100%; }
+.social-links { display: flex; gap: 20px; }
+.soc-link { color: #64748b !important; font-size: 18px; }
 
-.search-inner i { 
-  color: #94a3b8; 
-  margin-right: 10px; 
-}
-
-.search-inner input { 
-  border: none; 
-  background: transparent; 
-  outline: none; 
-  width: 100%; 
-  font-size: 14px;
-}
-
-/* Правая часть: Соцсети и Бургер */
-.header-right { 
-  display: flex; 
-  align-items: center; 
-  gap: 20px; 
-}
-
-.social-links { 
-  display: flex; 
-  gap: 20px; 
-}
-
-.soc-link { 
-  color: #64748b !important; 
-  font-size: 18px; 
-  transition: color 0.2s ease;
-  text-decoration: none;
-}
-
-.soc-link:hover { 
-  color: #1a5a96 !important; 
-}
-
-/* Кнопка открытия мобильного меню */
-.menu-toggle {
-  display: none; /* Скрыта на десктопе */
-  background: none; 
-  border: none; 
-  cursor: pointer;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* --- АДАПТИВНОСТЬ --- */
-
-/* Планшеты: показываем бургер, если нужно параллельное управление */
-@media (max-width: 1024px) {
-  .menu-toggle {
-    display: block;
-  }
-}
-
-/* Мобильные телефоны */
-@media (max-width: 768px) {
+/* --- СМАРТФОНЫ (767px и меньше) --- */
+@media (max-width: 767px) {
   .header {
-    height: 70px; /* Возвращаем фиксированную высоту для стыковки */
-    padding: 0;
+    height: auto; /* Высота подстраивается под два ряда */
   }
 
   .header-container {
-    flex-direction: row; /* Оставляем в одну линию */
-    justify-content: space-between;
-    gap: 0;
+    row-gap: 15px; /* Отступ между рядами */
   }
 
-  /* Скрываем поиск из хедера, так как он теперь в MobileBar */
+  .header-socials {
+    order: 1; /* Соцсети теперь самые первые (слева) */
+    margin-left: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+    order: 2; /* Бургер второй (справа) */
+    background: none; border: none;
+  }
+
   .search-box {
-    display: none;
+    order: 3; /* Поиск падает вниз */
+    flex: 1 1 100%; /* Занимает всю ширину */
   }
 
-  .header-right { 
-    width: 100%; 
-    justify-content: space-between; /* Соцсети слева, бургер справа */
-  }
-
-  .social-links {
-    gap: 15px;
+  .search-inner {
+    width: 100%;
   }
 }

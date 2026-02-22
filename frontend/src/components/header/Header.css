@@ -1,15 +1,12 @@
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  min-height: 70px;
+  top: 0; left: 0; right: 0;
+  height: 70px;
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
-  z-index: 1100;
+  z-index: 2000;
   display: flex;
   align-items: center;
-  padding: 10px 0;
 }
 
 .header-container {
@@ -18,69 +15,75 @@
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
-  flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
   align-items: center;
+  justify-content: space-between;
 }
 
-/* --- СОСТОЯНИЕ: ДЕСКТОП И ПЛАНШЕТ --- */
-.search-box {
-  order: 1; /* Поиск слева */
-  flex: 0 1 300px;
-}
-
-.header-socials {
-  order: 2; /* Соцсети справа */
-  margin-left: auto;
-}
-
-.menu-toggle {
-  display: none; /* Скрываем бургер на больших экранах */
-}
-
-/* Общие стили для поиска */
-.search-inner {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  padding: 8px 14px;
+.header-left-group {
   display: flex;
   align-items: center;
+  gap: 25px;
 }
 
-.search-inner input { border: none; background: transparent; outline: none; width: 100%; }
+/* Языковой переключатель */
+.language-switcher {
+  display: flex;
+  gap: 8px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 2px 4px;
+  transition: color 0.2s;
+}
+
+.lang-btn.active {
+  color: #1a5a96;
+  border-bottom: 2px solid #1a5a96;
+}
+
+/* Поиск */
+.search-box { flex: 0 1 350px; }
+.search-inner { 
+  background: #f8fafc; 
+  border: 1px solid #e2e8f0; 
+  border-radius: 6px; 
+  padding: 8px 14px; 
+  display: flex; 
+  align-items: center; 
+}
+.search-inner input { border: none; background: transparent; outline: none; width: 100%; font-size: 14px; }
 .search-inner i { color: #94a3b8; margin-right: 10px; }
 
-/* Социальные сети */
-.social-links { display: flex; gap: 20px; }
+.social-links { display: flex; gap: 15px; }
 .soc-link { color: #64748b !important; font-size: 18px; }
 
-/* --- СОСТОЯНИЕ: СМАРТФОН (767px и меньше) --- */
+.menu-toggle { display: none; background: none; border: none; cursor: pointer; }
+
+/* МОБИЛЬНАЯ ВЕРСИЯ */
 @media (max-width: 767px) {
+  .header {
+    height: 115px; /* Увеличенная высота под 2 ряда */
+    align-items: flex-start;
+    padding-top: 15px;
+  }
+
   .header-container {
-    height: auto; /* Позволяем контенту (2 ряда) задать высоту */
-    min-height: 110px; /* Примерная высота для двух рядов */
-    padding: 10px 0;
+    flex-wrap: wrap;
+    row-gap: 15px;
   }
 
-  .header-socials {
-    order: 1; /* Соцсети в верхний левый угол */
-    margin-left: 0;
-  }
+  .header-left-group { order: 1; }
+  .menu-toggle { display: block; order: 2; }
 
-  .menu-toggle {
-    display: block; /* Показываем бургер */
-    order: 2; /* Бургер в верхний правый угол */
-    background: none;
-    border: none;
-  }
-
-  .search-box {
-    order: 3; /* Поиск переносится на вторую строку */
-    flex: 1 1 100%; /* Занимает всю ширину строки */
-    margin-top: 15px; /* Отступ между рядами */
-  }
-
-  .search-inner {
-    width: 100%;
+  .search-box { 
+    order: 3; 
+    flex: 1 1 100%; 
+    margin-top: 5px;
   }
 }

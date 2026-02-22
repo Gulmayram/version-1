@@ -2,15 +2,15 @@
 /* 1. БАЗОВОЕ СОСТОЯНИЕ (СКРЫТО)                    */
 /* ================================================= */
 .tablet-navbar {
-  display: none; /* Скрыто по умолчанию */
+  display: none;
   position: fixed;
-  top: 70px; /* Сразу под основным хедером */
+  top: 70px;
   left: 0;
   right: 0;
   height: 60px;
   background-color: #1a5a96;
   z-index: 1050;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 /* ================================================= */
@@ -18,21 +18,13 @@
 /* ================================================= */
 @media (min-width: 800px) and (max-width: 1024px) {
   .tablet-navbar {
-    display: flex; /* Показываем только здесь */
+    display: flex;
     align-items: center;
   }
 }
 
-/* ================================================= */
-/* 3. СТРОГОЕ СКРЫТИЕ (МОБИЛКИ И ПК)                */
-/* ================================================= */
-@media (max-width: 799px) {
-  .tablet-navbar {
-    display: none !important;
-  }
-}
-
-@media (min-width: 1025px) {
+/* Строгое скрытие на мобильных и десктопах */
+@media (max-width: 799px), (min-width: 1025px) {
   .tablet-navbar {
     display: none !important;
   }
@@ -46,36 +38,21 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 5px;
-}
-
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-.navbar-logo:hover {
-  opacity: 0.8;
+  padding: 0 15px;
 }
 
 .navbar-logo-img {
-  height: 35px; /* Чуть уменьшил для планшетной компактности */
+  height: 35px;
   width: auto;
-  display: block;
 }
 
 .navbar-inner {
   display: flex;
-  height: 100%;
-  gap: 2px;
+  height: 60px;
 }
 
 .nav-group {
-  position: relative;
+  position: relative; /* Критично для позиционирования dropdown */
   display: flex;
   align-items: center;
 }
@@ -84,14 +61,14 @@
   background: transparent;
   border: none;
   color: white;
-  padding: 0 5px;
+  padding: 0 12px;
   height: 60px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 5px;
   white-space: nowrap;
   transition: background 0.2s;
 }
@@ -106,33 +83,46 @@
   transition: transform 0.3s ease;
 }
 
-/* Стили для открытого состояния стрелочки */
-.nav-group.active .nav-arrow {
+.nav-group:hover .nav-arrow {
   transform: rotate(180deg);
 }
 
 /* ================================================= */
-/* 5. ВЫПАДАЮЩЕЕ МЕНЮ (DROPDOWN)                    */
+/* 5. УЛУЧШЕННЫЙ ВЫПАДАЮЩИЙ СПИСОК (DROPDOWN)       */
 /* ================================================= */
 .nav-dropdown {
   position: absolute;
   top: 60px;
-  right: 0;
+  /* По умолчанию выравниваем по левому краю кнопки */
+  left: 0; 
   background-color: #ffffff;
-  min-width: 260px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  min-width: 280px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   list-style: none;
-  padding: 10px 0;
-  border-radius: 0 0 6px 6px;
+  padding: 8px 0;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #e2e8f0;
+  border-top: none;
+  
+  /* Анимация */
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: all 0.3s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Скролл для очень длинных списков */
+  max-height: 450px;
+  overflow-y: auto;
 }
 
-/* Показываем при наведении или через класс active */
-.nav-group:hover .nav-dropdown,
-.nav-group.active .nav-dropdown {
+/* Исправление для последних кнопок справа, чтобы меню не уходило за экран */
+.nav-group:last-child .nav-dropdown,
+.nav-group:nth-last-child(2) .nav-dropdown {
+  left: auto;
+  right: 0;
+}
+
+.nav-group:hover .nav-dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -141,30 +131,26 @@
 .nav-dropdown li a {
   display: block;
   padding: 12px 20px;
-  color: #1a5a96;
+  color: #1e293b;
   text-decoration: none;
   font-size: 14px;
-  line-height: 1.3;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
 }
 
 .nav-dropdown li a:hover {
-  background-color: #f1f5f9;
-  color: #2563eb;
+  background-color: #f8fafc;
+  color: #1a5a96;
+  padding-left: 25px; /* Эффект смещения */
 }
 
-/* Кастомный скроллбар для длинных меню на планшетах */
-.nav-dropdown {
-  max-height: 400px;
-  overflow-y: auto;
-}
-
+/* Красивый тонкий скроллбар */
 .nav-dropdown::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
-
+.nav-dropdown::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
 .nav-dropdown::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 10px;
 }
-

@@ -31,6 +31,7 @@
 }
 
 .logo-text h2 { 
+  text-transform: uppercase; /* Делает все буквы заглавными */
   margin: 0; 
   font-size: 0.9em; 
   font-weight: bold; 

@@ -28,38 +28,42 @@ const MobileBar = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className={`mobile-bar-container ${isOpen ? 'active' : ''}`}>
-      {/* Затемнение экрана */}
-      <div className="mobile-bar-overlay" onClick={onClose}></div>
+    <div className={`mobile-drawer ${isOpen ? 'is-open' : ''}`}>
+      {/* Затемняющий фон (Overlay) */}
+      <div className="mobile-drawer-overlay" onClick={onClose}></div>
       
-      {/* Выезжающая панель */}
-      <div className="mobile-bar-content">
-        <div className="mobile-bar-header">
-          <img src="/logo.png" alt="Logo" className="mobile-bar-logo" />
-          <button className="mobile-bar-close" onClick={onClose}>&times;</button>
+      {/* Сама шторка */}
+      <div className="mobile-drawer-content">
+        <div className="mobile-drawer-header">
+          <div className="drawer-logo-area">
+             <img src="/logo.png" alt="Logo" className="drawer-logo" />
+          </div>
+          <button className="drawer-close-btn" onClick={onClose}>
+            &times;
+          </button>
         </div>
 
-        <nav className="mobile-bar-nav">
-          <Link to="/" className="mobile-bar-link root" onClick={onClose}>
+        <nav className="drawer-nav-list">
+          <Link to="/" className="drawer-nav-link root-item" onClick={onClose}>
             {getT('main')}
           </Link>
 
           {Object.entries(subMenus).map(([key, config]) => (
-            <div key={key} className="mobile-bar-item">
+            <div key={key} className="drawer-nav-group">
               <button 
-                className={`mobile-bar-link ${activeSub === key ? 'open' : ''}`}
+                className={`drawer-nav-link ${activeSub === key ? 'active' : ''}`}
                 onClick={() => setActiveSub(activeSub === key ? null : key)}
               >
                 {getT(config.title)}
-                <span className="mobile-bar-arrow">▼</span>
+                <span className={`drawer-chevron ${activeSub === key ? 'rotate' : ''}`}>▼</span>
               </button>
               
-              <div className={`mobile-bar-sublist ${activeSub === key ? 'expanded' : ''}`}>
+              <div className={`drawer-submenu ${activeSub === key ? 'expanded' : ''}`}>
                 {getSubT(config.subKey).map((text, index) => (
                   <Link 
                     key={index} 
                     to={config.links[index]} 
-                    className="mobile-bar-sublink"
+                    className="drawer-sublink"
                     onClick={onClose}
                   >
                     {text}

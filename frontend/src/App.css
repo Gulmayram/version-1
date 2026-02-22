@@ -71,7 +71,7 @@ body {
 /* 3. МОБИЛЬНЫЕ (< 768px) */
 @media (max-width: 767px) {
   .main-wrapper {
-    margin-top: 70px;
+    margin-top: 125px;
   }
   .sidebar, .tablet-navbar {
     display: none !important;
@@ -94,3 +94,4 @@ body {
 .content-area {
   padding: 20px;
 }
+

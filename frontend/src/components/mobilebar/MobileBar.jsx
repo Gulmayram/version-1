@@ -25,7 +25,7 @@ const MobileBar = ({ isOpen, onClose }) => {
   return (
     <div className={`mobile-menu-overlay ${isOpen ? 'show' : ''}`} onClick={onClose}>
       <nav className="mobile-menu-content" onClick={(e) => e.stopPropagation()}>
-        <Link to="/" className="mobile-menu-link main-link" onClick={onClose}>
+        <Link to="/" className="mobile-menu-link" onClick={onClose}>
           {getT('main')}
         </Link>
 

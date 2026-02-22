@@ -57,7 +57,9 @@
 /* --- СОСТОЯНИЕ: СМАРТФОН (767px и меньше) --- */
 @media (max-width: 767px) {
   .header-container {
-    justify-content: space-between;
+    height: auto; /* Позволяем контенту (2 ряда) задать высоту */
+    min-height: 110px; /* Примерная высота для двух рядов */
+    padding: 10px 0;
   }
 
   .header-socials {

@@ -48,7 +48,7 @@
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 5px;
 }
 
 .navbar-logo {
@@ -71,7 +71,7 @@
 .navbar-inner {
   display: flex;
   height: 100%;
-  gap: 5px;
+  gap: 2px;
 }
 
 .nav-group {
@@ -84,14 +84,14 @@
   background: transparent;
   border: none;
   color: white;
-  padding: 0 12px;
+  padding: 0 5px;
   height: 60px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   white-space: nowrap;
   transition: background 0.2s;
 }
@@ -167,3 +167,4 @@
   background: #cbd5e1;
   border-radius: 10px;
 }
+

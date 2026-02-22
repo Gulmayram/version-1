@@ -1,30 +1,54 @@
+/* ================================================= */
+/* 1. БАЗОВОЕ СОСТОЯНИЕ (СКРЫТО)                    */
+/* ================================================= */
 .tablet-navbar {
-  display: none;
+  display: none; /* Скрыто по умолчанию */
   position: fixed;
-  top: 70px;
+  top: 70px; /* Сразу под основным хедером */
   left: 0;
   right: 0;
   height: 60px;
   background-color: #1a5a96;
   z-index: 1050;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* ================================================= */
+/* 2. ПЛАНШЕТНЫЙ РЕЖИМ (800px - 1024px)             */
+/* ================================================= */
 @media (min-width: 800px) and (max-width: 1024px) {
   .tablet-navbar {
-    display: flex;
+    display: flex; /* Показываем только здесь */
     align-items: center;
   }
 }
 
+/* ================================================= */
+/* 3. СТРОГОЕ СКРЫТИЕ (МОБИЛКИ И ПК)                */
+/* ================================================= */
+@media (max-width: 799px) {
+  .tablet-navbar {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .tablet-navbar {
+    display: none !important;
+  }
+}
+
+/* ================================================= */
+/* 4. ВНУТРЕННИЕ СТИЛИ                              */
+/* ================================================= */
 .navbar-container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Логотип влево, меню вправо */
+  justify-content: space-between;
   width: 100%;
-  max-width: 100%; /* Занимаем всю ширину на планшете */
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 5px; /* Отступы от краев экрана */
+  padding: 0 15px;
 }
 
 .navbar-logo {
@@ -39,7 +63,7 @@
 }
 
 .navbar-logo-img {
-  height: 40px;
+  height: 35px; /* Чуть уменьшил для планшетной компактности */
   width: auto;
   display: block;
 }
@@ -47,7 +71,7 @@
 .navbar-inner {
   display: flex;
   height: 100%;
-  gap: 2px; /* Небольшой зазор между пунктами */
+  gap: 5px;
 }
 
 .nav-group {
@@ -60,15 +84,16 @@
   background: transparent;
   border: none;
   color: white;
-  padding: 0 6px;
+  padding: 0 12px;
   height: 60px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 6px;
   white-space: nowrap;
+  transition: background 0.2s;
 }
 
 .nav-item-btn:hover {
@@ -76,21 +101,41 @@
 }
 
 .nav-arrow {
-  font-size: 8px;
-  opacity: 0.7;
+  font-size: 9px;
+  opacity: 0.8;
+  transition: transform 0.3s ease;
 }
 
-/* Выпадающее меню */
+/* Стили для открытого состояния стрелочки */
+.nav-group.active .nav-arrow {
+  transform: rotate(180deg);
+}
+
+/* ================================================= */
+/* 5. ВЫПАДАЮЩЕЕ МЕНЮ (DROPDOWN)                    */
+/* ================================================= */
 .nav-dropdown {
   position: absolute;
   top: 60px;
-  right: 0; /* Чтобы меню не вылезало за правый край экрана */
+  right: 0;
   background-color: #ffffff;
-  min-width: 240px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  min-width: 260px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   list-style: none;
-  padding: 8px 0;
-  border-radius: 0 0 4px 4px;
+  padding: 10px 0;
+  border-radius: 0 0 6px 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+/* Показываем при наведении или через класс active */
+.nav-group:hover .nav-dropdown,
+.nav-group.active .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .nav-dropdown li a {
@@ -99,12 +144,26 @@
   color: #1a5a96;
   text-decoration: none;
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 1.3;
+  transition: background 0.2s;
 }
 
 .nav-dropdown li a:hover {
   background-color: #f1f5f9;
+  color: #2563eb;
 }
 
+/* Кастомный скроллбар для длинных меню на планшетах */
+.nav-dropdown {
+  max-height: 400px;
+  overflow-y: auto;
+}
 
+.nav-dropdown::-webkit-scrollbar {
+  width: 4px;
+}
 
+.nav-dropdown::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}

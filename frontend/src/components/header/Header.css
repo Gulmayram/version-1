@@ -1,6 +1,8 @@
 .header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   min-height: 70px;
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
@@ -16,26 +18,26 @@
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
-  flex-wrap: wrap; /* Позволяет поиску падать на вторую строку */
+  flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
   align-items: center;
-  justify-content: space-between;
 }
 
-/* --- ДЕСКТОП И ПЛАНШЕТ --- */
+/* --- СОСТОЯНИЕ: ДЕСКТОП И ПЛАНШЕТ --- */
 .search-box {
-  order: 1; /* Поиск первый слева */
+  order: 1; /* Поиск слева */
   flex: 0 1 300px;
 }
 
 .header-socials {
-  order: 2; /* Соцсети вторые (справа) */
+  order: 2; /* Соцсети справа */
   margin-left: auto;
 }
 
 .menu-toggle {
-  display: none; /* Скрыт на ПК и планшетах */
+  display: none; /* Скрываем бургер на больших экранах */
 }
 
+/* Общие стили для поиска */
 .search-inner {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -46,33 +48,34 @@
 }
 
 .search-inner input { border: none; background: transparent; outline: none; width: 100%; }
+.search-inner i { color: #94a3b8; margin-right: 10px; }
+
+/* Социальные сети */
 .social-links { display: flex; gap: 20px; }
 .soc-link { color: #64748b !important; font-size: 18px; }
 
-/* --- СМАРТФОНЫ (767px и меньше) --- */
+/* --- СОСТОЯНИЕ: СМАРТФОН (767px и меньше) --- */
 @media (max-width: 767px) {
-  .header {
-    height: auto; /* Высота подстраивается под два ряда */
-  }
-
   .header-container {
-    row-gap: 15px; /* Отступ между рядами */
+    justify-content: space-between;
   }
 
   .header-socials {
-    order: 1; /* Соцсети теперь самые первые (слева) */
+    order: 1; /* Соцсети в верхний левый угол */
     margin-left: 0;
   }
 
   .menu-toggle {
-    display: block;
-    order: 2; /* Бургер второй (справа) */
-    background: none; border: none;
+    display: block; /* Показываем бургер */
+    order: 2; /* Бургер в верхний правый угол */
+    background: none;
+    border: none;
   }
 
   .search-box {
-    order: 3; /* Поиск падает вниз */
-    flex: 1 1 100%; /* Занимает всю ширину */
+    order: 3; /* Поиск переносится на вторую строку */
+    flex: 1 1 100%; /* Занимает всю ширину строки */
+    margin-top: 15px; /* Отступ между рядами */
   }
 
   .search-inner {

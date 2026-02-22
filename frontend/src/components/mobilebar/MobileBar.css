@@ -11,7 +11,7 @@
   transition: opacity 0.3s ease;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 800px) {
   .mobile-menu-overlay {
     top: 115px; /* Ровно под двухэтажным хедером */
     height: calc(100vh - 115px);
@@ -68,4 +68,10 @@
   text-decoration: none;
   font-size: 14px;
   border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+/* Исчезновение шторки при переходе на десктоп */
+@media (min-width: 800px) {
+  .mobile-menu-overlay {
+    display: none !important;
+  }
 }

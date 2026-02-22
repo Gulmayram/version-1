@@ -6,7 +6,7 @@ const Header = ({ toggleMenu, isMenuOpen }) => {
     <header className="header">
       <div className="header-container">
         
-        {/* Соцсети (теперь слева на мобилках) */}
+        {/* Иконки социальных сетей */}
         <div className="header-socials">
           <div className="social-links">
             <a href="#" className="soc-link"><i className="fab fa-instagram"></i></a>
@@ -14,7 +14,7 @@ const Header = ({ toggleMenu, isMenuOpen }) => {
           </div>
         </div>
 
-        {/* Поиск (на ПК слева, на мобилках внизу) */}
+        {/* Поисковая строка */}
         <div className="search-box">
           <div className="search-inner">
             <i className="fas fa-search"></i>
@@ -22,13 +22,12 @@ const Header = ({ toggleMenu, isMenuOpen }) => {
           </div>
         </div>
 
-        {/* Бургер (виден только на мобилках) */}
+        {/* Бургер (SVG) — показывается только на смартфонах */}
         <button 
           className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} 
           onClick={toggleMenu}
-          aria-label="Toggle navigation"
         >
-          <svg viewBox="0 0 24 24" width="28" height="28" stroke="#1a5a96" strokeWidth="2" fill="none">
+          <svg viewBox="0 0 24 24" width="28" height="28" stroke="#1a5a96" strokeWidth="2.5" fill="none">
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="18" x2="21" y2="18"></line>

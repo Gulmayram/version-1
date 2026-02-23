@@ -1,5 +1,5 @@
 export const translate = {
-  // Твои существующие ключи
+  // Основные ключи
   news: { "RU": "Новости", "KG": "Жаңылыктар", "EN": "News" },
   loadMore: { "RU": "Загрузить еще", "KG": "Көбүрөөк жүктөө", "EN": "Load more" },
   wordDays: { "RU": "Рабочие дни", "KG": "Жумуш күндөрү", "EN": "Work days" },
@@ -118,7 +118,7 @@ export const translate = {
     RU: ["Телефонный справочник", "Приёмная", "Реквизиты"],
     KG: ["Телефондук маалымдама", "Кабыл алуу бөлүмү", "Реквизиттер"],
     EN: ["Phone Directory", "Reception", "Bank Details"]
-  }, // <--- Тут была пропущена запятая
+  },
   
   // Ключи для блока статистики (AboutSection)
   inNumbers: { RU: "В цифрах", KG: "Сандар менен", EN: "In numbers" },
@@ -126,5 +126,46 @@ export const translate = {
   yearsExperience: { RU: "лет опыта", KG: "жылдык тажрыйба", EN: "years of experience" },
   specialists: { RU: "специалистов", KG: "адистер", EN: "specialists" },
   completedProjects: { RU: "завершённых проектов", KG: "аяктаган долбоорлор", EN: "completed projects" },
-  partnerCountries: { RU: "стран-партнёров", KG: "өнөктөш өлкөлөр", EN: "partner countries" }
+  partnerCountries: { RU: "стран-партнёров", KG: "өнөктөш өлкөлөр", EN: "partner countries" },
+
+  // НОВЫЕ КЛЮЧИ ДЛЯ Activities.jsx
+  activitiesSubtitle: { 
+    RU: "Комплексные геологические услуги и решения для развития минерально-сырьевой базы Кыргызстана", 
+    KG: "Кыргызстандын минералдык-чийки зат базасын өнүктүрүү үчүн комплекстүү геологиялык кызматтар жана чечимдер", 
+    EN: "Comprehensive geological services and solutions for the development of the mineral resource base of Kyrgyzstan" 
+  },
+  act_services: { RU: "Услуги", KG: "Кызматтар", EN: "Services" },
+  act_services_desc: { 
+    RU: "Геологоразведочные работы, лабораторные исследования, геофизические изыскания", 
+    KG: "Геологиялык чалгындоо иштери, лабораториялык изилдөөлөр, геофизикалык изилдөөлөр", 
+    EN: "Geological exploration, laboratory research, geophysical surveys" 
+  },
+  act_projects_desc: { 
+    RU: "Текущие и завершённые геологические проекты по всей территории республики", 
+    KG: "Республиканын бардык аймагындагы учурдагы жана аяктаган геологиялык долбоорлор", 
+    EN: "Current and completed geological projects throughout the republic" 
+  },
+  act_production_desc: { 
+    RU: "Геологическая информация, тематические карты, научно-технические отчёты", 
+    KG: "Геологиялык маалыматтар, тематикалык карталар, илимий-техникалык отчеттор", 
+    EN: "Geological information, thematic maps, scientific and technical reports" 
+  },
+  act_investors: { RU: "Для инвесторов и партнёров", KG: "Инвесторлор жана өнөктөштөр үчүн", EN: "For investors and partners" },
+  act_investors_desc: { 
+    RU: "Возможности сотрудничества, инвестиционные проекты, условия партнёрства", 
+    KG: "Кызматташуу мүмкүнчүлүктөрү, инвестициялык долбоорлор, өнөктөштүк шарттары", 
+    EN: "Cooperation opportunities, investment projects, partnership terms" 
+  },
+  act_registry: { RU: "Реестр месторождений", KG: "Кендердин реестри", EN: "Registry of deposits" },
+  act_registry_desc: { 
+    RU: "Полная база данных месторождений полезных ископаемых с детальными характеристиками", 
+    KG: "Пайдалуу кендердин деталдуу мүнөздөмөлөрү менен толук маалымат базасы", 
+    EN: "Complete database of mineral deposits with detailed characteristics" 
+  },
+  act_anticorruption: { RU: "Антикоррупционные меры", KG: "Коррупцияга каршы чаралар", EN: "Anti-corruption measures" },
+  act_anticorruption_desc: { 
+    RU: "Противодействие коррупции, прозрачность деятельности, этические стандарты", 
+    KG: "Коррупцияга каршы аракеттенүү, ишмердүүлүктүн ачыктыгы, этикалык стандарттар", 
+    EN: "Anti-corruption, transparency of activities, ethical standards" 
+  }
 };

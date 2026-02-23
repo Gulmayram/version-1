@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 // 3. Компоненты и роутинг
 import NewsCards from '../news/NewsCards';
-import AboutSection from '../about/AboutSection'; // Импорт нового компонента
+import AboutSection from '../about/AboutSection';
+import Activities from '../services/Activities'; // Импорт нового компонента
 
 // 4. Сторы, контексты и API
 import { getHome } from "../../store/apiSlice";
@@ -100,10 +101,13 @@ const Main = () => {
                 </div>
             </div>
 
-            {/* 2. БЛОК О ПРЕДПРИЯТИИ (ИНТЕГРАЦИЯ) */}
+            {/* 2. БЛОК О ПРЕДПРИЯТИИ */}
             <AboutSection />
 
-            {/* 3. БЛОК НОВОСТЕЙ */}
+            {/* 3. БЛОК ДЕЯТЕЛЬНОСТЬ (ИНТЕГРАЦИЯ) */}
+            <Activities />
+
+            {/* 4. БЛОК НОВОСТЕЙ */}
             <div className="newsBlock">
                 <h2 className="section-title">{translate.news[language]}</h2>
                 <NewsCards />

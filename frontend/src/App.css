@@ -6,6 +6,8 @@
 }
 
 body {
+  overflow-x: hidden; /* Запрещает горизонтальный скролл */
+  width: 100%;
   font-family: 'Roboto', sans-serif;
   background-color: #f9fafb;
 }
@@ -94,5 +96,6 @@ body {
 .content-area {
   padding: 20px;
 }
+
 
 

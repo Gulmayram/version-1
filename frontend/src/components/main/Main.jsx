@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NewsCards from '../news/NewsCards';
 import AboutSection from '../about/AboutSection';
 import Activities from '../services/Activities'; // Импорт нового компонента
+import MapPreview from '../map/MapPreview';
 
 // 4. Сторы, контексты и API
 import { getHome } from "../../store/apiSlice";
@@ -100,20 +101,24 @@ const Main = () => {
                     ))}
                 </div>
             </div>
-
-            {/* 2. БЛОК О ПРЕДПРИЯТИИ */}
-            <AboutSection />
-
-            {/* 3. БЛОК ДЕЯТЕЛЬНОСТЬ (ИНТЕГРАЦИЯ) */}
-            <Activities />
-
-            {/* 4. БЛОК НОВОСТЕЙ */}
+            
+            {/* 2. БЛОК НОВОСТЕЙ */}
             <div className="newsBlock">
                 <h2 className="section-title">{translate.news[language]}</h2>
                 <NewsCards />
             </div>
+            
+            {/* 3. БЛОК О ПРЕДПРИЯТИИ */}
+            <AboutSection />
+
+            {/* 4. БЛОК ДЕЯТЕЛЬНОСТЬ */}
+            <Activities />
+
+            {/* 5. БЛОК ИНТЕРАКТИВНОЙ КАРТЫ */}
+            <MapPreview />
         </div>
     );
 };
 
 export default Main;
+

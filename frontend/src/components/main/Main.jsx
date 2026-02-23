@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 // 3. Компоненты и роутинг
 import NewsCards from '../news/NewsCards';
+import AboutSection from '../about/AboutSection'; // Импорт нового компонента
 
 // 4. Сторы, контексты и API
 import { getHome } from "../../store/apiSlice";
 import { LanguageContext } from "../../LanguageContext";
 
-// 5. Ресурсы, картинки, стили и переводы (всегда в конце)
+// 5. Ресурсы, картинки, стили и переводы
 import { translate } from "../../assets/translate";
 import mainPhoto from "../../assets/mainPhoto.jpg";
 import './Main.css';
@@ -21,7 +22,6 @@ const Main = () => {
     const timeOut = 5000;
     const dispatch = useDispatch();
     
-    // Получаем данные из Redux
     const { homes, loading } = useSelector((state) => state.api);
     const intervalRef = useRef(null);
     const { language } = useContext(LanguageContext);
@@ -55,11 +55,11 @@ const Main = () => {
         clearAndSetInterval();
     };
 
-    // Если данных нет совсем (даже пустой массив не пришел), показываем заглушку
     if (!homes) return null;
 
     return (
         <div className="main-page">
+            {/* 1. ГЛАВНЫЙ СЛАЙДЕР */}
             <div className="slider">
                 {Array.isArray(homes) && homes.length > 0 ? (
                     <div className="slide">
@@ -100,6 +100,10 @@ const Main = () => {
                 </div>
             </div>
 
+            {/* 2. БЛОК О ПРЕДПРИЯТИИ (ИНТЕГРАЦИЯ) */}
+            <AboutSection />
+
+            {/* 3. БЛОК НОВОСТЕЙ */}
             <div className="newsBlock">
                 <h2 className="section-title">{translate.news[language]}</h2>
                 <NewsCards />

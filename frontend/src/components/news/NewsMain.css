@@ -1,0 +1,84 @@
+.news-main-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.news-main-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 250px);
+    gap: 15px;
+}
+
+/* Общий стиль карточки */
+.nm-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.nm-card:hover {
+    transform: translateY(-5px);
+}
+
+.nm-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Градиент под текстом для читаемости */
+.nm-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    color: white;
+}
+
+.nm-date {
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 8px;
+    border-radius: 4px;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.nm-card h3 {
+    font-size: 18px;
+    margin: 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Сетка: 1 большая и 4 маленьких */
+.nm-main {
+    grid-column: span 3;
+    grid-row: span 2;
+}
+
+.nm-main h3 { font-size: 24px; } /* У главной новости заголовок крупнее */
+
+.nm-side {
+    grid-column: span 1.5; /* Половина от оставшегося места */
+    grid-row: span 1;
+}
+
+@media (max-width: 900px) {
+    .news-main-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .nm-main, .nm-side { grid-column: span 1; height: 300px; }
+}

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import './NewsCards.css'; // Используем те же стили
+import './NewsMain.css'; // Используем те же стили
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getNews } from "../../store/apiSlice";

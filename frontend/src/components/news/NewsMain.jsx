@@ -21,7 +21,7 @@ const NewsMain = () => {
 
     // РАЗДЕЛЕНИЕ ПО ТИПУ (на основе ID из вашей админки)
     // Категория 1 — Новости
-    const newsItems = sortedAll.filter(item => item.category === 1).slice(0, 4);
+    const newsItems = sortedAll.filter(item => item.category === 1).slice(0, 5);
     
     // Категории 2, 3, 4 — Объявления и Конкурсы
     const announcementItems = sortedAll.filter(item => [2, 3, 4].includes(item.category)).slice(0, 4);

@@ -122,4 +122,11 @@ export const translate = {
     KG: ["Телефондук маалымдама", "Кабыл алуу бөлүмү", "Реквизиттер"],
     EN: ["Phone Directory", "Reception", "Bank Details"]
   }
+  aboutCompany: { RU: "О предприятии", KG: "Ишкана жөнүндө", EN: "About the company" },
+  inNumbers: { RU: "В цифрах", KG: "Сандар менен", EN: "In numbers" },
+  readMore: { RU: "Подробнее о предприятии", KG: "Ишкана жөнүндө кененирээк", EN: "More about the company" },
+  yearsExperience: { RU: "лет опыта", KG: "жылдык тажрыйба", EN: "years of experience" },
+  specialists: { RU: "специалистов", KG: "адистер", EN: "specialists" },
+  completedProjects: { RU: "завершённых проектов", KG: "аяктаган долбоорлор", EN: "completed projects" },
+  partnerCountries: { RU: "стран-партнёров", KG: "өнөктөш өлкөлөр", EN: "partner countries" },
 };

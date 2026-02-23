@@ -36,7 +36,7 @@ export const translate = {
     iron: { "RU": "Железо", "KG": "Темир", "EN": "Iron" },
     limestoneShellRock: { "RU": "Известняк ракушечник", "KG": "Акиташ ракушечник", "EN": "Limestone shell rock" },
     kaolin: { "RU": "Каолин", "KG": "Каолин", "EN": "Kaolin" },
-    rareEarthMetals: { "RU": "Редкоземельные металлы", "KG": "", "EN": "Rare earth metals" },
+    rareEarthMetals: { "RU": "Редкоземельные металлы", "KG": "Сейрек кездешүүчү металлдар", "EN": "Rare earth metals" },
   },
 
   translatedApi: {
@@ -53,12 +53,12 @@ export const translate = {
   noNews: { "RU": "Новостей нет", "KG": "Жаңылык жок", "EN": "There are no news" },
   noServices: { "RU": "Услуг нет", "KG": "Кызматтар жок", "EN": "There are no services" },
   noData: { "RU": "Данных нет", "KG": "Маалымат жок", "EN": "There are no data" },
-  noVacancies: { "RU": "Вакансий нет", "KG": "", "EN": "There are no vacancies" },
+  noVacancies: { "RU": "Вакансий нет", "KG": "Бош орундар жок", "EN": "There are no vacancies" },
   history: { "RU": "История и миссия предприятия", "KG": "Ишкананын тарыхы жана миссиясы", "EN": "The history and mission of the company" },
   achievements: { "RU": "Достижения", "KG": "Жетишкендиктер", "EN": "Achievements" },
   kyrgyzgeology: { "RU": "Кыргызгеология", "KG": "Кыргызгеология", "EN": "Kyrgyzgeology" },
   ourAddress: { "RU": "Наш адрес", "KG": "Биздин дарек", "EN": "Our address" },
-  viewPdf: { "RU": "Прикрепленный файл", "KG": "", "EN": "Attached file" },
+  viewPdf: { "RU": "Прикрепленный файл", "KG": "Тиркелген файл", "EN": "Attached file" },
   income: { "RU": "Доход", "KG": "Киреше", "EN": "Income" },
   diagramOfAll: { "RU": "Диаграма всех объектов", "KG": "Бардык объекттердин диаграммасы", "EN": "Diagram of all objects" },
   graphOfMonth: { "RU": "График месячного дохода", "KG": "Айлык киреше диаграммасы", "EN": "Monthly income graph" },
@@ -120,7 +120,6 @@ export const translate = {
     EN: ["Phone Directory", "Reception", "Bank Details"]
   },
   
-  // Ключи для блока статистики (AboutSection)
   inNumbers: { RU: "В цифрах", KG: "Сандар менен", EN: "In numbers" },
   readMore: { RU: "Подробнее о предприятии", KG: "Ишкана жөнүндө кененирээк", EN: "More about the company" },
   yearsExperience: { RU: "лет опыта", KG: "жылдык тажрыйба", EN: "years of experience" },
@@ -128,7 +127,6 @@ export const translate = {
   completedProjects: { RU: "завершённых проектов", KG: "аяктаган долбоорлор", EN: "completed projects" },
   partnerCountries: { RU: "стран-партнёров", KG: "өнөктөш өлкөлөр", EN: "partner countries" },
 
-  // НОВЫЕ КЛЮЧИ ДЛЯ Activities.jsx
   activitiesSubtitle: { 
     RU: "Комплексные геологические услуги и решения для развития минерально-сырьевой базы Кыргызстана", 
     KG: "Кыргызстандын минералдык-чийки зат базасын өнүктүрүү үчүн комплекстүү геологиялык кызматтар жана чечимдер", 
@@ -140,11 +138,13 @@ export const translate = {
     KG: "Геологиялык чалгындоо иштери, лабораториялык изилдөөлөр, геофизикалык изилдөөлөр", 
     EN: "Geological exploration, laboratory research, geophysical surveys" 
   },
+  act_projects: { RU: "Проекты", KG: "Долбоорлор", EN: "Projects" }, // Добавлено для синхронизации
   act_projects_desc: { 
     RU: "Текущие и завершённые геологические проекты по всей территории республики", 
     KG: "Республиканын бардык аймагындагы учурдагы жана аяктаган геологиялык долбоорлор", 
     EN: "Current and completed geological projects throughout the republic" 
   },
+  act_production: { RU: "Продукция", KG: "Продукция", EN: "Production" }, // ИСПРАВЛЕНО: Теперь заголовок будет отображаться правильно
   act_production_desc: { 
     RU: "Геологическая информация, тематические карты, научно-технические отчёты", 
     KG: "Геологиялык маалыматтар, тематикалык карталар, илимий-техникалык отчеттор", 

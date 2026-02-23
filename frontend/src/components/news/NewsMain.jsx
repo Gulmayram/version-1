@@ -1,52 +1,92 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { getNews } from "../../store/apiSlice";
-import { LanguageContext } from "../../LanguageContext";
 import { translate } from "../../assets/translate";
+import { LanguageContext } from "../../LanguageContext";
 import './NewsMain.css';
 
 const NewsMain = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { news, loading } = useSelector((state) => state.api);
-    const { language } = useContext(LanguageContext);
+    const { language } = React.useContext(LanguageContext);
 
     useEffect(() => {
         dispatch(getNews());
     }, [dispatch]);
 
-    const latestNews = [...news]
-        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-        .slice(0, 5);
+    // Сортировка по дате (свежие сверху)
+    const sortedAll = [...news].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
-    if (loading || latestNews.length === 0) return null;
+    // РАЗДЕЛЕНИЕ ПО ТИПУ (на основе ID из вашей админки)
+    // Категория 1 — Новости
+    const newsItems = sortedAll.filter(item => item.category === 1).slice(0, 4);
+    
+    // Категории 2, 3, 4 — Объявления и Конкурсы
+    const announcementItems = sortedAll.filter(item => [2, 3, 4].includes(item.category)).slice(0, 4);
+
+    const formatShortDate = (dateString) => {
+        if (!dateString) return "";
+        return dateString.split('T')[0].split('-').reverse().join('.');
+    };
+
+    if (loading) return <div className="main-loader">Загрузка...</div>;
 
     return (
-        <section className="news-main-container">
-            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '20px', alignItems: 'center'}}>
-                <h2 style={{color: '#0D3E61', fontSize: '28px'}}>{translate.news[language]}</h2>
-                <span onClick={() => navigate('/news')} style={{cursor: 'pointer', color: '#007bff'}}>
-                    Все новости →
-                </span>
+        <div className="main-content-wrapper">
+            
+            {/* СЕКЦИЯ: НОВОСТИ (Текст поверх фото) */}
+            <div className="main-section-header">
+                <h2>{translate.news[language]}</h2>
+                <span onClick={() => navigate('/news')} className="all-link">ВСЕ НОВОСТИ ↗</span>
             </div>
 
-            <div className="news-main-grid">
-                {latestNews.map((item, index) => (
+            
+
+            <div className="news-overlay-grid">
+                {newsItems.map((item, index) => (
                     <div 
                         key={item.id} 
-                        className={`nm-card ${index === 0 ? 'nm-main' : 'nm-side'}`}
+                        className={`news-item-overlay ${index === 0 ? 'big-card' : 'small-card'}`}
                         onClick={() => navigate(`/newsitem/${item.id}`)}
                     >
                         <img src={item.preview || item.image} alt="" />
-                        <div className="nm-overlay">
-                            <span className="nm-date">{item.created_at?.split('T')[0]}</span>
+                        <div className="overlay-content">
+                            <span className="overlay-date">{formatShortDate(item.created_at)}</span>
                             <h3>{item[translate.translatedApi.title[language]]}</h3>
                         </div>
                     </div>
                 ))}
             </div>
-        </section>
+
+            {/* СЕКЦИЯ: ОБЪЯВЛЕНИЯ (Текст под фото) */}
+            <div className="main-section-header" style={{ marginTop: '60px' }}>
+                <h2>ОБЪЯВЛЕНИЯ И КОНКУРСЫ</h2>
+                <span onClick={() => navigate('/news')} className="all-link">ВСЕ ОБЪЯВЛЕНИЯ ↗</span>
+            </div>
+
+            
+
+            <div className="announcements-clean-row">
+                {announcementItems.map((item) => (
+                    <div 
+                        key={item.id} 
+                        className="announcement-clean-card" 
+                        onClick={() => navigate(`/newsitem/${item.id}`)}
+                    >
+                        <div className="ann-card-img">
+                            <img src={item.preview || item.image} alt="" />
+                        </div>
+                        <div className="ann-card-body">
+                            <span className="ann-date-text">{formatShortDate(item.created_at)}</span>
+                            <h4>{item[translate.translatedApi.title[language]]}</h4>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+        </div>
     );
 };
 

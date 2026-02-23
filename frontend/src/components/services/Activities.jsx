@@ -5,12 +5,13 @@ import './Activities.css';
 
 const Activities = () => {
   const { language } = useContext(LanguageContext);
-  const lang = language ? language.toUpperCase() : "RU";
+  
+  // Функция для получения перевода. 
+  // Если ключа нет, вернет сам ключ, чтобы не ломать верстку.
+  const getT = (key) => {
+    return translate[key] ? translate[key][language] : key;
+  };
 
-  // Получаем перевод по ключу
-  const getT = (key) => (translate[key] ? translate[key][lang] : key);
-
-  // Данные карточек (заголовки берутся из translate.js, если они там есть)
   const activitiesData = [
     {
       icon: (
@@ -18,8 +19,8 @@ const Activities = () => {
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/>
         </svg>
       ),
-      title: "Услуги",
-      desc: "Геологоразведочные работы, лабораторные исследования, геофизические изыскания",
+      title: getT('act_services'),
+      desc: getT('act_services_desc'),
       bgColor: "#eff6ff"
     },
     {
@@ -28,8 +29,8 @@ const Activities = () => {
           <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
         </svg>
       ),
-      title: "Проекты",
-      desc: "Текущие и завершённые геологические проекты по всей территории республики",
+      title: getT('projects'),
+      desc: getT('act_projects_desc'),
       bgColor: "#ecfdf5"
     },
     {
@@ -38,8 +39,8 @@ const Activities = () => {
           <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
         </svg>
       ),
-      title: "Продукция",
-      desc: "Геологическая информация, тематические карты, научно-технические отчёты",
+      title: getT('act_production') || "Продукция",
+      desc: getT('act_production_desc'),
       bgColor: "#fff7ed"
     },
     {
@@ -48,8 +49,8 @@ const Activities = () => {
           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
       ),
-      title: "Для инвесторов и партнёров",
-      desc: "Возможности сотрудничества, инвестиционные проекты, условия партнёрства",
+      title: getT('act_investors'),
+      desc: getT('act_investors_desc'),
       bgColor: "#f5f3ff"
     },
     {
@@ -58,8 +59,8 @@ const Activities = () => {
           <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
         </svg>
       ),
-      title: "Реестр месторождений",
-      desc: "Полная база данных месторождений полезных ископаемых с детальными характеристиками",
+      title: getT('act_registry'),
+      desc: getT('act_registry_desc'),
       bgColor: "#ecfeff"
     },
     {
@@ -68,8 +69,8 @@ const Activities = () => {
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
         </svg>
       ),
-      title: "Антикоррупционные меры",
-      desc: "Противодействие коррупции, прозрачность деятельности, этические стандарты",
+      title: getT('act_anticorruption'),
+      desc: getT('act_anticorruption_desc'),
       bgColor: "#fef2f2"
     }
   ];
@@ -77,11 +78,9 @@ const Activities = () => {
   return (
     <section className="activities-container">
       <div className="activities-header">
-        <h2 className="activities-main-title">Деятельность</h2>
+        <h2 className="activities-main-title">{getT('services')}</h2>
         <div className="title-line"></div>
-        <p className="activities-subtitle">
-          Комплексные геологические услуги и решения для развития минерально-сырьевой базы Кыргызстана
-        </p>
+        <p className="activities-subtitle">{getT('activitiesSubtitle')}</p>
       </div>
 
       <div className="activities-grid">

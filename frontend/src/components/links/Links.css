@@ -1,0 +1,47 @@
+.links-section {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.links-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  color: #000;
+}
+
+.links-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap; /* Для адаптивности на мобилках */
+}
+
+.link-card {
+  flex: 1;
+  min-width: 180px;
+  height: 180px;
+  background: #F8F9FA; /* Светло-серый фон как на скрине */
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 20px;
+}
+
+.link-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.link-logo {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  /* Если нужно сделать логотипы ч/б и цветными при ховере: */
+  /* filter: grayscale(100%); opacity: 0.7; */
+}
+
+/* .link-card:hover .link-logo { filter: grayscale(0%); opacity: 1; } */

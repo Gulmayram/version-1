@@ -5,7 +5,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 // 3. Компоненты и роутинг
-import NewsCards from '../news/NewsCards';
+import NewsMain from '../news/NewsMain';
 import AboutSection from '../about/AboutSection';
 import Activities from '../services/Activities'; // Импорт нового компонента
 import MapPreview from '../map/MapPreview';
@@ -103,10 +103,7 @@ const Main = () => {
             </div>
             
             {/* 2. БЛОК НОВОСТЕЙ */}
-            <div className="newsBlock">
-                <h2 className="section-title">{translate.news[language]}</h2>
-                <NewsCards />
-            </div>
+            <NewsMain />
             
             {/* 3. БЛОК О ПРЕДПРИЯТИИ */}
             <AboutSection />
@@ -121,4 +118,5 @@ const Main = () => {
 };
 
 export default Main;
+
 

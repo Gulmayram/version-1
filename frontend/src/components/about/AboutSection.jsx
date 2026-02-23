@@ -40,12 +40,12 @@ const AboutSection = () => {
           <h3>{getT('inNumbers')}</h3>
           <div className="stats-list">
             
-            {/* Оранжевый-3 (Опыт) */}
+            {/* Оранжевый-1 (Опыт) */}
             <div className="stat-item">
               <div className="icon-orange-box">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M17.4768 12.89L18.9918 21.416C19.0087 21.5164 18.9946 21.6196 18.9514 21.7118C18.9081 21.8039 18.8377 21.8807 18.7497 21.9318C18.6616 21.9829 18.56 22.0059 18.4586 21.9977C18.3571 21.9895 18.2605 21.9506 18.1818 21.886L14.6018 19.199C14.4289 19.0699 14.219 19.0001 14.0033 19.0001C13.7875 19.0001 13.5776 19.0699 13.4048 19.199L9.81875 21.885C9.74007 21.9494 9.64361 21.9884 9.54225 21.9966C9.44088 22.0048 9.33942 21.9818 9.25141 21.9309C9.16341 21.8799 9.09303 21.8033 9.04967 21.7113C9.00631 21.6194 8.99204 21.5163 9.00875 21.416L10.5228 12.89" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M14 14C17.3137 14 20 11.3137 20 8C20 4.68629 17.3137 2 14 2C10.6863 2 8 4.68629 8 8C8 11.3137 10.6863 14 14 14Z" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 7L15.5 15.5L10.5 10.5L4 17" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18 7H24V13" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
               <div className="stat-text">

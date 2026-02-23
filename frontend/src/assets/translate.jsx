@@ -138,13 +138,13 @@ export const translate = {
     KG: "Геологиялык чалгындоо иштери, лабораториялык изилдөөлөр, геофизикалык изилдөөлөр", 
     EN: "Geological exploration, laboratory research, geophysical surveys" 
   },
-  act_projects: { RU: "Проекты", KG: "Долбоорлор", EN: "Projects" }, // Добавлено для синхронизации
+  act_projects: { RU: "Проекты", KG: "Долбоорлор", EN: "Projects" }, 
   act_projects_desc: { 
     RU: "Текущие и завершённые геологические проекты по всей территории республики", 
     KG: "Республиканын бардык аймагындагы учурдагы жана аяктаган геологиялык долбоорлор", 
     EN: "Current and completed geological projects throughout the republic" 
   },
-  act_production: { RU: "Продукция", KG: "Продукция", EN: "Production" }, // ИСПРАВЛЕНО: Теперь заголовок будет отображаться правильно
+  act_production: { RU: "Продукция", KG: "Продукция", EN: "Production" }, 
   act_production_desc: { 
     RU: "Геологическая информация, тематические карты, научно-технические отчёты", 
     KG: "Геологиялык маалыматтар, тематикалык карталар, илимий-техникалык отчеттор", 
@@ -177,4 +177,16 @@ export const translate = {
     EN: "Interactive map of mineral deposits, geological objects and subsoil use plots in the Kyrgyz Republic." 
   },
   map_button: { RU: "Перейти к карте", KG: "Картага өтүү", EN: "Go to map" },
+
+  // Текст для AboutSection
+  about_text_p1: {
+    RU: 'Государственное предприятие "Кыргызгеология" является ведущей геологической организацией Кыргызской Республики, осуществляющей геологическое изучение недр, поиск и разведку месторождений полезных ископаемых.',
+    KG: '"Кыргызгеология" мамлекеттик ишканасы жер казынасын геологиялык изилдөөнү, пайдалуу кендерди издөөнү жана чалгындоону жүзөгө ашырган Кыргыз Республикасынын алдыңкы геологиялык уюму болуп саналат.',
+    EN: 'State Enterprise "Kyrgyzgeology" is the leading geological organization of the Kyrgyz Republic, carrying out geological study of the subsoil, search and exploration of mineral deposits.'
+  },
+  about_text_p2: {
+    RU: "Наше предприятие обеспечивает устойчивое развитие минерально-сырьевой базы страны, привлечение инвестиций в геологоразведочную отрасль и развитие международного сотрудничества.",
+    KG: "Биздин ишкана өлкөнүн минералдык-чийки зат базасын туруктуу өнүктүрүүнү, геологиялык чалгындоо тармагына инвестицияларды тартууну жана эл аралык кызматташтыкты өнүктүрүүнү камсыз кылат.",
+    EN: "Our enterprise ensures the sustainable development of the country's mineral resource base, attracting investment to the geological exploration industry and developing international cooperation."
+  },
 };

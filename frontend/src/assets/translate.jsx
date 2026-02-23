@@ -72,7 +72,6 @@ export const translate = {
     kgs: { api: "price", currency: 'C' },
   },
 
-  // СЕКЦИЯ ДЛЯ SIDEBAR (ОБНОВЛЕННАЯ)
   main: { RU: "Главная", KG: "Башкы бет", EN: "Main" },
   aboutCompany: { RU: "О предприятии", KG: "Ишкана жөнүндө", EN: "About the company" },
   services: { RU: "Деятельность", KG: "Ишмердүүлүк", EN: "Activities" },
@@ -84,14 +83,12 @@ export const translate = {
   accessibility: { RU: "Версия для слабовидящих", KG: "Азиздер үчүн версия", EN: "Accessibility version" },
   enterprise: { RU: "Государственное предприятие", KG: "Мамлекеттик ишкана", EN: "State Enterprise" },
 
-  // НОВЫЙ РАЗДЕЛ (который был на скриншоте)
   docsAndReports: {
     RU: "Документы и отчёты",
     KG: "Документтер жана отчеттор",
     EN: "Documents and Reports"
   },
 
-  // Подменю (массивы)
   aboutSub: {
     RU: ["Общая информация", "Руководство", "Устав", "Структура", "Отчёты", "Карты"],
     KG: ["Жалпы маалымат", "Жетекчилик", "Устав", "Түзүмү", "Отчеттор", "Карталар"],
@@ -121,12 +118,13 @@ export const translate = {
     RU: ["Телефонный справочник", "Приёмная", "Реквизиты"],
     KG: ["Телефондук маалымдама", "Кабыл алуу бөлүмү", "Реквизиттер"],
     EN: ["Phone Directory", "Reception", "Bank Details"]
-  }
-  aboutCompany: { RU: "О предприятии", KG: "Ишкана жөнүндө", EN: "About the company" },
+  }, // <--- Тут была пропущена запятая
+  
+  // Ключи для блока статистики (AboutSection)
   inNumbers: { RU: "В цифрах", KG: "Сандар менен", EN: "In numbers" },
   readMore: { RU: "Подробнее о предприятии", KG: "Ишкана жөнүндө кененирээк", EN: "More about the company" },
   yearsExperience: { RU: "лет опыта", KG: "жылдык тажрыйба", EN: "years of experience" },
   specialists: { RU: "специалистов", KG: "адистер", EN: "specialists" },
   completedProjects: { RU: "завершённых проектов", KG: "аяктаган долбоорлор", EN: "completed projects" },
-  partnerCountries: { RU: "стран-партнёров", KG: "өнөктөш өлкөлөр", EN: "partner countries" },
+  partnerCountries: { RU: "стран-партнёров", KG: "өнөктөш өлкөлөр", EN: "partner countries" }
 };

@@ -72,21 +72,18 @@ const Sidebar = () => {
     setActiveSubmenu(activeSubmenu === menuKey ? null : menuKey);
   };
 
-  // ОБНОВЛЕННЫЕ ССЫЛКИ: Теперь они соответствуют вашему роутингу в Myroutes.js
-// ... (начало файла с иконами остается прежним)
-
   const subMenus = {
     about: { 
       icon: Icons.about, 
       title: 'aboutCompany', 
       subKey: 'aboutSub', 
       links: [
-        "/historyandmission", // 1. Общая информация
-        "/about/management",  // 2. Руководство
-        "/about/statute",     // 3. Устав
-        "/organization",      // 4. Структура
-        "/about/reports",     // 5. Отчёты
-        "/about/maps"         // 6. Карты
+        "/historyandmission",   // 1. Общая информация -> HistoryAndMission
+        "/about/management",    // 2. Руководство -> OrganizationalChart
+        "/about/statute",       // 3. Устав -> InvestorPage
+        "/historyandmission",   // 4. Структура -> HistoryAndMission (т.к. там ГП)
+        "/about/reports",       // 5. Отчёты -> InvestorPage
+        "/about/maps"           // 6. Карты -> MapItem
       ] 
     },
     activity: { icon: Icons.activity, title: 'services', subKey: 'servicesSub', links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption"] },
@@ -95,8 +92,6 @@ const Sidebar = () => {
     news: { icon: Icons.news, title: 'announcements', subKey: 'newsSub', links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] },
     contacts: { icon: Icons.contacts, title: 'contacts', subKey: 'contactsSub', links: ["/phonebook", "/reception", "/bank-details"] }
   };
-
-// ... (остальной код Sidebar остается прежним)
 
   return (
     <aside className="sidebar">
@@ -125,7 +120,6 @@ const Sidebar = () => {
               <ul className="submenu">
                 {getSubT(config.subKey).map((text, index) => (
                   <li key={index}>
-                    {/* Используем Link вместо href */}
                     <Link to={config.links[index]}>{text}</Link>
                   </li>
                 ))}

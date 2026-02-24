@@ -72,8 +72,15 @@ const Sidebar = () => {
     setActiveSubmenu(activeSubmenu === menuKey ? null : menuKey);
   };
 
+  // ОБНОВЛЕННЫЕ ССЫЛКИ: Теперь они соответствуют вашему роутингу в Myroutes.js
   const subMenus = {
-    about: { icon: Icons.about, title: 'aboutCompany', subKey: 'aboutSub', links: ["/about/info", "/about/management", "/about/charter", "/about/structure", "/about/reports", "/about/maps"] },
+    about: { 
+        icon: Icons.about, 
+        title: 'aboutCompany', 
+        subKey: 'aboutSub', 
+        // Здесь синхронизируем пути с PUBLIC_ROUTES
+        links: ["/about/info", "/about/management", "/about/statute", "/organization", "/about/reports", "/about/maps"] 
+    },
     activity: { icon: Icons.activity, title: 'services', subKey: 'servicesSub', links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption"] },
     docs: { icon: Icons.reports, title: 'docsAndReports', subKey: 'docsSub', links: ["/docs/financial", "/docs/social", "/docs/technical"] },
     base: { icon: Icons.base, title: 'normativeBase', subKey: 'baseSub', links: ["/legal", "/forms", "/instructions"] },
@@ -108,6 +115,7 @@ const Sidebar = () => {
               <ul className="submenu">
                 {getSubT(config.subKey).map((text, index) => (
                   <li key={index}>
+                    {/* Используем Link вместо href */}
                     <Link to={config.links[index]}>{text}</Link>
                   </li>
                 ))}

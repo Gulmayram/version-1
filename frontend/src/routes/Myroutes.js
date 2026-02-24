@@ -28,14 +28,27 @@ const PUBLIC_ROUTES = [
   { id: 2, link: "/", element: <Main/> },
   { id: 1, link: "/news", element: <NewsPage/> },
   
-  // РАЗДЕЛ: О ПРЕДПРИЯТИИ
-  { id: 3, link: "/historyandmission", element: <HistoryAndMission /> }, // Общая информация
-  { id: 25, link: "/about/management", element: <div style={{padding: '100px'}}><h2>Руководство</h2></div> }, 
-  { id: 26, link: "/about/statute", element: <div style={{padding: '100px'}}><h2>Устав</h2></div> },
-  { id: 4, link: "/organization", element: <OrganizationalChart /> }, // Структура
-  { id: 27, link: "/about/reports", element: <div style={{padding: '100px'}}><h2>Отчёты</h2></div> },
-  { id: 28, link: "/about/maps", element: <div style={{padding: '100px'}}><h2>Карты</h2></div> },
+  // --- РАЗДЕЛ: О ПРЕДПРИЯТИИ ---
+  
+  // 1. Общая информация (История и список ГП)
+  { id: 3, link: "/historyandmission", element: <HistoryAndMission /> }, 
+  
+  // 2. Руководство (Используем OrganizationalChart, т.к. он тянет getEmployees)
+  { id: 25, link: "/about/management", element: <OrganizationalChart /> }, 
+  
+  // 3. Устав (Используем InvestorPage, т.к. там документы и InvestorItem)
+  { id: 26, link: "/about/statute", element: <InvestorPage /> }, 
+  
+  // 4. Структура (Пока ссылаемся на HistoryAndMission, где описан состав предприятия)
+  { id: 4, link: "/organization", element: <HistoryAndMission /> }, 
+  
+  // 5. Отчёты (InvestorPage с графиками DiagrammInvestor и LineChart)
+  { id: 27, link: "/about/reports", element: <InvestorPage /> }, 
+  
+  // 6. Карты (Базовый MapItem для списка или NewMapItem без ID как общая страница)
+  { id: 28, link: "/about/maps", element: <MapItem /> }, 
 
+  // --- ОСТАЛЬНЫЕ МАРШРУТЫ ---
   { id: 5, link: "/achievementsProjects", element: <AchievementsProjects/> },
   { id: 6, link: "/newsitem/:newsId", element: <NewsItem/> },
   { id: 8, link: "/services", element: <Services/> },

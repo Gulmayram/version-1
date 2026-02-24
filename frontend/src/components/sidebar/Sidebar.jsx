@@ -73,13 +73,21 @@ const Sidebar = () => {
   };
 
   // ОБНОВЛЕННЫЕ ССЫЛКИ: Теперь они соответствуют вашему роутингу в Myroutes.js
+// ... (начало файла с иконами остается прежним)
+
   const subMenus = {
     about: { 
-        icon: Icons.about, 
-        title: 'aboutCompany', 
-        subKey: 'aboutSub', 
-        // Здесь синхронизируем пути с PUBLIC_ROUTES
-        links: ["/about/info", "/about/management", "/about/statute", "/organization", "/about/reports", "/about/maps"] 
+      icon: Icons.about, 
+      title: 'aboutCompany', 
+      subKey: 'aboutSub', 
+      links: [
+        "/historyandmission", // 1. Общая информация
+        "/about/management",  // 2. Руководство
+        "/about/statute",     // 3. Устав
+        "/organization",      // 4. Структура
+        "/about/reports",     // 5. Отчёты
+        "/about/maps"         // 6. Карты
+      ] 
     },
     activity: { icon: Icons.activity, title: 'services', subKey: 'servicesSub', links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption"] },
     docs: { icon: Icons.reports, title: 'docsAndReports', subKey: 'docsSub', links: ["/docs/financial", "/docs/social", "/docs/technical"] },
@@ -87,6 +95,8 @@ const Sidebar = () => {
     news: { icon: Icons.news, title: 'announcements', subKey: 'newsSub', links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] },
     contacts: { icon: Icons.contacts, title: 'contacts', subKey: 'contactsSub', links: ["/phonebook", "/reception", "/bank-details"] }
   };
+
+// ... (остальной код Sidebar остается прежним)
 
   return (
     <aside className="sidebar">

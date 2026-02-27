@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 // 3. Компоненты и роутинг
 import NewsMain from '../news/NewsMain';
 import AboutSection from '../about/AboutSection';
-import Activities from '../services/Activities'; // Импорт нового компонента
+import Activities from '../services/Activities'; 
 import MapPreview from '../map/MapPreview';
+import Links from '../links/Links'; // Импорт твоего нового компонента с доп. ссылками
 
 // 4. Сторы, контексты и API
 import { getHome } from "../../store/apiSlice";
@@ -113,10 +114,11 @@ const Main = () => {
 
             {/* 5. БЛОК ИНТЕРАКТИВНОЙ КАРТЫ */}
             <MapPreview />
+
+            {/* 6. БЛОК ДОПОЛНИТЕЛЬНЫХ ССЫЛОК (ПАРТНЕРЫ) */}
+            <Links />
         </div>
     );
 };
 
 export default Main;
-
-

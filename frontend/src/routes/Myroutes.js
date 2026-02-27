@@ -49,6 +49,11 @@ const PUBLIC_ROUTES = [
   { id: 33, link: "/docs/social", element: <InvestorPage /> },
   { id: 34, link: "/docs/technical", element: <InvestorPage /> },
 
+  // --- РАЗДЕЛ: НОРМАТИВНАЯ БАЗА ---
+  { id: 35, link: "/legal", element: <InvestorPage /> },
+  { id: 36, link: "/forms", element: <InvestorPage /> },
+  { id: 37, link: "/instructions", element: <InvestorPage /> },
+
   // --- ОСТАЛЬНЫЕ МАРШРУТЫ ---
   { id: 5, link: "/achievementsProjects", element: <AchievementsProjects/> },
   { id: 6, link: "/newsitem/:newsId", element: <NewsItem/> },

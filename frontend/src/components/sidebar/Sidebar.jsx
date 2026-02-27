@@ -78,15 +78,27 @@ const Sidebar = () => {
       title: 'aboutCompany', 
       subKey: 'aboutSub', 
       links: [
-        "/historyandmission",   // 1. Общая информация -> HistoryAndMission
-        "/about/management",    // 2. Руководство -> OrganizationalChart
-        "/about/statute",       // 3. Устав -> InvestorPage
-        "/historyandmission",   // 4. Структура -> HistoryAndMission (т.к. там ГП)
-        "/about/reports",       // 5. Отчёты -> InvestorPage
-        "/about/maps"           // 6. Карты -> MapItem
+        "/historyandmission",   // Общая информация
+        "/about/management",    // Руководство
+        "/about/statute",       // Устав
+        "/organization",        // Структура
+        "/about/reports",       // Отчёты
+        "/about/maps"           // Карты
       ] 
     },
-    activity: { icon: Icons.activity, title: 'services', subKey: 'servicesSub', links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption"] },
+    activity: { 
+      icon: Icons.activity, 
+      title: 'services', 
+      subKey: 'servicesSub', 
+      links: [
+        "/services",            // Услуги
+        "/projects",            // Проекты
+        "/boezgrproductcard",   // Продукция
+        "/partners",            // Для партнёров (InvestorPage)
+        "/about/maps",          // Месторождения (MapItem)
+        "/anticorruption"       // Антикоррупция (InvestorPage)
+      ] 
+    },
     docs: { icon: Icons.reports, title: 'docsAndReports', subKey: 'docsSub', links: ["/docs/financial", "/docs/social", "/docs/technical"] },
     base: { icon: Icons.base, title: 'normativeBase', subKey: 'baseSub', links: ["/legal", "/forms", "/instructions"] },
     news: { icon: Icons.news, title: 'announcements', subKey: 'newsSub', links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] },

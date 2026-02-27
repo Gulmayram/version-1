@@ -29,30 +29,24 @@ const PUBLIC_ROUTES = [
   { id: 1, link: "/news", element: <NewsPage/> },
   
   // --- РАЗДЕЛ: О ПРЕДПРИЯТИИ ---
-  
-  // 1. Общая информация (История и список ГП)
   { id: 3, link: "/historyandmission", element: <HistoryAndMission /> }, 
-  
-  // 2. Руководство (Используем OrganizationalChart, т.к. он тянет getEmployees)
   { id: 25, link: "/about/management", element: <OrganizationalChart /> }, 
-  
-  // 3. Устав (Используем InvestorPage, т.к. там документы и InvestorItem)
   { id: 26, link: "/about/statute", element: <InvestorPage /> }, 
-  
-  // 4. Структура (Пока ссылаемся на HistoryAndMission, где описан состав предприятия)
   { id: 4, link: "/organization", element: <HistoryAndMission /> }, 
-  
-  // 5. Отчёты (InvestorPage с графиками DiagrammInvestor и LineChart)
   { id: 27, link: "/about/reports", element: <InvestorPage /> }, 
-  
-  // 6. Карты (Базовый MapItem для списка или NewMapItem без ID как общая страница)
   { id: 28, link: "/about/maps", element: <MapItem /> }, 
+
+  // --- РАЗДЕЛ: ДЕЯТЕЛЬНОСТЬ ---
+  { id: 8, link: "/services", element: <Services/> },                // Услуги
+  { id: 9, link: "/projects", element: <Projects/> },                // Проекты
+  { id: 19, link: "/production", element: <BoezgrtProductCard/> },   // Продукция
+  { id: 29, link: "/partners", element: <InvestorPage/> },           // Для партнеров (используем InvestorPage)
+  { id: 30, link: "/deposits", element: <MapItem/> },                // Месторождения (через карты)
+  { id: 31, link: "/anticorruption", element: <InvestorPage/> },     // Антикоррупция (через InvestorPage)
 
   // --- ОСТАЛЬНЫЕ МАРШРУТЫ ---
   { id: 5, link: "/achievementsProjects", element: <AchievementsProjects/> },
   { id: 6, link: "/newsitem/:newsId", element: <NewsItem/> },
-  { id: 8, link: "/services", element: <Services/> },
-  { id: 9, link: "/projects", element: <Projects/> },
   { id: 10, link: "/contacts", element: <Contacts/> },
   { id: 11, link: "/investorpage", element: <InvestorPage/> },
   { id: 12, link: '/newsform', element: <NewsForm/> },
@@ -62,7 +56,6 @@ const PUBLIC_ROUTES = [
   { id: 16, link: '/achievement/:achievementId', element:<AchievementItem/>},
   { id: 17, link: '/boezgrtmain', element: <BoezgrtMain/> },
   { id: 18, link: '/boezgrtabout', element: <BoezgrtAbout/> },
-  { id: 19, link: '/boezgrproductcard', element: <BoezgrtProductCard/> },
   { id: 20, link: '/boezgrtcontact', element: <BoezgrtContacts/> },
   { id: 21, link: '/boezgrproduct/:productId', element: <BoezgrtProductDetail/>},
   { id: 22, link: '/gp/:gpId', element: <GPItem/>},

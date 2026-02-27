@@ -1,52 +1,81 @@
+/* Основная секция, добавляем отступы сверху и снизу */
 .links-section {
   padding: 60px 0;
-  background-color: #fff;
+  background-color: #fff; /* Белый фон всей секции */
 }
 
+/* Ограничиваем ширину контента, чтобы он не растягивался на весь экран */
+.links-section .container {
+  max-width: 1200px; /* Или ширина вашего основного контента */
+  margin: 0 auto;
+  padding: 0 20px; /* Отступы по бокам для мобильных */
+}
+
+/* Стили заголовка */
 .links-title {
+  font-family: sans-serif; /* Замените на ваш шрифт */
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 32px;
-  text-transform: uppercase;
-  color: #1a1a1a;
+  color: #000;
+  margin-bottom: 30px;
+  text-transform: uppercase; /* Все буквы заглавные */
+  text-align: left;
 }
 
+/* Сетка для логотипов - самое важное изменение */
 .links-grid {
   display: grid;
-  /* Пять колонок одинаковой ширины */
+  /* Создаем 5 колонок одинаковой ширины (1fr) */
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 20px; /* Фиксированный отступ между карточками */
 }
 
+/* Стиль самой карточки-ссылки */
 .link-card {
-  aspect-ratio: 1 / 1; /* Квадратная форма */
-  background: #F8F9FA;
-  border-radius: 12px;
+  /* Делаем карточку квадратной, используя aspect-ratio */
+  aspect-ratio: 1 / 1; 
+  background-color: #F8F9FA; /* Светло-серый фон карточки из макета */
+  border-radius: 12px; /* Скругление углов */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  transition: all 0.3s ease;
+  padding: 20px; /* Внутренний отступ, чтобы логотип не касался краев */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none; /* Убираем подчеркивание, если оно есть */
 }
 
+/* Эффект при наведении */
 .link-card:hover {
-  background: #f0f2f5;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+  transform: translateY(-5px); /* Легкое всплытие */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); /* Мягкая тень */
 }
 
+/* Стили для самого логотипа внутри карточки */
 .link-logo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  max-width: 100%; /* Логотип не шире карточки */
+  max-height: 100%; /* Логотип не выше карточки */
+  object-fit: contain; /* Сохраняем пропорции логотипа */
+  display: block;
 }
 
-/* Адаптив: на планшетах 3 в ряд, на мобилках 2 */
+/* Адаптивность для планшетов */
 @media (max-width: 1024px) {
-  .links-grid { grid-template-columns: repeat(3, 1fr); }
+  .links-grid {
+    /* Делаем 3 колонки */
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
+/* Адаптивность для мобильных телефонов */
 @media (max-width: 600px) {
-  .links-grid { grid-template-columns: repeat(2, 1fr); }
-  .links-title { font-size: 20px; }
+  .links-grid {
+    /* Делаем 2 колонки */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .links-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
 }

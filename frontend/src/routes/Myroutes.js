@@ -91,7 +91,11 @@ const Myroutes = () => {
   return (
     <Routes key={key}>
       {PUBLIC_ROUTES.map((elem) => (
-        <Route path={elem.link} element={<Reload>{elem.element}</Reload>} key={elem.id} />
+        <Route 
+          path={elem.link} 
+          element={<Reload>{elem.element}</Reload>} 
+          key={elem.id} 
+        />
       ))}
     </Routes>
   );

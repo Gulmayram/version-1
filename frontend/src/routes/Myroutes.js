@@ -37,12 +37,17 @@ const PUBLIC_ROUTES = [
   { id: 28, link: "/about/maps", element: <MapItem /> }, 
 
   // --- РАЗДЕЛ: ДЕЯТЕЛЬНОСТЬ ---
-  { id: 8, link: "/services", element: <Services/> },                // Услуги
-  { id: 9, link: "/projects", element: <Projects/> },                // Проекты
-  { id: 19, link: "/production", element: <BoezgrtProductCard/> },   // Продукция
-  { id: 29, link: "/partners", element: <InvestorPage/> },           // Для партнеров (используем InvestorPage)
-  { id: 30, link: "/deposits", element: <MapItem/> },                // Месторождения (через карты)
-  { id: 31, link: "/anticorruption", element: <InvestorPage/> },     // Антикоррупция (через InvestorPage)
+  { id: 8, link: "/services", element: <Services/> },
+  { id: 9, link: "/projects", element: <Projects/> },
+  { id: 19, link: "/boezgrproductcard", element: <BoezgrtProductCard/> },
+  { id: 29, link: "/partners", element: <InvestorPage/> },
+  { id: 30, link: "/deposits", element: <MapItem/> },
+  { id: 31, link: "/anticorruption", element: <InvestorPage/> },
+
+  // --- РАЗДЕЛ: ДОКУМЕНТЫ И ОТЧЁТЫ ---
+  { id: 32, link: "/docs/financial", element: <InvestorPage /> },
+  { id: 33, link: "/docs/social", element: <InvestorPage /> },
+  { id: 34, link: "/docs/technical", element: <InvestorPage /> },
 
   // --- ОСТАЛЬНЫЕ МАРШРУТЫ ---
   { id: 5, link: "/achievementsProjects", element: <AchievementsProjects/> },

@@ -164,15 +164,27 @@ const Sidebar = () => {
           {Object.entries(subMenus).map(([key, config]) => (
             <li key={key} className={`menu-item ${activeSubmenu === key ? 'submenu-open' : ''}`}>
               <div className="menu-link" onClick={() => toggleSubmenu(key)}>
-                <div className="link-content">{config.icon} <span>{getT(config.title)}</span></div>
-                <span className="arrow">▼</span>
+                <div className="link-content">
+                  {config.icon} 
+                  <span>{getT(config.title)}</span>
+                </div>
+                <span className={`arrow ${activeSubmenu === key ? 'rotated' : ''}`}>▼</span>
               </div>
+              
               <ul className="submenu">
-                {getSubT(config.subKey).map((text, index) => (
-                  <li key={index}>
-                    <Link to={config.links[index]}>{text}</Link>
-                  </li>
-                ))}
+                {getSubT(config.subKey).map((text, index) => {
+                  const link = config.links[index];
+                  return (
+                    <li key={index}>
+                      <Link 
+                        to={link} 
+                        className={location.pathname === link ? 'active-sublink' : ''}
+                      >
+                        {text}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </li>
           ))}

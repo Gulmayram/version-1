@@ -88,18 +88,27 @@ const Sidebar = () => {
     },
     activity: { 
       icon: Icons.activity, 
-      title: 'services', 
+      title: 'services', // "Деятельность"
       subKey: 'servicesSub', 
       links: [
         "/services",            // Услуги
         "/projects",            // Проекты
         "/boezgrproductcard",   // Продукция
-        "/partners",            // Для партнёров (InvestorPage)
-        "/about/maps",          // Месторождения (MapItem)
-        "/anticorruption"       // Антикоррупция (InvestorPage)
+        "/partners",            // Для партнёров
+        "/deposits",            // Месторождения
+        "/anticorruption"       // Антикоррупция
       ] 
     },
-    docs: { icon: Icons.reports, title: 'docsAndReports', subKey: 'docsSub', links: ["/docs/financial", "/docs/social", "/docs/technical"] },
+    docs: { 
+      icon: Icons.reports, 
+      title: 'docsAndReports', 
+      subKey: 'docsSub', 
+      links: [
+        "/docs/financial",      // Финансовая отчётность
+        "/docs/social",         // Социальная отчётность
+        "/docs/technical"       // Техническая документация
+      ] 
+    },
     base: { icon: Icons.base, title: 'normativeBase', subKey: 'baseSub', links: ["/legal", "/forms", "/instructions"] },
     news: { icon: Icons.news, title: 'announcements', subKey: 'newsSub', links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] },
     contacts: { icon: Icons.contacts, title: 'contacts', subKey: 'contactsSub', links: ["/phonebook", "/reception", "/bank-details"] }

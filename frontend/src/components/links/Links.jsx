@@ -3,11 +3,11 @@ import './Links.css';
 import { useLanguage } from '../../context/LanguageContext';
 
 // Импортируем логотипы из assets
-import link1 from '../../assets/link1.png';
-import link2 from '../../assets/link2.png';
-import link3 from '../../assets/link3.png';
-import link4 from '../../assets/link4.png';
-import link5 from '../../assets/link5.png';
+import link1 from '../assets/link1.png';
+import link2 from '../assets/link2.png';
+import link3 from '../assets/link3.png';
+import link4 from '../assets/link4.png';
+import link5 from '../assets/link5.png';
 
 const Links = () => {
   const { getT } = useLanguage();

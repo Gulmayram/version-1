@@ -78,25 +78,25 @@ const Sidebar = () => {
       title: 'aboutCompany', 
       subKey: 'aboutSub', 
       links: [
-        "/historyandmission",   // Общая информация
-        "/about/management",    // Руководство
-        "/about/statute",       // Устав
-        "/organization",        // Структура
-        "/about/reports",       // Отчёты
-        "/about/maps"           // Карты
+        "/historyandmission", 
+        "/about/management", 
+        "/about/statute", 
+        "/organization", 
+        "/about/reports", 
+        "/about/maps"
       ] 
     },
     activity: { 
       icon: Icons.activity, 
-      title: 'services', // "Деятельность"
+      title: 'services', 
       subKey: 'servicesSub', 
       links: [
-        "/services",            // Услуги
-        "/projects",            // Проекты
-        "/boezgrproductcard",   // Продукция
-        "/partners",            // Для партнёров
-        "/deposits",            // Месторождения
-        "/anticorruption"       // Антикоррупция
+        "/services", 
+        "/projects", 
+        "/boezgrproductcard", 
+        "/partners", 
+        "/deposits", 
+        "/anticorruption"
       ] 
     },
     docs: { 
@@ -104,14 +104,43 @@ const Sidebar = () => {
       title: 'docsAndReports', 
       subKey: 'docsSub', 
       links: [
-        "/docs/financial",      // Финансовая отчётность
-        "/docs/social",         // Социальная отчётность
-        "/docs/technical"       // Техническая документация
+        "/docs/financial", 
+        "/docs/social", 
+        "/docs/technical"
       ] 
     },
-    base: { icon: Icons.base, title: 'normativeBase', subKey: 'baseSub', links: ["/legal", "/forms", "/instructions"] },
-    news: { icon: Icons.news, title: 'announcements', subKey: 'newsSub', links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] },
-    contacts: { icon: Icons.contacts, title: 'contacts', subKey: 'contactsSub', links: ["/phonebook", "/reception", "/bank-details"] }
+    base: { 
+      icon: Icons.base, 
+      title: 'normativeBase', 
+      subKey: 'baseSub', 
+      links: [
+        "/legal", 
+        "/forms", 
+        "/instructions"
+      ] 
+    },
+    news: { 
+      icon: Icons.news, 
+      title: 'announcements', 
+      subKey: 'newsSub', 
+      links: [
+        "/contests", 
+        "/procurement", 
+        "/realization", 
+        "/vacancies", 
+        "/press-center"
+      ] 
+    },
+    contacts: { 
+      icon: Icons.contacts, 
+      title: 'contacts', 
+      subKey: 'contactsSub', 
+      links: [
+        "/phonebook", 
+        "/reception", 
+        "/bank-details"
+      ] 
+    }
   };
 
   return (

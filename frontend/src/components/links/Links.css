@@ -1,6 +1,6 @@
 .links-section {
   padding: 60px 0;
-  background-color: #ffffff;
+  background-color: #fcfcfc;
 }
 
 .links-container {
@@ -21,12 +21,12 @@
 .links-grid {
   display: flex;
   justify-content: center;
-  gap: 25px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
 .link-card {
-  background: #ffffff;
+  background: #ffffff; /* Всегда белый фон */
   width: 210px;
   height: 200px;
   border-radius: 8px;
@@ -35,16 +35,17 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  border: 1px solid #f0f0f0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   padding: 15px;
 }
 
-/* Никакой смены цвета фона! Только объем */
+/* При наведении НИКАКОГО синего фона, только эффект объема */
 .link-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  border-color: #12538b; /* Тонкая рамка вместо заливки */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .logo-wrapper {
@@ -54,36 +55,31 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
-  overflow: hidden; /* Чтобы края внутренних картинок не вылазили */
 }
 
 .link-img {
-  /* Чтобы все лого были визуально равны, ограничиваем их область сильнее */
-  max-width: 75%; 
-  max-height: 75%;
+  /* Ограничиваем область логотипа на 70%, чтобы создать отступы внутри */
+  max-width: 70%; 
+  max-height: 70%;
   width: auto;
   height: auto;
   object-fit: contain;
-  /* Убираем любые фильтры, оставляем оригинал */
   display: block;
 }
-
-/* Первый линк визуально больше? Понизим ему масштаб точечно через селектор, если нужно, 
-   но max-width: 75% должен это выровнять автоматически */
 
 .link-text {
   font-size: 14px;
   font-weight: 600;
-  color: #333;
+  color: #333; /* Темный текст по умолчанию */
   text-align: center;
   transition: color 0.3s ease;
 }
 
+/* При наведении меняем только цвет текста на фирменный синий */
 .link-card:hover .link-text {
   color: #12538b;
 }
 
-/* Мобилки */
 @media (max-width: 768px) {
   .link-card {
     width: 160px;

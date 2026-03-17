@@ -1,6 +1,6 @@
 .links-section {
-  padding: 50px 0;
-  background-color: #f9f9f9; /* Светлый фон всей секции */
+  padding: 60px 0;
+  background-color: #ffffff;
 }
 
 .links-container {
@@ -11,88 +11,82 @@
 
 .links-title {
   text-align: center;
-  font-size: 22px;
+  font-size: 24px;
   color: #12538b;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .links-grid {
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  gap: 25px;
   flex-wrap: wrap;
-  gap: 20px;
 }
 
 .link-card {
   background: #ffffff;
   width: 210px;
-  padding: 25px 15px;
-  border-radius: 12px;
-  text-decoration: none;
+  height: 200px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* Чтобы текст всегда был внизу */
-  transition: all 0.3s ease;
-  border: 1px solid #ececec;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  justify-content: center;
+  text-decoration: none;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px;
 }
 
-/* При наведении цвет остается белым, меняется только тень и рамка */
+/* Никакой смены цвета фона! Только объем */
 .link-card:hover {
-  transform: translateY(-5px);
-  border-color: #12538b;
-  box-shadow: 0 12px 24px rgba(18, 83, 139, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
 }
 
-.logo-box {
+.logo-wrapper {
   width: 100%;
-  height: 100px; /* Фиксированная высота для всех иконок */
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
+  overflow: hidden; /* Чтобы края внутренних картинок не вылазили */
 }
 
 .link-img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain; /* Картинка впишется в 100х100px без искажений */
-  transition: transform 0.3s ease;
+  /* Чтобы все лого были визуально равны, ограничиваем их область сильнее */
+  max-width: 75%; 
+  max-height: 75%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  /* Убираем любые фильтры, оставляем оригинал */
+  display: block;
 }
 
-.link-card:hover .link-img {
-  transform: scale(1.05);
-}
+/* Первый линк визуально больше? Понизим ему масштаб точечно через селектор, если нужно, 
+   но max-width: 75% должен это выровнять автоматически */
 
-.link-label {
+.link-text {
   font-size: 14px;
   font-weight: 600;
-  color: #444;
+  color: #333;
   text-align: center;
-  margin: 0;
-  line-height: 1.3;
   transition: color 0.3s ease;
 }
 
-.link-card:hover .link-label {
-  color: #12538b; /* Текст становится синим при наведении */
+.link-card:hover .link-text {
+  color: #12538b;
 }
 
-/* Адаптивность */
+/* Мобилки */
 @media (max-width: 768px) {
   .link-card {
     width: 160px;
-    padding: 15px;
-  }
-  .logo-box {
-    height: 80px;
-  }
-  .link-label {
-    font-size: 12px;
+    height: 170px;
   }
 }

@@ -3,6 +3,7 @@ import './Links.css';
 import { LanguageContext } from "../../LanguageContext";
 import { translate } from "../../assets/translate";
 
+// Импорт логотипов
 import link1 from '../../assets/link01.png';
 import link2 from '../../assets/link02.png';
 import link3 from '../../assets/link03.png';
@@ -20,7 +21,7 @@ const Links = () => {
   const partnerLinks = [
     { id: 1, img: link1, url: "https://www.geology.kg", name: "Геология КР" },
     { id: 2, img: link2, url: "https://www.president.kg/ru", name: "Президент КР" },
-    { id: 3, img: link3, url: "https://mnr.gov.kg/ru/", name: "МПР" },
+    { id: 3, img: link3, url: "https://mnr.gov.kg/ru/", name: "МПР КР" },
     { id: 4, img: link4, url: "https://www.gov.kg/ru", name: "Кабинет Министров" },
     { id: 5, img: link5, url: "https://portal.tunduk.kg", name: "Түндүк" },
   ];
@@ -28,30 +29,25 @@ const Links = () => {
   return (
     <section className="links-section">
       <div className="links-container">
-        <div className="links-header">
-          <h2 className="links-title">{getT('extra_links_title')}</h2>
-          <div className="title-underline"></div>
-        </div>
+        <h2 className="links-title">{getT('extra_links_title')}</h2>
         
-        <div className="links-wrapper">
-          {partnerLinks.map((link, index) => (
+        <div className="links-grid">
+          {partnerLinks.map((link) => (
             <a 
               key={link.id} 
               href={link.url} 
               className="link-card"
               target="_blank" 
               rel="noopener noreferrer"
-              style={{ "--i": index }} // Передаем индекс для анимации
             >
-              <div className="card-glass-glow"></div>
-              <div className="logo-wrapper">
+              <div className="logo-box">
                 <img 
                   src={link.img} 
                   alt={link.name} 
-                  className="link-logo" 
+                  className="link-img" 
                 />
               </div>
-              <span className="link-hint">{link.name}</span>
+              <p className="link-label">{link.name}</p>
             </a>
           ))}
         </div>

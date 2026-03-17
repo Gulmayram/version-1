@@ -3,7 +3,6 @@ import './Links.css';
 import { LanguageContext } from "../../LanguageContext";
 import { translate } from "../../assets/translate";
 
-// Импорт логотипов
 import link1 from '../../assets/link01.png';
 import link2 from '../../assets/link02.png';
 import link3 from '../../assets/link03.png';
@@ -40,14 +39,14 @@ const Links = () => {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              <div className="logo-box">
+              <div className="logo-wrapper">
                 <img 
                   src={link.img} 
                   alt={link.name} 
                   className="link-img" 
                 />
               </div>
-              <p className="link-label">{link.name}</p>
+              <span className="link-text">{link.name}</span>
             </a>
           ))}
         </div>

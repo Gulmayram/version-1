@@ -1,52 +1,53 @@
 .links-section {
-  padding: 60px 0;
-  background-color: #f8f9fa; /* Общий фон страницы чуть серый, чтобы белые карточки выделялись */
+  padding: 80px 0;
+  background-color: #f8fafc; /* Светлый нейтральный фон */
 }
 
 .links-container {
-  max-width: 1200px;
+  max-width: 1400px; /* Увеличил ширину контейнера для одного ряда */
   margin: 0 auto;
   padding: 0 20px;
 }
 
 .links-title {
   text-align: center;
-  font-size: 24px;
+  font-size: 26px;
   color: #12538b;
-  margin-bottom: 50px;
-  font-weight: 700;
+  margin-bottom: 60px;
+  font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .links-grid {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  justify-content: space-between; /* Распределяет карточки равномерно в ряд */
+  align-items: stretch;
+  gap: 15px; /* Минимальный зазор между карточками */
 }
 
 .link-card {
-  /* КАРТОЧКА ВСЕГДА БЕЛАЯ */
-  background: white !important; 
-  width: 220px;
-  height: 200px;
+  background: #ffffff !important; /* Строго белый фон */
+  flex: 1; /* Каждая карточка занимает равную долю в ряду */
+  min-width: 0; /* Предотвращает раздувание карточек */
+  height: 220px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  border: 1px solid #eee;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px 10px;
 }
 
-/* При наведении — ТОЛЬКО ПОДЪЕМ И ТЕНЬ. НИКАКОГО СИНЕГО ФОНА */
+/* При наведении — только чистый эффект объема без смены цвета */
 .link-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  background: white !important; 
+  transform: translateY(-10px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: #cbd5e1;
 }
 
 .logo-wrapper {
@@ -55,13 +56,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .link-img {
-  /* Ограничение размера, чтобы все лого были визуально одинаковыми */
-  max-width: 70%; 
-  max-height: 70%;
+  /* Жесткое ограничение для визуального равенства логотипов */
+  max-width: 80%; 
+  max-height: 80%;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -69,22 +70,27 @@
 }
 
 .link-text {
-  font-size: 14px;
-  font-weight: 600;
-  color: #333; /* По умолчанию темный */
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
   text-align: center;
+  line-height: 1.4;
+  text-transform: none;
   transition: color 0.3s ease;
 }
 
-/* Единственное цветовое изменение при наведении — синий текст */
 .link-card:hover .link-text {
   color: #12538b;
 }
 
-/* Адаптив */
-@media (max-width: 768px) {
+/* Адаптивность: перестраиваем в сетку только на маленьких экранах */
+@media (max-width: 1024px) {
+  .links-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
   .link-card {
-    width: 160px;
-    height: 180px;
+    flex: none;
+    width: 180px;
   }
 }

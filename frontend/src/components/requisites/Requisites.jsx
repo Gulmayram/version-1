@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { LanguageContext } from '../../LanguageContext'; // Проверь путь к контексту
+import { LanguageContext } from '../../LanguageContext'; 
 import './Requisites.css';
 
 const Requisites = () => {
@@ -8,19 +8,19 @@ const Requisites = () => {
   const [loading, setLoading] = useState(true);
   const { language } = useContext(LanguageContext);
 
-  // Твой ID из админки теперь точно 7
   const categoryId = "7"; 
 
   useEffect(() => {
     const fetchRequisites = async () => {
       setLoading(true);
       try {
-        // Запрос к API. Добавляем фильтр по категории
-        const res = await axios.get("/api/posts?categoryId=7");
+        // Используем относительный путь, так как проект в Docker/Vercel
+        const res = await axios.get(`/api/posts?categoryId=${categoryId}`);
         
         if (res.data && res.data.length > 0) {
-          // Берем самый свежий пост из этой категории
+          // Берем самый первый (последний добавленный) пост
           setData(res.data[0]); 
+          console.log("Данные получены:", res.data[0]); // Для проверки в консоли F12
         } else {
           setData(null);
         }
@@ -33,7 +33,19 @@ const Requisites = () => {
     fetchRequisites();
   }, [categoryId]);
 
-  // Функция для получения заголовка в зависимости от языка
+  // Функция для выбора правильного поля контента в зависимости от языка
+  const getContent = () => {
+    if (!data) return "";
+    
+    const lang = language?.toLowerCase() || "ru";
+    
+    // Проверяем наличие мультиязычных полей из Django
+    if (lang === 'kg' || lang === 'ky') return data.content_ky || data.content_ru || data.content;
+    if (lang === 'en') return data.content_en || data.content_ru || data.content;
+    
+    return data.content_ru || data.content;
+  };
+
   const getTitle = () => {
     const lang = language?.toUpperCase() || "RU";
     const titles = {
@@ -55,12 +67,12 @@ const Requisites = () => {
         ) : data ? (
           <div 
             className="requisites-text" 
-            // Это выведет текст с сохранением форматирования из админки (жирный, списки и т.д.)
-            dangerouslySetInnerHTML={{ __html: data.content }} 
+            // Теперь вызываем функцию getContent()
+            dangerouslySetInnerHTML={{ __html: getContent() }} 
           />
         ) : (
           <div className="no-data">
-            {language === 'KG' ? 'Маалымат табылган жок' : 'Информация не найдена'}
+            {language === 'KG' || language === 'ky' ? 'Маалымат табылган жок' : 'Информация не найдена'}
           </div>
         )}
       </div>

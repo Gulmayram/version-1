@@ -11,19 +11,29 @@ const Requisites = () => {
   // Мы видели на скрине, что ID категории Реквизиты = 7
   const categoryId = 7; 
 
-  useEffect(() => {
+useEffect(() => {
     const fetchRequisites = async () => {
       setLoading(true);
       try {
-        // Пробуем получить данные через полный путь к API
-        const res = await axios.get(`https://kyrgyzgeology.kg/api/posts?categoryId=${categoryId}`);
+        // Запрашиваем все посты, как это делает главная страница
+        const res = await axios.get("https://kyrgyzgeology.kg/api/posts");
         
-        console.log("Ответ от сервера:", res.data); // Это поможет нам увидеть структуру в консоли (F12)
+        console.log("Все посты с сервера:", res.data);
 
         if (res.data && res.data.length > 0) {
-          // Ищем среди постов тот, у которого категория 7 (на случай если фильтр на сервере не сработал)
-          const requisitesPost = res.data.find(post => post.category === categoryId || post.category?.id === categoryId) || res.data[0];
-          setData(requisitesPost);
+          // Ищем среди всех постов тот, у которого ID категории равен 7
+          // Проверяем и число, и строку на всякий случай
+          const found = res.data.find(post => 
+            String(post.category) === "7" || 
+            (post.category && String(post.category.id) === "7")
+          );
+
+          if (found) {
+            setData(found);
+          } else {
+            console.warn("Пост с категорией 7 не найден среди полученных данных");
+            setData(null);
+          }
         }
       } catch (err) {
         console.error("Ошибка при получении реквизитов:", err);
@@ -32,7 +42,7 @@ const Requisites = () => {
       }
     };
     fetchRequisites();
-  }, [categoryId]);
+  }, []);
 
   const getContent = () => {
     if (!data) return "";

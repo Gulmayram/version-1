@@ -1,19 +1,24 @@
 import React, { useContext } from 'react';
 import { useSelector } from "react-redux";
 import { LanguageContext } from "../../LanguageContext";
-import { translate } from "../../assets/translate"; // Используем твой объект перевода
+import { translate } from "../../assets/translate";
 import './Requisites.css';
 
 const Requisites = () => {
-    // Берем данные из Redux, которые уже загружены на главной
-    const { news } = useSelector((state) => state.api);
+    // Берем все новости из Redux (они там уже есть благодаря NewsMain)
+    const { news, loading } = useSelector((state) => state.api);
     const { language } = useContext(LanguageContext);
 
-    // Ищем пост, у которого категория 7 (Реквизиты)
-    // .find вернет самый первый подходящий объект
-    const data = news.find(item => item.category === 7);
+    // ID категории Реквизиты
+    const REQUISITES_CATEGORY_ID = 7;
 
-    const getTitle = () => {
+    // Фильтруем: берем только посты с категорией 7 и сортируем по дате (самый свежий — первый)
+    const requisitesPost = [...news]
+        .filter(item => item.category === REQUISITES_CATEGORY_ID)
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
+
+    // Функция для получения заголовка страницы
+    const getPageTitle = () => {
         const titles = {
             RU: "Банковские реквизиты",
             KG: "Банктык реквизиттер",
@@ -22,18 +27,20 @@ const Requisites = () => {
         return titles[language?.toUpperCase()] || titles.RU;
     };
 
+    if (loading) return <div className="loading-spinner">Загрузка...</div>;
+
     return (
         <div className="requisites-page">
-            <h1 className="page-title">{getTitle()}</h1>
+            <h1 className="page-title">{getPageTitle()}</h1>
             <div className="title-underline"></div>
             
             <div className="requisites-card">
-                {data ? (
+                {requisitesPost ? (
                     <div 
-                        className="requisites-text" 
-                        // Используем твою логику перевода полей из translate.translatedApi
+                        className="requisites-text"
+                        // Используем системный перевод для полей заголовка и контента
                         dangerouslySetInnerHTML={{ 
-                            __html: data[translate.translatedApi.content[language]] || data.content 
+                            __html: requisitesPost[translate.translatedApi.content[language]] || requisitesPost.content 
                         }} 
                     />
                 ) : (

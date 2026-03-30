@@ -23,10 +23,12 @@ import BoezgrtProductDetail from "../components/bzgrt/BoezgrtProductDetail";
 import GPItem from "../components/about/gpItem";
 import Vacancies from "../components/vacancies/Vacancies";
 import VacancyDetail from "../components/vacancies/VacancyDetail";
+import Requisites from "../components/requisites/Requisites"; // Проверь путь к файлу!
 
 const PUBLIC_ROUTES = [
   { id: 2, link: "/", element: <Main/> },
   { id: 1, link: "/news", element: <NewsPage/> },
+  { id: 38, link: "/requisites", element: <Requisites /> },
   
   // --- РАЗДЕЛ: О ПРЕДПРИЯТИИ ---
   { id: 3, link: "/historyandmission", element: <HistoryAndMission /> }, 

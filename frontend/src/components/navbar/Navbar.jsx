@@ -24,7 +24,11 @@ const Navbar = () => {
     docs: { title: 'docsAndReports', subKey: 'docsSub', links: ["/docs/financial", "/docs/social", "/docs/technical"] },
     base: { title: 'normativeBase', subKey: 'baseSub', links: ["/legal", "/forms", "/instructions"] },
     news: { title: 'announcements', subKey: 'newsSub', links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] },
-    contacts: { title: 'contacts', subKey: 'contactsSub', links: ["/phonebook", "/reception", "/bank-details"] }
+    contacts: { 
+      title: 'contacts', 
+      subKey: 'contactsSub', 
+      links: ["/phonebook", "/reception", "/requisites"] 
+    }
   };
 
   return (

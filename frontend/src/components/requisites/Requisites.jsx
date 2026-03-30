@@ -7,32 +7,44 @@ import './Requisites.css';
 
 const Requisites = () => {
     const dispatch = useDispatch();
+    
+    // Получаем данные из Redux-хранилища
     const { news, loading } = useSelector((state) => state.api);
     const { language } = useContext(LanguageContext);
 
-    // Вызываем загрузку новостей при открытии страницы, 
-    // чтобы данные в Redux точно были свежими
+    // Вызываем загрузку данных при монтировании, если они еще не загружены
     useEffect(() => {
-        dispatch(getNews());
-    }, [dispatch]);
+        if (news.length === 0) {
+            dispatch(getNews());
+        }
+    }, [dispatch, news.length]);
 
-    // 1. Сортируем все посты по дате (как в NewsMain)
+    // 1. Сортируем все посты по дате создания (самые новые в начале)
     const sortedAll = [...news].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
-    // 2. Ищем пост именно с категорией 7 (Реквизиты)
-    const requisitesPost = sortedAll.find(item => item.category === 7);
+    // 2. Фильтруем массив, оставляя только посты с категорией ID 7 (Реквизиты)
+    // Используем .slice(0, 1) или просто берем [0], так как нам нужен только один актуальный пост
+    const requisitesPost = sortedAll.filter(item => item.category === 7)[0];
 
-    // Функция для перевода заголовка страницы (можно вынести в translate.js позже)
+    // Функция для локализации заголовка страницы
     const getPageTitle = () => {
         const titles = {
             RU: "Банковские реквизиты",
             KG: "Банктык реквизиттер",
             EN: "Bank Details"
         };
-        return titles[language?.toUpperCase()] || titles.RU;
+        const langKey = language?.toUpperCase() || "RU";
+        return titles[langKey] || titles.RU;
     };
 
-    if (loading) return <div className="loading-spinner">Загрузка данных...</div>;
+    // Состояние загрузки
+    if (loading && news.length === 0) {
+        return (
+            <div className="requisites-page">
+                <div className="main-loader">Загрузка данных...</div>
+            </div>
+        );
+    }
 
     return (
         <div className="requisites-page">
@@ -41,13 +53,20 @@ const Requisites = () => {
             
             <div className="requisites-card">
                 {requisitesPost ? (
-                    <div 
-                        className="requisites-text"
-                        // Используем логику перевода контента из твоего NewsMain
-                        dangerouslySetInnerHTML={{ 
-                            __html: requisitesPost[translate.translatedApi.content[language]] || requisitesPost.content 
-                        }} 
-                    />
+                    <div className="requisites-content-wrapper">
+                        {/* Отображаем заголовок поста, если нужно */}
+                        <h2 className="requisites-subtitle">
+                            {requisitesPost[translate.translatedApi.title[language]]}
+                        </h2>
+                        
+                        {/* Выводим основной контент с поддержкой HTML-тегов из админки */}
+                        <div 
+                            className="requisites-text" 
+                            dangerouslySetInnerHTML={{ 
+                                __html: requisitesPost[translate.translatedApi.content[language]] 
+                            }} 
+                        />
+                    </div>
                 ) : (
                     <div className="no-data">
                         {language === 'KG' ? 'Маалымат табылган жок' : 'Информация не найдена'}

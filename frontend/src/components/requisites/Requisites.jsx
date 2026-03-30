@@ -7,43 +7,31 @@ import './Requisites.css';
 
 const Requisites = () => {
     const dispatch = useDispatch();
-    
-    // Получаем данные из Redux-хранилища
     const { news, loading } = useSelector((state) => state.api);
     const { language } = useContext(LanguageContext);
 
-    // Вызываем загрузку данных при монтировании, если они еще не загружены
     useEffect(() => {
-        if (news.length === 0) {
+        // Загружаем новости, если массив пуст
+        if (!news || news.length === 0) {
             dispatch(getNews());
         }
-    }, [dispatch, news.length]);
+    }, [dispatch, news]);
 
-    // 1. Сортируем все посты по дате создания (самые новые в начале)
-    const sortedAll = [...news].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    // БЕЗОПАСНАЯ ФИЛЬТРАЦИЯ: проверяем, что news вообще существует
+    const requisitesPost = news && news.length > 0 
+        ? [...news]
+            .filter(item => item.category === 7)
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0]
+        : null;
 
-    // 2. Фильтруем массив, оставляя только посты с категорией ID 7 (Реквизиты)
-    // Используем .slice(0, 1) или просто берем [0], так как нам нужен только один актуальный пост
-    const requisitesPost = sortedAll.filter(item => item.category === 7)[0];
-
-    // Функция для локализации заголовка страницы
     const getPageTitle = () => {
-        const titles = {
-            RU: "Банковские реквизиты",
-            KG: "Банктык реквизиттер",
-            EN: "Bank Details"
-        };
-        const langKey = language?.toUpperCase() || "RU";
-        return titles[langKey] || titles.RU;
+        const titles = { RU: "Банковские реквизиты", KG: "Банктык реквизиттер", EN: "Bank Details" };
+        return titles[language?.toUpperCase()] || titles.RU;
     };
 
-    // Состояние загрузки
-    if (loading && news.length === 0) {
-        return (
-            <div className="requisites-page">
-                <div className="main-loader">Загрузка данных...</div>
-            </div>
-        );
+    // Если идет загрузка и данных еще нет — показываем лоадер
+    if (loading && (!news || news.length === 0)) {
+        return <div className="main-loader">Загрузка данных...</div>;
     }
 
     return (
@@ -54,16 +42,10 @@ const Requisites = () => {
             <div className="requisites-card">
                 {requisitesPost ? (
                     <div className="requisites-content-wrapper">
-                        {/* Отображаем заголовок поста, если нужно */}
-                        <h2 className="requisites-subtitle">
-                            {requisitesPost[translate.translatedApi.title[language]]}
-                        </h2>
-                        
-                        {/* Выводим основной контент с поддержкой HTML-тегов из админки */}
                         <div 
                             className="requisites-text" 
                             dangerouslySetInnerHTML={{ 
-                                __html: requisitesPost[translate.translatedApi.content[language]] 
+                                __html: requisitesPost[translate.translatedApi.content[language]] || requisitesPost.content 
                             }} 
                         />
                     </div>

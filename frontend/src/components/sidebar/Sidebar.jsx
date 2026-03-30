@@ -138,7 +138,7 @@ const Sidebar = () => {
       links: [
         "/phonebook", 
         "/reception", 
-        "/bank-details"
+        "/requisites" // СТАЛО: новый путь, который мы прописали в Myroutes.js
       ] 
     }
   };

@@ -1,71 +1,49 @@
 import React, { useContext } from 'react';
-import { LanguageContext } from '../../LanguageContext'; 
+import { useSelector } from "react-redux";
+import { LanguageContext } from "../../LanguageContext";
+import { translate } from "../../assets/translate"; // Используем твой объект перевода
 import './Requisites.css';
 
 const Requisites = () => {
-  const { language } = useContext(LanguageContext);
+    // Берем данные из Redux, которые уже загружены на главной
+    const { news } = useSelector((state) => state.api);
+    const { language } = useContext(LanguageContext);
 
-  // Текст для разных языков
-  const content = {
-    RU: {
-      title: "Банковские реквизиты",
-      organization: "Государственное предприятие «Кыргызгеология» при МПРЭТН",
-      details: [
-        "ИНН: 00204199110156",
-        "ОКПО: 22754545",
-        "Расчетный счет (KGS): 1240020000000000",
-        "Банк: ОАО «Айыл Банк»",
-        "БИК: 124001",
-        "Назначение: За оказание геологических услуг"
-      ]
-    },
-    KG: {
-      title: "Банктык реквизиттер",
-      organization: "КПРЖТМ караштуу «Кыргызгеология» мамлекеттик ишканасы",
-      details: [
-        "ИНН: 00204199110156",
-        "ОКПО: 22754545",
-        "Эсептешүү эсеби (KGS): 1240020000000000",
-        "Банк: «Айыл Банк» ААК",
-        "БИК: 124001",
-        "Максаты: Геологиялык кызмат көрсөтүүлөр үчүн"
-      ]
-    },
-    EN: {
-      title: "Bank Details",
-      organization: "State Enterprise 'Kyrgyzgeology' under the MNRETS",
-      details: [
-        "TIN: 00204199110156",
-        "OKPO: 22754545",
-        "Account (KGS): 1240020000000000",
-        "Bank: 'Aiyl Bank' OJSC",
-        "BIC: 124001",
-        "Purpose: For geological services"
-      ]
-    }
-  };
+    // Ищем пост, у которого категория 7 (Реквизиты)
+    // .find вернет самый первый подходящий объект
+    const data = news.find(item => item.category === 7);
 
-  const current = content[language?.toUpperCase()] || content.RU;
+    const getTitle = () => {
+        const titles = {
+            RU: "Банковские реквизиты",
+            KG: "Банктык реквизиттер",
+            EN: "Bank Details"
+        };
+        return titles[language?.toUpperCase()] || titles.RU;
+    };
 
-  return (
-    <div className="requisites-page">
-      <h1 className="page-title">{current.title}</h1>
-      <div className="title-underline"></div>
-      
-      <div className="requisites-card">
-        <div className="requisites-text">
-          <h3>{current.organization}</h3>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {current.details.map((item, index) => (
-              <li key={index} style={{ marginBottom: '10px' }}>
-                {item}
-              </li>
-            ))}
-          </ul>
+    return (
+        <div className="requisites-page">
+            <h1 className="page-title">{getTitle()}</h1>
+            <div className="title-underline"></div>
+            
+            <div className="requisites-card">
+                {data ? (
+                    <div 
+                        className="requisites-text" 
+                        // Используем твою логику перевода полей из translate.translatedApi
+                        dangerouslySetInnerHTML={{ 
+                            __html: data[translate.translatedApi.content[language]] || data.content 
+                        }} 
+                    />
+                ) : (
+                    <div className="no-data">
+                        {language === 'KG' ? 'Маалымат табылган жок' : 'Информация не найдена'}
+                    </div>
+                )}
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Requisites;

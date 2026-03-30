@@ -16,7 +16,7 @@ const Requisites = () => {
       setLoading(true);
       try {
         // Запрос к API. Добавляем фильтр по категории
-        const res = await axios.get(`https://kyrgyzgeology.kg/api/posts?categoryId=${categoryId}`);
+        const res = await axios.get("/api/posts?categoryId=7");
         
         if (res.data && res.data.length > 0) {
           // Берем самый свежий пост из этой категории

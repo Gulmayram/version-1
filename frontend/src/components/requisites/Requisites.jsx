@@ -1,25 +1,27 @@
 import React, { useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getNews } from "../../store/apiSlice";
-import { translate } from "../../assets/translate";
 import { LanguageContext } from "../../LanguageContext";
 import './Requisites.css';
 
 const Requisites = () => {
     const dispatch = useDispatch();
+    
+    // Безопасно достаем новости из Redux
     const { news = [], loading = false } = useSelector((state) => state.api || {});
     const { language = 'ru' } = useContext(LanguageContext);
 
     useEffect(() => {
+        // Загружаем данные при монтировании компонента
         dispatch(getNews());
     }, [dispatch]);
 
-    // Ищем пост с категорией 7
+    // Ищем объект "Банковские реквизиты" по ID категории 7
     const requisitesPost = Array.isArray(news) 
         ? news.find(item => String(item.category) === "7") 
         : null;
 
-    // Определяем, какое поле с текстом брать (description_...)
+    // Функция для определения ключа описания (description_...) на основе языка
     const getDescriptionField = () => {
         const lang = language?.toLowerCase();
         if (lang === 'kg' || lang === 'ky') return 'description_ky';
@@ -27,15 +29,20 @@ const Requisites = () => {
         return 'description_ru';
     };
 
+    // Локализованный заголовок страницы
     const getPageTitle = () => {
-        const titles = { RU: "Банковские реквизиты", KG: "Банктык реквизиттер", EN: "Bank Details" };
+        const titles = { 
+            RU: "Банковские реквизиты", 
+            KG: "Банктык реквизиттер", 
+            EN: "Bank Details" 
+        };
         return titles[language?.toUpperCase()] || titles.RU;
     };
 
     if (loading && news.length === 0) {
         return (
             <div className="requisites-page">
-                <div className="main-loader">Загрузка...</div>
+                <div className="main-loader">Загрузка данных...</div>
             </div>
         );
     }
@@ -51,7 +58,7 @@ const Requisites = () => {
                         <div 
                             className="requisites-text" 
                             dangerouslySetInnerHTML={{ 
-                                // Используем description_... вместо content
+                                // Берем данные из полей description_ru/ky/en, которые видны в API
                                 __html: requisitesPost[getDescriptionField()] || requisitesPost.description_ru 
                             }} 
                         />

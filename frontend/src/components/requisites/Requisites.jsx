@@ -11,27 +11,27 @@ const Requisites = () => {
     const { language } = useContext(LanguageContext);
 
     useEffect(() => {
-        // Принудительно обновляем данные при заходе на страницу
+        // Всегда запрашиваем свежие данные при входе
         dispatch(getNews());
     }, [dispatch]);
 
-    // 1. Ищем пост. Используем == вместо === на случай, если ID прилетает строкой
-    // И проверяем поле category, как в NewsMain
-    const requisitesPost = Array.isArray(news) 
-        ? news.find(item => String(item.category) === "7") 
+    // ФИЛЬТРАЦИЯ: ищем объект, у которого category равна 7
+    const requisitesPost = news && news.length > 0 
+        ? news.find(item => item.category == 7) 
         : null;
 
     const getPageTitle = () => {
-        const titles = { 
-            RU: "Банковские реквизиты", 
-            KG: "Банктык реквизиттер", 
-            EN: "Bank Details" 
-        };
+        const titles = { RU: "Банковские реквизиты", KG: "Банктык реквизиттер", EN: "Bank Details" };
         return titles[language?.toUpperCase()] || titles.RU;
     };
 
+    // Показываем лоадер, если идет загрузка и данных еще нет
     if (loading && (!news || news.length === 0)) {
-        return <div className="main-loader">Загрузка...</div>;
+        return (
+            <div className="requisites-page">
+                <div className="main-loader">Загрузка...</div>
+            </div>
+        );
     }
 
     return (
@@ -42,7 +42,7 @@ const Requisites = () => {
             <div className="requisites-card">
                 {requisitesPost ? (
                     <div className="requisites-content-wrapper">
-                        {/* Используем те же поля перевода, что и в новостях */}
+                        {/* Выводим контент через dangerouslySetInnerHTML */}
                         <div 
                             className="requisites-text" 
                             dangerouslySetInnerHTML={{ 
@@ -52,10 +52,8 @@ const Requisites = () => {
                     </div>
                 ) : (
                     <div className="no-data">
-                        {/* Если не нашли категорию 7, выводим это для отладки */}
-                        {language === 'KG' ? 'Маалымат табылган жок' : 'Информация не найдена'}
-                        <br/>
-                        <small style={{color: '#ccc', fontSize: '10px'}}>Проверьте, что в админке у поста стоит категория ID 7</small>
+                        {/* Если данных нет после загрузки */}
+                        {!loading && (language === 'KG' ? 'Маалымат табылган жок' : 'Информация не найдена')}
                     </div>
                 )}
             </div>

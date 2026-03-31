@@ -7,7 +7,7 @@ import './Requisites.css';
 const Requisites = () => {
     const dispatch = useDispatch();
     
-    // Получаем то, что лежит в сторе (там сейчас объект с пагинацией)
+    // Получаем то, что лежит в Redux (сейчас это объект с results)
     const { news, loading = false } = useSelector((state) => state.api || {});
     const { language = 'ru' } = useContext(LanguageContext);
 
@@ -15,12 +15,15 @@ const Requisites = () => {
         dispatch(getNews());
     }, [dispatch]);
 
-    // ЛОГИКА ИСПРАВЛЕНИЯ:
-    // Если news - это объект и в нем есть results, берем results.
-    // Если news - это уже массив, берем его.
-    const newsArray = news?.results || (Array.isArray(news) ? news : []);
+    // ЛОГИКА РАСПАКОВКИ:
+    // 1. Если news — это уже массив, используем его.
+    // 2. Если news — это объект (пагинация), берем news.results.
+    // 3. Иначе — пустой массив.
+    const newsArray = Array.isArray(news) 
+        ? news 
+        : (news?.results || []);
 
-    // Теперь ищем в правильном массиве
+    // Теперь ищем пост в правильном массиве
     const requisitesPost = newsArray.find(item => String(item.category) === "7");
 
     const getDescriptionField = () => {
@@ -61,8 +64,10 @@ const Requisites = () => {
                 ) : (
                     <div className="no-data">
                         {language === 'KG' ? 'Маалымат табылган жок' : 'Информация не найдена'}
-                        {/* Временная подсказка для отладки, если всё равно не находит */}
-                        {newsArray.length > 0 && <p style={{fontSize: '10px', color: 'gray'}}>Пост с категорией 7 не найден в {newsArray.length} записях</p>}
+                        {/* Техническая подсказка для тебя (потом можно убрать) */}
+                        {!loading && newsArray.length === 0 && (
+                            <p style={{fontSize: '10px', color: 'red'}}>Массив новостей пуст. Проверь API.</p>
+                        )}
                     </div>
                 )}
             </div>

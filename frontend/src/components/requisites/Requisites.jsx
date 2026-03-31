@@ -11,21 +11,14 @@ const Requisites = () => {
     const { language } = useContext(LanguageContext);
 
     useEffect(() => {
-        // Принудительно вызываем загрузку при заходе на страницу
+        // Принудительно обновляем данные при заходе на страницу
         dispatch(getNews());
     }, [dispatch]);
 
-    // Добавляем логи в консоль, чтобы ты видела, что происходит (потом удалим)
-    useEffect(() => {
-        console.log("Текущий язык:", language);
-        console.log("Все новости из Redux:", news);
-    }, [news, language]);
-
-    // Безопасная фильтрация: сначала проверяем, что news — это массив
-    const requisitesPost = Array.isArray(news) && news.length > 0 
-        ? [...news]
-            .filter(item => Number(item.category) === 7) // Приводим к числу на всякий случай
-            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0]
+    // 1. Ищем пост. Используем == вместо === на случай, если ID прилетает строкой
+    // И проверяем поле category, как в NewsMain
+    const requisitesPost = Array.isArray(news) 
+        ? news.find(item => String(item.category) === "7") 
         : null;
 
     const getPageTitle = () => {
@@ -37,13 +30,8 @@ const Requisites = () => {
         return titles[language?.toUpperCase()] || titles.RU;
     };
 
-    // Если всё ещё грузится — показываем явный индикатор
     if (loading && (!news || news.length === 0)) {
-        return (
-            <div className="requisites-page">
-                <div className="main-loader">ЗАГРУЗКА ДАННЫХ...</div>
-            </div>
-        );
+        return <div className="main-loader">Загрузка...</div>;
     }
 
     return (
@@ -54,11 +42,7 @@ const Requisites = () => {
             <div className="requisites-card">
                 {requisitesPost ? (
                     <div className="requisites-content-wrapper">
-                        {/* Выводим заголовок из API для проверки */}
-                        <h3 style={{marginBottom: '20px'}}>
-                            {requisitesPost[translate.translatedApi.title[language]] || requisitesPost.title}
-                        </h3>
-                        
+                        {/* Используем те же поля перевода, что и в новостях */}
                         <div 
                             className="requisites-text" 
                             dangerouslySetInnerHTML={{ 
@@ -67,9 +51,11 @@ const Requisites = () => {
                         />
                     </div>
                 ) : (
-                    <div className="no-data-info">
-                        <p>{language === 'KG' ? 'Маалымат табылган жок' : 'Информация не найдена'}</p>
-                        <small style={{color: '#ccc'}}>Категория 7 не найдена в массиве news</small>
+                    <div className="no-data">
+                        {/* Если не нашли категорию 7, выводим это для отладки */}
+                        {language === 'KG' ? 'Маалымат табылган жок' : 'Информация не найдена'}
+                        <br/>
+                        <small style={{color: '#ccc', fontSize: '10px'}}>Проверьте, что в админке у поста стоит категория ID 7</small>
                     </div>
                 )}
             </div>

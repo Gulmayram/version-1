@@ -7,39 +7,66 @@ import './Requisites.css';
 
 const Requisites = () => {
     const dispatch = useDispatch();
-    // Добавляем защиту на случай, если api или news не определены
+    
+    // Безопасно достаем данные из Redux, задавая значения по умолчанию
     const { news = [], loading = false } = useSelector((state) => state.api || {});
-    const { language } = useContext(LanguageContext);
+    const { language = 'ru' } = useContext(LanguageContext);
 
     useEffect(() => {
+        // Загружаем данные, если их еще нет в сторе
         dispatch(getNews());
     }, [dispatch]);
 
-    // Максимально простая фильтрация без лишних наворотов
-    const post = news && news.length > 0 
-        ? news.find(item => String(item.category) === "7") 
+    // Ищем пост с категорией 7 (Реквизиты)
+    // Используем нестрогое равенство (==), чтобы поймать и "7", и 7
+    const requisitesPost = Array.isArray(news) 
+        ? news.find(item => item.category == 7) 
         : null;
+
+    // Функция для безопасного получения перевода заголовка страницы
+    const getPageTitle = () => {
+        const titles = { 
+            RU: "Банковские реквизиты", 
+            KG: "Банктык реквизиттер", 
+            EN: "Bank Details" 
+        };
+        return titles[language?.toUpperCase()] || titles.RU;
+    };
+
+    // Если идет загрузка и данных нет — показываем лоадер внутри структуры страницы
+    if (loading && news.length === 0) {
+        return (
+            <div className="requisites-page">
+                <div className="main-loader">Загрузка данных...</div>
+            </div>
+        );
+    }
 
     return (
         <div className="requisites-page">
-            <h1 className="page-title">
-                {language === 'KG' ? 'Банктык реквизиттер' : 'Банковские реквизиты'}
-            </h1>
+            <h1 className="page-title">{getPageTitle()}</h1>
             <div className="title-underline"></div>
             
             <div className="requisites-card">
-                {loading && news.length === 0 ? (
-                    <div>Загрузка...</div>
-                ) : post ? (
-                    <div className="requisites-text">
-                        {/* Выводим сначала просто заголовок для теста */}
-                        <h3>{post[translate?.translatedApi?.title[language]] || post.title}</h3>
-                        <div dangerouslySetInnerHTML={{ 
-                            __html: post[translate?.translatedApi?.content[language]] || post.content 
-                        }} />
+                {requisitesPost ? (
+                    <div className="requisites-content-wrapper">
+                        <div 
+                            className="requisites-text" 
+                            dangerouslySetInnerHTML={{ 
+                                // Добавляем защитную цепочку ?. везде, где может быть undefined
+                                __html: requisitesPost[translate?.translatedApi?.content?.[language]] || requisitesPost.content 
+                            }} 
+                        />
                     </div>
                 ) : (
-                    <div className="no-data">Информация не найдена (Категория 7)</div>
+                    <div className="no-data">
+                        {language === 'KG' ? 'Маалымат табылган жок' : 'Информация не найдена'}
+                        {!loading && (
+                            <p style={{fontSize: '12px', color: '#999', marginTop: '10px'}}>
+                                (Категория "Реквизиты" с ID 7 не найдена в базе)
+                            </p>
+                        )}
+                    </div>
                 )}
             </div>
         </div>

@@ -8,32 +8,32 @@ import './Requisites.css';
 const Requisites = () => {
     const dispatch = useDispatch();
     
-    // Безопасно достаем данные из Redux, задавая значения по умолчанию
+    // Безопасное получение данных из Redux с дефолтными значениями
     const { news = [], loading = false } = useSelector((state) => state.api || {});
     const { language = 'ru' } = useContext(LanguageContext);
 
     useEffect(() => {
-        // Загружаем данные, если их еще нет в сторе
+        // Принудительный запрос данных при монтировании
         dispatch(getNews());
     }, [dispatch]);
 
-    // Ищем пост с категорией 7 (Реквизиты)
-    // Используем нестрогое равенство (==), чтобы поймать и "7", и 7
+    // Поиск нужного поста по ID категории 7
     const requisitesPost = Array.isArray(news) 
-        ? news.find(item => item.category == 7) 
+        ? news.find(item => String(item.category) === "7") 
         : null;
 
-    // Функция для безопасного получения перевода заголовка страницы
+    // Локальные переводы заголовка для надежности
     const getPageTitle = () => {
         const titles = { 
             RU: "Банковские реквизиты", 
             KG: "Банктык реквизиттер", 
             EN: "Bank Details" 
         };
-        return titles[language?.toUpperCase()] || titles.RU;
+        const langKey = language?.toUpperCase() || 'RU';
+        return titles[langKey] || titles.RU;
     };
 
-    // Если идет загрузка и данных нет — показываем лоадер внутри структуры страницы
+    // Если идет загрузка и данных в стейте еще нет
     if (loading && news.length === 0) {
         return (
             <div className="requisites-page">
@@ -53,7 +53,7 @@ const Requisites = () => {
                         <div 
                             className="requisites-text" 
                             dangerouslySetInnerHTML={{ 
-                                // Добавляем защитную цепочку ?. везде, где может быть undefined
+                                // Использование опциональной цепочки ?. предотвращает крах приложения
                                 __html: requisitesPost[translate?.translatedApi?.content?.[language]] || requisitesPost.content 
                             }} 
                         />
@@ -62,8 +62,8 @@ const Requisites = () => {
                     <div className="no-data">
                         {language === 'KG' ? 'Маалымат табылган жок' : 'Информация не найдена'}
                         {!loading && (
-                            <p style={{fontSize: '12px', color: '#999', marginTop: '10px'}}>
-                                (Категория "Реквизиты" с ID 7 не найдена в базе)
+                            <p style={{fontSize: '11px', color: '#888', marginTop: '10px'}}>
+                                Проверьте наличие публикации с категорией "Реквизиты" (ID 7) в админ-панели.
                             </p>
                         )}
                     </div>

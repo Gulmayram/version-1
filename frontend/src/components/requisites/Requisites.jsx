@@ -5,10 +5,6 @@ import { translate } from "../../assets/translate";
 import { LanguageContext } from "../../LanguageContext";
 import './Requisites.css';
 
-const Requisites = () => {
-    const dispatch = useDispatch();
-    const { news, loading } = useSelector((state) => state.api);
-    const { language } = useContext(LanguageContext);
 
     useEffect(() => {
         // Принудительно вызываем загрузку при заходе на страницу

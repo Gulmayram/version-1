@@ -1,0 +1,109 @@
+.reception-page {
+    padding: 20px 0;
+    color: #333;
+}
+
+.reception-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.reception-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border-top: 4px solid #004a99;
+}
+
+.card-header {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    font-size: 18px;
+    color: #004a99;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+}
+
+/* Стили менеджеров */
+.manager-list {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.manager-item {
+    border: 1px solid #eef2f7;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.manager-pos {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #f7a600;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.manager-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.manager-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Стили графика */
+.schedule-card {
+    border-top-color: #f7a600;
+}
+
+.schedule-table {
+    padding: 10px 20px;
+}
+
+.schedule-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.schedule-row:last-child {
+    border-bottom: none;
+}
+
+.schedule-day {
+    font-weight: 600;
+}
+
+.schedule-time {
+    color: #004a99;
+    font-weight: 700;
+}
+
+.schedule-note {
+    padding: 0 20px 20px;
+    font-size: 13px;
+    color: #888;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .schedule-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+}

@@ -20,21 +20,7 @@ const Vacancies = () => {
         navigate(`/vacancies/${vacancyId}`);
     };
 
-    if (loading) {
-        return (
-            <div className="loader-container">
-                <span className="loader"></span>
-            </div>
-        );
-    }
-
-    if (!vacancies || vacancies.length === 0) {
-        return (
-            <div className="no-data-container">
-                <h1>{translate.noVacancies[language]}...</h1>
-            </div>
-        );
-    }
+    if (loading) return <div className="loader-container"><span className="loader"></span></div>;
 
     return (
         <div className='vacancies-page'>
@@ -43,22 +29,24 @@ const Vacancies = () => {
             </div>
 
             <div className="vacancies-grid">
-                {vacancies.map((vacancy) => (
+                {vacancies && vacancies.map((vacancy) => (
                     <div 
                         className="vacancy-card" 
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        {/* Логика превью на основе поля file, как в VacancyDetail */}
+                        {/* Используем img вместо embed, чтобы не было серых квадратов */}
                         {vacancy.file && (
                             <div className="vacancy-preview-container">
-                                <embed
-                                    className="vacancy-preview-embed"
-                                    src={vacancy.file}
-                                    type="application/pdf"
+                                <img 
+                                    src={vacancy.file} 
+                                    alt="preview" 
+                                    className="vacancy-preview-img"
+                                    onError={(e) => {
+                                        // Если это PDF, картинка не прогрузится — ставим заглушку/иконку
+                                        e.target.style.display = 'none';
+                                    }}
                                 />
-                                {/* Слой поверх embed, чтобы клик по нему не блокировался и вел на страницу вакансии */}
-                                <div className="embed-overlay"></div>
                             </div>
                         )}
 
@@ -66,10 +54,9 @@ const Vacancies = () => {
                             <h2 className="vacancy-title">
                                 {vacancy[translate.translatedApi.title[language]] || vacancy.title}
                             </h2>
-                            <p className="vacancy-salary">{vacancy.salary || vacancy.selery}</p>
-                            
+                            <p className="vacancy-salary">{vacancy.selery}</p>
                             <button className="view-more-btn">
-                                {translate.viewPdf[language] || "Подробнее"}
+                                {translate.viewPdf[language]}
                             </button>
                         </div>
                     </div>

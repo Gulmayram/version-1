@@ -1,0 +1,79 @@
+.directory-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 80vh;
+}
+
+.directory-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+    border-color: #0056b3;
+}
+
+.directory-table-wrapper {
+    overflow-x: auto;
+}
+
+.directory-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.directory-table th {
+    background-color: #f2f2f2;
+    padding: 15px;
+    color: #333;
+    font-weight: 600;
+    border-bottom: 2px solid #0056b3;
+}
+
+.directory-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+.dept-cell { font-weight: 500; color: #0056b3; }
+
+.phone-cell a {
+    color: #d32f2f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.phone-cell a:hover { text-decoration: underline; }
+
+.no-results {
+    text-align: center;
+    padding: 30px !important;
+    color: #888;
+}
+
+@media (max-width: 600px) {
+    .directory-table th, .directory-table td {
+        padding: 10px;
+        font-size: 13px;
+    }
+}

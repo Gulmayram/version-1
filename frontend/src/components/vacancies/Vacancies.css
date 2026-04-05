@@ -1,215 +1,58 @@
-.vacancies-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    font-family: 'Inter', sans-serif;
-}
-
-.vacancies-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.vacancies-header h1 {
-    font-size: 2.5rem;
-    color: #1a365d;
-    margin-bottom: 10px;
-}
-
-.vacancies-header .subtitle {
-    color: #64748b;
-    font-size: 1.1rem;
-}
-
 .vacancies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
 }
 
 .vacancy-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
-    padding: 24px;
-    position: relative;
-    transition: all 0.3s ease;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden; /* Чтобы картинка не вылезала за скругленные углы */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     cursor: pointer;
+    transition: 0.3s;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .vacancy-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
-    border-color: #3182ce;
 }
 
-.card-badge {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: #ebf8ff;
-    color: #2b6cb0;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
+.vacancy-preview-wrapper {
+    width: 100%;
+    height: 180px;
+    background-color: #f0f0f0;
+}
+
+.vacancy-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Это важно, чтобы картинка не растягивалась */
+}
+
+.vacancy-info {
+    padding: 20px;
 }
 
 .vacancy-title {
-    font-size: 1.25rem;
-    color: #2d3748;
-    margin: 10px 0 20px 0;
-    line-height: 1.4;
-    padding-right: 40px;
+    color: #002f6c;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
 }
 
-.vacancy-details {
-    margin-bottom: 24px;
+.vacancy-salary {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
 }
 
-.detail-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    color: #4a5568;
-}
-
-.detail-item .icon {
-    margin-right: 10px;
-    font-size: 1.1rem;
-}
-
-.view-more-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: #f7fafc;
-    border: 1px solid #edf2f7;
-    color: #3182ce;
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.vacancy-card:hover .view-more-btn {
-    background: #3182ce;
-    color: #fff;
-}
-
-/* Состояния загрузки и пустоты */
-.loader-container, .no-data-container {
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.no-data-content h1 {
-    color: #2d3748;
-    margin-top: 20px;
-}
-
-.no-data-content p {
-    color: #718096;
-}
-.vacancies {
-    background-color: #f8fafc; /* Чуть более мягкий оттенок */
-    min-height: 80vh;
-}
-
-.vacancy-card {
-    border: 1px solid #e2e8f0; /* Легкая граница добавляет четкости */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Более современная мягкая тень */
-    position: relative;
-    overflow: hidden;
-}
-
-.vacancy-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background-color: #002f6c; /* Акцентная полоска в стиле бренда */
-}
-
-.vacancy-title {
-    font-size: 1.4rem; /* Немного уменьшил, чтобы длинные названия не ломали верстку */
-    line-height: 1.2;
-}
-
-.salary {
-    color: #2b6cb0; /* Выделяем зарплату цветом */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Добавим стильный лоадер, если у тебя его еще нет */
-.loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #002f6c;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-}
-.vacancy-card {
-    display: flex;
-    flex-direction: column;
-    padding: 0; /* Убираем внутренний отступ, чтобы картинка была в край */
-    overflow: hidden;
-}
-
-/* Контейнер для текста внутри карточки */
-.vacancy-content {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.vacancy-preview {
+.more-btn {
+    background: #002f6c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
     width: 100%;
-    height: 180px; /* Фиксированная высота для единообразия */
-    overflow: hidden;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-.vacancy-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Картинка заполнит область без искажений */
-    transition: transform 0.5s ease;
-}
-
-.vacancy-card:hover .vacancy-preview img {
-    transform: scale(1.05); /* Легкий зум при наведении */
-}
-
-/* Позиционируем бейдж поверх картинки, если она есть */
-.card-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(4px);
-}
-@keyframes rotation {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-@media (max-width: 768px) {
-    .vacancies-grid {
-        grid-template-columns: 1fr;
-    }
 }

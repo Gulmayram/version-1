@@ -1,64 +1,68 @@
 .vacancies-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 24px;
     justify-content: center;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
 .vacancy-card {
     background-color: #ffffff;
-    border-radius: 12px;
-    width: 300px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 16px; /* Закругляем как в детальной */
+    width: 320px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     cursor: pointer;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
 }
 
 .vacancy-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .vacancy-preview-container {
     width: 100%;
-    height: 180px;
-    background-color: #f0f4f8; /* Цвет заглушки, если файла нет */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 200px;
+    background-color: #f8fafc;
     overflow: hidden;
 }
 
 .vacancy-preview-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Чтобы фото не растягивалось */
+    object-fit: cover; /* Чтобы фото не сплющивалось */
 }
 
 .vacancy-card-content {
-    padding: 20px;
+    padding: 24px;
 }
 
 .vacancy-title {
-    font-size: 1.4em;
+    font-size: 1.25rem;
     color: #002f6c;
-    margin-bottom: 10px;
-    font-weight: bold;
+    margin-bottom: 8px;
+    font-weight: 700;
 }
 
 .vacancy-salary {
-    font-size: 1.2em;
-    color: #333;
-    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 20px;
 }
 
 .view-more-btn {
     background-color: #002f6c;
-    color: white;
+    color: #fff;
     border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
+    padding: 12px;
+    border-radius: 8px;
     width: 100%;
-    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.view-more-btn:hover {
+    background-color: #001f4d;
 }

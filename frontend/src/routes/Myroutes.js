@@ -25,12 +25,14 @@ import Vacancies from "../components/vacancies/Vacancies";
 import VacancyDetail from "../components/vacancies/VacancyDetail";
 import Requisites from "../components/requisites/Requisites"; // Проверь путь к файлу!
 import Reception from "../components/reception/Reception"; // Проверь путь к папке
+import PhoneDirectory from "../components/contacts/PhoneDirectory";
 
 const PUBLIC_ROUTES = [
   { id: 2, link: "/", element: <Main/> },
   { id: 1, link: "/news", element: <NewsPage/> },
   { id: 38, link: "/requisites", element: <Requisites /> },
   { id: 39, link: "/reception", element: <Reception /> }, // <--- НОВЫЙ МАРШРУТ
+  { id: 40, link: "/phonedirectory", element: <PhoneDirectory /> },
   
   // ... остальной код без изменений
   

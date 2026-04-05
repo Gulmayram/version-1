@@ -8,10 +8,10 @@
 .vacancy-card {
     background: #fff;
     border-radius: 12px;
-    overflow: hidden; /* Чтобы картинка не вылезала за скругленные углы */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     cursor: pointer;
-    transition: 0.3s;
+    transition: transform 0.2s;
     display: flex;
     flex-direction: column;
 }
@@ -20,39 +20,42 @@
     transform: translateY(-5px);
 }
 
-.vacancy-preview-wrapper {
+.vacancy-preview-container {
+    position: relative;
     width: 100%;
-    height: 180px;
-    background-color: #f0f0f0;
+    height: 160px; /* Высота области превью */
+    background: #eee;
+    overflow: hidden;
 }
 
-.vacancy-preview-img {
+.vacancy-preview-embed {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Это важно, чтобы картинка не растягивалась */
+    border: none;
+    pointer-events: none; /* Чтобы embed не перехватывал прокрутку и клики */
 }
 
-.vacancy-info {
+/* Маска поверх embed, чтобы вся карточка оставалась кликабельной */
+.embed-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.vacancy-card-content {
     padding: 20px;
 }
 
 .vacancy-title {
+    font-size: 1.2rem;
     color: #002f6c;
-    font-size: 1.4rem;
     margin-bottom: 10px;
 }
 
 .vacancy-salary {
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.more-btn {
-    background: #002f6c;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 6px;
-    width: 100%;
+    font-weight: 600;
+    color: #2d3748;
 }

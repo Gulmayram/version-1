@@ -21,32 +21,20 @@ const Vacancies = () => {
     };
 
     if (loading) {
-        return (
-            <div className="loader-container">
-                <span className="loader"></span>
-            </div>
-        );
+        return <div className="loader-container"><span className="loader"></span></div>;
     }
 
     if (!vacancies || vacancies.length === 0) {
         return (
             <div className="no-data-container">
-                <div className="no-data-content">
-                    <img src="/empty-vacancies.svg" alt="No vacancies" />
-                    <h1>{translate.noVacancies[language]}</h1>
-                    <p>Следите за обновлениями, мы скоро добавим новые позиции.</p>
-                </div>
+                <h1>{translate.noVacancies[language]}...</h1>
             </div>
         );
     }
 
     return (
         <div className='vacancies-page'>
-            <header className="vacancies-header">
-                <h1>{translate.vacancies[language]}</h1>
-                <p className="subtitle">Присоединяйтесь к команде профессионалов «Кыргызгеологии»</p>
-            </header>
-
+            <h1>{translate.vacancies[language]}</h1>
             <div className="vacancies-grid">
                 {vacancies.map((vacancy) => (
                     <div 
@@ -54,37 +42,25 @@ const Vacancies = () => {
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        {/* Рендерим блок с картинкой, только если vacancy.preview существует */}
+                        {/* Логика превью: проверяем наличие картинки, как в детальной странице проверяем файл */}
                         {vacancy.preview && (
-                            <div className="vacancy-preview">
-                                <img src={vacancy.preview} alt={vacancy.title} />
+                            <div className="vacancy-preview-wrapper">
+                                <img 
+                                    src={vacancy.preview} 
+                                    alt="preview" 
+                                    className="vacancy-preview-img"
+                                />
                             </div>
                         )}
-                
-                        <div className="vacancy-content">
-                            <div className="card-badge">New</div>
+
+                        <div className="vacancy-info">
                             <h2 className="vacancy-title">
-                                {vacancy[translate.translatedApi.title[language]] || vacancy.title}
+                                {vacancy[translate.translatedApi.title[language]]}
                             </h2>
+                            <p className="vacancy-salary">{vacancy.selery}</p>
                             
-                            <div className="vacancy-details">
-                                <div className="detail-item">
-                                    <span className="icon">💰</span>
-                                    <span className="detail-text">
-                                        {vacancy.salary || vacancy.selery || "З/П по результатам собеседования"}
-                                    </span>
-                                </div>
-                                <div className="detail-item">
-                                    <span className="icon">📍</span>
-                                    <span className="detail-text">Бишкек</span>
-                                </div>
-                            </div>
-                
-                            <button className="view-more-btn">
-                                Подробнее
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
+                            <button className="more-btn">
+                                {translate.viewPdf[language]}
                             </button>
                         </div>
                     </div>

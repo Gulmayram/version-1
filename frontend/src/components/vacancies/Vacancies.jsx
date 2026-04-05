@@ -21,7 +21,11 @@ const Vacancies = () => {
     };
 
     if (loading) {
-        return <div className="loader-container"><span className="loader"></span></div>;
+        return (
+            <div className="loader-container">
+                <span className="loader"></span>
+            </div>
+        );
     }
 
     if (!vacancies || vacancies.length === 0) {
@@ -34,7 +38,10 @@ const Vacancies = () => {
 
     return (
         <div className='vacancies-page'>
-            <h1>{translate.vacancies[language]}</h1>
+            <div className="vacancies-header">
+                <h1>{translate.vacancies[language]}</h1>
+            </div>
+
             <div className="vacancies-grid">
                 {vacancies.map((vacancy) => (
                     <div 
@@ -42,25 +49,27 @@ const Vacancies = () => {
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        {/* Логика превью: проверяем наличие картинки, как в детальной странице проверяем файл */}
-                        {vacancy.preview && (
-                            <div className="vacancy-preview-wrapper">
-                                <img 
-                                    src={vacancy.preview} 
-                                    alt="preview" 
-                                    className="vacancy-preview-img"
+                        {/* Логика превью на основе поля file, как в VacancyDetail */}
+                        {vacancy.file && (
+                            <div className="vacancy-preview-container">
+                                <embed
+                                    className="vacancy-preview-embed"
+                                    src={vacancy.file}
+                                    type="application/pdf"
                                 />
+                                {/* Слой поверх embed, чтобы клик по нему не блокировался и вел на страницу вакансии */}
+                                <div className="embed-overlay"></div>
                             </div>
                         )}
 
-                        <div className="vacancy-info">
+                        <div className="vacancy-card-content">
                             <h2 className="vacancy-title">
-                                {vacancy[translate.translatedApi.title[language]]}
+                                {vacancy[translate.translatedApi.title[language]] || vacancy.title}
                             </h2>
-                            <p className="vacancy-salary">{vacancy.selery}</p>
+                            <p className="vacancy-salary">{vacancy.salary || vacancy.selery}</p>
                             
-                            <button className="more-btn">
-                                {translate.viewPdf[language]}
+                            <button className="view-more-btn">
+                                {translate.viewPdf[language] || "Подробнее"}
                             </button>
                         </div>
                     </div>

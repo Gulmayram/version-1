@@ -35,7 +35,7 @@ const Vacancies = () => {
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        {/* Используем img вместо embed, чтобы не было серых квадратов */}
+                        {/* Оставляем логику file, но меняем embed на img для стабильности */}
                         {vacancy.file && (
                             <div className="vacancy-preview-container">
                                 <img 
@@ -43,7 +43,7 @@ const Vacancies = () => {
                                     alt="preview" 
                                     className="vacancy-preview-img"
                                     onError={(e) => {
-                                        // Если это PDF, картинка не прогрузится — ставим заглушку/иконку
+                                        // Если это PDF, img его не покажет — скрываем или ставим иконку
                                         e.target.style.display = 'none';
                                     }}
                                 />

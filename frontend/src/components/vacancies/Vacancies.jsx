@@ -24,38 +24,28 @@ const Vacancies = () => {
     if (loading) return <div className="loader-container"><span className="loader"></span></div>;
 
     return (
-        <div className='vacancies-page-premium'>
-            <div className="vacancies-header-premium">
+        <div className='vacancies-page-compact'>
+            <div className="vacancies-header-compact">
                 <h1>{translate.vacancies[language]}</h1>
-                <div className="header-underline"></div>
             </div>
-            <div className="vacancies-container-premium">
+            <div className="vacancies-container-compact">
                 {vacancies && vacancies.map((vacancy) => (
                     <div 
-                        className="premium-vacancy-card" 
+                        className="compact-vacancy-card" 
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        <div className="card-accent-pillar"></div>
-                        <div className="card-main-content">
-                            <div className="card-top-row">
-                                <span className="vacancy-tag">Active</span>
-                                <img src={RedirectIcon} alt="open" className="card-arrow-icon" />
+                        <div className="compact-accent-line"></div>
+                        <div className="compact-card-content">
+                            <div className="compact-card-info">
+                                <h2 className="compact-vacancy-title">
+                                    {vacancy[translate.translatedApi.title[language]] || vacancy.title}
+                                </h2>
+                                <span className="compact-salary">
+                                    {vacancy.selery || vacancy.salary}
+                                </span>
                             </div>
-                            <h2 className="vacancy-title-premium">
-                                {vacancy[translate.translatedApi.title[language]] || vacancy.title}
-                            </h2>
-                            <div className="vacancy-salary-badge">
-                                {vacancy.selery || vacancy.salary}
-                            </div>
-                            {vacancy[translate.translatedApi.body[language]] && (
-                                <p className="vacancy-description-preview" 
-                                   dangerouslySetInnerHTML={{
-                                       __html: vacancy[translate.translatedApi.body[language]]
-                                               .replace(/<[^>]+>/g, '') 
-                                               .substring(0, 130) + '...'
-                                   }}/>
-                            )}
+                            <img src={RedirectIcon} alt="go" className="compact-go-icon" />
                         </div>
                     </div>
                 ))}

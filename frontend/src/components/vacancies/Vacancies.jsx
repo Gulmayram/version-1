@@ -5,8 +5,10 @@ import { getVacancies } from "../../store/apiSlice";
 import { translate } from "../../assets/translate";
 import { LanguageContext } from "../../LanguageContext";
 import { useNavigate } from "react-router-dom";
-// ВАЖНО: Добавь импорт иконки или убери использование RedirectIcon ниже
-// import RedirectIcon from "../../assets/icons/redirect.svg";
+
+// Убедись, что путь к иконке верный, иначе билд упадет. 
+// Если иконки нет, закомментируй строку ниже.
+// import RedirectIcon from "../../assets/icons/redirect.svg"; 
 
 const Vacancies = () => {
     const dispatch = useDispatch();
@@ -36,32 +38,30 @@ const Vacancies = () => {
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        {/* Если файл есть, пытаемся показать его как картинку */}
-                        {vacancy.file ? (
-                            <div className="vacancy-preview-container">
+                        <div className="vacancy-preview-container">
+                            {vacancy.file ? (
                                 <img 
                                     src={vacancy.file} 
                                     alt="preview" 
                                     className="vacancy-preview-img"
                                     onError={(e) => {
-                                        // Если это PDF или битая ссылка, заменяем на иконку
-                                        e.target.src = "/path-to-your-default-icon.svg"; 
-                                        e.target.className = "vacancy-preview-icon";
+                                        // Если это PDF или битая ссылка, скрываем img и показываем заглушку
+                                        e.target.style.display = 'none';
+                                        e.target.parentNode.innerHTML = '<span class="no-image-placeholder">DOC</span>';
                                     }}
                                 />
-                            </div>
-                        ) : (
-                            // Если файла вообще нет, показываем пустой стилизованный блок или заглушку
-                            <div className="vacancy-preview-container empty">
-                                <img src={RedirectIcon} alt="no-file" className="vacancy-preview-icon" />
-                            </div>
-                        )}
+                            ) : (
+                                <div className="no-image-placeholder">
+                                    <span>{translate.vacancies[language]}</span>
+                                </div>
+                            )}
+                        </div>
             
                         <div className="vacancy-card-content">
                             <h2 className="vacancy-title">
                                 {vacancy[translate.translatedApi.title[language]] || vacancy.title}
                             </h2>
-                            <p className="vacancy-salary">{vacancy.selery}</p>
+                            <p className="vacancy-salary">{vacancy.selery || vacancy.salary}</p>
                             <button className="view-more-btn">
                                 {translate.viewPdf[language]}
                             </button>
@@ -69,7 +69,6 @@ const Vacancies = () => {
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };

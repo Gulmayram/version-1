@@ -5,6 +5,7 @@ import { getVacancies } from "../../store/apiSlice";
 import { translate } from "../../assets/translate";
 import { LanguageContext } from "../../LanguageContext";
 import { useNavigate } from "react-router-dom";
+// Используем иконку maximize.svg, которая уже есть у тебя в проекте
 import RedirectIcon from "../../assets/maximize.svg";
 
 const Vacancies = () => {
@@ -24,43 +25,39 @@ const Vacancies = () => {
     if (loading) return <div className="loader-container"><span className="loader"></span></div>;
 
     return (
-        <div className='vacancies-page'>
-            <div className="vacancies-header">
+        <div className='vacancies-page-clean'>
+            <div className="vacancies-header-clean">
                 <h1>{translate.vacancies[language]}</h1>
             </div>
-            <div className="vacancies-grid">
+            <div className="vacancies-grid-clean">
                 {vacancies && vacancies.map((vacancy) => (
                     <div 
-                        className="vacancy-modern-card" 
+                        className="requisites-style-card" 
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        <div className="card-accent-line"></div>
-                        <div className="card-body">
-                            <div className="card-main-info">
-                                <h2 className="vacancy-name">
+                        {/* Тонкая синяя линия сверху, как на скриншоте */}
+                        <div className="card-top-decorator"></div>
+            
+                        <div className="requisites-card-body">
+                            {/* Метка "VACANCY" в стиле "KGS (COM)" */}
+                            <span className="requisites-badge">VACANCY</span>
+                            
+                            {/* Название и зарплата в стиле названия банка и номера счета */}
+                            <div className="requisites-main-info">
+                                <h2 className="requisites-bank-name">
                                     {vacancy[translate.translatedApi.title[language]] || vacancy.title}
                                 </h2>
-                                <p className="vacancy-salary-value">
+                                <p className="requisites-salary-text">
                                     {vacancy.selery || vacancy.salary}
                                 </p>
                             </div>
-                            
-                            {vacancy[translate.translatedApi.body[language]] && (
-                                <div 
-                                    className="vacancy-short-desc"
-                                    dangerouslySetInnerHTML={{
-                                        __html: vacancy[translate.translatedApi.body[language]]
-                                            .replace(/<[^>]+>/g, '') 
-                                            .substring(0, 120) + '...'
-                                    }}
-                                />
-                            )}
                         </div>
 
-                        <div className="card-footer-action">
-                            <span className="action-text">{translate.viewPdf[language]}</span>
-                            <img src={RedirectIcon} alt="open" className="action-icon" />
+                        {/* Футер в стиле "Расчетные счета" */}
+                        <div className="requisites-card-footer">
+                            <span className="requisites-footer-text">{translate.viewPdf[language]}</span>
+                            <img src={RedirectIcon} alt="open" className="requisites-action-icon" />
                         </div>
                     </div>
                 ))}

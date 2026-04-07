@@ -7,7 +7,8 @@
 .vacancies-header h1 {
     text-align: center;
     color: #002f6c;
-    margin-bottom: 30px;
+    margin: 40px 0;
+    text-transform: uppercase;
 }
 
 /* Сетка карточек */
@@ -16,7 +17,7 @@
     flex-wrap: wrap;
     gap: 24px;
     justify-content: center;
-    padding: 20px;
+    padding-bottom: 60px;
 }
 
 /* Карточка */
@@ -38,16 +39,16 @@
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Контейнер для фото/заглушки */
+/* Контейнер для фото или заглушки */
 .vacancy-preview-container {
     width: 100%;
     height: 180px; 
-    background-color: #f0f4f8; 
+    background-color: #f8fafc; 
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .vacancy-preview-img {
@@ -56,18 +57,21 @@
     object-fit: cover;
 }
 
-.no-image-placeholder {
+.no-image-text {
     color: #cbd5e0;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.8rem;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    opacity: 0.6;
 }
 
 /* Контент карточки */
 .vacancy-card-content {
     padding: 24px;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .vacancy-title {
@@ -75,7 +79,7 @@
     color: #002f6c;
     margin-bottom: 8px;
     font-weight: 700;
-    min-height: 2.8em; /* Выравнивает заголовки в две строки */
+    min-height: 2.8em; 
 }
 
 .vacancy-salary {
@@ -95,14 +99,15 @@
     width: 100%;
     font-weight: 600;
     transition: background 0.2s;
+    margin-top: auto;
 }
 
 .view-more-btn:hover {
     background-color: #001f4d;
 }
 
-/* Защита от старых стилей браузера */
+/* Скрытие системных элементов */
 .vacancy-preview-container embed, 
 .vacancy-preview-container object {
-    display: none;
+    display: none !important;
 }

@@ -20,6 +20,8 @@ const Vacancies = () => {
         navigate(`/vacancies/${vacancyId}`);
     };
 
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
     if (loading) return <div className="loader-container"><span className="loader"></span></div>;
 
     return (
@@ -36,16 +38,19 @@ const Vacancies = () => {
                     >
                         <div className="vacancy-preview-container">
                             {vacancy.file ? (
-                                <img 
-                                    src={vacancy.file} 
-                                    alt="preview" 
-                                    className="vacancy-preview-img"
-                                    onError={(e) => {
-                                        // Если это PDF или битая ссылка, скрываем img и показываем заглушку
-                                        e.target.style.display = 'none';
-                                        e.target.parentNode.innerHTML = `<span class="no-image-text">${translate.vacancies[language]}</span>`;
-                                    }}
-                                />
+                                isMobile ? (
+                                    <div className="mobile-file-indicator">
+                                        📄 {translate.viewPdf[language]}
+                                    </div>
+                                ) : (
+                                    <embed
+                                        src={vacancy.file}
+                                        type="application/pdf"
+                                        width="100%"
+                                        height="100%"
+                                        className="vacancy-embed"
+                                    />
+                                )
                             ) : (
                                 <span className="no-image-text">{translate.vacancies[language]}</span>
                             )}
@@ -56,9 +61,18 @@ const Vacancies = () => {
                                 {vacancy[translate.translatedApi.title[language]] || vacancy.title}
                             </h2>
                             <p className="vacancy-salary">{vacancy.selery || vacancy.salary}</p>
-                            <button className="view-more-btn">
-                                {translate.viewPdf[language]}
-                            </button>
+                            
+                            {vacancy.file && (
+                                <a 
+                                    href={vacancy.file} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="view-more-btn"
+                                    onClick={(e) => e.stopPropagation()} // Чтобы не срабатывал переход на страницу
+                                >
+                                    {translate.viewPdf[language]}
+                                </a>
+                            )}
                         </div>
                     </div>
                 ))}

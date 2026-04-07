@@ -1,3 +1,4 @@
+/* Контейнер всей сетки */
 .vacancies-grid {
     display: flex;
     flex-wrap: wrap;
@@ -6,37 +7,56 @@
     padding: 40px 20px;
 }
 
+/* Сама карточка вакансии */
 .vacancy-card {
     background-color: #ffffff;
-    border-radius: 16px; /* Закругляем как в детальной */
+    border-radius: 16px;
     width: 320px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
     border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Эффект при наведении */
 .vacancy-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
+/* Блок для изображения или заглушки */
 .vacancy-preview-container {
     width: 100%;
-    height: 200px;
-    background-color: #f8fafc;
+    height: 180px; /* Фиксированная высота для всех карточек */
+    background-color: #f0f4f8; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
+    border-bottom: 1px solid #eee;
 }
 
+/* Изображение внутри контейнера */
 .vacancy-preview-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Чтобы фото не сплющивалось */
+    object-fit: cover; /* Фото заполняет блок без искажений */
 }
 
+/* Иконка, если фото нет */
+.vacancy-preview-icon {
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+}
+
+/* Текстовый контент карточки */
 .vacancy-card-content {
     padding: 24px;
+    flex-grow: 1; /* Чтобы кнопки всегда были на одном уровне */
 }
 
 .vacancy-title {
@@ -52,6 +72,7 @@
     margin-bottom: 20px;
 }
 
+/* Кнопка */
 .view-more-btn {
     background-color: #002f6c;
     color: #fff;
@@ -62,34 +83,13 @@
     font-weight: 600;
     transition: background 0.2s;
 }
-.vacancy-preview-container {
-    width: 100%;
-    height: 180px;
-    background-color: #f0f4f8; /* Светлый фон для карточек без фото */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-bottom: 1px solid #eee;
+
+.view-more-btn:hover {
+    background-color: #001f4d;
 }
 
-.vacancy-preview-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Фото заполнит блок без искажений */
-}
-
-.vacancy-preview-icon {
-    width: 40px;
-    height: 40px;
-    opacity: 0.3; /* Иконка будет неброской, если фото нет */
-}
-
-/* Убираем синий фон, который мог остаться от старых стилей */
+/* Очистка от старых элементов, которые могли мешать */
 .vacancy-preview-container embed, 
 .vacancy-preview-container object {
     display: none;
-}
-.view-more-btn:hover {
-    background-color: #001f4d;
 }

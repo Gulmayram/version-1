@@ -26,49 +26,58 @@ const VacancyDetail = () => {
     if (loading || !vacancyDetail) return <div className="loader-container"><span className="loader"></span></div>;
 
     return (
-        <div className="v-detail-wrapper">
-            <div className="v-detail-card">
-                {/* Шапка с заголовком и ценой */}
-                <div className="v-detail-header">
-                    <h1 className="v-detail-title">
+        <div className="v-detail-page">
+            <div className="v-detail-card-premium">
+                
+                {/* Шапка с заголовком и зарплатой-бэджем */}
+                <div className="v-detail-header-premium">
+                    <h1 className="v-detail-title-premium">
                         {vacancyDetail[translate.translatedApi.title[language]]}
                     </h1>
-                    <div className="v-detail-salary-tag">
+                    <div className="v-detail-salary-badge">
                         {vacancyDetail.selery || vacancyDetail.salary}
                     </div>
                 </div>
 
-                <div className="v-detail-content">
-                    <h2 className="v-detail-sub">Описaние:</h2>
+                <div className="v-detail-info-section">
+                    <h2 className="v-detail-heading">Описaние:</h2>
                     <div 
-                        className="v-detail-body"
+                        className="v-detail-body-premium"
                         dangerouslySetInnerHTML={{
                             __html: DOMPurify.sanitize(vacancyDetail[translate.translatedApi.body[language]])
                         }}
                     />
                 </div>
 
-                {/* Блок с файлом — без лишних подписей */}
+                {/* Блок с файлом: Улучшенное отображение */}
                 {vacancyDetail.file && (
-                    <div className="v-detail-attachment">
+                    <div className="v-attachment-section">
                         {isMobile ? (
+                            // На мобильных — аккуратная кнопка
                             <a 
                                 href={vacancyDetail.file} 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
-                                className="v-mobile-btn"
+                                className="v-file-mobile-btn"
                             >
                                 <img src={RedirectIcon} alt="" className="v-btn-icon" />
                                 {translate.viewPdf[language]}
                             </a>
                         ) : (
-                            <div className="v-pdf-frame">
-                                <embed
-                                    src={vacancyDetail.file}
-                                    type="application/pdf"
+                            // На десктопе — стильное окно предпросмотра
+                            <div className="v-attachment-preview">
+                                <iframe
+                                    src={`${vacancyDetail.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                                    title={vacancyDetail.id}
                                     width="100%"
-                                    height="600px"
+                                    height="100%"
+                                    frameBorder="0"
+                                    className="v-iframe-pdf"
                                 />
+                                {/* Прозрачный слой поверх iframe, чтобы клик открывал PDF в новом окне */}
+                                <a href={vacancyDetail.file} target="_blank" rel="noopener noreferrer" className="v-pdf-overlay">
+                                    <span>{translate.viewPdf[language]}</span>
+                                </a>
                             </div>
                         )}
                     </div>

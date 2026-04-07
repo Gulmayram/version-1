@@ -1,120 +1,146 @@
-.vacancies-page-clean {
+.vacancies-page-requisites {
     padding: 60px 20px;
     background-color: #f7fafc; /* Очень светлый фон */
     min-height: 100vh;
 }
 
-.vacancies-header-clean h1 {
+.vacancies-header-requisites h1 {
     text-align: center;
     color: #002f6c;
     margin-bottom: 60px;
     font-size: 2.8rem;
     font-weight: 800;
+    text-transform: uppercase;
 }
 
-.vacancies-grid-clean {
+.vacancies-list-requisites {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 30px;
-    justify-content: center;
-    max-width: 1400px;
+    max-width: 900px; /* Делаем список аккуратным и читабельным */
     margin: 0 auto;
 }
 
-/* Стильная карточка */
-.stylish-vacancy-card {
+/* Карточка в стиле реквизитов */
+.requisites-style-card {
     background-color: #ffffff;
-    border-radius: 16px;
-    width: 380px; /* Оптимальная ширина для 3-х в ряд */
-    box-shadow: 0 4px 15px rgba(0, 47, 108, 0.04);
+    border-radius: 12px;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 47, 108, 0.03); /* Мягкая тень */
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     border: 1px solid #edf2f7;
     display: flex;
-    flex-direction: column;
-}
-
-.stylish-vacancy-card:hover {
-    transform: translateY(-7px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(0, 47, 108, 0.1);
-    border-color: #e2e8f0;
-}
-
-/* Декоративная плашка сверху */
-.card-top-decorator {
-    height: 8px;
-    background: linear-gradient(90deg, #002f6c 0%, #0056b3 100%);
     position: relative;
+    align-items: center; /* Центрируем контент */
 }
 
-.card-badge {
+.requisites-style-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.1); /* Тень с желтым оттенком */
+    border-color: #fbbf24;
+}
+
+/* Желтая линия-акцент слева */
+.card-accent-line-yellow {
+    width: 6px;
+    background-color: #fbbf24; /* Желтый цвет как на реквизитах */
+    height: 100%;
     position: absolute;
-    top: 15px;
-    right: 20px;
-    background-color: #f1f5f9;
-    color: #002f6c;
-    font-weight: 700;
-    font-size: 0.7rem;
-    padding: 4px 10px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
+    left: 0;
+    top: 0;
 }
 
 /* Контент */
-.stylish-card-content {
-    padding: 40px 30px 20px 30px;
+.card-requisites-body {
+    padding: 30px 40px;
     flex-grow: 1;
+    margin-left: 6px; /* Компенсируем желтую линию */
 }
 
-.stylish-card-title {
-    font-size: 1.5rem;
-    color: #002f6c;
-    margin-bottom: 12px;
+.requisites-card-title {
+    font-size: 1.6rem;
+    color: #002f6c; /* Темно-синий цвет */
+    margin-bottom: 10px;
     font-weight: 800;
-    line-height: 1.2;
-    min-height: 2.4em; /* Выравнивает заголовки в две строки */
+    line-height: 1.3;
 }
 
-.stylish-card-salary {
+.requisites-card-salary {
     font-size: 1.3rem;
-    color: #0056b3;
+    color: #4a5568; /* Серый цвет для зарплаты */
     font-weight: 600;
-    margin-bottom: 25px;
-}
-
-.stylish-card-snippet {
-    color: #4a5568;
-    font-size: 1rem;
-    line-height: 1.6;
     margin-bottom: 20px;
 }
 
+.requisites-card-snippet {
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 80%; /* Не растягиваем текст описания */
+}
+
 /* Футер карточки */
-.stylish-card-footer {
-    padding: 15px 30px;
-    background-color: #f8fafc;
-    border-top: 1px solid #edf2f7;
+.card-requisites-footer {
+    padding: 0 40px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    border-left: 1px solid #edf2f7;
+    height: 100%;
+    min-width: 150px;
 }
 
-.learn-more {
+.action-label {
     color: #002f6c;
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-.maximize-icon {
-    width: 18px;
-    height: 18px;
+.requisites-maximize-icon {
+    width: 22px;
+    height: 22px;
     opacity: 0.5;
+    transition: all 0.2s ease;
+}
+
+.requisites-style-card:hover .requisites-maximize-icon {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 /* Адаптивность для мобильных */
 @media (max-width: 800px) {
-    .stylish-vacancy-card {
+    .requisites-style-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .card-accent-line-yellow {
         width: 100%;
+        height: 6px;
+        position: relative;
+    }
+    .card-requisites-body {
+        margin-left: 0;
+        padding: 20px;
+    }
+    .requisites-card-snippet {
+        max-width: 100%;
+    }
+    .card-requisites-footer {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid #edf2f7;
+        padding: 20px;
+        flex-direction: row;
+        min-width: 0;
+    }
+    .action-label {
+        margin-bottom: 0;
+        margin-right: 15px;
     }
 }

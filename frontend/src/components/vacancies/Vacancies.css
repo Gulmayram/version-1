@@ -1,13 +1,25 @@
-/* Контейнер всей сетки */
+.vacancies-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.vacancies-header h1 {
+    text-align: center;
+    color: #002f6c;
+    margin-bottom: 30px;
+}
+
+/* Сетка карточек */
 .vacancies-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 20px;
 }
 
-/* Сама карточка вакансии */
+/* Карточка */
 .vacancy-card {
     background-color: #ffffff;
     border-radius: 16px;
@@ -21,16 +33,15 @@
     flex-direction: column;
 }
 
-/* Эффект при наведении */
 .vacancy-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Блок для изображения или заглушки */
+/* Контейнер для фото/заглушки */
 .vacancy-preview-container {
     width: 100%;
-    height: 180px; /* Фиксированная высота для всех карточек */
+    height: 180px; 
     background-color: #f0f4f8; 
     display: flex;
     align-items: center;
@@ -39,24 +50,24 @@
     border-bottom: 1px solid #eee;
 }
 
-/* Изображение внутри контейнера */
 .vacancy-preview-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Фото заполняет блок без искажений */
+    object-fit: cover;
 }
 
-/* Иконка, если фото нет */
-.vacancy-preview-icon {
-    width: 40px;
-    height: 40px;
-    opacity: 0.3;
+.no-image-placeholder {
+    color: #cbd5e0;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
 }
 
-/* Текстовый контент карточки */
+/* Контент карточки */
 .vacancy-card-content {
     padding: 24px;
-    flex-grow: 1; /* Чтобы кнопки всегда были на одном уровне */
+    flex-grow: 1;
 }
 
 .vacancy-title {
@@ -64,12 +75,14 @@
     color: #002f6c;
     margin-bottom: 8px;
     font-weight: 700;
+    min-height: 2.8em; /* Выравнивает заголовки в две строки */
 }
 
 .vacancy-salary {
     font-size: 1.1rem;
     color: #4a5568;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
 /* Кнопка */
@@ -88,7 +101,7 @@
     background-color: #001f4d;
 }
 
-/* Очистка от старых элементов, которые могли мешать */
+/* Защита от старых стилей браузера */
 .vacancy-preview-container embed, 
 .vacancy-preview-container object {
     display: none;

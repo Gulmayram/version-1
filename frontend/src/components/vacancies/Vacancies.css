@@ -8,106 +8,93 @@
     text-align: center;
     color: #002f6c;
     margin: 40px 0;
-    text-transform: uppercase;
 }
 
-/* Сетка карточек */
 .vacancies-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
     justify-content: center;
-    padding-bottom: 60px;
 }
 
-/* Карточка */
 .vacancy-card {
-    background-color: #ffffff;
+    background: #fff;
     border-radius: 16px;
     width: 320px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     cursor: pointer;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: 0.3s;
     border: 1px solid #eee;
     display: flex;
     flex-direction: column;
 }
 
 .vacancy-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
 }
 
-/* Контейнер для фото или заглушки */
 .vacancy-preview-container {
     width: 100%;
-    height: 180px; 
-    background-color: #f8fafc; 
+    height: 180px;
+    background: #f8fafc;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #eee;
+    pointer-events: none; /* Чтобы embed не перехватывал клики */
 }
 
-.vacancy-preview-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.vacancy-embed {
+    border: none;
+    pointer-events: none;
+}
+
+.mobile-file-indicator {
+    color: #002f6c;
+    font-weight: 600;
 }
 
 .no-image-text {
     color: #cbd5e0;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 2px;
     font-size: 0.75rem;
-    opacity: 0.6;
 }
 
-/* Контент карточки */
 .vacancy-card-content {
-    padding: 24px;
-    flex-grow: 1;
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .vacancy-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: #002f6c;
-    margin-bottom: 8px;
-    font-weight: 700;
-    min-height: 2.8em; 
+    min-height: 2.5em;
+    margin-bottom: 10px;
 }
 
 .vacancy-salary {
-    font-size: 1.1rem;
     color: #4a5568;
-    margin-bottom: 20px;
-    font-weight: 600;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
 
-/* Кнопка */
 .view-more-btn {
-    background-color: #002f6c;
-    color: #fff;
-    border: none;
-    padding: 12px;
+    display: block;
+    text-align: center;
+    background: #002f6c;
+    color: #fff !important;
+    text-decoration: none;
+    padding: 10px;
     border-radius: 8px;
-    width: 100%;
+    font-size: 0.9rem;
     font-weight: 600;
-    transition: background 0.2s;
-    margin-top: auto;
+    transition: 0.2s;
 }
 
 .view-more-btn:hover {
-    background-color: #001f4d;
-}
-
-/* Скрытие системных элементов */
-.vacancy-preview-container embed, 
-.vacancy-preview-container object {
-    display: none !important;
+    background: #001a3d;
 }

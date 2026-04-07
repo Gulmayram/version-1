@@ -43,11 +43,12 @@ const Vacancies = () => {
                                         📄 {translate.viewPdf[language]}
                                     </div>
                                 ) : (
-                                    <embed
-                                        src={`${vacancy.file}#toolbar=0&navpanes=0&scrollbar=0`}
-                                        type="application/pdf"
+                                    <iframe
+                                        src={`${vacancy.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                                        title={vacancy.id}
                                         width="100%"
                                         height="100%"
+                                        frameBorder="0"
                                     />
                                 )
                             ) : (
@@ -55,7 +56,7 @@ const Vacancies = () => {
                                     {translate.vacancies[language]}
                                 </div>
                             )}
-                            {/* Слой для кликабельности всей области */}
+                            {/* Слой поверх iframe, чтобы клик по всей области вел на страницу вакансии */}
                             <div className="click-overlay"></div>
                         </div>
             

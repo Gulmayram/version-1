@@ -44,7 +44,7 @@ const Vacancies = () => {
                                     </div>
                                 ) : (
                                     <embed
-                                        src={vacancy.file}
+                                        src={`${vacancy.file}#toolbar=0&navpanes=0&scrollbar=0`}
                                         type="application/pdf"
                                         width="100%"
                                         height="100%"
@@ -63,15 +63,15 @@ const Vacancies = () => {
                             <p className="vacancy-salary">{vacancy.selery || vacancy.salary}</p>
                             
                             {vacancy.file && (
-                                <a 
-                                    href={vacancy.file} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
+                                <button 
                                     className="view-more-btn"
-                                    onClick={(e) => e.stopPropagation()} // Чтобы не срабатывал переход на страницу
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        window.open(vacancy.file, '_blank');
+                                    }}
                                 >
                                     {translate.viewPdf[language]}
-                                </a>
+                                </button>
                             )}
                         </div>
                     </div>

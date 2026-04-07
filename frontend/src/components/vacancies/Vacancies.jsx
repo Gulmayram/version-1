@@ -5,7 +5,6 @@ import { getVacancies } from "../../store/apiSlice";
 import { translate } from "../../assets/translate";
 import { LanguageContext } from "../../LanguageContext";
 import { useNavigate } from "react-router-dom";
-// Используем maximize.svg как иконку "открыть"
 import RedirectIcon from "../../assets/maximize.svg";
 
 const Vacancies = () => {
@@ -25,42 +24,43 @@ const Vacancies = () => {
     if (loading) return <div className="loader-container"><span className="loader"></span></div>;
 
     return (
-        <div className='vacancies-page-clean'>
-            <div className="vacancies-header-clean">
+        <div className='vacancies-page'>
+            <div className="vacancies-header">
                 <h1>{translate.vacancies[language]}</h1>
             </div>
-            <div className="vacancies-grid-clean">
+            <div className="vacancies-grid">
                 {vacancies && vacancies.map((vacancy) => (
                     <div 
-                        className="stylish-vacancy-card" 
+                        className="vacancy-modern-card" 
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        {/* Верхний декоративный элемент с иконкой */}
-                        <div className="card-top-decorator">
-                            <span className="card-badge">VACANCY</span>
-                        </div>
-            
-                        <div className="stylish-card-content">
-                            <h2 className="stylish-card-title">
-                                {vacancy[translate.translatedApi.title[language]] || vacancy.title}
-                            </h2>
-                            <p className="stylish-card-salary">{vacancy.selery || vacancy.salary}</p>
+                        <div className="card-accent-line"></div>
+                        <div className="card-body">
+                            <div className="card-main-info">
+                                <h2 className="vacancy-name">
+                                    {vacancy[translate.translatedApi.title[language]] || vacancy.title}
+                                </h2>
+                                <p className="vacancy-salary-value">
+                                    {vacancy.selery || vacancy.salary}
+                                </p>
+                            </div>
                             
-                            {/* Показываем начало описания (если оно есть) */}
                             {vacancy[translate.translatedApi.body[language]] && (
-                                <p className="stylish-card-snippet" 
-                                   dangerouslySetInnerHTML={{
-                                       __html: vacancy[translate.translatedApi.body[language]]
-                                               .replace(/<[^>]+>/g, '') // Убираем HTML-теги
-                                               .substring(0, 100) + '...' // Берем первые 100 символов
-                                   }}/>
+                                <div 
+                                    className="vacancy-short-desc"
+                                    dangerouslySetInnerHTML={{
+                                        __html: vacancy[translate.translatedApi.body[language]]
+                                            .replace(/<[^>]+>/g, '') 
+                                            .substring(0, 120) + '...'
+                                    }}
+                                />
                             )}
                         </div>
 
-                        <div className="stylish-card-footer">
-                            <span className="learn-more">{translate.viewPdf[language]}</span>
-                            <img src={RedirectIcon} alt="open" className="maximize-icon" />
+                        <div className="card-footer-action">
+                            <span className="action-text">{translate.viewPdf[language]}</span>
+                            <img src={RedirectIcon} alt="open" className="action-icon" />
                         </div>
                     </div>
                 ))}

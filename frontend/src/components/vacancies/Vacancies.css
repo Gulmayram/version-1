@@ -1,110 +1,124 @@
 .vacancies-page {
-    padding: 40px 20px;
-    background-color: #f4f4f9;
+    padding: 60px 20px;
+    background-color: #f0f2f5;
     min-height: 100vh;
 }
 
 .vacancies-header h1 {
     text-align: center;
     color: #002f6c;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-    font-weight: bold;
+    margin-bottom: 60px;
+    font-size: 3rem;
+    font-weight: 800;
 }
 
-.vacancies-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-}
-
-/* Большая карточка, вдохновленная VacancyDetail */
-.vacancy-card-large {
-    background-color: #ffffff;
-    border-radius: 12px;
-    width: 500px; /* Увеличенная ширина */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+.vacancies-list-massive {
     display: flex;
     flex-direction: column;
+    align-items: center; /* Центрируем огромные карточки */
+    gap: 50px;
 }
 
-.vacancy-card-large:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* Контейнер для PDF */
-.vacancy-preview-wrapper {
+/* Огромная карточка */
+.vacancy-massive-card {
+    background-color: #ffffff;
+    border-radius: 20px;
     width: 100%;
-    height: 350px; /* Достаточно высоты для отображения части документа */
+    max-width: 850px; /* Почти как основной контент сайта */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid #e1e8ef;
+}
+
+.vacancy-massive-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Секция с PDF */
+.massive-preview-section {
+    width: 100%;
+    height: 550px; /* Очень много места для PDF */
     background-color: #f8fafc;
     position: relative;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #f0f4f8;
 }
 
-#pdf-embed {
+.massive-embed {
     border: none;
     display: block;
 }
 
-.card-overlay {
+.massive-card-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 5;
+    z-index: 10;
     background: transparent;
 }
 
-/* Текстовая часть */
-.vacancy-info-block {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+/* Секция с текстом */
+.massive-info-section {
+    padding: 40px;
+    background: white;
 }
 
-.vacancy-title-text {
-    font-size: 1.5rem;
-    font-weight: bold;
+.massive-title {
+    font-size: 2.2rem;
+    font-weight: 800;
     color: #002f6c;
-    margin: 0;
+    margin-bottom: 15px;
+    line-height: 1.2;
 }
 
-.vacancy-salary-text {
-    font-size: 1.2rem;
+.massive-salary {
+    font-size: 1.6rem;
     font-weight: 600;
     color: #0056b3;
-    margin: 0;
+    margin-bottom: 30px;
 }
 
-.vacancy-action-btn {
-    margin-top: 10px;
+.massive-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.massive-action-btn {
     background-color: #002f6c;
-    color: white;
+    color: #fff;
     border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: 600;
+    padding: 15px 35px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.3s;
 }
 
-.vacancy-action-btn:hover {
+.massive-action-btn:hover {
     background-color: #001f4d;
 }
 
-/* Адаптивность */
-@media (max-width: 600px) {
-    .vacancy-card-large {
+.click-hint {
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Адаптивность для смартфонов */
+@media (max-width: 850px) {
+    .vacancy-massive-card {
         width: 100%;
     }
-    .vacancy-preview-wrapper {
-        height: 250px;
+    .massive-preview-section {
+        height: 350px;
+    }
+    .massive-title {
+        font-size: 1.6rem;
     }
 }

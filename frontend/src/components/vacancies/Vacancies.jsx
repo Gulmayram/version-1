@@ -29,43 +29,43 @@ const Vacancies = () => {
             <div className="vacancies-header">
                 <h1>{translate.vacancies[language]}</h1>
             </div>
-            <div className="vacancies-container">
+            <div className="vacancies-grid">
                 {vacancies && vacancies.map((vacancy) => (
                     <div 
-                        className="wide-vacancy-card" 
+                        className="vacancy-card-large" 
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        <div className="wide-card-preview">
+                        <div className="vacancy-preview-wrapper">
                             {vacancy.file ? (
                                 isMobile ? (
-                                    <div className="mobile-file-placeholder">
+                                    <div className="mobile-placeholder">
                                         📄 {translate.viewPdf[language]}
                                     </div>
                                 ) : (
-                                    <iframe
-                                        src={`${vacancy.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                                        title={vacancy.id}
+                                    <embed
+                                        src={`${vacancy.file}#toolbar=0&navpanes=0&scrollbar=0`}
+                                        type="application/pdf"
                                         width="100%"
                                         height="100%"
-                                        frameBorder="0"
+                                        id="pdf-embed"
                                     />
                                 )
                             ) : (
-                                <div className="no-file-placeholder">
+                                <div className="no-file-content">
                                     {translate.vacancies[language]}
                                 </div>
                             )}
-                            {/* Слой поверх iframe, чтобы клик по всей области вел на страницу вакансии */}
-                            <div className="click-overlay"></div>
+                            {/* Слой, чтобы клик по PDF вел на детали, а не открывал меню PDF */}
+                            <div className="card-overlay"></div>
                         </div>
-            
-                        <div className="wide-card-info">
-                            <h2 className="wide-card-title">
+
+                        <div className="vacancy-info-block">
+                            <h2 className="vacancy-title-text">
                                 {vacancy[translate.translatedApi.title[language]] || vacancy.title}
                             </h2>
-                            <p className="wide-card-salary">{vacancy.selery || vacancy.salary}</p>
-                            <button className="wide-view-btn">
+                            <p className="vacancy-salary-text">{vacancy.selery || vacancy.salary}</p>
+                            <button className="vacancy-action-btn">
                                 {translate.viewPdf[language]}
                             </button>
                         </div>

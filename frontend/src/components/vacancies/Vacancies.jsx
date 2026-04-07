@@ -6,10 +6,6 @@ import { translate } from "../../assets/translate";
 import { LanguageContext } from "../../LanguageContext";
 import { useNavigate } from "react-router-dom";
 
-// Убедись, что путь к иконке верный, иначе билд упадет. 
-// Если иконки нет, закомментируй строку ниже.
-// import RedirectIcon from "../../assets/icons/redirect.svg"; 
-
 const Vacancies = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -47,13 +43,11 @@ const Vacancies = () => {
                                     onError={(e) => {
                                         // Если это PDF или битая ссылка, скрываем img и показываем заглушку
                                         e.target.style.display = 'none';
-                                        e.target.parentNode.innerHTML = '<span class="no-image-placeholder">DOC</span>';
+                                        e.target.parentNode.innerHTML = `<span class="no-image-text">${translate.vacancies[language]}</span>`;
                                     }}
                                 />
                             ) : (
-                                <div className="no-image-placeholder">
-                                    <span>{translate.vacancies[language]}</span>
-                                </div>
+                                <span className="no-image-text">{translate.vacancies[language]}</span>
                             )}
                         </div>
             

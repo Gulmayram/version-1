@@ -29,45 +29,48 @@ const Vacancies = () => {
             <div className="vacancies-header">
                 <h1>{translate.vacancies[language]}</h1>
             </div>
-            <div className="vacancies-grid">
+            <div className="vacancies-list-massive">
                 {vacancies && vacancies.map((vacancy) => (
                     <div 
-                        className="vacancy-card-large" 
+                        className="vacancy-massive-card" 
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        <div className="vacancy-preview-wrapper">
+                        <div className="massive-preview-section">
                             {vacancy.file ? (
                                 isMobile ? (
-                                    <div className="mobile-placeholder">
+                                    <div className="mobile-file-notice">
                                         📄 {translate.viewPdf[language]}
                                     </div>
                                 ) : (
                                     <embed
-                                        src={`${vacancy.file}#toolbar=0&navpanes=0&scrollbar=0`}
+                                        src={`${vacancy.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                                         type="application/pdf"
                                         width="100%"
                                         height="100%"
-                                        id="pdf-embed"
+                                        className="massive-embed"
                                     />
                                 )
                             ) : (
-                                <div className="no-file-content">
+                                <div className="no-file-text">
                                     {translate.vacancies[language]}
                                 </div>
                             )}
-                            {/* Слой, чтобы клик по PDF вел на детали, а не открывал меню PDF */}
-                            <div className="card-overlay"></div>
+                            {/* Защитный слой для кликабельности */}
+                            <div className="massive-card-overlay"></div>
                         </div>
 
-                        <div className="vacancy-info-block">
-                            <h2 className="vacancy-title-text">
+                        <div className="massive-info-section">
+                            <h2 className="massive-title">
                                 {vacancy[translate.translatedApi.title[language]] || vacancy.title}
                             </h2>
-                            <p className="vacancy-salary-text">{vacancy.selery || vacancy.salary}</p>
-                            <button className="vacancy-action-btn">
-                                {translate.viewPdf[language]}
-                            </button>
+                            <p className="massive-salary">{vacancy.selery || vacancy.salary}</p>
+                            <div className="massive-footer">
+                                <button className="massive-action-btn">
+                                    {translate.viewPdf[language]}
+                                </button>
+                                <span className="click-hint">Нажмите, чтобы узнать подробнее →</span>
+                            </div>
                         </div>
                     </div>
                 ))}

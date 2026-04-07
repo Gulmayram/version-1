@@ -5,6 +5,8 @@ import { getVacancies } from "../../store/apiSlice";
 import { translate } from "../../assets/translate";
 import { LanguageContext } from "../../LanguageContext";
 import { useNavigate } from "react-router-dom";
+// ВАЖНО: Добавь импорт иконки или убери использование RedirectIcon ниже
+// import RedirectIcon from "../../assets/icons/redirect.svg";
 
 const Vacancies = () => {
     const dispatch = useDispatch();

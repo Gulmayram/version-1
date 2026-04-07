@@ -1,0 +1,149 @@
+.r-page {
+    padding: 60px 40px;
+    background-color: #f8fafc;
+    min-height: 100vh;
+}
+
+.r-header h1 {
+    text-align: center;
+    color: #002f6c;
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 50px;
+}
+
+.r-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.r-card {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #eef2f6;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 47, 108, 0.03);
+}
+
+.r-card:hover {
+    transform: translateY(-10px);
+    border-color: #fbbf24; /* Желтый акцент при наведении */
+    box-shadow: 0 20px 40px rgba(0, 47, 108, 0.08);
+}
+
+/* Блок с фото */
+.r-card-image {
+    width: 100%;
+    height: 200px;
+    background: #f1f5f9;
+    position: relative;
+    overflow: hidden;
+}
+
+.r-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.r-card:hover .r-card-image img {
+    transform: scale(1.1);
+}
+
+.r-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #002f6c 0%, #0056b3 100%);
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 5rem;
+    font-weight: 900;
+}
+
+.r-status-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    color: #002f6c;
+    padding: 5px 12px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    z-index: 2;
+}
+
+/* Контент карточки */
+.r-card-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.r-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.r-title {
+    font-size: 1.35rem;
+    color: #002f6c;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.r-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.15;
+    margin-top: 5px;
+    transition: 0.3s;
+}
+
+.r-card:hover .r-icon {
+    opacity: 1;
+    transform: rotate(45deg);
+}
+
+.r-price-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.r-price {
+    font-size: 1.25rem;
+    color: #0056b3;
+    font-weight: 700;
+}
+
+.r-accent-line {
+    height: 3px;
+    width: 40px;
+    background: #fbbf24; /* Линия как в реквизитах */
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+.r-card:hover .r-accent-line {
+    width: 70px;
+}
+
+@media (max-width: 768px) {
+    .r-page { padding: 40px 20px; }
+    .r-grid { grid-template-columns: 1fr; }
+}

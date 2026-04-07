@@ -1,82 +1,120 @@
-import React, { useContext, useEffect } from 'react';
-import './Vacancies.css';
-import { useDispatch, useSelector } from "react-redux";
-import { getVacancies } from "../../store/apiSlice";
-import { translate } from "../../assets/translate";
-import { LanguageContext } from "../../LanguageContext";
-import { useNavigate } from "react-router-dom";
+.vacancies-page-clean {
+    padding: 60px 20px;
+    background-color: #f7fafc; /* Очень светлый фон */
+    min-height: 100vh;
+}
 
-const Vacancies = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { loading, vacancies } = useSelector((state) => state.api);
-    const { language } = useContext(LanguageContext);
+.vacancies-header-clean h1 {
+    text-align: center;
+    color: #002f6c;
+    margin-bottom: 60px;
+    font-size: 2.8rem;
+    font-weight: 800;
+}
 
-    useEffect(() => {
-        dispatch(getVacancies());
-    }, [dispatch]);
+.vacancies-grid-clean {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
 
-    const handleNavigate = (vacancyId) => {
-        navigate(`/vacancies/${vacancyId}`);
-    };
+/* Стильная карточка */
+.stylish-vacancy-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    width: 380px; /* Оптимальная ширина для 3-х в ряд */
+    box-shadow: 0 4px 15px rgba(0, 47, 108, 0.04);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid #edf2f7;
+    display: flex;
+    flex-direction: column;
+}
 
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+.stylish-vacancy-card:hover {
+    transform: translateY(-7px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 47, 108, 0.1);
+    border-color: #e2e8f0;
+}
 
-    if (loading) return <div className="loader-container"><span className="loader"></span></div>;
+/* Декоративная плашка сверху */
+.card-top-decorator {
+    height: 8px;
+    background: linear-gradient(90deg, #002f6c 0%, #0056b3 100%);
+    position: relative;
+}
 
-    return (
-        <div className='vacancies-page'>
-            <div className="vacancies-header">
-                <h1>{translate.vacancies[language]}</h1>
-            </div>
-            <div className="vacancies-list-massive">
-                {vacancies && vacancies.map((vacancy) => (
-                    <div 
-                        className="vacancy-massive-card" 
-                        key={vacancy.id} 
-                        onClick={() => handleNavigate(vacancy.id)}
-                    >
-                        <div className="massive-preview-section">
-                            {vacancy.file ? (
-                                isMobile ? (
-                                    <div className="mobile-file-notice">
-                                        📄 {translate.viewPdf[language]}
-                                    </div>
-                                ) : (
-                                    <embed
-                                        src={`${vacancy.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                                        type="application/pdf"
-                                        width="100%"
-                                        height="100%"
-                                        className="massive-embed"
-                                    />
-                                )
-                            ) : (
-                                <div className="no-file-text">
-                                    {translate.vacancies[language]}
-                                </div>
-                            )}
-                            {/* Защитный слой для кликабельности */}
-                            <div className="massive-card-overlay"></div>
-                        </div>
+.card-badge {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background-color: #f1f5f9;
+    color: #002f6c;
+    font-weight: 700;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
 
-                        <div className="massive-info-section">
-                            <h2 className="massive-title">
-                                {vacancy[translate.translatedApi.title[language]] || vacancy.title}
-                            </h2>
-                            <p className="massive-salary">{vacancy.selery || vacancy.salary}</p>
-                            <div className="massive-footer">
-                                <button className="massive-action-btn">
-                                    {translate.viewPdf[language]}
-                                </button>
-                                <span className="click-hint">Нажмите, чтобы узнать подробнее →</span>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-};
+/* Контент */
+.stylish-card-content {
+    padding: 40px 30px 20px 30px;
+    flex-grow: 1;
+}
 
-export default Vacancies;
+.stylish-card-title {
+    font-size: 1.5rem;
+    color: #002f6c;
+    margin-bottom: 12px;
+    font-weight: 800;
+    line-height: 1.2;
+    min-height: 2.4em; /* Выравнивает заголовки в две строки */
+}
+
+.stylish-card-salary {
+    font-size: 1.3rem;
+    color: #0056b3;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.stylish-card-snippet {
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Футер карточки */
+.stylish-card-footer {
+    padding: 15px 30px;
+    background-color: #f8fafc;
+    border-top: 1px solid #edf2f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.learn-more {
+    color: #002f6c;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.maximize-icon {
+    width: 18px;
+    height: 18px;
+    opacity: 0.5;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 800px) {
+    .stylish-vacancy-card {
+        width: 100%;
+    }
+}

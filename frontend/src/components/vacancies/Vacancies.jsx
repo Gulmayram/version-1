@@ -24,26 +24,25 @@ const Vacancies = () => {
     if (loading) return <div className="loader-container"><span className="loader"></span></div>;
 
     return (
-        <div className='v-page'>
-            <div className="v-header">
+        <div className='v-grid-layout'>
+            <div className="v-page-header">
                 <h1>{translate.vacancies[language]}</h1>
             </div>
-            <div className="v-grid">
+            <div className="v-cards-container">
                 {vacancies && vacancies.map((v) => (
-                    <div className="v-card" key={v.id} onClick={() => handleNavigate(v.id)}>
-                        <div className="v-card-top">
-                            <div className="v-badge">JOB</div>
-                            <img src={ArrowIcon} alt="" className="v-icon" />
+                    <div className="v-clean-card" key={v.id} onClick={() => handleNavigate(v.id)}>
+                        <div className="v-card-top-row">
+                            <span className="v-type-badge">JOB</span>
+                            <img src={ArrowIcon} alt="" className="v-expand-icon" />
                         </div>
-                        <div className="v-card-body">
-                            <h2 className="v-title">
+                        <div className="v-card-main-info">
+                            <h2 className="v-card-title">
                                 {v[translate.translatedApi.title[language]] || v.title}
                             </h2>
-                            <p className="v-salary">{v.selery || v.salary}</p>
-                        </div>
-                        <div className="v-card-footer">
-                            <div className="v-line"></div>
-                            <span>{translate.viewPdf[language]}</span>
+                            <div className="v-card-salary-box">
+                                <span className="v-salary-amount">{v.selery || v.salary}</span>
+                                <div className="v-salary-line"></div>
+                            </div>
                         </div>
                     </div>
                 ))}

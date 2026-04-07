@@ -29,17 +29,17 @@ const Vacancies = () => {
             <div className="vacancies-header">
                 <h1>{translate.vacancies[language]}</h1>
             </div>
-            <div className="vacancies-grid">
+            <div className="vacancies-container">
                 {vacancies && vacancies.map((vacancy) => (
                     <div 
-                        className="vacancy-card" 
+                        className="wide-vacancy-card" 
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        <div className="vacancy-preview-container">
+                        <div className="wide-card-preview">
                             {vacancy.file ? (
                                 isMobile ? (
-                                    <div className="mobile-file-indicator">
+                                    <div className="mobile-file-placeholder">
                                         📄 {translate.viewPdf[language]}
                                     </div>
                                 ) : (
@@ -48,31 +48,25 @@ const Vacancies = () => {
                                         type="application/pdf"
                                         width="100%"
                                         height="100%"
-                                        className="vacancy-embed"
                                     />
                                 )
                             ) : (
-                                <span className="no-image-text">{translate.vacancies[language]}</span>
+                                <div className="no-file-placeholder">
+                                    {translate.vacancies[language]}
+                                </div>
                             )}
+                            {/* Слой для кликабельности всей области */}
+                            <div className="click-overlay"></div>
                         </div>
             
-                        <div className="vacancy-card-content">
-                            <h2 className="vacancy-title">
+                        <div className="wide-card-info">
+                            <h2 className="wide-card-title">
                                 {vacancy[translate.translatedApi.title[language]] || vacancy.title}
                             </h2>
-                            <p className="vacancy-salary">{vacancy.selery || vacancy.salary}</p>
-                            
-                            {vacancy.file && (
-                                <button 
-                                    className="view-more-btn"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        window.open(vacancy.file, '_blank');
-                                    }}
-                                >
-                                    {translate.viewPdf[language]}
-                                </button>
-                            )}
+                            <p className="wide-card-salary">{vacancy.selery || vacancy.salary}</p>
+                            <button className="wide-view-btn">
+                                {translate.viewPdf[language]}
+                            </button>
                         </div>
                     </div>
                 ))}

@@ -1,132 +1,110 @@
 .vacancies-page {
     padding: 40px 20px;
-    max-width: 1100px;
-    margin: 0 auto;
+    background-color: #f4f4f9;
+    min-height: 100vh;
 }
 
 .vacancies-header h1 {
     text-align: center;
     color: #002f6c;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: bold;
 }
 
-.vacancies-container {
+.vacancies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Большая карточка, вдохновленная VacancyDetail */
+.vacancy-card-large {
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 500px; /* Увеличенная ширина */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    gap: 30px;
 }
 
-/* Широкая горизонтальная карточка */
-.wide-vacancy-card {
-    display: flex;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #eef2f7;
-    min-height: 280px;
+.vacancy-card-large:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-.wide-vacancy-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-}
-
-/* Левая часть: Превью PDF */
-.wide-card-preview {
-    flex: 1.2;
-    background: #f8fafc;
+/* Контейнер для PDF */
+.vacancy-preview-wrapper {
+    width: 100%;
+    height: 350px; /* Достаточно высоты для отображения части документа */
+    background-color: #f8fafc;
     position: relative;
-    border-right: 1px solid #f1f5f9;
-    min-width: 400px;
-    height: 300px;
-    overflow: hidden;
+    border-bottom: 1px solid #eee;
 }
 
-.wide-card-preview iframe {
+#pdf-embed {
     border: none;
     display: block;
 }
 
-/* Прозрачный слой для перехвата клика */
-.click-overlay {
+.card-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0);
+    z-index: 5;
+    background: transparent;
 }
 
-/* Правая часть: Информация */
-.wide-card-info {
-    flex: 1;
-    padding: 40px;
+/* Текстовая часть */
+.vacancy-info-block {
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    background: #fff;
+    gap: 12px;
 }
 
-.wide-card-title {
-    font-size: 1.6rem;
+.vacancy-title-text {
+    font-size: 1.5rem;
+    font-weight: bold;
     color: #002f6c;
-    margin-bottom: 12px;
-    font-weight: 700;
-    line-height: 1.2;
+    margin: 0;
 }
 
-.wide-card-salary {
-    font-size: 1.3rem;
-    color: #4a5568;
+.vacancy-salary-text {
+    font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 30px;
+    color: #0056b3;
+    margin: 0;
 }
 
-.wide-view-btn {
-    align-self: flex-start;
-    background: #002f6c;
-    color: #fff;
+.vacancy-action-btn {
+    margin-top: 10px;
+    background-color: #002f6c;
+    color: white;
     border: none;
-    padding: 12px 28px;
+    padding: 12px;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 1rem;
     cursor: pointer;
     transition: background 0.2s;
 }
 
-.wide-view-btn:hover {
-    background: #001a3d;
-}
-
-/* Заглушки */
-.mobile-file-placeholder, .no-file-placeholder {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #cbd5e0;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.vacancy-action-btn:hover {
+    background-color: #001f4d;
 }
 
 /* Адаптивность */
-@media (max-width: 900px) {
-    .wide-vacancy-card {
-        flex-direction: column;
+@media (max-width: 600px) {
+    .vacancy-card-large {
+        width: 100%;
     }
-    .wide-card-preview {
-        min-width: 100%;
+    .vacancy-preview-wrapper {
         height: 250px;
-    }
-    .wide-card-info {
-        padding: 25px;
     }
 }

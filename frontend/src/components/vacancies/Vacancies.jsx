@@ -5,7 +5,6 @@ import { getVacancies } from "../../store/apiSlice";
 import { translate } from "../../assets/translate";
 import { LanguageContext } from "../../LanguageContext";
 import { useNavigate } from "react-router-dom";
-// Используем maximize.svg как иконку "открыть подробнее"
 import RedirectIcon from "../../assets/maximize.svg";
 
 const Vacancies = () => {
@@ -25,43 +24,38 @@ const Vacancies = () => {
     if (loading) return <div className="loader-container"><span className="loader"></span></div>;
 
     return (
-        <div className='vacancies-page-requisites'>
-            <div className="vacancies-header-requisites">
+        <div className='vacancies-page-premium'>
+            <div className="vacancies-header-premium">
                 <h1>{translate.vacancies[language]}</h1>
+                <div className="header-underline"></div>
             </div>
-            <div className="vacancies-list-requisites">
+            <div className="vacancies-container-premium">
                 {vacancies && vacancies.map((vacancy) => (
                     <div 
-                        className="requisites-style-card" 
+                        className="premium-vacancy-card" 
                         key={vacancy.id} 
                         onClick={() => handleNavigate(vacancy.id)}
                     >
-                        {/* Желтая линия-акцент слева */}
-                        <div className="card-accent-line-yellow"></div>
-                        
-                        <div className="card-requisites-body">
-                            <h2 className="requisites-card-title">
+                        <div className="card-accent-pillar"></div>
+                        <div className="card-main-content">
+                            <div className="card-top-row">
+                                <span className="vacancy-tag">Active</span>
+                                <img src={RedirectIcon} alt="open" className="card-arrow-icon" />
+                            </div>
+                            <h2 className="vacancy-title-premium">
                                 {vacancy[translate.translatedApi.title[language]] || vacancy.title}
                             </h2>
-                            <p className="requisites-card-salary">
+                            <div className="vacancy-salary-badge">
                                 {vacancy.selery || vacancy.salary}
-                            </p>
-                            
-                            {/* Показываем начало описания */}
+                            </div>
                             {vacancy[translate.translatedApi.body[language]] && (
-                                <p className="requisites-card-snippet" 
+                                <p className="vacancy-description-preview" 
                                    dangerouslySetInnerHTML={{
                                        __html: vacancy[translate.translatedApi.body[language]]
-                                               .replace(/<[^>]+>/g, '') // Убираем HTML-теги
-                                               .substring(0, 150) + '...' // Берем первые 150 символов
+                                               .replace(/<[^>]+>/g, '') 
+                                               .substring(0, 130) + '...'
                                    }}/>
                             )}
-                        </div>
-
-                        {/* Футер карточки с иконкой */}
-                        <div className="card-requisites-footer">
-                            <span className="action-label">{translate.viewPdf[language]}</span>
-                            <img src={RedirectIcon} alt="open" className="requisites-maximize-icon" />
                         </div>
                     </div>
                 ))}

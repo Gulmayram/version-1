@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'realization',
 
     # libs
     'rest_framework',
@@ -74,6 +73,7 @@ INSTALLED_APPS = [
     'boezgrt',
     'category',
     'vacancies',
+    'realization',
 ]
 
 MIDDLEWARE = [

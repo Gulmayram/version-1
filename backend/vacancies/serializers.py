@@ -1,24 +1,41 @@
 from rest_framework import serializers
 from .models import Vacancies
-from comments.serializers import CommentSerializer
 
 
 class VacanciesSerializer(serializers.ModelSerializer):
+    short_body = serializers.SerializerMethodField()
+
     class Meta:
         model = Vacancies
-        fields = '__all__'
+        fields = [
+            'id',
+            'title',
+            'selery',
+            'short_body',
+            'body',
+            'file',
+            'created_at',
+            'updated_at',
+        ]
+
+    def get_short_body(self, obj):
+        if not obj.body:
+            return ""
+        return obj.body[:120]
     
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         request = self.context.get('request')
-        
+
         if request:
-            action = request.parser_context['view'].action
+            view = request.parser_context.get('view', None)
+            action = getattr(view, 'action', None)
+
             if action == 'list':
-                # Удаляем поля body при list-действии
-                representation.pop('body')
-                representation.pop('body_ru')
-                representation.pop('body_en')
-                representation.pop('body_ky')
-                representation.pop('file')
+                # лёгкий список вакансий
+                representation.pop('body', None)
+                representation.pop('file', None)
+                representation.pop('created_at', None)
+                representation.pop('updated_at', None)
+
         return representation

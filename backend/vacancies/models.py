@@ -1,21 +1,5 @@
 from django.db import models
-from rest_framework import serializers
-from .models import Vacancies
-from django.utils.html import strip_tags
 
-
-class VacanciesListSerializer(serializers.ModelSerializer):
-    short_body = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Vacancies
-        fields = ["id", "title", "selery", "short_body"]
-
-    def get_short_body(self, obj):
-        if not obj.body:
-            return ""
-        return strip_tags(obj.body)[:120]
-        
 # Create your models here.
 class Vacancies(models.Model):
     title = models.CharField(max_length=50, verbose_name='Название')

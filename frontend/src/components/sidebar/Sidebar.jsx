@@ -102,7 +102,8 @@ const Sidebar = () => {
         "/boezgrproductcard", 
         "/partners", 
         "/deposits", 
-        "/anticorruption"
+        "/anticorruption",
+        "/registry" // Добавлено
       ] 
     },
     docs: { 

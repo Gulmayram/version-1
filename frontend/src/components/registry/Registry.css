@@ -125,7 +125,26 @@
     font-weight: 500;
     color: #4a5568;
 }
+.registry-controls {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
 
+.registry-controls select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d9e6;
+    background: white;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .registry-controls {
+        grid-template-columns: 1fr;
+    }
+}
 /* Адаптивность для мобильных */
 @media (max-width: 480px) {
     .registry-grid {

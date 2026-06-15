@@ -20,7 +20,7 @@ const Requisites = () => {
             accounts: [
                 { 
                     currency: "KGS (Сом)", 
-                    bank: "ОАО «Айыл Банк» филиал Асанбай", 
+                    bank: "ОАО «Айыл Банк», филиал Асанбай", 
                     account: "1350120020075459", 
                     bik: "135029" 
                 }
@@ -30,18 +30,18 @@ const Requisites = () => {
             title: "Банктык реквизиттер",
             subtitle: "Кыргыз Республикасынын Жаратылыш ресурстары, экология жана техникалык көзөмөл министрлигине караштуу «Кыргызгеология» мамлекеттик ишканасы",
             bankDetails: [
-                { label: "ИНН", value: "00201199710081" },
-                { label: "ОКПО коду", value: "21613271" },
-                { label: "Дареги", value: "720001, Кыргыз Республикасы, Бишкек ш., Эркиндик проспектиси, 2" },
+                { label: "ИНН", value: "03006199710064" },
+                { label: "ОКПО коду", value: "720040" },
+                { label: "Дареги", value: "720040, Бишкек ш., Эркиндик көч., 2" },
                 { label: "Телефон", value: "(312) 300-619" }
             ],
             paymentTitle: "Эсептешүү эсептери:",
             accounts: [
                 { 
                     currency: "KGS (Сом)", 
-                    bank: "«РСК Банк» ААК", 
-                    account: "12000119971008101",
-                    bik: "120001"
+                    bank: "«Айыл Банк» ААК, Асанбай филиалы", 
+                    account: "1350120020075459", 
+                    bik: "135029" 
                 }
             ]
         },
@@ -49,18 +49,18 @@ const Requisites = () => {
             title: "Bank Details",
             subtitle: "State Enterprise \"Kyrgyzgeology\" under the Ministry of Natural Resources, Ecology and Technical Supervision of the Kyrgyz Republic",
             bankDetails: [
-                { label: "TIN", value: "00201199710081" },
-                { label: "OKPO Code", value: "21613271" },
-                { label: "Address", value: "2 Erkindik Avenue, Bishkek, 720001, Kyrgyz Republic" },
+                { label: "TIN", value: "03006199710064" },
+                { label: "OKPO Code", value: "720040" },
+                { label: "Address", value: "2 Erkindik St., Bishkek, 720040" },
                 { label: "Phone", value: "(312) 300-619" }
             ],
             paymentTitle: "Current Accounts:",
             accounts: [
                 { 
                     currency: "KGS (Som)", 
-                    bank: "OJSC \"RSK Bank\"", 
-                    account: "12000119971008101",
-                    bik: "120001"
+                    bank: "OJSC \"Ayil Bank\", Asanbay branch", 
+                    account: "1350120020075459", 
+                    bik: "135029" 
                 }
             ]
         }
@@ -79,7 +79,7 @@ const Requisites = () => {
                     <div className="info-list">
                         {data.bankDetails.map((item, index) => (
                             <div key={index} className="info-item">
-                                <span className="info-label">{item.label}:</span>
+                                <span className="info-label">{item.label}</span>
                                 <span className="info-value">{item.value}</span>
                             </div>
                         ))}
@@ -93,8 +93,8 @@ const Requisites = () => {
                             <div key={index} className="account-item">
                                 <div className="account-currency">{acc.currency}</div>
                                 <div className="account-bank">{acc.bank}</div>
-                                <div className="account-number">Счет: {acc.account}</div>
-                                {acc.bik && <div className="account-bik">БИК: {acc.bik}</div>}
+                                <div className="account-number">{acc.account}</div>
+                                <div className="account-bik">БИК: {acc.bik}</div>
                             </div>
                         ))}
                     </div>

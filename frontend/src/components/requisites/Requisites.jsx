@@ -1,67 +1,34 @@
 import React, { useContext } from 'react';
 import { LanguageContext } from "../../LanguageContext";
-import './Requisites.css';
+import './Registry.css';
 
-const Requisites = () => {
+const Registry = () => {
     const context = useContext(LanguageContext);
     const language = context ? context.language : 'RU';
 
     const content = {
         RU: {
-            title: "Банковские реквизиты",
-            subtitle: "Государственное предприятие «Кыргызгеология» при Министерстве природных ресурсов, экологии и технического надзора Кыргызской Республики",
-            bankDetails: [
-                { label: "ИНН", value: "03006199710064" },
-                { label: "Код ОКПО", value: "720040" },
-                { label: "Адрес", value: "720040, г. Бишкек, ул. Эркиндик, 2" },
-                { label: "Телефон", value: "(312) 300-619" }
-            ],
-            paymentTitle: "Расчетные счета:",
-            accounts: [
-                { 
-                    currency: "KGS (Сом)", 
-                    bank: "ОАО «Айыл Банк», филиал Асанбай", 
-                    account: "1350120020075459", 
-                    bik: "135029" 
-                }
+            title: "Реестр лицензий на недропользование",
+            searchPlaceholder: "Поиск по номеру, держателю, объекту...",
+            licenses: [
+                { id: "7436 АР", field: "Алтын-Джилга", company: 'ОсОО "Аурум Голд Компани"', status: "Действует", mineral: "Золото", location: "Баткенская обл." },
+                { id: "7218 ТР", field: "Сасык-Ункур", company: 'ОсОО "Айкан-Тоо"', status: "Приостановлена", mineral: "Мрамор-й известняк", location: "Ошская обл." }
             ]
         },
         KG: {
-            title: "Банктык реквизиттер",
-            subtitle: "Кыргыз Республикасынын Жаратылыш ресурстары, экология жана техникалык көзөмөл министрлигине караштуу «Кыргызгеология» мамлекеттик ишканасы",
-            bankDetails: [
-                { label: "ИНН", value: "03006199710064" },
-                { label: "ОКПО коду", value: "720040" },
-                { label: "Дареги", value: "720040, Бишкек ш., Эркиндик көч., 2" },
-                { label: "Телефон", value: "(312) 300-619" }
-            ],
-            paymentTitle: "Эсептешүү эсептери:",
-            accounts: [
-                { 
-                    currency: "KGS (Сом)", 
-                    bank: "«Айыл Банк» ААК, Асанбай филиалы", 
-                    account: "1350120020075459", 
-                    bik: "135029" 
-                }
+            title: "Жер казынасын пайдалануу лицензияларынын реестри",
+            searchPlaceholder: "Номери, ээси, объекти боюнча издөө...",
+            licenses: [
+                { id: "7436 АР", field: "Алтын-Джилга", company: 'ОсОО "Аурум Голд Компани"', status: "Иштеп жатат", mineral: "Алтын", location: "Баткен обл." },
+                { id: "7218 ТР", field: "Сасык-Ункур", company: 'ОсОО "Айкан-Тоо"', status: "Токтотулган", mineral: "Мрамор акиташы", location: "Ош обл." }
             ]
         },
         EN: {
-            title: "Bank Details",
-            subtitle: "State Enterprise \"Kyrgyzgeology\" under the Ministry of Natural Resources, Ecology and Technical Supervision of the Kyrgyz Republic",
-            bankDetails: [
-                { label: "TIN", value: "03006199710064" },
-                { label: "OKPO Code", value: "720040" },
-                { label: "Address", value: "2 Erkindik St., Bishkek, 720040" },
-                { label: "Phone", value: "(312) 300-619" }
-            ],
-            paymentTitle: "Current Accounts:",
-            accounts: [
-                { 
-                    currency: "KGS (Som)", 
-                    bank: "OJSC \"Ayil Bank\", Asanbay branch", 
-                    account: "1350120020075459", 
-                    bik: "135029" 
-                }
+            title: "Register of subsoil use licenses",
+            searchPlaceholder: "Search by number, holder, object...",
+            licenses: [
+                { id: "7436 АР", field: "Altyn-Jilga", company: 'Aurum Gold Company LLC', status: "Active", mineral: "Gold", location: "Batken region" },
+                { id: "7218 ТР", field: "Sasyk-Unkur", company: 'Aykan-Too LLC', status: "Suspended", mineral: "Marble limestone", location: "Osh region" }
             ]
         }
     };
@@ -69,39 +36,33 @@ const Requisites = () => {
     const data = content[language?.toUpperCase()] || content.RU;
 
     return (
-        <div className="requisites-page">
+        <div className="registry-page">
             <h1 className="page-title">{data.title}</h1>
-            <div className="title-underline"></div>
             
-            <div className="requisites-container">
-                <div className="requisites-card main-info">
-                    <p className="enterprise-subtitle">{data.subtitle}</p>
-                    <div className="info-list">
-                        {data.bankDetails.map((item, index) => (
-                            <div key={index} className="info-item">
-                                <span className="info-label">{item.label}</span>
-                                <span className="info-value">{item.value}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+            <div className="search-bar">
+                <input type="text" placeholder={data.searchPlaceholder} />
+            </div>
 
-                <div className="requisites-card accounts-info">
-                    <h2 className="accounts-title">{data.paymentTitle}</h2>
-                    <div className="accounts-grid">
-                        {data.accounts.map((acc, index) => (
-                            <div key={index} className="account-item">
-                                <div className="account-currency">{acc.currency}</div>
-                                <div className="account-bank">{acc.bank}</div>
-                                <div className="account-number">{acc.account}</div>
-                                <div className="account-bik">БИК: {acc.bik}</div>
-                            </div>
-                        ))}
+            <div className="registry-grid">
+                {data.licenses.map((lic, index) => (
+                    <div key={index} className="license-card">
+                        <div className="card-top">
+                            <span className="license-id">{lic.id}</span>
+                            <span className={`status-tag ${lic.status.toLowerCase()}`}>{lic.status}</span>
+                        </div>
+                        <div className="card-middle">
+                            <h3 className="field-name">{lic.field}</h3>
+                            <p className="company-name">{lic.company}</p>
+                        </div>
+                        <div className="card-footer">
+                            <span className="mineral">{lic.mineral}</span>
+                            <span className="location">{lic.location}</span>
+                        </div>
                     </div>
-                </div>
+                ))}
             </div>
         </div>
     );
 };
 
-export default Requisites;
+export default Registry;

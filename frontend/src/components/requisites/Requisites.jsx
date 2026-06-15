@@ -3,27 +3,27 @@ import { LanguageContext } from "../../LanguageContext";
 import './Requisites.css';
 
 const Requisites = () => {
-    // Берём текущий язык. Если контекста нет, по умолчанию ставим 'RU'
     const context = useContext(LanguageContext);
     const language = context ? context.language : 'RU';
 
-    // СТАТИЧНЫЕ ДАННЫЕ НА ТРЕХ ЯЗЫКАХ
     const content = {
         RU: {
             title: "Банковские реквизиты",
             subtitle: "Государственное предприятие «Кыргызгеология» при Министерстве природных ресурсов, экологии и технического надзора Кыргызской Республики",
             bankDetails: [
-                { label: "ИНН", value: "00201199710081" },
-                { label: "Код ОКПО", value: "21613271" },
-                { label: "Регистрационный номер", value: "8881-3301-ГП" },
-                { label: "Юридический адрес", value: "720001, Кыргызская Республика, г. Бишкек, проспект Эркиндик, 2" },
-                { label: "Фактический адрес", value: "720001, Кыргызская Республика, г. Бишкек, проспект Эркиндик, 2" }
+                { label: "ИНН", value: "03006199710064" },
+                { label: "Код ОКПО", value: "720040" },
+                { label: "Адрес", value: "720040, г. Бишкек, ул. Эркиндик, 2" },
+                { label: "Телефон", value: "(312) 300-619" }
             ],
             paymentTitle: "Расчетные счета:",
             accounts: [
-                { currency: "KGS (Сом)", bank: "ОАО «РСК Банк», г. Бишкек", account: "12000119971008101" },
-                { currency: "USD (Доллар)", bank: "ОАО «РСК Банк», г. Бишкек", account: "12000119971008102" },
-                { currency: "RUB (Рубль)", bank: "ОАО «РСК Банк», г. Бишкек", account: "12000119971008103" }
+                { 
+                    currency: "KGS (Сом)", 
+                    bank: "ОАО «Айыл Банк» филиал Асанбай", 
+                    account: "1350120020075459", 
+                    bik: "135029" 
+                }
             ]
         },
         KG: {
@@ -32,15 +32,17 @@ const Requisites = () => {
             bankDetails: [
                 { label: "ИНН", value: "00201199710081" },
                 { label: "ОКПО коду", value: "21613271" },
-                { label: "Каттоо номери", value: "8881-3301-ГП" },
-                { label: "Юридикалык дареги", value: "720001, Кыргыз Республикасы, Бишкек ш., Эркиндик проспектиси, 2" },
-                { label: "Иш жүзүндөгү дареги", value: "720001, Кыргыз Республикасы, Бишкек ш., Эркиндик проспектиси, 2" }
+                { label: "Дареги", value: "720001, Кыргыз Республикасы, Бишкек ш., Эркиндик проспектиси, 2" },
+                { label: "Телефон", value: "(312) 300-619" }
             ],
             paymentTitle: "Эсептешүү эсептери:",
             accounts: [
-                { currency: "KGS (Сом)", bank: "«РСК Банк» ААК, Бишкек ш.", account: "12000119971008101" },
-                { currency: "USD (Доллар)", bank: "«РСК Банк» ААК, Бишкек ш.", account: "12000119971008102" },
-                { currency: "RUB (Рубль)", bank: "«РСК Банк» ААК, Бишкек ш.", account: "12000119971008103" }
+                { 
+                    currency: "KGS (Сом)", 
+                    bank: "«РСК Банк» ААК", 
+                    account: "12000119971008101",
+                    bik: "120001"
+                }
             ]
         },
         EN: {
@@ -49,20 +51,21 @@ const Requisites = () => {
             bankDetails: [
                 { label: "TIN", value: "00201199710081" },
                 { label: "OKPO Code", value: "21613271" },
-                { label: "Registration Number", value: "8881-3301-ГП" },
-                { label: "Legal Address", value: "2 Erkindik Avenue, Bishkek, 720001, Kyrgyz Republic" },
-                { label: "Actual Address", value: "2 Erkindik Avenue, Bishkek, 720001, Kyrgyz Republic" }
+                { label: "Address", value: "2 Erkindik Avenue, Bishkek, 720001, Kyrgyz Republic" },
+                { label: "Phone", value: "(312) 300-619" }
             ],
             paymentTitle: "Current Accounts:",
             accounts: [
-                { currency: "KGS (Som)", bank: "OJSC \"RSK Bank\", Bishkek", account: "12000119971008101" },
-                { currency: "USD (Dollar)", bank: "OJSC \"RSK Bank\", Bishkek", account: "12000119971008102" },
-                { currency: "RUB (Ruble)", bank: "OJSC \"RSK Bank\", Bishkek", account: "12000119971008103" }
+                { 
+                    currency: "KGS (Som)", 
+                    bank: "OJSC \"RSK Bank\"", 
+                    account: "12000119971008101",
+                    bik: "120001"
+                }
             ]
         }
     };
 
-    // Выбираем данные для текущего языка (или фоллбэк на русский)
     const data = content[language?.toUpperCase()] || content.RU;
 
     return (
@@ -90,7 +93,8 @@ const Requisites = () => {
                             <div key={index} className="account-item">
                                 <div className="account-currency">{acc.currency}</div>
                                 <div className="account-bank">{acc.bank}</div>
-                                <div className="account-number">{acc.account}</div>
+                                <div className="account-number">Счет: {acc.account}</div>
+                                {acc.bik && <div className="account-bik">БИК: {acc.bik}</div>}
                             </div>
                         ))}
                     </div>

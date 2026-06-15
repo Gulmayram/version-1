@@ -358,7 +358,19 @@ export const postKyrgyzGeologyApplication = createAsyncThunk(
         }
     }
 );
-
+export const getLicenses = createAsyncThunk(
+    "api/getLicenses",
+    async (_, { rejectWithValue }) => {
+        try {
+            // Замените '/licenses/' на ваш реальный эндпоинт API
+            const response = await instance.get(`/licenses/`); 
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return rejectWithValue(error.message);
+        }
+    }
+);
 
 
 const apiSlice = createSlice({
@@ -392,6 +404,9 @@ const apiSlice = createSlice({
         categories: [],
         vacancies:[],
         vacancyDetail:[],
+        licenses: [], // Новое поле
+        loading: false,
+        error: null,
     },
     reducers: {
         clearMap: (state) => {
@@ -705,6 +720,18 @@ const apiSlice = createSlice({
             })
             .addCase(postKyrgyzGeologyApplication.rejected, (state) => {
                 state.loading = false;
+            })
+            .addCase(getLicenses.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(getLicenses.fulfilled, (state, { payload }) => {
+                state.loading = false;
+                state.licenses = payload;
+            })
+            .addCase(getLicenses.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
             });
 
 

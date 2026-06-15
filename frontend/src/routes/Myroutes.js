@@ -26,6 +26,7 @@ import VacancyDetail from "../components/vacancies/VacancyDetail";
 import Requisites from "../components/requisites/Requisites"; // Проверь путь к файлу!
 import Reception from "../components/reception/Reception"; // Проверь путь к папке
 import PhoneDirectory from "../components/contacts/PhoneDirectory";
+import Registry from "../components/registry/Registry";
 
 const PUBLIC_ROUTES = [
   { id: 2, link: "/", element: <Main/> },
@@ -51,6 +52,7 @@ const PUBLIC_ROUTES = [
   { id: 29, link: "/partners", element: <InvestorPage/> },
   { id: 30, link: "/deposits", element: <MapItem/> },
   { id: 31, link: "/anticorruption", element: <InvestorPage/> },
+  { id: 41, link: "/registry", element: <Registry /> }, // Новый маршрут для реестра
 
   // --- РАЗДЕЛ: ДОКУМЕНТЫ И ОТЧЁТЫ ---
   { id: 32, link: "/docs/financial", element: <InvestorPage /> },

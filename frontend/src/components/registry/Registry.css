@@ -1,0 +1,99 @@
+/* Registry.css */
+
+.registry-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-size: 24px;
+    color: #1a2a40;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    margin-bottom: 25px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #d1d9e6;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.registry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.license-card {
+    background: #fff;
+    border: 1px solid #eef2f7;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.license-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.license-id {
+    font-weight: 600;
+    color: #333;
+}
+
+.status-tag {
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-weight: 500;
+}
+
+/* Цвета для статусов */
+.status-tag.действует, .status-tag.active {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-tag.приостановлена, .status-tag.suspended {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.card-middle {
+    margin-bottom: 15px;
+}
+
+.field-name {
+    font-size: 1.1rem;
+    margin: 0 0 5px 0;
+    color: #1a2a40;
+}
+
+.company-name {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #888;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+}

@@ -19,11 +19,31 @@ const Navbar = () => {
   };
 
   const subMenus = {
-    about: { title: 'aboutCompany', subKey: 'aboutSub', links: ["/about/info", "/about/management", "/about/charter", "/about/structure", "/about/reports", "/about/maps"] },
-    activity: { title: 'services', subKey: 'servicesSub', links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption"] },
-    docs: { title: 'docsAndReports', subKey: 'docsSub', links: ["/docs/financial", "/docs/social", "/docs/technical"] },
-    base: { title: 'normativeBase', subKey: 'baseSub', links: ["/legal", "/forms", "/instructions"] },
-    news: { title: 'announcements', subKey: 'newsSub', links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] },
+    about: { 
+      title: 'aboutCompany', 
+      subKey: 'aboutSub', 
+      links: ["/about/info", "/about/management", "/about/charter", "/about/structure", "/about/reports", "/about/maps"] 
+    },
+    activity: { 
+      title: 'services', 
+      subKey: 'servicesSub', 
+      links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption", "/registry"] 
+    },
+    docs: { 
+      title: 'docsAndReports', 
+      subKey: 'docsSub', 
+      links: ["/docs/financial", "/docs/social", "/docs/technical"] 
+    },
+    base: { 
+      title: 'normativeBase', 
+      subKey: 'baseSub', 
+      links: ["/legal", "/forms", "/instructions"] 
+    },
+    news: { 
+      title: 'announcements', 
+      subKey: 'newsSub', 
+      links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] 
+    },
     contacts: { 
       title: 'contacts', 
       subKey: 'contactsSub', 

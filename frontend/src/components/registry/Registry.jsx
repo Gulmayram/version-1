@@ -63,7 +63,7 @@ const Registry = () => {
                 <select onChange={(e) => setStatusFilter(e.target.value)}>
                     <option value="Все">{data.statusLabel} {data.all}</option>
                     <option value="Действует">Действует</option>
-                    <option value="Приостановлена">Приостановлена</option>
+                    <option value="Приостановлено">Приостановлено</option>
                 </select>
                 <select onChange={(e) => setRegionFilter(e.target.value)}>
                     <option value="Все">{data.regionLabel} {data.all}</option>

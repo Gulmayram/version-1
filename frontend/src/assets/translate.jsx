@@ -189,4 +189,9 @@ export const translate = {
     KG: "Биздин ишкана өлкөнүн минералдык-чийки зат базасын туруктуу өнүктүрүүнү, геологиялык чалгындоо тармагына инвестицияларды тартууну жана эл аралык кызматташтыкты өнүктүрүүнү камсыз кылат.",
     EN: "Our enterprise ensures the sustainable development of the country's mineral resource base, attracting investment to the geological exploration industry and developing international cooperation."
   },
+  servicesSub: {
+    RU: ["Услуги", "Проекты", "Продукция", "Для партнёров", "Месторождения", "Антикоррупция", "Реестр лицензий"],
+    KG: ["Кызматтар", "Долбоорлор", "Продукция", "Өнөктөштөр үчүн", "Кендер", "Коррупцияга каршы", "Лицензиялар реестри"],
+    EN: ["Services", "Projects", "Production", "Partners", "Deposits", "Anti-corruption", "License Registry"]
+  },
 };

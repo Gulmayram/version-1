@@ -1,77 +1,78 @@
-import React, { useState, useMemo } from 'react';
-import { translate } from "../../assets/translate";
-import { LanguageContext } from '../../LanguageContext';
+import React, { useContext, useState, useMemo } from 'react';
+import { LanguageContext } from "../../LanguageContext";
 import './Registry.css';
 
-// Данные из ваших CSV (объединены для примера)
-const licenseData = [
-  { id: 1, type: "Разработка", region: "Ошская", field: "Наукатское", company: "ОсОО «Фортресс Компани»", mineral: "Гипс" },
-  { id: 2, type: "Разработка", region: "Баткенская", field: "Северный Акташ", company: "ОсОО «Джунда»", mineral: "Сурьма, Флюорит" },
-  { id: 3, type: "Разведка", region: "Баткенская", field: "Алтын-Джилга", company: "ОсОО «Аурум Голд Компани»", mineral: "Золото" },
-  { id: 4, type: "Разведка", region: "Ошская", field: "Сасык-Ункур", company: "ОсОО «Айкан-Тоо»", mineral: "Мраморный известняк" },
-  { id: 5, type: "Разработка", region: "Чуйская", field: "Центральный Ак-Моло", company: "ОсОО «Сабила Голд»", mineral: "Каолин" },
-  { id: 6, type: "Разработка", region: "Нарынская", field: "Каратор", company: "ОсОО «Кинцайд Тяньшань»", mineral: "Золото" },
-  { id: 7, type: "Разведка", region: "Ошская", field: "Раян-Тоо", company: "ОсОО «ЧиВи»", mineral: "Уголь" },
-  { id: 8, type: "Разведка", region: "Ошская", field: "Чалкйкур-Акжилгинская", company: "ОсОО «Алтын Ресурсы»", mineral: "Золото, серебро" },
-  { id: 9, type: "Разработка", region: "Иссык-Кульская", field: "Кумтор", company: "ЗАО «Кумтор Голд Компани»", mineral: "Золото" },
-  { id: 10, type: "Разведка", region: "Таласская", field: "Джеруй", company: "ОсОО «Альянс Алтын»", mineral: "Золото" },
-];
-
 const Registry = () => {
-  const [filterType, setFilterType] = useState("Все");
-  const [filterRegion, setFilterRegion] = useState("Все");
+    const context = useContext(LanguageContext);
+    const language = context ? context.language.toUpperCase() : 'RU';
+    const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredData = useMemo(() => {
-    return licenseData.filter(item => {
-      return (filterType === "Все" || item.type === filterType) &&
-             (filterRegion === "Все" || item.region === filterRegion);
-    });
-  }, [filterType, filterRegion]);
+    const content = {
+        RU: {
+            title: "Реестр лицензий на недропользование",
+            searchPlaceholder: "Поиск по номеру, держателю, объекту...",
+            licenses: [
+                { id: "7436 АР", field: "Алтын-Джилга", company: 'ОсОО "Аурум Голд Компани"', status: "Действует", mineral: "Золото", location: "Баткенская обл." },
+                { id: "7218 ТР", field: "Сасык-Ункур", company: 'ОсОО "Айкан-Тоо"', status: "Приостановлена", mineral: "Мраморный известняк", location: "Ошская обл." },
+                { id: "7044 TE", field: "Наукатское", company: 'ОсОО "Фортресс Компани"', status: "Действует", mineral: "Гипс", location: "Ошская обл." },
+                { id: "7658 TE", field: "Центральный Ак-Моло", company: 'ОсОО "Сабила Голд"', status: "Действует", mineral: "Каолин", location: "Джалал-Абадская обл." },
+                { id: "7659 АЕ", field: "Каратор", company: 'ОсОО "Кинцайд Тяньшань"', status: "Действует", mineral: "Золото", location: "Нарынская обл." },
+                { id: "7807 СР", field: "Раян-Тоо", company: 'ОсОО "ЧиВи"', status: "Действует", mineral: "Уголь", location: "Ошская обл." },
+                { id: "7808 АР", field: "Чалкйкур-Акжилгинская", company: 'ОсОО "Алтын Ресурсы"', status: "Приостановлена", mineral: "Золото, серебро", location: "Ошская обл." },
+                { id: "7051 МЕ", field: "Северный Акташ", company: 'ОсОО "Джунда"', status: "Действует", mineral: "Сурьма, Флюорит", location: "Баткенская обл." },
+                { id: "7901 ТР", field: "Кумтор", company: 'ЗАО "Кумтор Голд Компани"', status: "Действует", mineral: "Золото", location: "Иссык-Кульская обл." },
+                { id: "7902 АР", field: "Джеруй", company: 'ОсОО "Альянс Алтын"', status: "Действует", mineral: "Золото", location: "Таласская обл." }
+            ]
+        },
+        // ... (добавьте KG и EN аналогично по структуре)
+    };
 
-  return (
-    <div className="registry-container">
-      <h2>Реестр лицензий</h2>
-      
-      {/* Панель фильтров */}
-      <div className="filters">
-        <select onChange={(e) => setFilterType(e.target.value)}>
-          <option value="Все">Тип работ (Все)</option>
-          <option value="Разработка">Разработка</option>
-          <option value="Разведка">Разведка</option>
-        </select>
+    const data = content[language] || content.RU;
 
-        <select onChange={(e) => setFilterRegion(e.target.value)}>
-          <option value="Все">Область (Все)</option>
-          <option value="Ошская">Ошская</option>
-          <option value="Баткенская">Баткенская</option>
-          <option value="Чуйская">Чуйская</option>
-          {/* Добавьте остальные области */}
-        </select>
-      </div>
+    // Фильтрация данных
+    const filteredLicenses = useMemo(() => {
+        return data.licenses.filter(lic => 
+            lic.field.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            lic.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            lic.company.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }, [searchTerm, data.licenses]);
 
-      {/* Таблица */}
-      <table>
-        <thead>
-          <tr>
-            <th>№</th>
-            <th>Месторождение</th>
-            <th>Компания</th>
-            <th>Ископаемое</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item, index) => (
-            <tr key={item.id}>
-              <td>{index + 1}</td>
-              <td>{item.field}</td>
-              <td>{item.company}</td>
-              <td>{item.mineral}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    return (
+        <div className="registry-page">
+            <h1 className="page-title">{data.title}</h1>
+            
+            <div className="search-bar">
+                <input 
+                    type="text" 
+                    placeholder={data.searchPlaceholder} 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
+
+            <div className="registry-grid">
+                {filteredLicenses.map((lic, index) => (
+                    <div key={index} className="license-card">
+                        <div className="card-top">
+                            <span className="license-id">{lic.id}</span>
+                            <span className={`status-tag ${lic.status === "Действует" ? "active" : "suspended"}`}>
+                                {lic.status}
+                            </span>
+                        </div>
+                        <div className="card-middle">
+                            <h3 className="field-name">{lic.field}</h3>
+                            <p className="company-name">{lic.company}</p>
+                        </div>
+                        <div className="card-footer">
+                            <span className="mineral">{lic.mineral}</span>
+                            <span className="location">{lic.location}</span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 };
 
 export default Registry;

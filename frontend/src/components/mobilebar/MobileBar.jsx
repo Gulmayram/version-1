@@ -13,9 +13,14 @@ const MobileBar = ({ isOpen, onClose }) => {
     return translate[key] ? translate[key][lang] : key;
   };
 
-  const subMenus = {
+const subMenus = {
     about: { title: 'aboutCompany', subKey: 'aboutSub', links: ["/about/info", "/about/management", "/about/charter", "/about/structure", "/about/reports", "/about/maps"] },
-    activity: { title: 'services', subKey: 'servicesSub', links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption"] },
+    // Обновляем activity:
+    activity: { 
+      title: 'services', 
+      subKey: 'servicesSub', 
+      links: ["/services", "/projects", "/production", "/partners", "/deposits", "/anticorruption", "/registry"] 
+    },
     docs: { title: 'docsAndReports', subKey: 'docsSub', links: ["/docs/financial", "/docs/social", "/docs/technical"] },
     base: { title: 'normativeBase', subKey: 'baseSub', links: ["/legal", "/forms", "/instructions"] },
     news: { title: 'announcements', subKey: 'newsSub', links: ["/contests", "/procurement", "/realization", "/vacancies", "/press-center"] },

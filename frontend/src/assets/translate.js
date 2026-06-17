@@ -63,11 +63,13 @@ export const translate = {
   diagramOfAll: { "RU": "Диаграма всех объектов", "KG": "Бардык объекттердин диаграммасы", "EN": "Diagram of all objects" },
   graphOfMonth: { "RU": "График месячного дохода", "KG": "Айлык киреше диаграммасы", "EN": "Monthly income graph" },
   numberOfDeposits: { "RU": "Количество месторождений", "KG": "Кендүү жерлер", "EN": "Number of deposits" },
+  
   fullEnterpriseName: {
       RU: "ГП «Кыргызгеология» при Минприроды",
       KG: "КР Жаратылыш ресурстары министрлигине караштуу «Кыргызгеология» МИ",
       EN: "State Enterprise \"Kyrgyzgeology\" under the Ministry of Natural Resources"
-    },
+  },
+  
   apiCurrency: {
     usd: { api: "price_dollar", currency: '$' },
     eur: { api: "price_euro", currency: '€' },
@@ -86,15 +88,14 @@ export const translate = {
   announcements: { RU: "Объявления", KG: "Кулактандыруулар", EN: "Announcements" },
   accessibility: { RU: "Версия для слабовидящих", KG: "Азиздер үчүн версия", EN: "Accessibility version" },
   enterprise: { RU: "Государственное предприятие", KG: "Мамлекеттик ишкана", EN: "State Enterprise" },
-  // ... внутри объекта translate ...
+  
   anticorruptionTitle: {
       RU: "Антикоррупционная деятельность",
       KG: "Коррупцияга каршы аракеттенүү",
       EN: "Anti-corruption activities"
-    },
+  },
   
-    // Массив пустой, так как пути к файлам теперь управляются через импорты в компоненте
-    anticorruptionDocs: {
+  anticorruptionDocs: {
       RU: [
         { title: "План мероприятий по реализации Государственной программы антикоррупционной информационной политики (2026-2027)" },
         { title: "Профильный детализированный план по демонтажу системной коррупции совместно с ГКНБ (2025-2026)" }
@@ -107,66 +108,50 @@ export const translate = {
         { title: "Action Plan for the implementation of the State Anti-corruption Information Policy (2026-2027)" },
         { title: "Profile detailed plan for dismantling systemic corruption in cooperation with the SCNS (2025-2026)" }
       ]
-    },
+  },
+  
   docsAndReports: {
     RU: "Документы и отчёты",
     KG: "Документтер жана отчеттор",
     EN: "Documents and Reports"
   },
-  aboutSub: {
-    RU: [
-      "История и миссия",
-      "Руководство",
-      "Устав предприятия",      // Существующий
-      "Свидетельство о регистрации", // НОВЫЙ
-      "Организационная структура",
-      "Отчеты",
-      "Карты"
-    ],
-    KG: [
-      "Тарых жана миссия",
-      "Жетекчилик",
-      "Жаргы",
-      "Каттоо күбөлүгү",        // НОВЫЙ
-      "Уюштуруу түзүмү",
-      "Отчёттор",
-      "Карталар"
-    ],
-    EN: [
-      "History and mission",
-      "Management",
-      "Statute",
-      "Registration Certificate", // НОВЫЙ
-      "Organizational structure",
-      "Reports",
-      "Maps"
-    ]
+  
+  constituentTitle: {
+    RU: "Учредительные документы",
+    KG: "Уюштуруу документтери",
+    EN: "Constituent Documents"
   },
+
   aboutSub: {
-    RU: ["Общая информация", "Руководство", "Устав", "Структура", "Отчёты", "Карты"],
-    KG: ["Жалпы маалымат", "Жетекчилик", "Устав", "Түзүмү", "Отчеттор", "Карталар"],
-    EN: ["General Info", "Management", "Charter", "Structure", "Reports", "Maps"]
+    RU: ["История и миссия", "Руководство", "Учредительные документы", "Организационная структура", "Отчеты", "Карты"],
+    KG: ["Тарых жана миссия", "Жетекчилик", "Уюштуруу документтери", "Уюштуруу түзүмү", "Отчёттор", "Карталар"],
+    EN: ["History and mission", "Management", "Constituent documents", "Organizational structure", "Reports", "Maps"]
   },
+
   servicesSub: {
-    RU: ["Услуги", "Проекты", "Продукция", "Для партнёров", "Месторождения", "Антикоррупция"],
-    KG: ["Кызматтар", "Долбоорлор", "Продукция", "Өнөктөштөр үчүн", "Кендер", "Коррупцияга каршы"],
-    EN: ["Services", "Projects", "Production", "Partners", "Deposits", "Anti-corruption"]
+    RU: ["Услуги", "Проекты", "Продукция", "Для партнёров", "Месторождения", "Антикоррупция", "Реестр лицензий"],
+    KG: ["Кызматтар", "Долбоорлор", "Продукция", "Өнөктөштөр үчүн", "Кендер", "Коррупцияга каршы", "Лицензиялар реестри"],
+    EN: ["Services", "Projects", "Production", "Partners", "Deposits", "Anti-corruption", "License Registry"]
   },
+
   docsSub: {
     RU: ["Финансовая отчётность", "Социальная отчётность", "Техническая документация"],
     KG: ["Финансылык отчеттуулук", "Социалдык отчеттуулук", "Техникалык документтер"],
     EN: ["Financial Statements", "Social Reporting", "Technical Documentation"]
   },
+  
   baseSub: {
     RU: ["Законодательство и НПА", "Формы и бланки", "Инструкции"],
     KG: ["Мыйзамдар", "Формалар жана бланктар", "Нускамалар"],
     EN: ["Legislation", "Forms", "Instructions"]
   },
+  
   newsSub: {
     RU: ["Конкурсы", "Закупки", "Реализация", "Вакансии", "Пресс-центр"],
     KG: ["Конкурстар", "Сатып алуулар", "Сатуу", "Бош орундар", "Пресс-борбор"],
     EN: ["Tenders", "Procurement", "Realization", "Vacancies", "Press Center"]
   },
+  
   contactsSub: {
     RU: ["Телефонный справочник", "Приёмная", "Реквизиты"],
     KG: ["Телефондук маалымдама", "Кабыл алуу бөлүмү", "Реквизиттер"],
@@ -185,43 +170,49 @@ export const translate = {
     KG: "Кыргызстандын минералдык-чийки зат базасын өнүктүрүү үчүн комплекстүү геологиялык кызматтар жана чечимдер", 
     EN: "Comprehensive geological services and solutions for the development of the mineral resource base of Kyrgyzstan" 
   },
+  
   act_services: { RU: "Услуги", KG: "Кызматтар", EN: "Services" },
   act_services_desc: { 
     RU: "Геологоразведочные работы, лабораторные исследования, геофизические изыскания", 
     KG: "Геологиялык чалгындоо иштери, лабораториялык изилдөөлөр, геофизикалык изилдөөлөр", 
     EN: "Geological exploration, laboratory research, geophysical surveys" 
   },
+  
   act_projects: { RU: "Проекты", KG: "Долбоорлор", EN: "Projects" }, 
   act_projects_desc: { 
     RU: "Текущие и завершённые геологические проекты по всей территории республики", 
     KG: "Республиканын бардык аймагындагы учурдагы жана аяктаган геологиялык долбоорлор", 
     EN: "Current and completed geological projects throughout the republic" 
   },
+  
   act_production: { RU: "Продукция", KG: "Продукция", EN: "Production" }, 
   act_production_desc: { 
     RU: "Геологическая информация, тематические карты, научно-технические отчёты", 
     KG: "Геологиялык маалыматтар, тематикалык карталар, илимий-техникалык отчеттор", 
     EN: "Geological information, thematic maps, scientific and technical reports" 
   },
+  
   act_investors: { RU: "Для инвесторов и партнёров", KG: "Инвесторлор жана өнөктөштөр үчүн", EN: "For investors and partners" },
   act_investors_desc: { 
     RU: "Возможности сотрудничества, инвестиционные проекты, условия партнёрства", 
     KG: "Кызматташуу мүмкүнчүлүктөрү, инвестициялык долбоорлор, өнөктөштүк шарттары", 
     EN: "Cooperation opportunities, investment projects, partnership terms" 
   },
+  
   act_registry: { RU: "Реестр месторождений", KG: "Кендердин реестри", EN: "Registry of deposits" },
   act_registry_desc: { 
     RU: "Полная база данных месторождений полезных ископаемых с детальными характеристиками", 
     KG: "Пайдалуу кендердин деталдуу мүнөздөмөлөрү менен толук маалымат базасы", 
     EN: "Complete database of mineral deposits with detailed characteristics" 
   },
+  
   act_anticorruption: { RU: "Антикоррупционные меры", KG: "Коррупцияга каршы чаралар", EN: "Anti-corruption measures" },
   act_anticorruption_desc: { 
     RU: "Противодействие коррупции, прозрачность деятельности, этические стандарты", 
     KG: "Коррупцияга каршы аракеттенүү, ишмердүүлүктүн ачыктыгы, этикалык стандарттар", 
     EN: "Anti-corruption, transparency of activities, ethical standards" 
   },
-  // Секция Карта
+  
   map_badge: { RU: "Интерактивная карта", KG: "Интерактивдүү карта", EN: "Interactive map" },
   map_title: { RU: "Карта месторождений Кыргызстана", KG: "Кыргызстандын кен байлыктарынын картасы", EN: "Map of deposits of Kyrgyzstan" },
   map_desc: { 
@@ -231,7 +222,6 @@ export const translate = {
   },
   map_button: { RU: "Перейти к карте", KG: "Картага өтүү", EN: "Go to map" },
 
-  // Текст для AboutSection
   about_text_p1: {
     RU: 'Государственное предприятие "Кыргызгеология" является ведущей геологической организацией Кыргызской Республики, осуществляющей геологическое изучение недр, поиск и разведку месторождений полезных ископаемых.',
     KG: '"Кыргызгеология" мамлекеттик ишканасы жер казынасын геологиялык изилдөөнү, пайдалуу кендерди издөөнү жана чалгындоону жүзөгө ашырган Кыргыз Республикасынын алдыңкы геологиялык уюму болуп саналат.',
@@ -241,10 +231,5 @@ export const translate = {
     RU: "Наше предприятие обеспечивает устойчивое развитие минерально-сырьевой базы страны, привлечение инвестиций в геологоразведочную отрасль и развитие международного сотрудничества.",
     KG: "Биздин ишкана өлкөнүн минералдык-чийки зат базасын туруктуу өнүктүрүүнү, геологиялык чалгындоо тармагына инвестицияларды тартууну жана эл аралык кызматташтыкты өнүктүрүүнү камсыз кылат.",
     EN: "Our enterprise ensures the sustainable development of the country's mineral resource base, attracting investment to the geological exploration industry and developing international cooperation."
-  },
-  servicesSub: {
-    RU: ["Услуги", "Проекты", "Продукция", "Для партнёров", "Месторождения", "Антикоррупция", "Реестр лицензий"],
-    KG: ["Кызматтар", "Долбоорлор", "Продукция", "Өнөктөштөр үчүн", "Кендер", "Коррупцияга каршы", "Лицензиялар реестри"],
-    EN: ["Services", "Projects", "Production", "Partners", "Deposits", "Anti-corruption", "License Registry"]
-  },
+  }
 };

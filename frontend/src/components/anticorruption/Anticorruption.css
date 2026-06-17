@@ -1,55 +1,65 @@
-.anticorruption-page {
-  padding: 40px 20px;
-  max-width: 900px;
+.anti-page {
+  padding: 60px 40px;
+  max-width: 1000px;
   margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.content-header h1 {
-  font-size: 2rem;
-  color: #2c3e50;
-  margin-bottom: 30px;
-  border-bottom: 2px solid #3498db;
+.anti-header { margin-bottom: 50px; }
+
+.badge {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
   display: inline-block;
-  padding-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-.docs-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
+.anti-header h1 { font-size: 2.5rem; color: #1a2a6c; margin-bottom: 10px; }
+
+.docs-grid { display: grid; gap: 20px; }
 
 .doc-card {
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 24px;
   background: #ffffff;
-  border: 1px solid #e1e8ed;
-  border-radius: 12px;
+  border-radius: 16px;
+  border: 1px solid #eef2f7;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 
 .doc-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  border-color: #3498db;
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+  border-color: #1976d2;
 }
 
-.doc-icon img {
-  width: 40px;
-  height: 40px;
+.doc-icon {
+  background: #f0f7ff;
+  padding: 12px;
+  border-radius: 12px;
   margin-right: 20px;
+  color: #1976d2;
+  width: 48px;
+  height: 48px;
 }
 
-.doc-info h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #333;
-}
+.doc-content h3 { margin: 0; font-size: 1.1rem; color: #333; }
 
-.doc-meta {
-  font-size: 0.85rem;
-  color: #7f8c8d;
+.file-type { color: #99aab5; font-size: 0.85rem; }
+
+.download-btn {
+  margin-left: auto;
+  padding: 10px 20px;
+  background: #1a2a6c;
+  color: white;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
 }

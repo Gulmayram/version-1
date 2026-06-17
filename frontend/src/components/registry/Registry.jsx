@@ -8,17 +8,15 @@ const Registry = () => {
     
     // Состояния фильтров
     const [searchTerm, setSearchTerm] = useState("");
-    const [statusFilter, setStatusFilter] = useState("Все");
     const [regionFilter, setRegionFilter] = useState("Все");
+    const [mineralFilter, setMineralFilter] = useState("Все");
 
     const content = {
         RU: {
             title: "Реестр лицензий на недропользование",
             searchPlaceholder: "Поиск по номеру, держателю, объекту...",
-            statusLabel: "Статус:",
             regionLabel: "Область:",
             all: "Все",
-            // Пример расширенной структуры для карточки
             licenses: [
                 {
                     id: "7436 АР",
@@ -34,13 +32,17 @@ const Registry = () => {
                     term: "01.11.2023-01.11.2027",
                     agreement: "ЛС №4 до 01.11.2027 г.",
                     area: "4 916.35 га"
-                }
+                },
+                // Сюда вы добавляете остальные объекты из таблицы
             ]
         }
-        // Добавьте KG и EN аналогично
     };
 
     const data = content[language] || content.RU;
+
+    // Авто-генерация фильтров
+    const allRegions = useMemo(() => [...new Set(data.licenses.map(l => l.location.split(',')[0]))], [data.licenses]);
+    const allMinerals = useMemo(() => [...new Set(data.licenses.map(l => l.mineral))], [data.licenses]);
 
     // Логика фильтрации
     const filteredLicenses = useMemo(() => {
@@ -48,17 +50,16 @@ const Registry = () => {
             const matchesSearch = lic.field.toLowerCase().includes(searchTerm.toLowerCase()) || 
                                   lic.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                   lic.company.toLowerCase().includes(searchTerm.toLowerCase());
-            const matchesStatus = statusFilter === "Все" || lic.status === statusFilter;
             const matchesRegion = regionFilter === "Все" || lic.location.includes(regionFilter);
-            return matchesSearch && matchesStatus && matchesRegion;
+            const matchesMineral = mineralFilter === "Все" || lic.mineral.includes(mineralFilter);
+            return matchesSearch && matchesRegion && matchesMineral;
         });
-    }, [searchTerm, statusFilter, regionFilter, data.licenses]);
+    }, [searchTerm, regionFilter, mineralFilter, data.licenses]);
 
     return (
         <div className="registry-page">
             <h1 className="page-title">{data.title}</h1>
             
-            {/* Панель фильтров и поиска */}
             <div className="registry-controls">
                 <input 
                     className="search-input"
@@ -66,22 +67,19 @@ const Registry = () => {
                     placeholder={data.searchPlaceholder} 
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <select onChange={(e) => setStatusFilter(e.target.value)}>
-                    <option value="Все">{data.statusLabel} {data.all}</option>
-                    <option value="Действует">Действует</option>
-                    <option value="Приостановлено">Приостановлено</option>
-                </select>
                 <select onChange={(e) => setRegionFilter(e.target.value)}>
                     <option value="Все">{data.regionLabel} {data.all}</option>
-                    <option value="Ошская">Ошская</option>
-                    <option value="Баткенская">Баткенская</option>
-                    <option value="Таласская">Таласская</option>
+                    {allRegions.map(reg => <option key={reg} value={reg}>{reg}</option>)}
+                </select>
+                <select onChange={(e) => setMineralFilter(e.target.value)}>
+                    <option value="Все">Ископаемое (Все)</option>
+                    {allMinerals.map(min => <option key={min} value={min}>{min}</option>)}
                 </select>
             </div>
 
             <div className="registry-grid">
                 {filteredLicenses.map((lic, index) => (
-                    <div className="license-card">
+                    <div key={index} className="license-card">
                         <div className="card-top">
                             <span className="license-id">№ {lic.id}</span>
                         </div>

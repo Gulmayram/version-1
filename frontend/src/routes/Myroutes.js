@@ -27,6 +27,7 @@ import Requisites from "../components/requisites/Requisites"; // Проверь 
 import Reception from "../components/reception/Reception"; // Проверь путь к папке
 import PhoneDirectory from "../components/contacts/PhoneDirectory";
 import Registry from "../components/registry/Registry";
+import Anticorruption from '../components/anticorruption/Anticorruption'; // убедитесь, что путь верный
 
 const PUBLIC_ROUTES = [
   { id: 2, link: "/", element: <Main/> },
@@ -51,7 +52,7 @@ const PUBLIC_ROUTES = [
   { id: 19, link: "/boezgrproductcard", element: <BoezgrtProductCard/> },
   { id: 29, link: "/partners", element: <InvestorPage/> },
   { id: 30, link: "/deposits", element: <MapItem/> },
-  { id: 31, link: "/anticorruption", element: <InvestorPage/> },
+  { id: 31, link: "/anticorruption", element: <Anticorruption/> },
   { id: 41, link: "/registry", element: <Registry /> }, // Новый маршрут для реестра
 
   // --- РАЗДЕЛ: ДОКУМЕНТЫ И ОТЧЁТЫ ---

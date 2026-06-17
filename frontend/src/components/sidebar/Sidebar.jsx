@@ -87,6 +87,7 @@ const Sidebar = () => {
         "/historyandmission", 
         "/about/management", 
         "/about/statute", 
+        "/about/certificate",
         "/organization", 
         "/about/reports", 
         "/about/maps"

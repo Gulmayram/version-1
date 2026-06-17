@@ -1,80 +1,128 @@
-.history-mission {
-  max-width: 1000px;
-  margin: 100px auto 60px;
-  padding: 0 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+.hq-page-container {
+  max-width: 1100px;
+  margin: 100px auto;
+  padding: 0 40px;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #1a202c;
 }
 
-.history-hero {
+/* Hero */
+.hq-hero {
   text-align: center;
   margin-bottom: 60px;
 }
 
-.history-hero h1 {
-  font-size: 2.5rem;
-  color: #1a202c;
-  margin-bottom: 10px;
+.hq-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -1px;
 }
 
-.hero-divider {
-  width: 60px;
-  height: 4px;
+.hq-hero-line {
+  width: 80px;
+  height: 6px;
   background: #2b6cb0;
-  margin: 0 auto;
+  margin: 20px auto 0;
 }
 
-.enterprise-container {
-  background: #f8fafc;
-  padding: 40px;
-  border-radius: 20px;
+/* Интро-карта */
+.hq-intro-card {
+  background: #f7fafc;
+  padding: 50px;
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.hq-intro-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.hq-intro-text {
+  font-size: 1.2rem;
+  color: #4a5568;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Сетка целей и задач */
+.hq-strategy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
   margin-bottom: 60px;
 }
 
-.enterprise-title {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #2d3748;
+.hq-strategy-card {
+  padding: 40px;
+  border-radius: 20px;
+  color: white;
 }
 
-.enterprise-grid {
+.hq-strategy-card.primary { background: #2b6cb0; }
+.hq-strategy-card.secondary { background: #2d3748; }
+
+.hq-strategy-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.hq-strategy-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.hq-strategy-card li {
+  margin-bottom: 15px;
+  padding-left: 25px;
+  position: relative;
+  font-size: 1.1rem;
+}
+
+.hq-strategy-card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #63b3ed;
+  font-weight: bold;
+}
+
+/* Карточки подразделений */
+.hq-units-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-top: 30px;
 }
 
-.enterprise-card {
+.hq-unit-item {
   background: white;
-  padding: 25px;
-  border-radius: 12px;
   border: 1px solid #e2e8f0;
+  padding: 30px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
-.enterprise-card:hover {
+.hq-unit-item:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   transform: translateY(-5px);
-  border-color: #2b6cb0;
 }
 
-.card-icon { color: #2b6cb0; margin-bottom: 15px; }
-.card-number { font-weight: 800; color: #a0aec0; display: block; margin-bottom: 5px; }
-.card-text { font-weight: 600; color: #2d3748; margin: 0; }
-
-.section-title {
-  font-size: 1.8rem;
-  color: #1a202c;
-  margin-bottom: 25px;
+.hq-unit-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #cbd5e0;
+  display: block;
+  margin-bottom: 10px;
 }
 
-.body-text {
-  line-height: 1.8;
-  color: #4a5568;
-  font-size: 1.1rem;
-}
-
-@media (max-width: 600px) {
-  .enterprise-grid { grid-template-columns: 1fr; }
-  .history-mission { padding: 20px; }
-  .enterprise-container { padding: 25px; }
+@media (max-width: 768px) {
+  .hq-strategy-grid { grid-template-columns: 1fr; }
+  .hq-units-grid { grid-template-columns: 1fr; }
 }

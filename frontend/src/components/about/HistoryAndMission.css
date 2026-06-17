@@ -1,123 +1,60 @@
-/* --- Общие настройки --- */
-.history-mission {
-  padding: 60px 20px;
-  max-width: 1100px;
-  margin: 80px auto 40px;
-  background-color: #ffffff;
-  font-family: 'Inter', sans-serif;
+.history-wrapper {
+  max-width: 1000px;
+  margin: 100px auto;
+  padding: 0 20px;
 }
 
-/* --- Заголовки --- */
-.history-mission h2 {
-  font-size: 2.2rem;
+.hero-section {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  letter-spacing: -1px;
   color: #1a202c;
-  margin-bottom: 40px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-/* --- Раздел: Государственное предприятие --- */
-.stateEnterprise-container {
-  background-color: #f7fafc;
-  padding: 50px;
-  border-radius: 12px;
-  margin-bottom: 50px;
-  border: 1px solid #edf2f7;
-}
-
-.stateEnterprise-title {
-  font-size: 1.8rem;
-  color: #2d3748;
-  margin-bottom: 20px;
-}
-
-.stateEnterprise-description {
-  font-size: 1.1rem;
-  color: #4a5568;
-  line-height: 1.6;
-  margin-bottom: 40px;
-  max-width: 800px;
-}
-
-/* --- Сетка карточек --- */
-.stateEnterprise-grid {
+/* Сетка "шахматкой" или плиткой */
+.enterprise-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
+  margin-bottom: 80px;
 }
 
-.stateEnterprise-item {
-  background: #ffffff;
-  padding: 25px;
+.enterprise-card {
+  background: #f7fafc;
+  padding: 30px;
+  border-radius: 16px;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-align: left;
 }
 
-.stateEnterprise-item:hover {
-  border-color: #2b6cb0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+.icon-box {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #3182ce;
+  margin-bottom: 15px;
 }
 
-.item-number {
-  display: block;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #2b6cb0;
-  margin-bottom: 10px;
+/* Дизайн для целей и задач */
+.info-pivot {
+  display: flex;
+  gap: 30px;
 }
 
-.item-title {
-  font-size: 0.95rem;
-  color: #4a5568;
-  margin: 0;
-  line-height: 1.4;
-}
-
-/* --- Раздел: Миссия и PDF --- */
-.mission-content h3 {
-  font-size: 1.5rem;
-  color: #1a202c;
-  margin-bottom: 20px;
-  border-left: 4px solid #2b6cb0;
-  padding-left: 15px;
-}
-
-.body-text {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: #4a5568;
-  margin-bottom: 40px;
-}
-
-.pdf-embed-wrapper {
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.pdf-mobile-link {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 24px;
-  background: #2b6cb0;
+.pivot-card {
+  flex: 1;
+  padding: 40px;
+  border-radius: 20px;
   color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 600;
 }
 
-/* --- Адаптивность --- */
-@media (max-width: 992px) {
-  .stateEnterprise-grid { grid-template-columns: repeat(2, 1fr); }
-}
+.goals { background: linear-gradient(135deg, #2b6cb0 0%, #4299e1 100%); }
+.tasks { background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); }
 
-@media (max-width: 600px) {
-  .stateEnterprise-grid { grid-template-columns: 1fr; }
-  .history-mission { padding: 20px; }
-  .stateEnterprise-container { padding: 25px; }
+.pivot-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  opacity: 0.9;
 }

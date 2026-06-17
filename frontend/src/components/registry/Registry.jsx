@@ -18,17 +18,32 @@ const Registry = () => {
             statusLabel: "Статус:",
             regionLabel: "Область:",
             all: "Все",
+            // Пример расширенной структуры для карточки
             licenses: [
-                { id: "7044 TE", field: "Наукатское", company: 'ОсОО "Фортресс Компани"', status: "Действует", mineral: "Гипс", location: "Ошская обл." },
-                { id: "7051 ME", field: "Северный Акташ", company: 'ОсОО "Джунда"', status: "Приостановлено", mineral: "Сурьма, Флюорит", location: "Баткенская обл." },
-                { id: "7436 AP", field: "Алтын-Джилга", company: 'ОсОО "Аурум Голд Компани"', status: "Действует", mineral: "Золото", location: "Баткенская обл." },
-                { id: "7218 TP", field: "Сасык-Ункур", company: 'ОсОО "Айкан-Тоо"', status: "Приостановлено", mineral: "Мраморный известняк", location: "Ошская обл." },
-                { id: "7658 TE", field: "Центральный Ак-Моло", company: 'ОсОО "Сабила Голд"', status: "Действует", mineral: "Каолин", location: "Джалал-Абадская обл." },
-                { id: "7659 AE", field: "Каратор", company: 'ОсОО "Кинцайд Тяньшань"', status: "Действует", mineral: "Золото", location: "Нарынская обл." },
-                { id: "7807 CP", field: "Раян-Тоо", company: 'ОсОО "ЧиВи"', status: "Действует", mineral: "Уголь", location: "Ошская обл." },
-                { id: "7808 AP", field: "Чалкйкур-Акжилгинская", company: 'ОсОО "Алтын Ресурсы"', status: "Приостановлено", mineral: "Золото, серебро", location: "Ошская обл." },
-                { id: "7901 TP", field: "Кумтор", company: 'ЗАО "Кумтор Голд Компани"', status: "Действует", mineral: "Золото", location: "Иссык-Кульская обл." },
-                { id: "7902 AP", field: "Джеруй", company: 'ОсОО "Альянс Алтын"', status: "Действует", mineral: "Золото", location: "Таласская обл." }
+                { 
+                    id: "7436 AP", 
+                    field: "Алтын-Джилга", 
+                    company: 'ОсОО "Аурум Голд Компани"', 
+                    status: "Действует", 
+                    mineral: "Золото", 
+                    location: "Баткенская обл.",
+                    contractDate: "15.05.2024",
+                    orderNum: "№124-р",
+                    licenseTerm: "до 2030 г.",
+                    area: "15.2 га"
+                },
+                { 
+                    id: "7218 TP", 
+                    field: "Сасык-Ункур", 
+                    company: 'ОсОО "Айкан-Тоо"', 
+                    status: "Приостановлено", 
+                    mineral: "Мраморный известняк", 
+                    location: "Ошская обл.",
+                    contractDate: "10.08.2023",
+                    orderNum: "№88-р",
+                    licenseTerm: "до 2028 г.",
+                    area: "5.0 га"
+                }
             ]
         }
         // Добавьте KG и EN аналогично
@@ -75,7 +90,7 @@ const Registry = () => {
 
             <div className="registry-grid">
                 {filteredLicenses.map((lic, index) => (
-                    <div key={index} className="license-card">
+                    <div className="license-card">
                         <div className="card-top">
                             <span className="license-id">{lic.id}</span>
                             <span className={`status-tag ${lic.status === "Действует" ? "active" : "suspended"}`}>
@@ -86,9 +101,13 @@ const Registry = () => {
                             <h3 className="field-name">{lic.field}</h3>
                             <p className="company-name">{lic.company}</p>
                         </div>
-                        <div className="card-footer">
-                            <span>{lic.mineral}</span>
-                            <span>{lic.location}</span>
+                        <div className="card-footer-extended">
+                            <div className="row"><span>Ископаемое:</span> <b>{lic.mineral}</b></div>
+                            <div className="row"><span>Место:</span> <b>{lic.location}</b></div>
+                            <div className="row"><span>Дата договора:</span> <b>{lic.contractDate}</b></div>
+                            <div className="row"><span>№ расп.:</span> <b>{lic.orderNum}</b></div>
+                            <div className="row"><span>Срок:</span> <b>{lic.licenseTerm}</b></div>
+                            <div className="row"><span>Площадь:</span> <b>{lic.area}</b></div>
                         </div>
                     </div>
                 ))}

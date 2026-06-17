@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { LanguageContext } from '../../LanguageContext';
 import { translate } from "../../assets/translate";
 import './Anticorruption.css';
-// Импорты файлов из assets
+
+// Импортируем файлы напрямую из assets
 import order1 from '../../assets/order_1.pdf';
 import order2 from '../../assets/order_2.pdf';
 
@@ -10,10 +11,10 @@ const Anticorruption = () => {
   const { language } = useContext(LanguageContext);
   const lang = language ? language.toUpperCase() : "RU";
 
-  // Берем данные из перевода
-  const title = translate['anticorruptionTitle'][lang];
-  // ВАЖНО: Мы заменяем fileUrl из перевода на импортированные переменные
-  const docs = translate['anticorruptionDocs'][lang].map((doc, index) => ({
+  const title = translate.anticorruptionTitle[lang];
+  
+  // Добавляем пути к файлам в зависимости от индекса
+  const docs = translate.anticorruptionDocs[lang].map((doc, index) => ({
     ...doc,
     fileUrl: index === 0 ? order1 : order2
   }));
@@ -23,7 +24,6 @@ const Anticorruption = () => {
       <header className="anti-header">
         <div className="badge">Anti-Corruption</div>
         <h1>{title}</h1>
-        <p>Официальные нормативные документы и планы по противодействию коррупции.</p>
       </header>
 
       <div className="docs-grid">

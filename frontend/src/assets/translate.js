@@ -88,24 +88,26 @@ export const translate = {
   enterprise: { RU: "Государственное предприятие", KG: "Мамлекеттик ишкана", EN: "State Enterprise" },
   // ... внутри объекта translate ...
   anticorruptionTitle: {
-    RU: "Антикоррупционная деятельность",
-    KG: "Коррупцияга каршы аракеттенүү",
-    EN: "Anti-corruption activities"
-  },
-  anticorruptionDocs: {
-    RU: [
-      { title: "Политика противодействия коррупции", fileUrl: "/files/policy.pdf" },
-      { title: "План мероприятий на 2026 год", fileUrl: "/files/plan2026.pdf" }
-    ],
-    KG: [
-      { title: "Коррупцияга каршы саясат", fileUrl: "/files/policy_kg.pdf" },
-      { title: "2026-жылга карата иш-чаралар планы", fileUrl: "/files/plan2026_kg.pdf" }
-    ],
-    EN: [
-      { title: "Anti-corruption Policy", fileUrl: "/files/policy_en.pdf" },
-      { title: "Action Plan for 2026", fileUrl: "/files/plan2026_en.pdf" }
-    ]
-  },
+      RU: "Антикоррупционная деятельность",
+      KG: "Коррупцияга каршы аракеттенүү",
+      EN: "Anti-corruption activities"
+    },
+  
+    // Массив пустой, так как пути к файлам теперь управляются через импорты в компоненте
+    anticorruptionDocs: {
+      RU: [
+        { title: "План мероприятий по реализации Государственной программы антикоррупционной информационной политики (2026-2027)" },
+        { title: "Профильный детализированный план по демонтажу системной коррупции совместно с ГКНБ (2025-2026)" }
+      ],
+      KG: [
+        { title: "Коррупцияга каршы маалыматтык саясатты ишке ашыруу боюнча иш-чаралар планы (2026-2027)" },
+        { title: "УКМК менен биргеликте системалуу коррупцияны жоюу боюнча профилдик деталдуу план (2025-2026)" }
+      ],
+      EN: [
+        { title: "Action Plan for the implementation of the State Anti-corruption Information Policy (2026-2027)" },
+        { title: "Profile detailed plan for dismantling systemic corruption in cooperation with the SCNS (2025-2026)" }
+      ]
+    },
   docsAndReports: {
     RU: "Документы и отчёты",
     KG: "Документтер жана отчеттор",

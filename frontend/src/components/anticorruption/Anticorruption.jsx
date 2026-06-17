@@ -4,8 +4,8 @@ import { translate } from "../../assets/translate";
 import './Anticorruption.css';
 
 // Импортируем файлы напрямую из assets
-import order1 from '../../assets/order_1.pdf';
-import order2 from '../../assets/order_2.pdf';
+import order1 from '../../assets/anticorruption_plan_2026_2027.pdf';
+import order2 from '../../assets/anticorruption_plan_gkns_2025_2026.pdf';
 
 const Anticorruption = () => {
   const { language } = useContext(LanguageContext);

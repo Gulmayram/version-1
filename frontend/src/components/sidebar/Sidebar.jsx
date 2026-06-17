@@ -155,8 +155,8 @@ const Sidebar = () => {
       <div className="sidebar-logo">
         <img src="/logo.png" alt="Logo" className="logo-img" />
         <div className="logo-text">
-          <h2>{getT('kyrgyzgeology')}</h2>
-          <p>{getT('enterprise')}</p>
+          {/* Заменяем старые ключи на один новый */}
+          <h2>{getT('fullEnterpriseName')}</h2>
         </div>
       </div>
 

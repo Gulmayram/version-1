@@ -20,29 +20,20 @@ const Registry = () => {
             all: "Все",
             // Пример расширенной структуры для карточки
             licenses: [
-                { 
-                    id: "7436 AP", 
-                    field: "Алтын-Джилга", 
-                    company: 'ОсОО "Аурум Голд Компани"', 
-                    status: "Действует", 
-                    mineral: "Золото", 
-                    location: "Баткенская обл.",
-                    contractDate: "15.05.2024",
-                    orderNum: "№124-р",
-                    licenseTerm: "до 2030 г.",
-                    area: "15.2 га"
-                },
-                { 
-                    id: "7218 TP", 
-                    field: "Сасык-Ункур", 
-                    company: 'ОсОО "Айкан-Тоо"', 
-                    status: "Приостановлено", 
-                    mineral: "Мраморный известняк", 
-                    location: "Ошская обл.",
-                    contractDate: "10.08.2023",
-                    orderNum: "№88-р",
-                    licenseTerm: "до 2028 г.",
-                    area: "5.0 га"
+                {
+                    id: "7436 АР",
+                    field: "Алтын-Джилга",
+                    company: 'ОсОО "Аурум Голд Компани"',
+                    mineral: "Золото",
+                    note: "На стадии геологоразведки",
+                    location: "Баткенская обл., Баткенский р-н",
+                    contractInfo: "Договор №01-134 от 12.05.2022 г.",
+                    licenseDate: "01.12.2023 г.",
+                    orderNum: "68-т от 16.02.2022 г.",
+                    debt: "1 219 600,34",
+                    term: "01.11.2023-01.11.2027",
+                    agreement: "ЛС №4 до 01.11.2027 г.",
+                    area: "4 916.35 га"
                 }
             ]
         }
@@ -92,21 +83,22 @@ const Registry = () => {
                 {filteredLicenses.map((lic, index) => (
                     <div className="license-card">
                         <div className="card-top">
-                            <span className="license-id">{lic.id}</span>
-                            <span className={`status-tag ${lic.status === "Действует" ? "active" : "suspended"}`}>
-                                {lic.status}
-                            </span>
+                            <span className="license-id">№ {lic.id}</span>
                         </div>
                         <div className="card-middle">
                             <h3 className="field-name">{lic.field}</h3>
-                            <p className="company-name">{lic.company}</p>
+                            <p className="company-name"><strong>Договор с:</strong> {lic.company}</p>
                         </div>
                         <div className="card-footer-extended">
                             <div className="row"><span>Ископаемое:</span> <b>{lic.mineral}</b></div>
+                            <div className="row"><span>Примечание:</span> <b>{lic.note}</b></div>
                             <div className="row"><span>Место:</span> <b>{lic.location}</b></div>
-                            <div className="row"><span>Дата договора:</span> <b>{lic.contractDate}</b></div>
-                            <div className="row"><span>№ расп.:</span> <b>{lic.orderNum}</b></div>
-                            <div className="row"><span>Срок:</span> <b>{lic.licenseTerm}</b></div>
+                            <div className="row"><span>Договор:</span> <b>{lic.contractInfo}</b></div>
+                            <div className="row"><span>Дата получения:</span> <b>{lic.licenseDate}</b></div>
+                            <div className="row"><span>№ распоряжения:</span> <b>{lic.orderNum}</b></div>
+                            <div className="row"><span>Долг (2026 г):</span> <b>{lic.debt}</b></div>
+                            <div className="row"><span>Срок лицензии:</span> <b>{lic.term}</b></div>
+                            <div className="row"><span>Соглашение:</span> <b>{lic.agreement}</b></div>
                             <div className="row"><span>Площадь:</span> <b>{lic.area}</b></div>
                         </div>
                     </div>

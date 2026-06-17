@@ -1,0 +1,57 @@
+.docs-container {
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.docs-header h1 {
+  font-size: 2.5rem;
+  color: #1a365d;
+  margin-bottom: 10px;
+}
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.doc-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #edf2f7;
+}
+
+.doc-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(26, 54, 93, 0.15);
+  border-color: #2b6cb0;
+}
+
+.doc-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.doc-card h3 {
+  color: #2d3748;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.doc-btn {
+  background: #2b6cb0;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+}

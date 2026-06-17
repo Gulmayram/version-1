@@ -63,7 +63,11 @@ export const translate = {
   diagramOfAll: { "RU": "Диаграма всех объектов", "KG": "Бардык объекттердин диаграммасы", "EN": "Diagram of all objects" },
   graphOfMonth: { "RU": "График месячного дохода", "KG": "Айлык киреше диаграммасы", "EN": "Monthly income graph" },
   numberOfDeposits: { "RU": "Количество месторождений", "KG": "Кендүү жерлер", "EN": "Number of deposits" },
-
+  fullEnterpriseName: {
+      RU: "ГП «Кыргызгеология» при Минприроды",
+      KG: "КР Жаратылыш ресурстары министрлигине караштуу «Кыргызгеология» МИ",
+      EN: "State Enterprise \"Kyrgyzgeology\" under the Ministry of Natural Resources"
+    },
   apiCurrency: {
     usd: { api: "price_dollar", currency: '$' },
     eur: { api: "price_euro", currency: '€' },

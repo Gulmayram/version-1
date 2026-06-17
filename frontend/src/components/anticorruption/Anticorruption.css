@@ -1,0 +1,55 @@
+.anticorruption-page {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.content-header h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #3498db;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.docs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.doc-card {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e1e8ed;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.doc-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-color: #3498db;
+}
+
+.doc-icon img {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+
+.doc-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.doc-meta {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}

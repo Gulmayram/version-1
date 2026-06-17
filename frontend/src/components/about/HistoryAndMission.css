@@ -1,60 +1,79 @@
-.history-wrapper {
+.history-mission {
   max-width: 1000px;
-  margin: 100px auto;
+  margin: 100px auto 60px;
   padding: 0 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.hero-section {
+.history-hero {
   text-align: center;
   margin-bottom: 60px;
 }
 
-.hero-section h1 {
-  font-size: 3rem;
-  letter-spacing: -1px;
+.history-hero h1 {
+  font-size: 2.5rem;
   color: #1a202c;
+  margin-bottom: 10px;
 }
 
-/* Сетка "шахматкой" или плиткой */
+.hero-divider {
+  width: 60px;
+  height: 4px;
+  background: #2b6cb0;
+  margin: 0 auto;
+}
+
+/* Карточки предприятий */
+.enterprise-container {
+  background: #f8fafc;
+  padding: 40px;
+  border-radius: 20px;
+  margin-bottom: 60px;
+}
+
+.enterprise-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
 .enterprise-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  margin-bottom: 80px;
+  margin-top: 30px;
 }
 
 .enterprise-card {
-  background: #f7fafc;
-  padding: 30px;
-  border-radius: 16px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
   border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.icon-box {
-  font-size: 2rem;
-  font-weight: 900;
-  color: #3182ce;
-  margin-bottom: 15px;
+.enterprise-card:hover {
+  transform: translateY(-5px);
+  border-color: #2b6cb0;
 }
 
-/* Дизайн для целей и задач */
-.info-pivot {
-  display: flex;
-  gap: 30px;
+.card-icon { color: #2b6cb0; margin-bottom: 15px; }
+.card-number { font-weight: 800; color: #a0aec0; display: block; margin-bottom: 5px; }
+.card-text { font-weight: 600; color: #2d3748; margin: 0; }
+
+/* Текстовый контент */
+.mission-content {
+  padding: 20px;
 }
 
-.pivot-card {
-  flex: 1;
-  padding: 40px;
-  border-radius: 20px;
-  color: white;
+.section-title {
+  font-size: 1.8rem;
+  color: #1a202c;
+  margin-bottom: 25px;
 }
 
-.goals { background: linear-gradient(135deg, #2b6cb0 0%, #4299e1 100%); }
-.tasks { background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); }
-
-.pivot-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  opacity: 0.9;
+.body-text {
+  line-height: 1.8;
+  color: #4a5568;
+  font-size: 1.1rem;
 }

@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { LanguageContext } from '../../LanguageContext';
 import { translate } from "../../assets/translate";
 import './Anticorruption.css';
+// Импорты файлов из assets
+import order1 from '../../assets/order_1.pdf';
+import order2 from '../../assets/order_2.pdf';
 
 const Anticorruption = () => {
   const { language } = useContext(LanguageContext);
@@ -9,7 +12,11 @@ const Anticorruption = () => {
 
   // Берем данные из перевода
   const title = translate['anticorruptionTitle'][lang];
-  const docs = translate['anticorruptionDocs'][lang];
+  // ВАЖНО: Мы заменяем fileUrl из перевода на импортированные переменные
+  const docs = translate['anticorruptionDocs'][lang].map((doc, index) => ({
+    ...doc,
+    fileUrl: index === 0 ? order1 : order2
+  }));
 
   return (
     <div className="anti-page">

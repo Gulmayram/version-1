@@ -160,7 +160,20 @@
     background: white;
     cursor: pointer;
 }
+.card-footer-extended {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Немного увеличим отступы */
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
 
+.card-footer-extended .row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem; /* Чуть уменьшим шрифт для компактности */
+}
 @media (max-width: 768px) {
     .registry-controls {
         grid-template-columns: 1fr;

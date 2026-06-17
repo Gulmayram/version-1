@@ -7,38 +7,39 @@ const Anticorruption = () => {
   const { language } = useContext(LanguageContext);
   const lang = language ? language.toUpperCase() : "RU";
 
-  // Заголовок и список документов из файла переводов
-  const title = translate['anticorruptionTitle'] ? translate['anticorruptionTitle'][lang] : "Антикоррупция";
-  const docs = translate['anticorruptionDocs'] ? translate['anticorruptionDocs'][lang] : [];
+  // Берем данные из перевода
+  const title = translate['anticorruptionTitle'][lang];
+  const docs = translate['anticorruptionDocs'][lang];
 
   return (
-    <div className="anticorruption-page">
-      <div className="content-header">
+    <div className="anti-page">
+      <header className="anti-header">
+        <div className="badge">Anti-Corruption</div>
         <h1>{title}</h1>
-      </div>
-      
-      <div className="docs-container">
-        {docs.length > 0 ? (
-          docs.map((doc, index) => (
-            <a 
-              key={index} 
-              href={doc.fileUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="doc-card"
-            >
-              <div className="doc-icon">
-                <img src="/icons/pdf-icon.svg" alt="PDF" />
-              </div>
-              <div className="doc-info">
-                <h3>{doc.title}</h3>
-                <span className="doc-meta">PDF • {doc.size || 'Скачать'}</span>
-              </div>
-            </a>
-          ))
-        ) : (
-          <p>{translate['noDocuments'][lang] || "Документы временно отсутствуют."}</p>
-        )}
+        <p>Официальные нормативные документы и планы по противодействию коррупции.</p>
+      </header>
+
+      <div className="docs-grid">
+        {docs.map((doc, index) => (
+          <a 
+            key={index} 
+            href={doc.fileUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="doc-card"
+          >
+            <div className="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6" />
+              </svg>
+            </div>
+            <div className="doc-content">
+              <h3>{doc.title}</h3>
+              <span className="file-type">PDF Document</span>
+            </div>
+            <div className="download-btn">Открыть</div>
+          </a>
+        ))}
       </div>
     </div>
   );

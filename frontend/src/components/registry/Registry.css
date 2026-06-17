@@ -120,7 +120,28 @@
     padding-top: 15px;
     margin-top: auto;
 }
+.card-footer-extended {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
 
+.card-footer-extended .row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+.card-footer-extended .row span {
+    color: #666;
+}
+
+.card-footer-extended .row b {
+    color: #1a2a40;
+}
 .mineral {
     font-weight: 500;
     color: #4a5568;

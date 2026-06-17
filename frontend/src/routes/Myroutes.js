@@ -28,6 +28,7 @@ import Reception from "../components/reception/Reception"; // Проверь п�
 import PhoneDirectory from "../components/contacts/PhoneDirectory";
 import Registry from "../components/registry/Registry";
 import Anticorruption from '../components/anticorruption/Anticorruption'; // убедитесь, что путь верный
+import ConstituentDocuments from "../components/about/ConstituentDocuments";
 
 const PUBLIC_ROUTES = [
   { id: 2, link: "/", element: <Main/> },
@@ -54,6 +55,7 @@ const PUBLIC_ROUTES = [
   { id: 30, link: "/deposits", element: <MapItem/> },
   { id: 31, link: "/anticorruption", element: <Anticorruption/> },
   { id: 41, link: "/registry", element: <Registry /> }, // Новый маршрут для реестра
+  { id: 42, link: "/about/constituent", element: <ConstituentDocuments /> },
 
   // --- РАЗДЕЛ: ДОКУМЕНТЫ И ОТЧЁТЫ ---
   { id: 32, link: "/docs/financial", element: <InvestorPage /> },

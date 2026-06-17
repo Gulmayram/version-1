@@ -86,7 +86,26 @@ export const translate = {
   announcements: { RU: "Объявления", KG: "Кулактандыруулар", EN: "Announcements" },
   accessibility: { RU: "Версия для слабовидящих", KG: "Азиздер үчүн версия", EN: "Accessibility version" },
   enterprise: { RU: "Государственное предприятие", KG: "Мамлекеттик ишкана", EN: "State Enterprise" },
-
+  // ... внутри объекта translate ...
+  anticorruptionTitle: {
+    RU: "Антикоррупционная деятельность",
+    KG: "Коррупцияга каршы аракеттенүү",
+    EN: "Anti-corruption activities"
+  },
+  anticorruptionDocs: {
+    RU: [
+      { title: "Политика противодействия коррупции", fileUrl: "/files/policy.pdf" },
+      { title: "План мероприятий на 2026 год", fileUrl: "/files/plan2026.pdf" }
+    ],
+    KG: [
+      { title: "Коррупцияга каршы саясат", fileUrl: "/files/policy_kg.pdf" },
+      { title: "2026-жылга карата иш-чаралар планы", fileUrl: "/files/plan2026_kg.pdf" }
+    ],
+    EN: [
+      { title: "Anti-corruption Policy", fileUrl: "/files/policy_en.pdf" },
+      { title: "Action Plan for 2026", fileUrl: "/files/plan2026_en.pdf" }
+    ]
+  }
   docsAndReports: {
     RU: "Документы и отчёты",
     KG: "Документтер жана отчеттор",

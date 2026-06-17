@@ -105,7 +105,7 @@ export const translate = {
       { title: "Anti-corruption Policy", fileUrl: "/files/policy_en.pdf" },
       { title: "Action Plan for 2026", fileUrl: "/files/plan2026_en.pdf" }
     ]
-  }
+  },
   docsAndReports: {
     RU: "Документы и отчёты",
     KG: "Документтер жана отчеттор",

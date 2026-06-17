@@ -2,7 +2,7 @@
   max-width: 1000px;
   margin: 100px auto 60px;
   padding: 0 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .history-hero {
@@ -23,7 +23,6 @@
   margin: 0 auto;
 }
 
-/* Карточки предприятий */
 .enterprise-container {
   background: #f8fafc;
   padding: 40px;
@@ -34,6 +33,7 @@
 .enterprise-title {
   font-size: 1.5rem;
   margin-bottom: 15px;
+  color: #2d3748;
 }
 
 .enterprise-grid {
@@ -61,11 +61,6 @@
 .card-number { font-weight: 800; color: #a0aec0; display: block; margin-bottom: 5px; }
 .card-text { font-weight: 600; color: #2d3748; margin: 0; }
 
-/* Текстовый контент */
-.mission-content {
-  padding: 20px;
-}
-
 .section-title {
   font-size: 1.8rem;
   color: #1a202c;
@@ -76,4 +71,10 @@
   line-height: 1.8;
   color: #4a5568;
   font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .enterprise-grid { grid-template-columns: 1fr; }
+  .history-mission { padding: 20px; }
+  .enterprise-container { padding: 25px; }
 }

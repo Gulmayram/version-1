@@ -86,8 +86,7 @@ const Sidebar = () => {
       links: [
         "/historyandmission", 
         "/about/management", 
-        "/about/statute", 
-        "/about/certificate",
+        "/about/constituent", // НОВАЯ ССЫЛКА
         "/organization", 
         "/about/reports", 
         "/about/maps"
